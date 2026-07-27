@@ -1,0 +1,29 @@
+{
+  "extends": "@tsconfig/strictest",
+  "compilerOptions": {
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "outDir": "./dist",
+    "noEmit": true,
+    "allowJs": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "rootDir": "./",
+    "baseUrl": "./",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@smithyModel": ["assets/model.json"]
+    },
+    "esModuleInterop": true,
+    "verbatimModuleSyntax": false,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "exactOptionalPropertyTypes": false
+  },
+  "exclude": ["node_modules", "dist", "coverage", "**/*.spec.ts", "**/*.test.ts"],
+  "include": ["src", "jest.config.ts", "webpack.config.js"]
+}

@@ -1,0 +1,382 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`SecuredStateMachine Should create secured state machine with customer-managed encryption key 1`] = `
+{
+  "Resources": {
+    "TestKey4CACAF33": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "Description": "Test customer-managed KMS key for state machine",
+        "KeyPolicy": {
+          "Statement": [
+            {
+              "Action": "kms:*",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::123456789012:root",
+                    ],
+                  ],
+                },
+              },
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::KMS::Key",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "TestStateMachine3C216BE3": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "TestStateMachineLogGroupServiceRoleDefaultPolicyCC1914D1",
+        "TestStateMachineLogGroupServiceRoleD78C6760",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Step Function execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Step Functions to access CloudWatch Logs, X-Ray, and invoke Lambda functions",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "DefinitionString": "{"StartAt":"TestPass","States":{"TestPass":{"Type":"Pass","End":true}}}",
+        "LoggingConfiguration": {
+          "Destinations": [
+            {
+              "CloudWatchLogsLogGroup": {
+                "LogGroupArn": {
+                  "Fn::GetAtt": [
+                    "TestStateMachineLogGroupC568AB0D",
+                    "Arn",
+                  ],
+                },
+              },
+            },
+          ],
+          "Level": "ALL",
+        },
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "TestStateMachineLogGroupServiceRoleD78C6760",
+            "Arn",
+          ],
+        },
+        "StateMachineName": "TestStateMachine",
+        "StateMachineType": "STANDARD",
+        "TracingConfiguration": {
+          "Enabled": true,
+        },
+      },
+      "Type": "AWS::StepFunctions::StateMachine",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "TestStateMachineLogGroupC568AB0D": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-CWL-1",
+              "reason": "Customer-managed KMS key used for CloudWatch Logs encryption as requested by customer",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "KmsKeyId": {
+          "Fn::GetAtt": [
+            "TestKey4CACAF33",
+            "Arn",
+          ],
+        },
+        "LogGroupName": "TestStateMachine-LogGroup",
+        "RetentionInDays": 545,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "TestStateMachineLogGroupServiceRoleD78C6760": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "states.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(states.amazonaws.com) to write into TestStateMachine-LogGroup",
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "TestStateMachineLogGroupServiceRoleDefaultPolicyCC1914D1": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "TestStateMachineLogGroupC568AB0D",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "kms:Decrypt",
+                "kms:Encrypt",
+                "kms:ReEncrypt*",
+                "kms:GenerateDataKey*",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "TestKey4CACAF33",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "logs:CreateLogDelivery",
+                "logs:GetLogDelivery",
+                "logs:UpdateLogDelivery",
+                "logs:DeleteLogDelivery",
+                "logs:ListLogDeliveries",
+                "logs:PutResourcePolicy",
+                "logs:DescribeResourcePolicies",
+                "logs:DescribeLogGroups",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+                "xray:GetSamplingRules",
+                "xray:GetSamplingTargets",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "TestStateMachineLogGroupServiceRoleDefaultPolicyCC1914D1",
+        "Roles": [
+          {
+            "Ref": "TestStateMachineLogGroupServiceRoleD78C6760",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+  },
+}
+`;
+
+exports[`SecuredStateMachine Should create secured state machine without encryption key 1`] = `
+{
+  "Resources": {
+    "TestStateMachine3C216BE3": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "TestStateMachineLogGroupServiceRoleDefaultPolicyCC1914D1",
+        "TestStateMachineLogGroupServiceRoleD78C6760",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Step Function execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Step Functions to access CloudWatch Logs, X-Ray, and invoke Lambda functions",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "DefinitionString": "{"StartAt":"TestPass","States":{"TestPass":{"Type":"Pass","End":true}}}",
+        "LoggingConfiguration": {
+          "Destinations": [
+            {
+              "CloudWatchLogsLogGroup": {
+                "LogGroupArn": {
+                  "Fn::GetAtt": [
+                    "TestStateMachineLogGroupC568AB0D",
+                    "Arn",
+                  ],
+                },
+              },
+            },
+          ],
+          "Level": "ALL",
+        },
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "TestStateMachineLogGroupServiceRoleD78C6760",
+            "Arn",
+          ],
+        },
+        "StateMachineName": "TestStateMachine",
+        "StateMachineType": "STANDARD",
+        "TracingConfiguration": {
+          "Enabled": true,
+        },
+      },
+      "Type": "AWS::StepFunctions::StateMachine",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "TestStateMachineLogGroupC568AB0D": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "LogGroupName": "TestStateMachine-LogGroup",
+        "RetentionInDays": 545,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "TestStateMachineLogGroupServiceRoleD78C6760": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "states.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(states.amazonaws.com) to write into TestStateMachine-LogGroup",
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "TestStateMachineLogGroupServiceRoleDefaultPolicyCC1914D1": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "TestStateMachineLogGroupC568AB0D",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "logs:CreateLogDelivery",
+                "logs:GetLogDelivery",
+                "logs:UpdateLogDelivery",
+                "logs:DeleteLogDelivery",
+                "logs:ListLogDeliveries",
+                "logs:PutResourcePolicy",
+                "logs:DescribeResourcePolicies",
+                "logs:DescribeLogGroups",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+                "xray:GetSamplingRules",
+                "xray:GetSamplingTargets",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "TestStateMachineLogGroupServiceRoleDefaultPolicyCC1914D1",
+        "Roles": [
+          {
+            "Ref": "TestStateMachineLogGroupServiceRoleD78C6760",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+  },
+}
+`;

@@ -1,0 +1,59 @@
+site_name: Gen AI Evaluation Toolkit on AWS
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  features:
+    - navigation.sections
+    - navigation.expand
+    - search.suggest
+    - search.highlight
+    - toc.integrate
+
+extra_css:
+  - stylesheets/print.css
+
+hooks:
+  - docs/hooks/version_hook.py
+
+nav:
+  - Home: index.md
+  - Core guides:
+    - Solution Guide: solution_guide/Gen-AI-ETK-SolutionGuide.md
+    - User Guide: user_guide/Gen-AI-ETK-UserGuide.md
+  - SDK references:
+    - Evaluator SDK: sdk/evaluator-sdk.md
+    - Evaluator PyRIT: sdk/evaluator-pyrit.md
+    - Python client: sdk/python-client.md
+    - TypeScript client: sdk/typescript-client.md
+
+markdown_extensions:
+  - tables
+  - pymdownx.highlight
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths:
+            - packages/generated/python-client
+            - packages/evaluator-sdk/src
+          options:
+            docstring_style: google
+            show_source: false
+            show_bases: false
+
+validation:
+  omitted_files: info
+  absolute_links: warn
+  unrecognized_links: warn

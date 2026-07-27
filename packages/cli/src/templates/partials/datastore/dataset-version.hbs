@@ -1,0 +1,14 @@
+Dataset Id: {{ datasetId }}
+Version: {{ version }}
+Created At: {{formatDate createdAt}}
+Created By: {{ createdBy }}
+S3 Location: {{ s3Location }}
+{{#if annotations}}
+Annotations: 
+{{> common/list 
+    items=annotations 
+    itemPartial="datastore/annotation"
+    noItemsMessage="No Annotations"
+    compact=true
+}}
+{{/if}}

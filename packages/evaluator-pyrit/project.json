@@ -1,0 +1,64 @@
+{
+  "name": "evaluator-pyrit",
+  "sourceRoot": "{projectRoot}/src",
+  "projectType": "library",
+  "targets": {
+    "install": {
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        "evaluator-sdk:install"
+      ],
+      "options": {
+        "commands": [
+          "UV_PROJECT_ENVIRONMENT=.venv uv sync --dev --reinstall-package awssolutions-gen-ai-evaluation-toolkit-evaluator-sdk"
+        ],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf .venv build dist"
+        ],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "uv run ruff check src tests",
+          "uv run mypy src"
+        ],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        "install"
+      ],
+      "options": {
+        "commands": [
+          "uv run pytest tests --ignore=tests/e2e -v"
+        ],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "package": {
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        "check",
+        "test"
+      ],
+      "options": {
+        "commands": [
+          "uv build"
+        ],
+        "cwd": "{projectRoot}"
+      }
+    }
+  }
+}

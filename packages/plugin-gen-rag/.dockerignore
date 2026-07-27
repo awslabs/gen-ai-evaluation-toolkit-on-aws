@@ -1,0 +1,11 @@
+# Generated (only in root, not SDK subdirectories)
+/build
+/coverage
+/dist
+/node_modules
+
+# Irrelevant
+/scripts
+/tests
+mise.toml
+*.md

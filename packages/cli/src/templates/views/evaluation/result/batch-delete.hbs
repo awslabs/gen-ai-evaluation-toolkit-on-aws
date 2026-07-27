@@ -1,0 +1,10 @@
+Batch delete results:
+{{~> common/separator~}}
+
+Deleted: {{ deletedCount }}
+{{#if errors}}
+Errors:
+{{#each errors}}
+  - [{{ id }}] {{ code }}: {{ message }}
+{{/each}}
+{{/if}}

@@ -1,0 +1,30 @@
+{
+  "extends": "@tsconfig/strictest",
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["ES2020"],
+    "declaration": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "declarationDir": "./dist/types",
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "resolveJsonModule": true,
+    "checkJs": false,
+    "exactOptionalPropertyTypes": false,
+    "noPropertyAccessFromIndexSignature": false,
+    "typeRoots": ["./node_modules/@types", "../../node_modules/@types", "./types"],
+    "rootDir": ".",
+    "types": ["node", "jest"]
+  },
+  "include": ["lib/**/*", "lib/**/*.json"],
+  "exclude": ["cdk.out", "build", "node_modules", "dist"]
+}

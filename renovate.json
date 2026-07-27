@@ -1,0 +1,64 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":preserveSemverRanges"
+  ],
+  "dependencyDashboard": false,
+  "ignorePaths": [
+    "packages/generated/**"
+  ],
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "description": "Group AWS SDK v3 packages",
+      "matchPackageNames": ["@aws-sdk/**", "@smithy/**"],
+      "groupName": "aws-sdk"
+    },
+    {
+      "description": "Group AWS CDK ecosystem",
+      "matchPackageNames": [
+        "aws-cdk-lib",
+        "aws-cdk",
+        "constructs",
+        "cdk-nag",
+        "cdk-monitoring-constructs",
+        "cdk-ecr-deployment"
+      ],
+      "groupName": "aws-cdk"
+    },
+    {
+      "description": "Group ESLint ecosystem",
+      "matchPackageNames": ["eslint", "eslint-*", "@eslint/**", "@typescript-eslint/**", "@stylistic/**"],
+      "groupName": "eslint"
+    },
+    {
+      "description": "Group Jest ecosystem",
+      "matchPackageNames": ["jest", "jest-*", "@types/jest", "ts-jest"],
+      "groupName": "jest"
+    },
+    {
+      "description": "Group TypeScript tooling",
+      "matchPackageNames": ["typescript", "ts-node", "tsx", "tsc-alias", "tsconfig-paths", "ts-loader", "@tsconfig/**"],
+      "groupName": "typescript"
+    },
+    {
+      "description": "Group Prettier",
+      "matchPackageNames": ["prettier"],
+      "groupName": "prettier"
+    },
+    {
+      "description": "Disable auto-merge for major updates",
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "labels": ["dependencies", "major-update"]
+    },
+    {
+      "description": "Minor and patch for dev dependencies",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch"]
+    }
+  ]
+}

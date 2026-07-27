@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App DataStack exports 1`] = `
+[
+  "DataStack:ExportsOutputFnGetAttDataBucketE3889A50Arn98F8399F",
+]
+`;
+
+exports[`App GenAiEtk-Base exports 1`] = `
+[
+  "GenAiEtk-Base:ExportsOutputRefGenAiEtkEcrRepository6FD44D8477620B8E",
+  "GenAiEtk-Base:ExportsOutputFnGetAttGenAiEtkEcrRepository6FD44D84Arn3CDC3F72",
+  "GenAiEtk-Base:ExportsOutputFnGetAttApiGatewayRestApi7538854BRootResourceId63E518C2",
+  "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+  "GenAiEtk-Base:ExportsOutputFnGetAttApiGatewayPublicRestApi84E6979ARootResourceId9CDEA49F",
+  "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+  "GenAiEtk-Base:ExportsOutputFnGetAttDatastoreDdbTableD54D1059Arn8B8879AD",
+  "GenAiEtk-Base:ExportsOutputFnGetAttDataStoreBucket0002DC8CArn498FA570",
+  "GenAiEtk-Base:ExportsOutputRefDatastoreDdbTableD54D105938ED1670",
+  "GenAiEtk-Base:ExportsOutputRefDataStoreBucket0002DC8C3518599D",
+  "GenAiEtk-Base:ExportsOutputFnGetAttExperimentArtifactStore87DC89D4Arn6F2BDBEE",
+  "GenAiEtk-Base:ExportsOutputRefExperimentArtifactStore87DC89D49574724C",
+  "GenAiEtk-Base:ExportsOutputRefEventBus7B8748AA3BA3246C",
+  "GenAiEtk-Base:ExportsOutputFnGetAttExperimentConfigB5C2AFDDArn414CFB4B",
+  "GenAiEtk-Base:ExportsOutputRefExperimentConfigB5C2AFDD65D044A1",
+  "GenAiEtk-Base:ExportsOutputFnGetAttEventBus7B8748AAArn0B268F0E",
+  "GenAiEtk-Base:ExportsOutputRefTestDataS3BucketC0F5F0E6C4125D6F",
+  "GenAiEtk-Base:ExportsOutputRefGenerationBucket72758BCD2E5E7217",
+  "GenAiEtk-Base:ExportsOutputFnGetAttTestDataS3BucketC0F5F0E6ArnD7C4FA00",
+  "GenAiEtk-Base:ExportsOutputFnGetAttGenerationBucket72758BCDArn3B2D912C",
+  "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApiDeploymentStageprod083524AB4F830766",
+]
+`;
+
+exports[`App GenAiEtk-pre-reqs exports 1`] = `
+[
+  "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+  "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+  "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+  "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+  "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcVpcEndpointApiGatewayE49EA65E1B2DE9D3",
+  "GenAiEtk-pre-reqs:ExportsOutputRefContainerImagesBucket2328BB67593575F9",
+  "GenAiEtk-pre-reqs:ExportsOutputFnGetAttContainerImagesBucket2328BB67Arn44EEC1C2",
+  "GenAiEtk-pre-reqs:ExportsOutputFnGetAttContainerImagesEcrRepositoryDFEABE69Arn580C874E",
+  "GenAiEtk-pre-reqs:ExportsOutputRefContainerImagesEcrRepositoryDFEABE691BAFD265",
+  "GenAiEtk-pre-reqs:ExportsOutputFnGetAttEcrDeploymentRole433057E3ArnD43BFC4E",
+  "GenAiEtk-pre-reqs:ExportsOutputRefvpcIsolatedSubnet1BC75EE4E22C2DC4F",
+  "GenAiEtk-pre-reqs:ExportsOutputRefvpcIsolatedSubnet28C92F4E0CAC33A87",
+  "GenAiEtk-pre-reqs:ExportsOutputRefvpcIsolatedSubnet338DF853ABEE0130D",
+]
+`;

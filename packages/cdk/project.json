@@ -1,0 +1,67 @@
+{
+  "name": "cdk",
+  "sourceRoot": "{projectRoot}/src",
+  "projectType": "application",
+  "implicitDependencies": ["generated-ts-client", "generated-ts-ssdk", "experiment-lambdas", "python-api"],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": [
+        "{projectRoot}/src/**/*",
+        "{projectRoot}/scripts/**/*",
+        "{projectRoot}/package.json",
+        "{projectRoot}/tsconfig.json",
+        "{workspaceRoot}/package-lock.json",
+        "{workspaceRoot}/output/openapi.json",
+        "{workspaceRoot}/packages/generated/ts-client",
+        "{workspaceRoot}/packages/generated/ts-ssdk",
+        { "dependentTasksOutputFiles": "**/output/lambdas/*.zip", "transitive": false }
+      ],
+      "outputs": ["{projectRoot}/dist", "{projectRoot}/assets"],
+      "dependsOn": ["experiment-lambdas:build", "python-api:build"],
+      "options": {
+        "commands": [
+          "rm -rf dist assets",
+          "mkdir -p assets",
+          "cp $NX_WORKSPACE_ROOT/output/openapi.json assets/",
+          "cp $NX_WORKSPACE_ROOT/output/lambdas/python-api.zip assets/",
+          "cp $NX_WORKSPACE_ROOT/output/lambdas/experiment-lambdas.zip assets/",
+          "npm run build:lambdas",
+          "node -e \"const cp=require('child_process'),fs=require('fs'),path=require('path'),p=require('./package.json');for(const [name,ver] of Object.entries(p.dependencies||{})){if(!ver.startsWith('file:')|| !ver.endsWith('.tgz'))continue;const dest=path.resolve('node_modules',name);if(fs.existsSync(dest)&&fs.readdirSync(dest).length>0)continue;const tgz=path.resolve(ver.slice(5));fs.mkdirSync(dest,{recursive:true});cp.execSync('tar -xzf '+JSON.stringify(tgz)+' -C '+JSON.stringify(dest)+' --strip-components=1',{stdio:'inherit'});console.log('Extracted '+name+' from '+tgz)}\"",
+          "npm run build",
+          "node -e \"const fs=require('fs'),path=require('path'),p=require('./package.json'),root=process.env.NX_WORKSPACE_ROOT;if(!root)throw new Error('NX_WORKSPACE_ROOT is not set');for(const d of(p.bundleDependencies||p.bundledDependencies||[])){const dest=path.resolve('node_modules',d);const src=fs.existsSync(path.resolve(root,'node_modules',d))?path.resolve(root,'node_modules',d):null;if(!src){if(fs.existsSync(dest)&&fs.readdirSync(dest).length>0)continue;throw new Error('Bundle dependency missing from root node_modules and not extracted locally: '+d)}if(fs.existsSync(dest)&&fs.readdirSync(dest).length>0)continue;try{fs.cpSync(src,dest,{recursive:true})}catch(e){console.error('Failed to copy '+d+': '+e.message);process.exit(1)}}\"",
+          "mkdir -p $NX_WORKSPACE_ROOT/output/node",
+          "npm pack",
+          "mv *.tgz $NX_WORKSPACE_ROOT/output/node"
+        ],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "$NX_WORKSPACE_ROOT/scripts/publish/node.sh .",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "commands": ["npm run lint", "npm run test"],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run clean",
+        "cwd": "{projectRoot}"
+      }
+    }
+  }
+}

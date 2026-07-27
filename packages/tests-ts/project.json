@@ -1,0 +1,23 @@
+{
+  "name": "tests-ts",
+  "sourceRoot": "{projectRoot}/tests",
+  "projectType": "application",
+  "implicitDependencies": ["generated-ts-client", "cli"],
+  "targets": {
+    "install": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["cli:build"],
+      "options": {
+        "command": "npm install",
+        "cwd": "{workspaceRoot}"
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run clean",
+        "cwd": "{projectRoot}"
+      }
+    }
+  }
+}

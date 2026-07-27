@@ -1,0 +1,11 @@
+.terraform/
+.terraform.lock.hcl
+*.tfplan
+tfplan*
+tf-outputs.json
+*.log
+terraform.tfstate*
+# Generated per-run by scripts/gen-backend-hcl.sh (local) or the tf:plan
+# pipeline job (CI). Never committed — account-specific by design.
+backend.hcl
+errored.tfstate

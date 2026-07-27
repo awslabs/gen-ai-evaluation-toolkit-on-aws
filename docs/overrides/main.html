@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="print-cover" data-print-title="{{ page.title }}">
+  <p style="margin-top: 20pt; color: #444;">{{ config.site_name }}</p>
+  <p style="margin-top: 10pt; color: #7a7a7a; font-size: 14pt;">v{{ config.extra.version }}</p>
+  <img src="{{ 'stylesheets/aws_logo.png' | url }}" alt="AWS" />
+</div>
+
+<div class="print-copyright">
+  <p>Copyright &copy; 2026 Amazon Web Services, Inc. and/or its affiliates. All rights reserved. Amazon&rsquo;s trademarks and trade dress may not be used in connection with any product or service that is not Amazon&rsquo;s, in any manner that is likely to cause confusion among customers, or in any manner that disparages or discredits Amazon. All other trademarks not owned by Amazon are the property of their respective owners, who may or may not be affiliated with, connected to, or sponsored by Amazon.</p>
+  {% if config.extra.is_prerelease %}
+  <p>This is prerelease documentation for Gen AI Evaluation Toolkit, which is in beta release. The documentation and the project are both subject to change. For preview terms and conditions, see <a href="https://aws.amazon.com/service-terms/">Betas and Previews</a> in AWS Service Terms.</p>
+  {% endif %}
+</div>
+
+{% if page.toc.items %}
+<div class="print-toc">
+  <h2>Table of contents</h2>
+  <ul>
+    {% for item in page.toc.items %}
+    <li class="print-toc__l1"><a href="{{ item.url }}">{{ item.title }}</a>
+      {% if item.children %}
+      <ul>
+        {% for child in item.children %}
+        <li class="print-toc__l2"><a href="{{ child.url }}">{{ child.title }}</a></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+{{ super() }}
+{% endblock %}

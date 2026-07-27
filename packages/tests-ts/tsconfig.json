@@ -1,0 +1,14 @@
+{
+  "extends": "@tsconfig/node20",
+  "compilerOptions": {
+    "outDir": "dist",
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "rootDir": "."
+  },
+  "exclude": ["dist", "build", "node_modules", "configuration"],
+  "testEnvironment": "node",
+  "isolatedModules": true
+}

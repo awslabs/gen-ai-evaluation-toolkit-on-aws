@@ -1,0 +1,10 @@
+/.amazon
+**/build/
+**/dist*/
+**/node_modules/*
+
+# tool generated
+NOTICES.md
+
+# Handlebar files
+**/*.hbs

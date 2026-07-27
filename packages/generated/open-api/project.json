@@ -1,0 +1,14 @@
+{
+  "name": "generated-open-api",
+  "projectType": "library",
+  "implicitDependencies": ["models"],
+  "targets": {
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "find . ! -name 'project.json' -delete",
+        "cwd": "{projectRoot}"
+      }
+    }
+  }
+}

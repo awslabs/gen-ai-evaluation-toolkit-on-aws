@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+build/
+dist/
+*.egg-info/
+.deepeval/
+examples/DEMO_SCRIPT.md

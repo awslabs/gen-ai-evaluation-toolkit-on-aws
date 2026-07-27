@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+.venv
+**/__pycache__
+
+# Per-package lock files (workspace packages use root package-lock.json)
+# plugin-gen-* are exempt: they ship their own lock file for self-contained Docker builds
+packages/**/package-lock.json
+!packages/plugin-gen-*/package-lock.json
+
+# Cache
+.nx/installation
+.nx/cache
+.nx/workspace-data
+
+# Smithy classpath file (machine-specific paths)
+classpath.json
+
+# Mise local
+mise.local.toml
+.mise.local.toml
+
+# Stale build artifacts from removed packages
+packages/plugin-eval-sdk/
+
+# Build output
+output
+
+# Claude Code
+.claude/
+
+# Local planning/scratch notes (not committed)
+.scratch/
+
+# Demo scripts (local-only, not committed)
+scripts/demo/
+
+# Publish temp files
+.npmrc
+**/.wheels/
+
+# Generated docs (rebuilt in CI)
+docs/sdk/typescript/
+site/
+
+# Coverage
+coverage.*
+.coverage

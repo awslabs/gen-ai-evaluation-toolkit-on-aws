@@ -1,0 +1,19 @@
+Report details:
+{{~> common/separator~}}
+
+Report ID: {{ report.reportId }}
+Name: {{ report.name }}
+{{#if report.description}}
+Description: {{ report.description }}
+{{/if}}
+Status: {{ report.status }}
+{{#if report.experimentName}}
+Experiment: {{ report.experimentName }}
+{{/if}}
+{{#if report.jobIds}}
+Jobs: {{#each report.jobIds}}{{ this }}{{#unless @last}}, {{/unless}}{{/each}}
+{{/if}}
+Created at: {{formatDate report.createdAt}}
+{{#if report.updatedAt}}
+Updated at: {{formatDate report.updatedAt}}
+{{/if}}

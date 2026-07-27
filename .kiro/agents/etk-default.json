@@ -1,0 +1,42 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
+  "name": "etk-default",
+  "description": "Agent with minimal tool set",
+  "mcpServers": {},
+  "tools": [
+    "aws",
+    "read",
+    "shell",
+    "write"
+  ],
+  "allowedTools": [
+    "read"
+  ],
+  "resources": [
+    "file://README.md",
+    "file://AGENTS.md",
+    "file://docs/**/*.md"
+  ],
+  "hooks": {
+    "preToolUse": [
+      {
+        "name": "enforce-current-aws-profile",
+        "matcher": "use_aws",
+        "command": "{{REPO_DIR}}/scripts/check-aws-profile.sh"
+      }
+    ]
+  },
+  "toolsSettings": {
+    "aws": {
+      "autoAllowReadonly": true
+    },
+    "execute_bash": {
+      "deniedCommands": [
+        ".*AWS_PROFILE.*",
+        ".*aws.*--profile.*",
+        ".*git push.*",
+        ".*sudo.*"
+      ]
+    }
+  }
+}

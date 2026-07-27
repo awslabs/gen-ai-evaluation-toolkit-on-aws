@@ -1,0 +1,10 @@
+# Generated
+build
+coverage
+dist
+
+# Irrelevant
+scripts
+tests
+mise.toml
+*.md

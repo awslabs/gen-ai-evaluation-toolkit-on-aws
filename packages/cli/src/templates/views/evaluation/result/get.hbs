@@ -1,0 +1,26 @@
+Test result details:
+{{~> common/separator~}}
+
+Result ID: {{ result.resultId }}
+Report ID: {{ result.reportId }}
+{{#if result.testcaseId}}
+Test Case ID: {{ result.testcaseId }}
+{{/if}}
+Input:
+    {{> common/genericObject result.input}}
+{{#if result.output}}
+Output:
+    {{> common/genericObject result.output}}
+{{/if}}
+{{#if result.expected}}
+Expected:
+    {{> common/genericObject result.expected}}
+{{/if}}
+{{#if result.scores}}
+Scores:
+    {{> common/genericObject result.scores}}
+{{/if}}
+Created at: {{formatDate result.createdAt}}
+{{#if result.updatedAt}}
+Updated at: {{formatDate result.updatedAt}}
+{{/if}}

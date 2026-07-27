@@ -1,0 +1,126 @@
+{
+  "name": "terraform-deployment",
+  "projectType": "application",
+  "implicitDependencies": ["terraform"],
+  "targets": {
+    "fmt": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "terraform fmt -check -recursive",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tflint",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "validate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["terraform init -backend=false", "terraform validate"],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "gen-backend-hcl": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "options": {
+        "command": "bash scripts/gen-backend-hcl.sh",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "seed-placeholder-images": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bash scripts/seed-placeholder-images.sh",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "build-and-push-images": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bash scripts/build-and-push-images.sh",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "scripts:test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bash scripts/test_common.sh",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "plan": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["terraform:stage-assets", "gen-backend-hcl"],
+      "outputs": ["{projectRoot}/tfplan"],
+      "options": {
+        "commands": [
+          "bash scripts/preflight-bootstrap.sh",
+          "terraform init -backend-config=backend.hcl -reconfigure",
+          "terraform plan -out=tfplan"
+        ],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "apply": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "terraform apply -auto-approve tfplan",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "seed-test-data": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "options": {
+        "command": "bash scripts/seed-test-data.sh",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["rm -rf .terraform tfplan tf-outputs.json backend.hcl"],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "bootstrap-plan": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["terraform init", "terraform plan -out=bootstrap.tfplan"],
+        "cwd": "{projectRoot}/bootstrap",
+        "parallel": false
+      }
+    },
+    "bootstrap-apply": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["terraform apply bootstrap.tfplan"],
+        "cwd": "{projectRoot}/bootstrap"
+      }
+    },
+    "bootstrap-clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["rm -rf .terraform", "rm -f bootstrap.tfplan terraform.tfstate terraform.tfstate.backup"],
+        "cwd": "{projectRoot}/bootstrap",
+        "parallel": false
+      }
+    },
+    "build-all-images": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["cdk:build", "evaluator-builtin:prepare-wheels"],
+      "options": {
+        "command": "bash scripts/build-and-push-images.sh",
+        "cwd": "{projectRoot}"
+      }
+    }
+  }
+}

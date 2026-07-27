@@ -1,0 +1,5 @@
+# Ignore Claude Code worktrees
+.claude/worktrees
+
+# Copied SDK folders inside plugins (not separate projects)
+packages/*/plugin-gen-sdk

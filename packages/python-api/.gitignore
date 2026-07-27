@@ -1,0 +1,25 @@
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Test/coverage
+.coverage
+.pytest_cache/
+htmlcov/
+
+# Virtual environment
+.venv/
+
+# Hatch
+.hatch/
+
+# IDE
+.idea/
+.vscode/
+*.swp

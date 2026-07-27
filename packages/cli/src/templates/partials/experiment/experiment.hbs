@@ -1,0 +1,24 @@
+Name: {{ name }}
+{{#if description}}
+Description: {{description}}
+{{/if}}
+{{#if creationTime}}
+Created at: {{formatDate creationTime}}
+{{/if}}
+{{#if lastUpdateTime}}
+Last updated at: {{formatDate lastUpdateTime}}
+{{/if}}
+{{#if artifactLocation}}
+ArtifactLocation: {{ artifactLocation }}
+{{/if}}
+{{#if lifecycleStage}}
+Status: {{ lifecycleStage }}
+{{/if}}
+{{#if tags}}
+Tags:
+{{> common/list 
+    items=tags 
+    itemPartial="common/genericObject"
+    noItemsMessage="None"
+    compact=true}}
+{{/if}}

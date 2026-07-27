@@ -1,0 +1,16 @@
+{{#unless this}}
+null
+{{else}}
+{{#if (isKeyValuePair this)}}
+{{key}}: {{value}}
+{{else}}
+  {{#each this as |value key|}}
+    {{#if (isObject value)}}
+{{key}}:
+    {{> common/genericObject value}}
+    {{else}}
+{{key}}: {{value}}
+    {{/if}}
+  {{/each}}
+{{/if}}
+{{/unless}}

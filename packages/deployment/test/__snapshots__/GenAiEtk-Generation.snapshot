@@ -1,0 +1,2834 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App stack GenAiEtk-Generation should match snapshot 1`] = `
+{
+  "Description": "Stack for the GenAI Evaluation Toolkit: Generation",
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "GenAiEtkGenerationGenerationStepFunction004C9D66": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "GenAiEtkGenerationGenerationStepFunctionLogGroupServiceRoleDefaultPolicyD44ADEBE",
+        "GenAiEtkGenerationGenerationStepFunctionLogGroupServiceRoleAFE8BA1A",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Step Function execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Step Functions to access CloudWatch Logs, X-Ray, and invoke Lambda functions",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "DefinitionString": {
+          "Fn::Join": [
+            "",
+            [
+              "{"StartAt":"shouldEmitMetric-GENERATION_STARTED","States":{"shouldEmitMetric-GENERATION_STARTED":{"Type":"Choice","Choices":[{"And":[{"Variable":"$.observabilityLayer.metricNamespace","IsPresent":true},{"Not":{"Variable":"$.observabilityLayer.metricNamespace","StringEquals":""}},{"Variable":"$.observabilityLayer.metricNamespace","IsNull":false}],"Next":"EmitMetricsNoCreds-GENERATION_STARTED"}],"Default":"shouldNotEmitMetric-GENERATION_STARTED"},"shouldNotEmitMetric-GENERATION_STARTED":{"Type":"Pass","Next":"Continue-EmitMetric-GENERATION_STARTED"},"Continue-EmitMetric-GENERATION_STARTED":{"Type":"Pass","Next":"Iterate over plugins"},"EmitMetricsNoCreds-GENERATION_STARTED":{"Next":"Continue-EmitMetric-GENERATION_STARTED","Type":"Task","ResultPath":"$.observability-GENERATION_STARTED-result","Resource":"arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::aws-sdk:cloudwatch:putMetricData","Parameters":{"MetricData":[{"MetricName":"GENERATION_STARTED","Value":1}],"Namespace.$":"$.observabilityLayer.metricNamespace"}},"Iterate over plugins":{"Type":"Map","ResultPath":"$.pluginResults","Next":"shouldEmitMetric-GENERATION_COMPLETED","Catch":[{"ErrorEquals":["States.Timeout"],"ResultPath":"$.error","Next":"Enrich timeout error"},{"ErrorEquals":["States.ALL"],"ResultPath":"$.error","Next":"shouldEmitMetric-GENERATION_FAILED"}],"ItemsPath":"$.steps","ItemSelector":{"detail.$":"States.JsonMerge($, $$.Map.Item.Value, false)","id.$":"$$.Execution.Name","index.$":"$$.Map.Item.Index"},"ItemProcessor":{"ProcessorConfig":{"Mode":"INLINE"},"StartAt":"PluginPayload","States":{"PluginPayload":{"Type":"Pass","ResultPath":"$.detail","Parameters":{"id.$":"$.id","plugin.$":"$.detail.plugin","input":{"bucket":"",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefGenerationBucket72758BCD2E5E7217",
+              },
+              "","prefix.$":"States.Format('{}/{}', $.id, $.index)"},"output":{"bucket":"",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefGenerationBucket72758BCD2E5E7217",
+              },
+              "","prefix.$":"States.Format('{}/{}', $.id, States.MathAdd($.index, 1))"},"configuration.$":"$.detail.configuration"},"Next":"Preserve context for Invoke generation plugins"},"Preserve context for Invoke generation plugins":{"Type":"Parallel","Next":"Merge context for Invoke generation plugins","Branches":[{"StartAt":"Context for Invoke generation plugins","States":{"Context for Invoke generation plugins":{"Type":"Pass","End":true}}},{"StartAt":"Invoke generation plugins","States":{"Invoke generation plugins":{"End":true,"Retry":[{"ErrorEquals":["Lambda.ClientExecutionTimeoutException","Lambda.ServiceException","Lambda.AWSLambdaException","Lambda.SdkClientException"],"IntervalSeconds":2,"MaxAttempts":6,"BackoffRate":2}],"Type":"Task","HeartbeatSeconds":600,"Resource":"arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::lambda:invoke.waitForTaskToken","Parameters":{"FunctionName":"",
+              {
+                "Fn::GetAtt": [
+                  "GenAiEtkGenerationInvokePluginAsyncFunction6B11B1FF",
+                  "Arn",
+                ],
+              },
+              "","Payload":{"detail.$":"$.detail","taskToken.$":"$$.Task.Token"}}}}}]},"Merge context for Invoke generation plugins":{"Type":"Pass","ResultPath":"$","Parameters":{"detail.$":"States.JsonMerge($[0].detail, $[1], false)"},"End":true}}},"MaxConcurrency":1},"shouldEmitMetric-GENERATION_COMPLETED":{"Type":"Choice","Choices":[{"And":[{"Variable":"$.observabilityLayer.metricNamespace","IsPresent":true},{"Not":{"Variable":"$.observabilityLayer.metricNamespace","StringEquals":""}},{"Variable":"$.observabilityLayer.metricNamespace","IsNull":false}],"Next":"EmitMetricsNoCreds-GENERATION_COMPLETED"}],"Default":"shouldNotEmitMetric-GENERATION_COMPLETED"},"shouldNotEmitMetric-GENERATION_COMPLETED":{"Type":"Pass","Next":"Continue-EmitMetric-GENERATION_COMPLETED"},"Continue-EmitMetric-GENERATION_COMPLETED":{"Type":"Pass","Next":"Publish to EventBridge"},"EmitMetricsNoCreds-GENERATION_COMPLETED":{"Next":"Continue-EmitMetric-GENERATION_COMPLETED","Type":"Task","ResultPath":"$.observability-GENERATION_COMPLETED-result","Resource":"arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::aws-sdk:cloudwatch:putMetricData","Parameters":{"MetricData":[{"MetricName":"GENERATION_COMPLETED","Value":1}],"Namespace.$":"$.observabilityLayer.metricNamespace"}},"Publish to EventBridge":{"End":true,"Type":"Task","ResultPath":"$.eventBridgeResult","Resource":"arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::events:putEvents","Parameters":{"Entries":[{"Detail":{"status":"Done"},"DetailType":"genAiEtkGenerationDoneEvent","EventBusName":"",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttEventBus7B8748AAArn0B268F0E",
+              },
+              "","Source":"GenAiEvaluationToolkit"}]}},"Enrich timeout error":{"Type":"Pass","Parameters":{"error":{"Error":"States.Timeout","Cause.$":"States.Format('Plugin execution timed out after 10 minutes. Plugin(s): {}. This can occur if the plugin failed to start, crashed during execution, or stopped sending progress updates. Verify the plugin name is correct and the plugin is properly configured.', States.JsonToString($.steps[*].plugin))"},"steps.$":"$.steps"},"Next":"shouldEmitMetric-GENERATION_FAILED"},"shouldEmitMetric-GENERATION_FAILED":{"Type":"Choice","Choices":[{"And":[{"Variable":"$.observabilityLayer.metricNamespace","IsPresent":true},{"Not":{"Variable":"$.observabilityLayer.metricNamespace","StringEquals":""}},{"Variable":"$.observabilityLayer.metricNamespace","IsNull":false}],"Next":"EmitMetricsNoCreds-GENERATION_FAILED"}],"Default":"shouldNotEmitMetric-GENERATION_FAILED"},"shouldNotEmitMetric-GENERATION_FAILED":{"Type":"Pass","Next":"Continue-EmitMetric-GENERATION_FAILED"},"Continue-EmitMetric-GENERATION_FAILED":{"Type":"Pass","Next":"FailState"},"EmitMetricsNoCreds-GENERATION_FAILED":{"Next":"Continue-EmitMetric-GENERATION_FAILED","Type":"Task","ResultPath":"$.observability-GENERATION_FAILED-result","Resource":"arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::aws-sdk:cloudwatch:putMetricData","Parameters":{"MetricData":[{"MetricName":"GENERATION_FAILED","Value":1}],"Namespace.$":"$.observabilityLayer.metricNamespace"}},"FailState":{"Type":"Fail","ErrorPath":"$.error.Error","CausePath":"$.error.Cause"}}}",
+            ],
+          ],
+        },
+        "LoggingConfiguration": {
+          "Destinations": [
+            {
+              "CloudWatchLogsLogGroup": {
+                "LogGroupArn": {
+                  "Fn::GetAtt": [
+                    "GenAiEtkGenerationGenerationStepFunctionLogGroupF7518F1B",
+                    "Arn",
+                  ],
+                },
+              },
+            },
+          ],
+          "Level": "ALL",
+        },
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "GenAiEtkGenerationGenerationStepFunctionLogGroupServiceRoleAFE8BA1A",
+            "Arn",
+          ],
+        },
+        "StateMachineName": "GenerationStepFunction",
+        "StateMachineType": "STANDARD",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+        "TracingConfiguration": {
+          "Enabled": true,
+        },
+      },
+      "Type": "AWS::StepFunctions::StateMachine",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "GenAiEtkGenerationGenerationStepFunctionLogGroupF7518F1B": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "LogGroupName": "GenerationStepFunction-LogGroup",
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "GenAiEtkGenerationGenerationStepFunctionLogGroupServiceRoleAFE8BA1A": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "states.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(states.amazonaws.com) to write into GenerationStepFunction-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "GenAiEtkGenerationGenerationStepFunctionLogGroupServiceRoleDefaultPolicyD44ADEBE": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "GenAiEtkGenerationGenerationStepFunctionLogGroupF7518F1B",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": "cloudwatch:putMetricData",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": "events:PutEvents",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttEventBus7B8748AAArn0B268F0E",
+              },
+            },
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "GenAiEtkGenerationInvokePluginAsyncFunction6B11B1FF",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "GenAiEtkGenerationInvokePluginAsyncFunction6B11B1FF",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "logs:CreateLogDelivery",
+                "logs:GetLogDelivery",
+                "logs:UpdateLogDelivery",
+                "logs:DeleteLogDelivery",
+                "logs:ListLogDeliveries",
+                "logs:PutResourcePolicy",
+                "logs:DescribeResourcePolicies",
+                "logs:DescribeLogGroups",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+                "xray:GetSamplingRules",
+                "xray:GetSamplingTargets",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "GenAiEtkGenerationGenerationStepFunctionLogGroupServiceRoleDefaultPolicyD44ADEBE",
+        "Roles": [
+          {
+            "Ref": "GenAiEtkGenerationGenerationStepFunctionLogGroupServiceRoleAFE8BA1A",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "GenAiEtkGenerationInvokePluginAsyncFunction6B11B1FF": {
+      "DependsOn": [
+        "GenAiEtkGenerationInvokePluginAsyncFunctionLogGroupServiceRoleDefaultPolicyE699A4D8",
+        "GenAiEtkGenerationInvokePluginAsyncFunctionLogGroupServiceRole78B95109",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Description": "Lambda to trigger an external event asynchroneously",
+        "Environment": {
+          "Variables": {
+            "ASYNC_AWAIT_STEP_EVENT_BUS": {
+              "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttEventBus7B8748AAArn0B268F0E",
+            },
+            "ASYNC_AWAIT_STEP_REQUEST_DETAIL_TYPE": "genAiEtkGenerationPluginTriggerEvent",
+            "ASYNC_AWAIT_STEP_RESPONSE_DETAIL_TYPE": "genAiEtkGenerationPluginDoneEvent",
+            "ASYNC_AWAIT_STEP_SOURCE": "GenAiEvaluationToolkit",
+          },
+        },
+        "Handler": "index.asyncHandler.lambdaHandler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "GenAiEtkGenerationInvokePluginAsyncFunctionLogGroup6CC7662F",
+          },
+        },
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "GenAiEtkGenerationInvokePluginAsyncFunctionLogGroupServiceRole78B95109",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs22.x",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+        "Timeout": 60,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "GenAiEtkGenerationInvokePluginAsyncFunctionSecurityGroup0BB44201",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "GenAiEtkGenerationInvokePluginAsyncFunctionLogGroup6CC7662F": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "GenAiEtkGenerationInvokePluginAsyncFunctionLogGroupServiceRole78B95109": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into AsyncFunction-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "GenAiEtkGenerationInvokePluginAsyncFunctionLogGroupServiceRoleDefaultPolicyE699A4D8": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "GenAiEtkGenerationInvokePluginAsyncFunctionLogGroup6CC7662F",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": "events:PutEvents",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttEventBus7B8748AAArn0B268F0E",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "GenAiEtkGenerationInvokePluginAsyncFunctionLogGroupServiceRoleDefaultPolicyE699A4D8",
+        "Roles": [
+          {
+            "Ref": "GenAiEtkGenerationInvokePluginAsyncFunctionLogGroupServiceRole78B95109",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "GenAiEtkGenerationInvokePluginAsyncFunctionSecurityGroup0BB44201": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkGenerationInvokePluginAsyncFunction11981632",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "GenAiEtkGenerationInvokePluginAwaitFunction1D5227E0": {
+      "DependsOn": [
+        "GenAiEtkGenerationInvokePluginAwaitFunctionLogGroupServiceRoleDefaultPolicy1B935364",
+        "GenAiEtkGenerationInvokePluginAwaitFunctionLogGroupServiceRole8434D0C0",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Description": "Lambda to await an external event",
+        "Handler": "index.awaitHandler.lambdaHandler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "GenAiEtkGenerationInvokePluginAwaitFunctionLogGroup474943A7",
+          },
+        },
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "GenAiEtkGenerationInvokePluginAwaitFunctionLogGroupServiceRole8434D0C0",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs22.x",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+        "Timeout": 60,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "GenAiEtkGenerationInvokePluginAwaitFunctionSecurityGroupA4D734BC",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "GenAiEtkGenerationInvokePluginAwaitFunctionLogGroup474943A7": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "GenAiEtkGenerationInvokePluginAwaitFunctionLogGroupServiceRole8434D0C0": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into AwaitFunction-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "GenAiEtkGenerationInvokePluginAwaitFunctionLogGroupServiceRoleDefaultPolicy1B935364": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "GenAiEtkGenerationInvokePluginAwaitFunctionLogGroup474943A7",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "states:SendTaskSuccess",
+                "states:SendTaskFailure",
+                "states:SendTaskHeartbeat",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Ref": "GenAiEtkGenerationGenerationStepFunction004C9D66",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "GenAiEtkGenerationInvokePluginAwaitFunctionLogGroupServiceRoleDefaultPolicy1B935364",
+        "Roles": [
+          {
+            "Ref": "GenAiEtkGenerationInvokePluginAwaitFunctionLogGroupServiceRole8434D0C0",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "GenAiEtkGenerationInvokePluginAwaitFunctionSecurityGroupA4D734BC": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkGenerationInvokePluginAwaitFunctionC3926F60",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "GenAiEtkGenerationInvokePluginContinueRuleA6FEE695": {
+      "Properties": {
+        "Description": "Rule to continue on genAiEtkGenerationPluginDoneEvent events",
+        "EventBusName": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefEventBus7B8748AA3BA3246C",
+        },
+        "EventPattern": {
+          "detail-type": [
+            "genAiEtkGenerationPluginDoneEvent",
+          ],
+        },
+        "State": "ENABLED",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::GetAtt": [
+                "GenAiEtkGenerationInvokePluginAwaitFunction1D5227E0",
+                "Arn",
+              ],
+            },
+            "Id": "Target0",
+          },
+        ],
+      },
+      "Type": "AWS::Events::Rule",
+    },
+    "GenAiEtkGenerationInvokePluginContinueRuleAllowEventRuleGenAiEtkGenerationInvokePluginAwaitFunctionC3926F607F27284C": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "GenAiEtkGenerationInvokePluginAwaitFunction1D5227E0",
+            "Arn",
+          ],
+        },
+        "Principal": "events.amazonaws.com",
+        "SourceArn": {
+          "Fn::GetAtt": [
+            "GenAiEtkGenerationInvokePluginContinueRuleA6FEE695",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "GetGenerationLambdaED9AE638": {
+      "DependsOn": [
+        "GetGenerationLambdaLogGroupServiceRoleDefaultPolicy27239B2B",
+        "GetGenerationLambdaLogGroupServiceRoleC81EEAEB",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Description": "Gets generation job details",
+        "Environment": {
+          "Variables": {
+            "ACCOUNT_ID": "123456789012",
+            "GENERATION_WORKFLOW_ARN": {
+              "Ref": "GenAiEtkGenerationGenerationStepFunction004C9D66",
+            },
+            "REGION": "us-east-1",
+          },
+        },
+        "Handler": "index.getGenerationLambda.lambdaHandler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "GetGenerationLambdaLogGroup41D2D4DD",
+          },
+        },
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "GetGenerationLambdaLogGroupServiceRoleC81EEAEB",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs22.x",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+        "Timeout": 29,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "GetGenerationLambdaSecurityGroupBDDB9A68",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "GetGenerationLambdaLogGroup41D2D4DD": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "GetGenerationLambdaLogGroupServiceRoleC81EEAEB": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into GetGeneration-Lambda-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "GetGenerationLambdaLogGroupServiceRoleDefaultPolicy27239B2B": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "GetGenerationLambdaLogGroup41D2D4DD",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": "states:DescribeExecution",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":states:us-east-1:123456789012:execution:",
+                    {
+                      "Fn::GetAtt": [
+                        "GenAiEtkGenerationGenerationStepFunction004C9D66",
+                        "Name",
+                      ],
+                    },
+                    ":*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "GetGenerationLambdaLogGroupServiceRoleDefaultPolicy27239B2B",
+        "Roles": [
+          {
+            "Ref": "GetGenerationLambdaLogGroupServiceRoleC81EEAEB",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "GetGenerationLambdaSecurityGroupBDDB9A68": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkGenerationGetGenerationLambda407AC338",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "ListGenerationsLambda3B613EF2": {
+      "DependsOn": [
+        "ListGenerationsLambdaLogGroupServiceRoleDefaultPolicy6D454C6F",
+        "ListGenerationsLambdaLogGroupServiceRole5746320B",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Description": "Lists generation jobs with optional filtering",
+        "Environment": {
+          "Variables": {
+            "ACCOUNT_ID": "123456789012",
+            "GENERATION_WORKFLOW_ARN": {
+              "Ref": "GenAiEtkGenerationGenerationStepFunction004C9D66",
+            },
+            "REGION": "us-east-1",
+          },
+        },
+        "Handler": "index.listGenerationsLambda.lambdaHandler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "ListGenerationsLambdaLogGroup0A85A841",
+          },
+        },
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "ListGenerationsLambdaLogGroupServiceRole5746320B",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs22.x",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+        "Timeout": 29,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "ListGenerationsLambdaSecurityGroupA12A0809",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "ListGenerationsLambdaLogGroup0A85A841": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "ListGenerationsLambdaLogGroupServiceRole5746320B": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into ListGenerations-Lambda-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ListGenerationsLambdaLogGroupServiceRoleDefaultPolicy6D454C6F": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "ListGenerationsLambdaLogGroup0A85A841",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": "states:ListExecutions",
+              "Effect": "Allow",
+              "Resource": {
+                "Ref": "GenAiEtkGenerationGenerationStepFunction004C9D66",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "ListGenerationsLambdaLogGroupServiceRoleDefaultPolicy6D454C6F",
+        "Roles": [
+          {
+            "Ref": "ListGenerationsLambdaLogGroupServiceRole5746320B",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "ListGenerationsLambdaSecurityGroupA12A0809": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkGenerationListGenerationsLambda43B4F094",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "PublicRestApiApiPermissionApiScopedGenAiEtkGenerationGetGenerationLambda407AC338GenAiEtkGenerationPublicRestApi8AE391DEADF70659": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "GetGenerationLambdaED9AE638",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+              },
+              "/*/*/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PublicRestApiApiPermissionApiScopedGenAiEtkGenerationListGenerationsLambda43B4F094GenAiEtkGenerationPublicRestApi8AE391DEB2E287F2": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ListGenerationsLambda3B613EF2",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+              },
+              "/*/*/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PublicRestApiApiPermissionApiScopedGenAiEtkGenerationStartGenerationLambda62B9AC4BGenAiEtkGenerationPublicRestApi8AE391DE1750EE88": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "StartGenerationLambdaE15BED57",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+              },
+              "/*/*/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PublicRestApiApiPermissionApiScopedGenAiEtkGenerationStopGenerationLambdaC903DA07GenAiEtkGenerationPublicRestApi8AE391DE2CCC0173": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "StopGenerationLambda45622467",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+              },
+              "/*/*/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PublicRestApigenerationjobsFB5DF0CC": {
+      "Properties": {
+        "ParentId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttApiGatewayPublicRestApi84E6979ARootResourceId9CDEA49F",
+        },
+        "PathPart": "generation-jobs",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "PublicRestApigenerationjobsGET9ABE11DF": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW uses IAM auth, not Cognito.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "GET",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "ListGenerationsLambda3B613EF2",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "PublicRestApigenerationjobsFB5DF0CC",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PublicRestApigenerationjobsPOSTD3015659": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW uses IAM auth, not Cognito.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "POST",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "StartGenerationLambdaE15BED57",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "PublicRestApigenerationjobsFB5DF0CC",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PublicRestApigenerationjobsid79767A53": {
+      "Properties": {
+        "ParentId": {
+          "Ref": "PublicRestApigenerationjobsFB5DF0CC",
+        },
+        "PathPart": "{id}",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "PublicRestApigenerationjobsidGETC0BD367A": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW uses IAM auth, not Cognito.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "GET",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "GetGenerationLambdaED9AE638",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "PublicRestApigenerationjobsid79767A53",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PublicRestApigenerationjobsidstopD84F36D4": {
+      "Properties": {
+        "ParentId": {
+          "Ref": "PublicRestApigenerationjobsid79767A53",
+        },
+        "PathPart": "stop",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "PublicRestApigenerationjobsidstopPOST1053A9BB": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW uses IAM auth, not Cognito.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "POST",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "StopGenerationLambda45622467",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "PublicRestApigenerationjobsidstopD84F36D4",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RestApigenerationjobs6527A93D": {
+      "Properties": {
+        "ParentId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttApiGatewayRestApi7538854BRootResourceId63E518C2",
+        },
+        "PathPart": "generation-jobs",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RestApigenerationjobsGET75D906AA": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "GET",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "ListGenerationsLambda3B613EF2",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RestApigenerationjobs6527A93D",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RestApigenerationjobsGETApiPermissionGenAiEtkGenerationRestApi6494A1C8GETgenerationjobsCB68A54F": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ListGenerationsLambda3B613EF2",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/*/GET/generation-jobs",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApigenerationjobsGETApiPermissionTestGenAiEtkGenerationRestApi6494A1C8GETgenerationjobsEABC8625": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ListGenerationsLambda3B613EF2",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/test-invoke-stage/GET/generation-jobs",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApigenerationjobsPOSTA32E1F1E": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "POST",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "StartGenerationLambdaE15BED57",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RestApigenerationjobs6527A93D",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RestApigenerationjobsPOSTApiPermissionGenAiEtkGenerationRestApi6494A1C8POSTgenerationjobs80B61FED": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "StartGenerationLambdaE15BED57",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/*/POST/generation-jobs",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApigenerationjobsPOSTApiPermissionTestGenAiEtkGenerationRestApi6494A1C8POSTgenerationjobsC6A0A485": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "StartGenerationLambdaE15BED57",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/test-invoke-stage/POST/generation-jobs",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApigenerationjobsidBB2A22BB": {
+      "Properties": {
+        "ParentId": {
+          "Ref": "RestApigenerationjobs6527A93D",
+        },
+        "PathPart": "{id}",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RestApigenerationjobsidGET1057BC27": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "GET",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "GetGenerationLambdaED9AE638",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RestApigenerationjobsidBB2A22BB",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RestApigenerationjobsidGETApiPermissionGenAiEtkGenerationRestApi6494A1C8GETgenerationjobsid402BC6B7": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "GetGenerationLambdaED9AE638",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/*/GET/generation-jobs/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApigenerationjobsidGETApiPermissionTestGenAiEtkGenerationRestApi6494A1C8GETgenerationjobsidB939A36D": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "GetGenerationLambdaED9AE638",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/test-invoke-stage/GET/generation-jobs/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApigenerationjobsidstop139381C2": {
+      "Properties": {
+        "ParentId": {
+          "Ref": "RestApigenerationjobsidBB2A22BB",
+        },
+        "PathPart": "stop",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RestApigenerationjobsidstopPOST8A1E2ACE": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "POST",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "StopGenerationLambda45622467",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RestApigenerationjobsidstop139381C2",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RestApigenerationjobsidstopPOSTApiPermissionGenAiEtkGenerationRestApi6494A1C8POSTgenerationjobsidstopBFB082D1": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "StopGenerationLambda45622467",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/*/POST/generation-jobs/*/stop",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApigenerationjobsidstopPOSTApiPermissionTestGenAiEtkGenerationRestApi6494A1C8POSTgenerationjobsidstop039D0627": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "StopGenerationLambda45622467",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/test-invoke-stage/POST/generation-jobs/*/stop",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "StartGenerationLambdaE15BED57": {
+      "DependsOn": [
+        "StartGenerationLambdaLogGroupServiceRoleDefaultPolicy467917BF",
+        "StartGenerationLambdaLogGroupServiceRole32FD456A",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Description": "Starts generation job with specified steps",
+        "Environment": {
+          "Variables": {
+            "ACCOUNT_ID": "123456789012",
+            "GENERATION_WORKFLOW_ARN": {
+              "Ref": "GenAiEtkGenerationGenerationStepFunction004C9D66",
+            },
+            "REGION": "us-east-1",
+          },
+        },
+        "Handler": "index.startGenerationLambda.lambdaHandler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "StartGenerationLambdaLogGroup8355FC4F",
+          },
+        },
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "StartGenerationLambdaLogGroupServiceRole32FD456A",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs22.x",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+        "Timeout": 29,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "StartGenerationLambdaSecurityGroup7F9FE454",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "StartGenerationLambdaLogGroup8355FC4F": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "StartGenerationLambdaLogGroupServiceRole32FD456A": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into StartGeneration-Lambda-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "StartGenerationLambdaLogGroupServiceRoleDefaultPolicy467917BF": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "StartGenerationLambdaLogGroup8355FC4F",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": "states:StartExecution",
+              "Effect": "Allow",
+              "Resource": {
+                "Ref": "GenAiEtkGenerationGenerationStepFunction004C9D66",
+              },
+            },
+            {
+              "Action": "states:DescribeExecution",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":states:us-east-1:123456789012:execution:",
+                    {
+                      "Fn::GetAtt": [
+                        "GenAiEtkGenerationGenerationStepFunction004C9D66",
+                        "Name",
+                      ],
+                    },
+                    ":*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "StartGenerationLambdaLogGroupServiceRoleDefaultPolicy467917BF",
+        "Roles": [
+          {
+            "Ref": "StartGenerationLambdaLogGroupServiceRole32FD456A",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "StartGenerationLambdaSecurityGroup7F9FE454": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkGenerationStartGenerationLambda62B9AC4B",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "StopGenerationLambda45622467": {
+      "DependsOn": [
+        "StopGenerationLambdaLogGroupServiceRoleDefaultPolicyC3361991",
+        "StopGenerationLambdaLogGroupServiceRole328A8E02",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Description": "Stops the generation job",
+        "Environment": {
+          "Variables": {
+            "ACCOUNT_ID": "123456789012",
+            "GENERATION_WORKFLOW_ARN": {
+              "Ref": "GenAiEtkGenerationGenerationStepFunction004C9D66",
+            },
+            "REGION": "us-east-1",
+          },
+        },
+        "Handler": "index.stopGenerationLambda.lambdaHandler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "StopGenerationLambdaLogGroup95A7B54E",
+          },
+        },
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "StopGenerationLambdaLogGroupServiceRole328A8E02",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs22.x",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+        "Timeout": 29,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "StopGenerationLambdaSecurityGroup7F51DF9E",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "StopGenerationLambdaLogGroup95A7B54E": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "StopGenerationLambdaLogGroupServiceRole328A8E02": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into StopGeneration-Lambda-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "StopGenerationLambdaLogGroupServiceRoleDefaultPolicyC3361991": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "StopGenerationLambdaLogGroup95A7B54E",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "states:StopExecution",
+                "states:DescribeExecution",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":states:us-east-1:123456789012:execution:",
+                    {
+                      "Fn::GetAtt": [
+                        "GenAiEtkGenerationGenerationStepFunction004C9D66",
+                        "Name",
+                      ],
+                    },
+                    ":*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "StopGenerationLambdaLogGroupServiceRoleDefaultPolicyC3361991",
+        "Roles": [
+          {
+            "Ref": "StopGenerationLambdaLogGroupServiceRole328A8E02",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "StopGenerationLambdaSecurityGroup7F51DF9E": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkGenerationStopGenerationLambdaC903DA07",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Generation",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;

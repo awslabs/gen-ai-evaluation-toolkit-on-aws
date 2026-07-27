@@ -1,0 +1,48 @@
+{
+  "name": "deployment",
+  "sourceRoot": "{projectRoot}/src",
+  "projectType": "application",
+  "implicitDependencies": ["cdk", "python-api", "evaluator-builtin", "evaluator-agent-as-judge", "plugin-*"],
+  "targets": {
+    "install": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["cdk:build"],
+      "cache": true,
+      "inputs": [
+        "{projectRoot}/package.json",
+        "{projectRoot}/package-lock.json",
+        "{workspaceRoot}/packages/cdk/dist",
+        "{workspaceRoot}/packages/cdk/assets"
+      ],
+      "outputs": ["{projectRoot}/node_modules"],
+      "options": {
+        "command": "npm install",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["install", "^docker:build"],
+      "options": {
+        "command": "npm run build",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npm run lint", "npm run test"],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      },
+      "dependsOn": ["build"]
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run clean",
+        "cwd": "{projectRoot}"
+      }
+    }
+  }
+}

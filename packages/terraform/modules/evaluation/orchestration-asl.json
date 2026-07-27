@@ -1,0 +1,369 @@
+{
+  "Comment": "Universal evaluation pipeline",
+  "StartAt": "CheckSkipToPostProcess",
+  "States": {
+    "CheckSkipToPostProcess": {
+      "Comment": "For local evaluate() \u2014 SDK processed locally, skip to post-processing",
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.skipToPostProcess",
+          "BooleanEquals": true,
+          "Next": "EmitPostProcessTask"
+        }
+      ],
+      "Default": "CheckSkipPrimaryTask"
+    },
+    "CheckSkipPrimaryTask": {
+      "Comment": "For jobs with no primary task (e.g. multi-evaluator SCORE with pre-written results) — skip straight to parallel scoring",
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.skipPrimaryTask",
+          "BooleanEquals": true,
+          "Next": "CheckScoreTasks"
+        }
+      ],
+      "Default": "EmitPrimaryTask"
+    },
+    "EmitPrimaryTask": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::events:putEvents.waitForTaskToken",
+      "Parameters": {
+        "Entries": [
+          {
+            "Source": "GenAiEvaluationToolkit",
+            "DetailType": "EvaluatorTaskDispatched",
+            "EventBusName": "${EventBusName}",
+            "Detail": {
+              "taskToken.$": "$$.Task.Token",
+              "taskKey.$": "$.primaryTask.taskKey",
+              "jobId.$": "$.jobId",
+              "reportId.$": "$.reportId",
+              "jobType.$": "$.primaryTask.jobType",
+              "evaluatorName.$": "$.primaryTask.evaluatorName",
+              "sourceReportId.$": "$.primaryTask.sourceReportId",
+              "testCases.$": "$.testCases",
+              "scorers.$": "$.scorers",
+              "experimentName.$": "$.experimentName",
+              "checkpoint.$": "$.checkpoint",
+              "continueBufferMs.$": "$.continueBufferMs",
+              "heartbeatSeconds.$": "$.heartbeatSeconds",
+              "app.$": "$.app"
+            }
+          }
+        ]
+      },
+      "ResultPath": "$.taskOutput",
+      "Next": "CheckPrimaryResult",
+      "Catch": [
+        {
+          "ErrorEquals": ["States.HeartbeatTimeout"],
+          "Next": "EmitPrimaryTimeout",
+          "ResultPath": "$.primaryError"
+        },
+        {
+          "ErrorEquals": ["States.TaskFailed"],
+          "Comment": "Worker already called complete_task(FAILED) \u2014 DDB is up to date, skip timeout event",
+          "Next": "EmitPostProcessTask",
+          "ResultPath": "$.primaryError"
+        }
+      ],
+      "HeartbeatSecondsPath": "$.heartbeatSeconds"
+    },
+    "EmitPrimaryTimeout": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::events:putEvents",
+      "Parameters": {
+        "Entries": [
+          {
+            "Source": "GenAiEvaluationToolkit",
+            "DetailType": "EvaluatorTaskTimedOut",
+            "EventBusName": "${EventBusName}",
+            "Detail": {
+              "jobId.$": "$.jobId",
+              "taskKey.$": "$.primaryTask.taskKey"
+            }
+          }
+        ]
+      },
+      "ResultPath": null,
+      "Next": "EmitPostProcessTask"
+    },
+    "CheckPrimaryResult": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.taskOutput.status",
+          "StringEquals": "CONTINUE",
+          "Next": "PreparePrimaryContinue"
+        }
+      ],
+      "Default": "CheckScoreTasks"
+    },
+    "PreparePrimaryContinue": {
+      "Type": "Pass",
+      "Parameters": {
+        "jobId.$": "$.jobId",
+        "reportId.$": "$.reportId",
+        "app.$": "$.app",
+        "primaryTask.$": "$.primaryTask",
+        "scoreTasks.$": "$.scoreTasks",
+        "postProcessTask.$": "$.postProcessTask",
+        "postProcessCheckpoint.$": "$.postProcessCheckpoint",
+        "testCases.$": "$.testCases",
+        "scorers.$": "$.scorers",
+        "experimentName.$": "$.experimentName",
+        "continueBufferMs.$": "$.continueBufferMs",
+        "checkpoint.$": "$.taskOutput.checkpoint",
+        "heartbeatSeconds.$": "$.heartbeatSeconds"
+      },
+      "Next": "EmitPrimaryTask"
+    },
+    "CheckScoreTasks": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.scoreTasks[0]",
+          "IsPresent": true,
+          "Next": "ParallelScoring"
+        }
+      ],
+      "Default": "EmitPostProcessTask"
+    },
+    "ParallelScoring": {
+      "Type": "Map",
+      "ItemsPath": "$.scoreTasks",
+      "ItemSelector": {
+        "jobId.$": "$.jobId",
+        "reportId.$": "$.reportId",
+        "experimentName.$": "$.experimentName",
+        "continueBufferMs.$": "$.continueBufferMs",
+        "scoreTask.$": "$$.Map.Item.Value",
+        "heartbeatSeconds.$": "$.heartbeatSeconds"
+      },
+      "MaxConcurrency": 0,
+      "Iterator": {
+        "StartAt": "PrepareScoreTask",
+        "States": {
+          "PrepareScoreTask": {
+            "Type": "Pass",
+            "Parameters": {
+              "jobId.$": "$.jobId",
+              "reportId.$": "$.reportId",
+              "experimentName.$": "$.experimentName",
+              "continueBufferMs.$": "$.continueBufferMs",
+              "taskKey.$": "$.scoreTask.taskKey",
+              "evaluatorName.$": "$.scoreTask.evaluatorName",
+              "scorers.$": "$.scoreTask.scorers",
+              "checkpoint": null,
+              "heartbeatSeconds.$": "$.heartbeatSeconds"
+            },
+            "Next": "EmitScoreTask"
+          },
+          "EmitScoreTask": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::events:putEvents.waitForTaskToken",
+            "Parameters": {
+              "Entries": [
+                {
+                  "Source": "GenAiEvaluationToolkit",
+                  "DetailType": "EvaluatorTaskDispatched",
+                  "EventBusName": "${EventBusName}",
+                  "Detail": {
+                    "taskToken.$": "$$.Task.Token",
+                    "taskKey.$": "$.taskKey",
+                    "jobId.$": "$.jobId",
+                    "reportId.$": "$.reportId",
+                    "jobType": "SCORE",
+                    "evaluatorName.$": "$.evaluatorName",
+                    "scorers.$": "$.scorers",
+                    "experimentName.$": "$.experimentName",
+                    "checkpoint.$": "$.checkpoint",
+                    "continueBufferMs.$": "$.continueBufferMs",
+                    "heartbeatSeconds.$": "$.heartbeatSeconds"
+                  }
+                }
+              ]
+            },
+            "ResultPath": "$.taskOutput",
+            "Next": "CheckScoreResult",
+            "Catch": [
+              {
+                "ErrorEquals": ["States.HeartbeatTimeout"],
+                "Next": "EmitScoreTimeout",
+                "ResultPath": "$.taskError"
+              },
+              {
+                "ErrorEquals": ["States.TaskFailed"],
+                "Next": "ScoreTaskFailed",
+                "ResultPath": "$.taskError"
+              }
+            ],
+            "HeartbeatSecondsPath": "$.heartbeatSeconds"
+          },
+          "EmitScoreTimeout": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::events:putEvents",
+            "Parameters": {
+              "Entries": [
+                {
+                  "Source": "GenAiEvaluationToolkit",
+                  "DetailType": "EvaluatorTaskTimedOut",
+                  "EventBusName": "${EventBusName}",
+                  "Detail": {
+                    "jobId.$": "$.jobId",
+                    "taskKey.$": "$.taskKey"
+                  }
+                }
+              ]
+            },
+            "ResultPath": null,
+            "Next": "ScoreTaskFailed"
+          },
+          "CheckScoreResult": {
+            "Type": "Choice",
+            "Choices": [
+              {
+                "Variable": "$.taskOutput.status",
+                "StringEquals": "CONTINUE",
+                "Next": "PrepareScoreContinue"
+              }
+            ],
+            "Default": "ScoreTaskDone"
+          },
+          "PrepareScoreContinue": {
+            "Type": "Pass",
+            "Parameters": {
+              "jobId.$": "$.jobId",
+              "reportId.$": "$.reportId",
+              "experimentName.$": "$.experimentName",
+              "continueBufferMs.$": "$.continueBufferMs",
+              "taskKey.$": "$.taskKey",
+              "evaluatorName.$": "$.evaluatorName",
+              "scorers.$": "$.scorers",
+              "checkpoint.$": "$.taskOutput.checkpoint",
+              "heartbeatSeconds.$": "$.heartbeatSeconds"
+            },
+            "Next": "EmitScoreTask"
+          },
+          "ScoreTaskDone": {
+            "Type": "Pass",
+            "Parameters": {
+              "status": "COMPLETED",
+              "taskKey.$": "$.taskKey"
+            },
+            "End": true
+          },
+          "ScoreTaskFailed": {
+            "Type": "Pass",
+            "Parameters": {
+              "status": "FAILED",
+              "taskKey.$": "$.taskKey"
+            },
+            "End": true
+          }
+        }
+      },
+      "ResultPath": "$.scoreResults",
+      "Next": "EmitPostProcessTask",
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "Next": "EmitPostProcessTask",
+          "ResultPath": "$.scoringError"
+        }
+      ]
+    },
+    "EmitPostProcessTask": {
+      "Comment": "Internal task \u2014 no evaluatorName, routed by jobType",
+      "Type": "Task",
+      "Resource": "arn:aws:states:::events:putEvents.waitForTaskToken",
+      "Parameters": {
+        "Entries": [
+          {
+            "Source": "GenAiEvaluationToolkit",
+            "DetailType": "EvaluatorTaskDispatched",
+            "EventBusName": "${EventBusName}",
+            "Detail": {
+              "taskToken.$": "$$.Task.Token",
+              "taskKey.$": "$.postProcessTask.taskKey",
+              "jobId.$": "$.jobId",
+              "reportId.$": "$.reportId",
+              "jobType.$": "$.postProcessTask.jobType",
+              "experimentName.$": "$.experimentName",
+              "checkpoint.$": "$.postProcessCheckpoint",
+              "continueBufferMs.$": "$.continueBufferMs",
+              "heartbeatSeconds.$": "$.heartbeatSeconds"
+            }
+          }
+        ]
+      },
+      "ResultPath": "$.postProcessOutput",
+      "Next": "CheckPostProcessResult",
+      "Catch": [
+        {
+          "ErrorEquals": ["States.HeartbeatTimeout"],
+          "Next": "EmitPostProcessTimeout",
+          "ResultPath": "$.postProcessError"
+        },
+        {
+          "ErrorEquals": ["States.TaskFailed"],
+          "Next": "Finish",
+          "ResultPath": "$.postProcessError"
+        }
+      ],
+      "HeartbeatSecondsPath": "$.heartbeatSeconds"
+    },
+    "CheckPostProcessResult": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.postProcessOutput.status",
+          "StringEquals": "CONTINUE",
+          "Next": "PreparePostProcessContinue"
+        }
+      ],
+      "Default": "Finish"
+    },
+    "PreparePostProcessContinue": {
+      "Type": "Pass",
+      "Parameters": {
+        "jobId.$": "$.jobId",
+        "reportId.$": "$.reportId",
+        "postProcessTask.$": "$.postProcessTask",
+        "experimentName.$": "$.experimentName",
+        "continueBufferMs.$": "$.continueBufferMs",
+        "postProcessCheckpoint.$": "$.postProcessOutput.checkpoint",
+        "heartbeatSeconds.$": "$.heartbeatSeconds"
+      },
+      "Next": "EmitPostProcessTask"
+    },
+    "EmitPostProcessTimeout": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::events:putEvents",
+      "Parameters": {
+        "Entries": [
+          {
+            "Source": "GenAiEvaluationToolkit",
+            "DetailType": "EvaluatorTaskTimedOut",
+            "EventBusName": "${EventBusName}",
+            "Detail": {
+              "jobId.$": "$.jobId",
+              "taskKey.$": "$.postProcessTask.taskKey"
+            }
+          }
+        ]
+      },
+      "ResultPath": null,
+      "Next": "Finish"
+    },
+    "Finish": {
+      "Type": "Pass",
+      "Parameters": {
+        "jobId.$": "$.jobId"
+      },
+      "End": true
+    }
+  }
+}

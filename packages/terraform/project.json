@@ -1,0 +1,77 @@
+{
+  "name": "terraform",
+  "projectType": "library",
+  "implicitDependencies": ["experiment-lambdas", "cdk"],
+  "targets": {
+    "fmt": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "terraform fmt -check -recursive",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tflint --recursive",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "validate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["terraform init -backend=false", "terraform validate"],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "checkov": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "checkov -d . --framework terraform",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "stage-assets": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "dependsOn": ["experiment-lambdas:build", "cdk:build"],
+      "inputs": [
+        "{workspaceRoot}/packages/experiment-lambdas/build/experiment-lambdas.zip",
+        "{workspaceRoot}/packages/cdk/assets/lambda-handlers/nodejs-handlers/**/*",
+        "{workspaceRoot}/packages/cdk/assets/python-api.zip"
+      ],
+      "outputs": ["{projectRoot}/assets/lambda/Lambda.zip", "{projectRoot}/assets/lambda/nodejs-handlers.zip", "{projectRoot}/assets/lambda/python-api.zip"],
+      "options": {
+        "commands": [
+          "mkdir -p assets/lambda",
+          "test -f ../experiment-lambdas/build/experiment-lambdas.zip || { echo 'ERROR: experiment-lambdas build output missing — run `nx run experiment-lambdas:build`' >&2; exit 1; }",
+          "cp ../experiment-lambdas/build/experiment-lambdas.zip assets/lambda/Lambda.zip",
+          "test -d ../cdk/assets/lambda-handlers/nodejs-handlers || { echo 'ERROR: cdk build output missing — run `nx run cdk:build`' >&2; exit 1; }",
+          "cd ../cdk/assets/lambda-handlers/nodejs-handlers && zip -qrX \"$OLDPWD/assets/lambda/nodejs-handlers.zip\" . -x '*.git*' && cd \"$OLDPWD\"",
+          "test -f ../cdk/assets/python-api.zip || { echo 'ERROR: python-api build output missing — run `nx run cdk:build`' >&2; exit 1; }",
+          "cp ../cdk/assets/python-api.zip assets/lambda/python-api.zip"
+        ],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["stage-assets"],
+      "options": {
+        "commands": ["terraform init -backend=false", "terraform test"],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["rm -rf .terraform", "rm -f assets/lambda/Lambda.zip assets/lambda/nodejs-handlers.zip assets/lambda/python-api.zip"],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    }
+  }
+}

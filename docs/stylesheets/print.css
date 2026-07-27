@@ -1,0 +1,234 @@
+/* Amazon Ember font for print */
+@font-face {
+  font-family: 'Amazon Ember';
+  src: url('fonts/AmazonEmberDisplay_Rg.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Amazon Ember';
+  src: url('fonts/AmazonEmberDisplay_Bd.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Print cover page, copyright, and TOC - hidden on screen */
+.print-cover, .print-copyright, .print-toc {
+  display: none;
+}
+
+@media print {
+  /* AWS colour palette */
+  :root {
+    --aws-orange: #FF9D00;
+    --aws-dark-gray: #444444;
+    --aws-blue: #527FFF;
+    --aws-soft-gray: #e5e5e5;
+  }
+
+  /* Use Amazon Ember for print */
+  body, .md-typeset {
+    font-family: 'Amazon Ember', 'Trebuchet MS', Verdana, Arial, sans-serif !important;
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+    color: var(--aws-dark-gray) !important;
+  }
+
+  /* Hide web-only elements */
+  .md-header, .md-footer, .md-sidebar, .md-tabs,
+  .md-top, .md-search, .md-source,
+  .md-content__button {
+    display: none !important;
+  }
+
+  /* Full width content */
+  .md-content {
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .md-main__inner {
+    margin: 0 !important;
+  }
+
+  /* === COVER PAGE === */
+  .print-cover {
+    display: block;
+    page-break-after: always;
+    text-align: center;
+    padding-top: 30vh;
+    position: relative;
+  }
+
+  /* Orange bar at top of cover */
+  .print-cover::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--aws-orange);
+  }
+
+  /* Document title */
+  .print-cover::after {
+    content: attr(data-print-title);
+    display: block;
+    font-size: 28pt;
+    color: var(--aws-orange);
+    margin-bottom: 20pt;
+  }
+
+  /* AWS logo on cover - injected via template */
+  .print-cover img {
+    width: 100px;
+    margin-top: 20pt;
+  }
+
+  /* === COPYRIGHT PAGE === */
+  .print-copyright {
+    display: block;
+    page-break-after: always;
+    padding-top: 20pt;
+    font-size: 9pt;
+    line-height: 1.6;
+    color: var(--aws-dark-gray);
+    text-align: justify;
+  }
+
+  .print-copyright p {
+    margin-bottom: 12pt;
+  }
+
+  /* === TABLE OF CONTENTS === */
+  .print-toc {
+    display: block;
+    page-break-after: always;
+  }
+
+  .print-toc h2 {
+    color: var(--aws-orange) !important;
+    font-size: 20pt !important;
+    page-break-before: avoid !important;
+    margin-bottom: 16pt;
+  }
+
+  .print-toc ul {
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin: 0 !important;
+  }
+
+  .print-toc ul ul {
+    padding-left: 20pt !important;
+  }
+
+  .print-toc li {
+    margin-bottom: 4pt;
+    line-height: 1.6;
+  }
+
+  .print-toc__l1 > a {
+    font-weight: bold;
+    font-size: 12pt !important;
+  }
+
+  .print-toc__l2 > a {
+    font-weight: normal;
+    font-size: 11pt !important;
+  }
+
+  .print-toc a {
+    color: var(--aws-dark-gray) !important;
+    text-decoration: none !important;
+    -webkit-text-fill-color: var(--aws-dark-gray) !important;
+  }
+
+  .print-toc a:link, .print-toc a:visited, .print-toc a:hover {
+    color: var(--aws-dark-gray) !important;
+    text-decoration: none !important;
+  }
+
+  /* === HEADINGS === */
+  .md-typeset h1 {
+    color: var(--aws-orange) !important;
+    font-size: 20pt !important;
+    border-bottom: none !important;
+    page-break-before: always;
+  }
+
+  .md-typeset h2 {
+    color: var(--aws-orange) !important;
+    font-size: 16pt !important;
+  }
+
+  .md-typeset h3 {
+    color: var(--aws-orange) !important;
+    font-size: 13pt !important;
+  }
+
+  .md-typeset h4 {
+    font-size: 12pt !important;
+    font-weight: bold !important;
+  }
+
+  /* === LINKS === */
+  .md-typeset a {
+    color: var(--aws-blue) !important;
+  }
+
+  /* === CODE BLOCKS === */
+  .md-typeset pre {
+    background: #f9f9f9 !important;
+    border: 1px solid var(--aws-soft-gray) !important;
+  }
+
+  .md-typeset code {
+    font-size: 9pt !important;
+  }
+
+  /* === TABLES === */
+  .md-typeset table:not([class]) th {
+    background: var(--aws-soft-gray) !important;
+    font-weight: bold !important;
+  }
+
+  /* === PAGE LAYOUT === */
+  @page {
+    margin: 2cm 2cm 2.5cm 2cm;
+    size: A4;
+  }
+
+  /* Header on non-cover pages */
+  @page :not(:first) {
+    @top-center {
+      content: attr(data-print-title);
+      color: var(--aws-dark-gray);
+      font-size: 9pt;
+      border-bottom: 0.5pt solid var(--aws-dark-gray);
+      padding-bottom: 5pt;
+    }
+  }
+
+  /* Avoid breaks inside key elements */
+  pre, table, .mermaid, blockquote {
+    page-break-inside: avoid;
+  }
+
+  /* Avoid orphaned headings */
+  h2, h3, h4 {
+    page-break-after: avoid;
+  }
+
+  /* === COPYRIGHT FOOTER === */
+  .md-typeset .notices-section::after {
+    content: '';
+    display: block;
+    margin-top: 20pt;
+    border-top: 1px solid var(--aws-soft-gray);
+    padding-top: 10pt;
+  }
+}

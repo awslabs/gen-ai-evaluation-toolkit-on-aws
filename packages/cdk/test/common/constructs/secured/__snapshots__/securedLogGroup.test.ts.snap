@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Secured LogGroup Should match snapshot with customer-managed encryption key 1`] = `
+{
+  "Resources": {
+    "TestKey4CACAF33": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "Description": "Test customer-managed KMS key for log group",
+        "KeyPolicy": {
+          "Statement": [
+            {
+              "Action": "kms:*",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::",
+                      {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":root",
+                    ],
+                  ],
+                },
+              },
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::KMS::Key",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "someid7CA5BD8C": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-CWL-1",
+              "reason": "Customer-managed KMS key used for CloudWatch Logs encryption as requested by customer",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "KmsKeyId": {
+          "Fn::GetAtt": [
+            "TestKey4CACAF33",
+            "Arn",
+          ],
+        },
+        "RetentionInDays": 545,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+  },
+}
+`;
+
+exports[`Secured LogGroup Should match snapshot without encryption key 1`] = `
+{
+  "Resources": {
+    "someid7CA5BD8C": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+  },
+}
+`;

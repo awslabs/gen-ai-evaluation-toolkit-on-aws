@@ -1,0 +1,1850 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App stack GenAiEtk-Plugins should match snapshot 1`] = `
+{
+  "Description": "Stack for the GenAI Evaluation Toolkit: Evaluation and Generation Plugins",
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "DatastoreExportPluginCreateTestCaseFunction3C77A677": {
+      "DependsOn": [
+        "DatastoreExportPluginCreateTestCaseFunctionLogGroupServiceRoleDefaultPolicyE96B22EB",
+        "DatastoreExportPluginCreateTestCaseFunctionLogGroupServiceRole81AFBED6",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Plugins need unrestricted wildcard access to the generation bucket",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "GENAI_ETK_URL": {
+              "Fn::Join": [
+                "",
+                [
+                  "https://",
+                  {
+                    "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+                  },
+                  ".execute-api.us-east-1.",
+                  {
+                    "Ref": "AWS::URLSuffix",
+                  },
+                  "/",
+                  {
+                    "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApiDeploymentStageprod083524AB4F830766",
+                  },
+                  "/",
+                ],
+              ],
+            },
+          },
+        },
+        "Handler": "index.batchCreateTestCaseLambda.lambdaHandler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "DatastoreExportPluginCreateTestCaseFunctionLogGroupC47CC6B5",
+          },
+        },
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "DatastoreExportPluginCreateTestCaseFunctionLogGroupServiceRole81AFBED6",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs22.x",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+        "Timeout": 900,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "DatastoreExportPluginCreateTestCaseFunctionSecurityGroupFF5D9B2E",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "DatastoreExportPluginCreateTestCaseFunctionLogGroupC47CC6B5": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Plugins need unrestricted wildcard access to the generation bucket",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "DatastoreExportPluginCreateTestCaseFunctionLogGroupServiceRole81AFBED6": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Plugins need unrestricted wildcard access to the generation bucket",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into CreateTestCaseFunction-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "DatastoreExportPluginCreateTestCaseFunctionLogGroupServiceRoleDefaultPolicyE96B22EB": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Plugins need unrestricted wildcard access to the generation bucket",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "DatastoreExportPluginCreateTestCaseFunctionLogGroupC47CC6B5",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttGenerationBucket72758BCDArn3B2D912C",
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttGenerationBucket72758BCDArn3B2D912C",
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": "execute-api:Invoke",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":execute-api:us-east-1:123456789012:",
+                    {
+                      "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+                    },
+                    "/*/*/*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "DatastoreExportPluginCreateTestCaseFunctionLogGroupServiceRoleDefaultPolicyE96B22EB",
+        "Roles": [
+          {
+            "Ref": "DatastoreExportPluginCreateTestCaseFunctionLogGroupServiceRole81AFBED6",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "DatastoreExportPluginCreateTestCaseFunctionSecurityGroupFF5D9B2E": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Plugins need unrestricted wildcard access to the generation bucket",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkPluginsDatastoreExportPluginCreateTestCaseFunctionD1AC1322",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "DatastoreExportPluginDatastoreExportPluginDataExportRuleA76FDB09": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Plugins need unrestricted wildcard access to the generation bucket",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Description": "Triggers the DataStore Export plugin when a matching event is received",
+        "EventBusName": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefEventBus7B8748AA3BA3246C",
+        },
+        "EventPattern": {
+          "detail": {
+            "plugin": [
+              "DatastoreExport",
+            ],
+          },
+          "detail-type": [
+            "genAiEtkGenerationPluginTriggerEvent",
+          ],
+          "source": [
+            "GenAiEvaluationToolkit",
+          ],
+        },
+        "State": "ENABLED",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+        "Targets": [
+          {
+            "Arn": {
+              "Ref": "DatastoreExportPluginDatastoreExportPluginStepFunction96D6ACAF",
+            },
+            "Id": "Target0",
+            "InputPath": "$.detail",
+            "RoleArn": {
+              "Fn::GetAtt": [
+                "DatastoreExportPluginDatastoreExportPluginStepFunctionEventsRoleB5C2D853",
+                "Arn",
+              ],
+            },
+          },
+        ],
+      },
+      "Type": "AWS::Events::Rule",
+    },
+    "DatastoreExportPluginDatastoreExportPluginStepFunction96D6ACAF": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "DatastoreExportPluginDatastoreExportPluginStepFunctionLogGroupServiceRoleDefaultPolicyC3322264",
+        "DatastoreExportPluginDatastoreExportPluginStepFunctionLogGroupServiceRoleE39E69CA",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Step Function execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Step Functions to access CloudWatch Logs, X-Ray, and invoke Lambda functions",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Plugins need unrestricted wildcard access to the generation bucket",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "DefinitionString": {
+          "Fn::Join": [
+            "",
+            [
+              "{"StartAt":"Preserve Task Token","States":{"Preserve Task Token":{"Type":"Pass","Next":"Initialize (Test Data)","Assign":{"taskToken":"{% $states.input.taskToken %}","pluginName":"{% $states.input.plugin %}"}},"Initialize (Test Data)":{"Type":"Pass","Next":"List paginated files with token (Test Data)","Assign":{"bucket":"{% $states.input.input.bucket %}","prefix":"{% $states.input.input.prefix %}","maxKeys":"{% null %}","continuationToken":"{% null %}","aggregatedResults":[],"fragmentInput":"{% $states.input %}"}},"List paginated files with token (Test Data)":{"Next":"Batch invoke createTestCase API","Type":"Task","Arguments":{"Bucket":"{% $bucket %}","Prefix":"{% $prefix %}","ContinuationToken":"{% $continuationToken %}","MaxKeys":"{% $maxKeys %}"},"Output":"{% $merge([$fragmentInput, {\\"partialListResult\\": $states.result}]) %}","Assign":{"continuationToken":"{% $exists($states.result.NextContinuationToken) ? $states.result.NextContinuationToken : null %}"},"Resource":"arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::aws-sdk:s3:listObjectsV2"},"Check if done (Test Data)":{"Type":"Choice","Choices":[{"Condition":"{% $continuationToken != null %}","Next":"List paginated files with token (Test Data)"}],"Default":"Done (Test Data)"},"PartialAggregator (Test Data)":{"Type":"Pass","Next":"Check if done (Test Data)","Assign":{"aggregatedResults":"{% $exists($states.input.output) ? $append($aggregatedResults, $states.input.output) : $aggregatedResults %}"}},"Notify In Progress":{"Next":"PartialAggregator (Test Data)","Type":"Task","Arguments":{"Entries":[{"Detail":{"status":"inProgress","taskToken":"{% $states.input.taskToken %}"},"DetailType":"genAiEtkGenerationPluginDoneEvent","EventBusName":"",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttEventBus7B8748AAArn0B268F0E",
+              },
+              "","Source":"DatastoreExport"}]},"Resource":"arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::events:putEvents"},"Batch invoke createTestCase API":{"Next":"Notify In Progress","Retry":[{"ErrorEquals":["Lambda.ClientExecutionTimeoutException","Lambda.ServiceException","Lambda.AWSLambdaException","Lambda.SdkClientException"],"IntervalSeconds":2,"MaxAttempts":6,"BackoffRate":2}],"Catch":[{"ErrorEquals":["States.ALL"],"Next":"Notify Error"}],"Type":"Task","Arguments":{"bucket":"{% $states.input.input.bucket %}","objectKeys":"{% $map($states.input.partialListResult.Contents, function($content) { $content.Key }) %}","datasetId":"{% $states.input.configuration.datasetConfiguration.datasetId %}"},"Output":"{% $states.input %}","Resource":"",
+              {
+                "Fn::GetAtt": [
+                  "DatastoreExportPluginCreateTestCaseFunction3C77A677",
+                  "Arn",
+                ],
+              },
+              ""},"Notify Error":{"End":true,"Type":"Task","Arguments":{"Entries":[{"Detail":{"status":"error","taskToken":"{% $taskToken %}","error":"{% $pluginName & \\" plugin failed: \\" & $states.input.Error %}","cause":"{% $states.input.Cause %}"},"DetailType":"genAiEtkGenerationPluginDoneEvent","EventBusName":"",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttEventBus7B8748AAArn0B268F0E",
+              },
+              "","Source":"DatastoreExport"}]},"Resource":"arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::events:putEvents"},"Invoke mintVersion API":{"Next":"Notify Done","Retry":[{"ErrorEquals":["Lambda.ClientExecutionTimeoutException","Lambda.ServiceException","Lambda.AWSLambdaException","Lambda.SdkClientException"],"IntervalSeconds":2,"MaxAttempts":6,"BackoffRate":2}],"Catch":[{"ErrorEquals":["States.ALL"],"Next":"Notify Error"}],"Type":"Task","Arguments":{"datasetId":"{% $states.input.configuration.datasetConfiguration.datasetId %}"},"Output":"{% $states.input %}","Resource":"",
+              {
+                "Fn::GetAtt": [
+                  "DatastoreExportPluginMintVersionFunctionF7C92D06",
+                  "Arn",
+                ],
+              },
+              ""},"Should mint a new version":{"Type":"Choice","Choices":[{"Condition":"{% $exists($states.input.configuration.datasetConfiguration.mintVersion) and $states.input.configuration.datasetConfiguration.mintVersion %}","Next":"Invoke mintVersion API"}],"Default":"Notify Done"},"Done (Test Data)":{"Type":"Pass","Output":"{% $merge([$fragmentInput, {\\"output\\": $aggregatedResults}]) %}","Next":"Should mint a new version"},"Notify Done":{"End":true,"Type":"Task","Arguments":{"Entries":[{"Detail":{"status":"success","taskToken":"{% $states.input.taskToken %}"},"DetailType":"genAiEtkGenerationPluginDoneEvent","EventBusName":"",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttEventBus7B8748AAArn0B268F0E",
+              },
+              "","Source":"DatastoreExport"}]},"Resource":"arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::events:putEvents"}},"QueryLanguage":"JSONata"}",
+            ],
+          ],
+        },
+        "LoggingConfiguration": {
+          "Destinations": [
+            {
+              "CloudWatchLogsLogGroup": {
+                "LogGroupArn": {
+                  "Fn::GetAtt": [
+                    "DatastoreExportPluginDatastoreExportPluginStepFunctionLogGroup51AC7155",
+                    "Arn",
+                  ],
+                },
+              },
+            },
+          ],
+          "Level": "ALL",
+        },
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "DatastoreExportPluginDatastoreExportPluginStepFunctionLogGroupServiceRoleE39E69CA",
+            "Arn",
+          ],
+        },
+        "StateMachineName": "DatastoreExportPlugin-StepFunction",
+        "StateMachineType": "STANDARD",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+        "TracingConfiguration": {
+          "Enabled": true,
+        },
+      },
+      "Type": "AWS::StepFunctions::StateMachine",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "DatastoreExportPluginDatastoreExportPluginStepFunctionEventsRoleB5C2D853": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "events.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "DatastoreExportPluginDatastoreExportPluginStepFunctionEventsRoleDefaultPolicy63728CE1": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "states:StartExecution",
+              "Effect": "Allow",
+              "Resource": {
+                "Ref": "DatastoreExportPluginDatastoreExportPluginStepFunction96D6ACAF",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "DatastoreExportPluginDatastoreExportPluginStepFunctionEventsRoleDefaultPolicy63728CE1",
+        "Roles": [
+          {
+            "Ref": "DatastoreExportPluginDatastoreExportPluginStepFunctionEventsRoleB5C2D853",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "DatastoreExportPluginDatastoreExportPluginStepFunctionLogGroup51AC7155": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Plugins need unrestricted wildcard access to the generation bucket",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "LogGroupName": "DatastoreExportPlugin-StepFunction-LogGroup",
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "DatastoreExportPluginDatastoreExportPluginStepFunctionLogGroupServiceRoleDefaultPolicyC3322264": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Plugins need unrestricted wildcard access to the generation bucket",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "DatastoreExportPluginDatastoreExportPluginStepFunctionLogGroup51AC7155",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": "s3:listObjectsV2",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": "events:PutEvents",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttEventBus7B8748AAArn0B268F0E",
+              },
+            },
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "DatastoreExportPluginCreateTestCaseFunction3C77A677",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "DatastoreExportPluginCreateTestCaseFunction3C77A677",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "DatastoreExportPluginMintVersionFunctionF7C92D06",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "DatastoreExportPluginMintVersionFunctionF7C92D06",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "logs:CreateLogDelivery",
+                "logs:GetLogDelivery",
+                "logs:UpdateLogDelivery",
+                "logs:DeleteLogDelivery",
+                "logs:ListLogDeliveries",
+                "logs:PutResourcePolicy",
+                "logs:DescribeResourcePolicies",
+                "logs:DescribeLogGroups",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+                "xray:GetSamplingRules",
+                "xray:GetSamplingTargets",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttGenerationBucket72758BCDArn3B2D912C",
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttGenerationBucket72758BCDArn3B2D912C",
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "DatastoreExportPluginDatastoreExportPluginStepFunctionLogGroupServiceRoleDefaultPolicyC3322264",
+        "Roles": [
+          {
+            "Ref": "DatastoreExportPluginDatastoreExportPluginStepFunctionLogGroupServiceRoleE39E69CA",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "DatastoreExportPluginDatastoreExportPluginStepFunctionLogGroupServiceRoleE39E69CA": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Plugins need unrestricted wildcard access to the generation bucket",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "states.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(states.amazonaws.com) to write into DatastoreExportPlugin-StepFunction-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "DatastoreExportPluginMintVersionFunctionF7C92D06": {
+      "DependsOn": [
+        "DatastoreExportPluginMintVersionFunctionLogGroupServiceRoleDefaultPolicyA410EDB9",
+        "DatastoreExportPluginMintVersionFunctionLogGroupServiceRole38F7F6D7",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Plugins need unrestricted wildcard access to the generation bucket",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "GENAI_ETK_URL": {
+              "Fn::Join": [
+                "",
+                [
+                  "https://",
+                  {
+                    "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+                  },
+                  ".execute-api.us-east-1.",
+                  {
+                    "Ref": "AWS::URLSuffix",
+                  },
+                  "/",
+                  {
+                    "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApiDeploymentStageprod083524AB4F830766",
+                  },
+                  "/",
+                ],
+              ],
+            },
+          },
+        },
+        "Handler": "index.mintVersionLambda.lambdaHandler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "DatastoreExportPluginMintVersionFunctionLogGroup9CEC9A38",
+          },
+        },
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "DatastoreExportPluginMintVersionFunctionLogGroupServiceRole38F7F6D7",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs22.x",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+        "Timeout": 900,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "DatastoreExportPluginMintVersionFunctionSecurityGroup05562A0A",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "DatastoreExportPluginMintVersionFunctionLogGroup9CEC9A38": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Plugins need unrestricted wildcard access to the generation bucket",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "DatastoreExportPluginMintVersionFunctionLogGroupServiceRole38F7F6D7": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Plugins need unrestricted wildcard access to the generation bucket",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into MintVersionFunction-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "DatastoreExportPluginMintVersionFunctionLogGroupServiceRoleDefaultPolicyA410EDB9": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Plugins need unrestricted wildcard access to the generation bucket",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "DatastoreExportPluginMintVersionFunctionLogGroup9CEC9A38",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": "execute-api:Invoke",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":execute-api:us-east-1:123456789012:",
+                    {
+                      "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+                    },
+                    "/*/*/*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "DatastoreExportPluginMintVersionFunctionLogGroupServiceRoleDefaultPolicyA410EDB9",
+        "Roles": [
+          {
+            "Ref": "DatastoreExportPluginMintVersionFunctionLogGroupServiceRole38F7F6D7",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "DatastoreExportPluginMintVersionFunctionSecurityGroup05562A0A": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Plugins need unrestricted wildcard access to the generation bucket",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkPluginsDatastoreExportPluginMintVersionFunctionFF249D11",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "EvalNoopFunction943FEFC1": {
+      "DependsOn": [
+        "EvalNoopFunctionLogGroupServiceRoleDefaultPolicy95F24C56",
+        "EvalNoopFunctionLogGroupServiceRole5C3828CE",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "EVENT_BUS_ARN": {
+              "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttEventBus7B8748AAArn0B268F0E",
+            },
+            "PLUGIN_NAME": "evalNoopPlugin",
+          },
+        },
+        "Handler": "index.noopPluginHandlerLambda.lambdaHandler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "EvalNoopFunctionLogGroupC6CC0BCD",
+          },
+        },
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "EvalNoopFunctionLogGroupServiceRole5C3828CE",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs22.x",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+        "Timeout": 30,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "EvalNoopFunctionSecurityGroupDF01676B",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "EvalNoopFunctionLogGroupC6CC0BCD": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "EvalNoopFunctionLogGroupServiceRole5C3828CE": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into EvalNoopFunction-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "EvalNoopFunctionLogGroupServiceRoleDefaultPolicy95F24C56": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "EvalNoopFunctionLogGroupC6CC0BCD",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": "events:PutEvents",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttEventBus7B8748AAArn0B268F0E",
+              },
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttTestDataS3BucketC0F5F0E6ArnD7C4FA00",
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttTestDataS3BucketC0F5F0E6ArnD7C4FA00",
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "EvalNoopFunctionLogGroupServiceRoleDefaultPolicy95F24C56",
+        "Roles": [
+          {
+            "Ref": "EvalNoopFunctionLogGroupServiceRole5C3828CE",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "EvalNoopFunctionSecurityGroupDF01676B": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkPluginsEvalNoopFunction8530612D",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "GenNoopFunctionC47D6D45": {
+      "DependsOn": [
+        "GenNoopFunctionLogGroupServiceRoleDefaultPolicyE4EF7FCB",
+        "GenNoopFunctionLogGroupServiceRole62B5E0DA",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "EVENT_BUS_ARN": {
+              "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttEventBus7B8748AAArn0B268F0E",
+            },
+            "PLUGIN_NAME": "generationNoopPlugin",
+          },
+        },
+        "Handler": "index.noopPluginHandlerLambda.lambdaHandler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "GenNoopFunctionLogGroup0485220D",
+          },
+        },
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "GenNoopFunctionLogGroupServiceRole62B5E0DA",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs22.x",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+        "Timeout": 30,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "GenNoopFunctionSecurityGroup19DE6535",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "GenNoopFunctionLogGroup0485220D": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "GenNoopFunctionLogGroupServiceRole62B5E0DA": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into GenNoopFunction-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "GenNoopFunctionLogGroupServiceRoleDefaultPolicyE4EF7FCB": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "GenNoopFunctionLogGroup0485220D",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": "events:PutEvents",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttEventBus7B8748AAArn0B268F0E",
+              },
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttGenerationBucket72758BCDArn3B2D912C",
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttGenerationBucket72758BCDArn3B2D912C",
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "GenNoopFunctionLogGroupServiceRoleDefaultPolicyE4EF7FCB",
+        "Roles": [
+          {
+            "Ref": "GenNoopFunctionLogGroupServiceRole62B5E0DA",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "GenNoopFunctionSecurityGroup19DE6535": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkPluginsGenNoopFunctionC5B3C29F",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "evalNoopPluginPluginTriggerRule3ECCF6FA": {
+      "Properties": {
+        "EventBusName": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefEventBus7B8748AA3BA3246C",
+        },
+        "EventPattern": {
+          "detail": {
+            "plugin": [
+              "evalNoopPlugin",
+            ],
+          },
+          "detail-type": [
+            "genAiEtkEvaluationMetricTriggerEvent",
+          ],
+          "source": [
+            "GenAiEvaluationToolkit",
+          ],
+        },
+        "State": "ENABLED",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::GetAtt": [
+                "EvalNoopFunction943FEFC1",
+                "Arn",
+              ],
+            },
+            "Id": "Target0",
+          },
+        ],
+      },
+      "Type": "AWS::Events::Rule",
+    },
+    "evalNoopPluginPluginTriggerRuleAllowEventRuleGenAiEtkPluginsEvalNoopFunction8530612DDFBEE797": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "EvalNoopFunction943FEFC1",
+            "Arn",
+          ],
+        },
+        "Principal": "events.amazonaws.com",
+        "SourceArn": {
+          "Fn::GetAtt": [
+            "evalNoopPluginPluginTriggerRule3ECCF6FA",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "generationNoopPluginPluginTriggerRuleAllowEventRuleGenAiEtkPluginsGenNoopFunctionC5B3C29FC4DC3A33": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "GenNoopFunctionC47D6D45",
+            "Arn",
+          ],
+        },
+        "Principal": "events.amazonaws.com",
+        "SourceArn": {
+          "Fn::GetAtt": [
+            "generationNoopPluginPluginTriggerRuleD5CD55ED",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "generationNoopPluginPluginTriggerRuleD5CD55ED": {
+      "Properties": {
+        "EventBusName": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefEventBus7B8748AA3BA3246C",
+        },
+        "EventPattern": {
+          "detail": {
+            "plugin": [
+              "generationNoopPlugin",
+            ],
+          },
+          "detail-type": [
+            "genAiEtkGenerationPluginTriggerEvent",
+          ],
+          "source": [
+            "GenAiEvaluationToolkit",
+          ],
+        },
+        "State": "ENABLED",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Plugins",
+          },
+        ],
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::GetAtt": [
+                "GenNoopFunctionC47D6D45",
+                "Arn",
+              ],
+            },
+            "Id": "Target0",
+          },
+        ],
+      },
+      "Type": "AWS::Events::Rule",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;

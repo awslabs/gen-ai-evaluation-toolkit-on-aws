@@ -1,0 +1,11 @@
+# Ignore all generated content except project.json files and directories
+*
+!*/
+!project.json
+
+# Track custom openapi-generator template overrides
+!python-client/templates/
+!python-client/templates/**
+
+# Track self
+!/.gitignore

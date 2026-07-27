@@ -1,0 +1,11 @@
+Reports:
+{{~> common/separator~}}
+
+{{#each reports}}
+Report ID: {{ reportId }}
+Name: {{ name }}
+Status: {{ status }}
+Created at: {{formatDate createdAt}}
+{{> common/separator}}
+{{/each}}
+{{> common/pagination}}

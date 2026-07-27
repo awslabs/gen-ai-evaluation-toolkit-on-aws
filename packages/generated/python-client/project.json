@@ -1,0 +1,48 @@
+{
+  "name": "generated-python-client",
+  "sourceRoot": "{projectRoot}/src",
+  "projectType": "library",
+  "implicitDependencies": ["generated-open-api"],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "npx @openapitools/openapi-generator-cli generate -i ../open-api/openapi.json -g python -o . --template-dir ./templates --additional-properties=packageName=awssolutions_gen_ai_evaluation_toolkit_python_client,projectName=amzn-genai-etk-python-client,packageVersion=$(jq -r '.info.version' ../open-api/openapi.json)",
+          "python3 $NX_WORKSPACE_ROOT/packages/models/scripts/patch_generated_sparse.py ../open-api/openapi.json ./awssolutions_gen_ai_evaluation_toolkit_python_client/models",
+          "rm -rf build dist",
+          "hatch build",
+          "rm -rf .github",
+          "mkdir -p $NX_WORKSPACE_ROOT/output/python/wheels $NX_WORKSPACE_ROOT/output/python/tars",
+          "cp ./dist/*.whl $NX_WORKSPACE_ROOT/output/python/wheels/",
+          "cp ./dist/*.tar.* $NX_WORKSPACE_ROOT/output/python/tars/"
+        ],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "$NX_WORKSPACE_ROOT/scripts/publish/python.sh .",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "hatch test ./test",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "find . -mindepth 1 ! -name 'project.json' ! -path './templates' ! -path './templates/*' -delete",
+        "cwd": "{projectRoot}"
+      }
+    }
+  }
+}

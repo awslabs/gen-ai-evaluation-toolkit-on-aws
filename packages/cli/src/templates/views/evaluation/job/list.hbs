@@ -1,0 +1,15 @@
+Evaluation Jobs
+{{~> common/separator~}}
+
+{{#if jobs}}
+{{#each jobs}}
+Job ID: {{ this.jobId }}
+Evaluator: {{ this.evaluatorName }}
+Type: {{ this.jobType }}
+Status: {{ this.status }}
+Created at: {{formatDate this.createdAt}}
+{{~> common/separator~}}
+{{/each}}
+{{else}}
+No evaluation jobs found.
+{{/if}}

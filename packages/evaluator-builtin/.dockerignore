@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.coverage
+.coverage.*
+coverage.xml
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.venv/
+build/
+.vscode/
+notebooks/
+tests/

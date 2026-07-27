@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`"genai-etk generation job get" rendered by /views/generation/job/get.hbs : Populated 1`] = `
+"
+Generation Job Details
+--------------------------------------------------
+
+Id: id-string
+Status: RUNNING
+Created At: <timestamp>
+Stopped At: <timestamp>
+Experiment: experimentName-string
+Generation Steps: 
+        Plugin: steps-1-plugin-string
+        Configuration:
+            some:
+                complex: object
+            with: nested,properties
+        Plugin: steps-2-plugin-string
+        Configuration:
+            some:
+                complex: object
+            with: nested,properties
+Output: 
+    some:
+        complex: object
+    with: nested,properties
+
+Error Details:
+    Cause: cause-string
+    Error: error-string"
+`;
+
+exports[`"genai-etk generation job list" rendered by /views/generation/job/list.hbs : Populated 1`] = `
+"
+Generation jobs
+--------------------------------------------------
+
+Id: jobs-1-id-string
+Status: RUNNING
+Created At: <timestamp>
+Stopped At: <timestamp>
+
+Error Details:
+    Cause: jobs-1-cause-string
+    Error: jobs-1-error-string
+
+--------------------------------------------------
+
+Id: jobs-2-id-string
+Status: RUNNING
+Created At: <timestamp>
+Stopped At: <timestamp>
+
+Error Details:
+    Cause: jobs-2-cause-string
+    Error: jobs-2-error-string
+
+--------------------------------------------------
+
+
+Next Token: nextToken-string
+
+More results available. Use \`generation job list --next-token nextToken-string\` to retrieve the next page."
+`;
+
+exports[`"genai-etk generation job start" rendered by /views/generation/job/start.hbs : Populated 1`] = `
+"
+Generation job submitted successfully!
+--------------------------------------------------
+
+Id: id-string
+Status: RUNNING
+Created At: <timestamp>
+Stopped At: <timestamp>
+Experiment: experimentName-string
+Generation Steps: 
+        Plugin: steps-1-plugin-string
+        Configuration:
+            some:
+                complex: object
+            with: nested,properties
+        Plugin: steps-2-plugin-string
+        Configuration:
+            some:
+                complex: object
+            with: nested,properties
+Output: 
+    some:
+        complex: object
+    with: nested,properties
+
+Error Details:
+    Cause: cause-string
+    Error: error-string
+
+
+--------------------------------------------------
+
+Workflow Monitoring Instructions:
+
+You can launch the MLFlow UI for experiment analysis using the following command:
+genai-etk experiment launch-ui
+
+You can monitor the job status and retrieve retrieve the results through:
+genai-etk generation job get --id "id-string""
+`;
+
+exports[`"genai-etk generation job stop" rendered by /views/generation/job/stop.hbs : Populated 1`] = `
+"
+Generation job stopped
+--------------------------------------------------
+
+Id: id-string
+Status: RUNNING
+Created At: <timestamp>
+Stopped At: <timestamp>
+Experiment: experimentName-string
+Generation Steps: 
+        Plugin: steps-1-plugin-string
+        Configuration:
+            some:
+                complex: object
+            with: nested,properties
+        Plugin: steps-2-plugin-string
+        Configuration:
+            some:
+                complex: object
+            with: nested,properties
+Output: 
+    some:
+        complex: object
+    with: nested,properties
+
+Error Details:
+    Cause: cause-string
+    Error: error-string
+
+--------------------------------------------------"
+`;

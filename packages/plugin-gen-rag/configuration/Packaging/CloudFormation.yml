@@ -1,0 +1,3 @@
+artifacts:
+ paths:
+   docker-archive/: docker-archive/

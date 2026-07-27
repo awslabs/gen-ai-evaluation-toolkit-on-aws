@@ -1,0 +1,10 @@
+Report created successfully!
+{{~> common/separator~}}
+
+Report ID: {{ report.reportId }}
+Name: {{ report.name }}
+{{#if report.description}}
+Description: {{ report.description }}
+{{/if}}
+Status: {{ report.status }}
+Created at: {{formatDate report.createdAt}}

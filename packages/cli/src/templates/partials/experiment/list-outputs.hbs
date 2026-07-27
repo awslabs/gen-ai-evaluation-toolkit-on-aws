@@ -1,0 +1,23 @@
+{{#if outputs}}
+{{#each outputs}}
+Configuration
+   Version: {{version}}
+   {{#if configuration}}
+   {{> common/genericObject configuration}}
+   {{/if}}
+   Results:
+   {{#if runs}}
+   {{#each runs}}
+      Run ID: {{run_id}}
+      Run Name: {{run_name}}
+   {{/each}}
+   {{else}}
+      No results found, runs may still be in progress...
+   {{/if}}
+
+{{/each}}
+{{else}}
+No results found.
+{{/if}}
+
+{{> common/pagination}}

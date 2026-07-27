@@ -1,0 +1,133 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[project]
+name = "awssolutions-gen-ai-evaluation-toolkit-python-integration-tests"
+version = "1.0"
+license = "Apache-2.0"
+readme = "README.md"
+# When making changes to any dependencies:
+# - run `mise run release` to update your requirements files
+# - commit all updated requirements files.
+dependencies = [
+  "pytest",
+  "pytest-xdist",
+  "requests-aws4auth",
+  "tenacity == 9.1.2",
+  "boto3",
+  "deepdiff == 8.6.2",
+  "invoke",
+  "typing-extensions",
+]
+requires-python = ">=3.12"
+
+[tool.hatch.env]
+requires = ["hatch-pip-compile"]
+
+[tool.hatch.envs.default]
+type = "pip-compile"
+
+# This controls what version of Python you want to be the default
+# when running any scripts or tools to do things like debug test failures
+# or do general development.  It's lockfile is ./requirements.txt
+python = "3.12"
+dependencies = ["pytest", "mypy"]
+
+[tool.pytest.ini_options]
+addopts = ["--durations=5", "--color=yes"]
+testpaths = ["tests"]
+looponfailroots = ["src", "tests"]
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+markers = ["category: allows categorise tests and run them by category"]
+
+[tool.coverage.run]
+source_pkgs = ["python_integration_tests"]
+branch = true
+parallel = true
+
+[tool.coverage.paths]
+"python_integration_tests" = [
+  "src/python_integration_tests",
+  "**/site-packages/python_integration_tests",
+]
+
+[tool.coverage.report]
+exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
+show_missing = true
+# fail_under = 99
+
+[tool.coverage.xml]
+output = "private/documentation/coverage/coverage.xml"
+
+[tool.coverage.html]
+directory = "private/documentation/coverage/"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+  "E",  # pycodestyle errors
+  "W",  # pycodestyle warnings
+  "F",  # pyflakes
+  "I",  # isort
+  "B",  # flake8-bugbear
+  "C4", # flake8-comprehensions
+]
+isort.known-first-party = ["python_integration_tests"]
+exclude = ["./build", ".hatch", "private"]
+
+[tool.ruff.lint.per-file-ignores]
+# Tests can use magic values, assertions, and relative imports
+"tests/**/*" = ["PLR2004", "S101", "TID252"]
+
+[tool.hatch.build]
+directory = "./build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/python_integration_tests"]
+
+[tool.hatch.envs.default.scripts]
+test = ["pytest tests/ -v"]
+test-coverage = [
+  "pytest tests/ --cov=src --cov-report=html --cov-report=xml -v",
+]
+
+[[tool.hatch.envs.hatch-test.matrix]]
+# This defines multiple variables you can generate combinations
+# to test underneath different environments.  A separate environment and 
+# lock file will be created for every combination located in `./requirements/`
+python = ["3.12"]
+
+## This environment is used solely to generate a lock file on hatch,
+# and hatch-pip-compile that can be automatically updated
+[tool.hatch.envs.build-tools]
+# This version states what version your build tools build with.  To change it,
+# you will need to:
+# * Remove the `requirements/requirements-build-tools.txt` file
+# * Run `mise run update` to generate a new lock file for the environment
+python = "3.12"
+detached = true
+skip-install = true
+dependencies = ["hatch", "hatch-pip-compile"]
+
+# This is necessary to use 'uv' as the resolver if this is the top-level package
+# in a monorepo (which is usually the case).  Remove this if copying the
+# package into a monorepo
+[tool.mypy]
+check_untyped_defs = true
+show_error_codes = true
+pretty = true
+ignore_missing_imports = true
+files = ["src/**/*.py"]
+mypy_path = "src"
+
+[tool.uv.workspace]

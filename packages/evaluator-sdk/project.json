@@ -1,0 +1,74 @@
+{
+  "name": "evaluator-sdk",
+  "sourceRoot": "{projectRoot}/src",
+  "projectType": "library",
+  "targets": {
+    "install": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["generated-python-client:build", "python-api:install"],
+      "options": {
+        "commands": ["UV_PROJECT_ENVIRONMENT=.venv uv sync --dev --reinstall-package awssolutions-gen-ai-evaluation-toolkit-evaluator-sdk"],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["rm -rf .venv build dist"],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["uv run ruff check src tests", "uv run mypy src"],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["install"],
+      "options": {
+        "commands": [
+          "uv run pytest tests --ignore=tests/onebox --cov=evaluator_sdk --cov-report=term --cov-report=xml --cov-report=html",
+          "uv run pytest tests/onebox"
+        ],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "test:e2e": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["ETK_TEST_MODE=e2e uv run pytest tests -m e2e -v"],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "ci": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["install", "check", "test"],
+      "options": {
+        "commands": [],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "dependsOn": ["install", "check"],
+      "outputs": ["{projectRoot}/build"],
+      "options": {
+        "commands": [
+          "rm -rf build",
+          "mkdir build",
+          "uv build --no-build-isolation --out-dir build",
+          "mkdir -p $NX_WORKSPACE_ROOT/output/python/wheels $NX_WORKSPACE_ROOT/output/python/tars",
+          "cp ./build/*.whl $NX_WORKSPACE_ROOT/output/python/wheels/",
+          "cp ./build/*.tar.* $NX_WORKSPACE_ROOT/output/python/tars/"
+        ],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+build/**
+dist/**
+node_modules/**
+assets/**
+lib/**
+
+# Generated markdown
+NOTICES.md

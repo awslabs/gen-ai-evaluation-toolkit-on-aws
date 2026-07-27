@@ -1,0 +1,21 @@
+Id: {{ id }}
+Status: {{ status }}
+Created at: {{formatDate createdAt}}
+{{#if stoppedAt}}
+Stopped at: {{formatDate stoppedAt}}
+{{/if}}
+{{#if experimentName}}
+Experiment: {{ experimentName }}
+{{/if}}
+{{#if steps}}
+Generation Steps: 
+    {{> generation/generation-steps steps}}
+{{/if}}
+{{#if output}}
+Output: 
+    {{> common/genericObject output}}
+{{/if}}
+{{#if (or error cause)}}
+
+{{> common/error-details}}
+{{/if}}

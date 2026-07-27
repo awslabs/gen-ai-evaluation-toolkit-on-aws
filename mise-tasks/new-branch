@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+#MISE description="Create a new branch locally and push to remote with user prefix"
+
+if [ -z "$1" ]; then
+  echo "Usage: mise run new-branch <branch-name>"
+  exit 1
+fi
+
+BRANCH_NAME="$USER/$1"
+CURRENT_BRANCH=$(git branch --show-current)
+# Check if we're already on the target branch
+if [ "$CURRENT_BRANCH" = "$BRANCH_NAME" ]; then
+  echo "Error: Already on branch '$BRANCH_NAME'"
+  exit 1
+fi
+
+echo "Fetching latest changes..."
+git fetch origin
+
+echo "Creating branch '$BRANCH_NAME' from 'origin/dev'..."
+echo "This will:"
+echo "  1. Create local branch: $BRANCH_NAME from origin/dev"
+echo "  2. Push to remote: origin/$BRANCH_NAME"
+echo "  3. Set upstream tracking"
+echo ""
+read -p "Continue? (y/N): " -n 1 -r
+echo ""
+
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+  echo "Cancelled"
+  exit 0
+fi
+
+# Create and switch to new branch from origin/dev
+git checkout -b "$BRANCH_NAME" origin/dev
+
+# Push to remote and set upstream
+git push -u origin "$BRANCH_NAME"
+
+echo "✅ Branch '$BRANCH_NAME' created from origin/dev and pushed to remote"
+echo "📍 Switched to branch '$BRANCH_NAME'"

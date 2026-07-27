@@ -1,0 +1,34 @@
+{
+  "plugins": [
+    {
+      "plugin": "evalNoopPlugin",
+      "configuration": {
+        "dataConfig": {
+          "dataset_mime_type": "application/jsonlines",
+          "model_input_location": "question",
+          "model_output_location": "response",
+          "target_output_location": "correctAnswer"
+        },
+        "evaluators": [
+          {
+            "name": "asdf",
+            "params": {}
+          },
+          {
+            "name": "factual_knowledge",
+            "params": {}
+          }
+        ]
+      }
+    }
+  ],
+  "appId": "",
+  "testData": {
+    "bucketName": "bucket-name",
+    "prefix": "prefix"
+  },
+  "testDataRoleArn": "",
+  "observabilityLayer": {
+    "metricNamespace": "Evaluation"
+  }
+}

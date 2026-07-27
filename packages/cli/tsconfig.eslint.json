@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["src", "test", "jest.config.ts", "webpack.config.js"],
+  "exclude": ["node_modules", "dist", "coverage"]
+}

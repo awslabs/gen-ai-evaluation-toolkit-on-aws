@@ -1,0 +1,8 @@
+{
+  "installation": {
+    "version": "22.0.1"
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "inputs": ["{projectRoot}/**/*", "!{projectRoot}/test", "!{projectRoot}/tests", "!{projectRoot}/**/*.test.ts"],
+  "analytics": false
+}

@@ -1,0 +1,39 @@
+{
+  "name": "models",
+  "sourceRoot": "{projectRoot}/model",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "# TODO: temp fix for mise bug -- replace command with just 'gradle'",
+          "$(find $(mise where gradle) -name gradle -type f) build copyToPublic",
+          "cp ./build/smithy/source/model/model.json ./build/",
+          "rsync -av --delete --exclude=project.json build/smithy/source/typescript-client-codegen/ $NX_WORKSPACE_ROOT/packages/generated/ts-client/ &>/dev/null",
+          "rsync -av --delete --exclude=project.json build/smithy/source/typescript-ssdk-codegen/ $NX_WORKSPACE_ROOT/packages/generated/ts-ssdk/ &>/dev/null",
+          "cp build/smithy/source/openapi/GenAiEtk.openapi.json $NX_WORKSPACE_ROOT/packages/generated/open-api/openapi.json",
+          "python3 scripts/patch_openapi_sparse.py build/model.json $NX_WORKSPACE_ROOT/packages/generated/open-api/openapi.json",
+          "python3 scripts/patch_openapi_union_titles.py $NX_WORKSPACE_ROOT/packages/generated/open-api/openapi.json",
+          "mkdir -p $NX_WORKSPACE_ROOT/output",
+          "cp $NX_WORKSPACE_ROOT/packages/generated/open-api/openapi.json $NX_WORKSPACE_ROOT/output/openapi.json"
+        ],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      },
+      "outputs": [
+        "{workspaceRoot}/packages/generated/ts-client",
+        "{workspaceRoot}/packages/generated/ts-ssdk",
+        "{workspaceRoot}/packages/generated/open-api",
+        "{workspaceRoot}/output/openapi.json"
+      ]
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "rm -rf .gradle build",
+        "cwd": "{projectRoot}"
+      }
+    }
+  }
+}

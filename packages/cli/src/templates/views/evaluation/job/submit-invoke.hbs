@@ -1,0 +1,12 @@
+Evaluation job submitted successfully!
+{{~> common/separator~}}
+
+Job ID: {{ jobId }}
+Report ID: {{ reportId }}
+Evaluator: {{ evaluatorName }}
+Type: {{ jobType }}
+Status: {{ status }}
+Created at: {{formatDate createdAt}}
+{{#if experimentName}}
+Experiment: {{ experimentName }}
+{{/if}}

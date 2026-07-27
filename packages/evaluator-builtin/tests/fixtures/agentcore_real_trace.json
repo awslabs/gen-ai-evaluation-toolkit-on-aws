@@ -1,0 +1,1469 @@
+{
+    "input": {
+        "text": "What are the specs for tablets?"
+    },
+    "expected": {
+        "text": "10-12 inch displays, all-day battery life, stylus support",
+        "tool_calls": [
+            {
+                "name": "get_product_info",
+                "args": {
+                    "product_type": "tablets"
+                }
+            }
+        ]
+    },
+    "output": {
+        "text": "The specifications for our tablets are as follows:\n- Display size: 10-12 inches\n- Battery life: All-day battery life\n- Input: Supports stylus input\n\nIf you need more detailed information or have any other questions, feel free to ask!",
+        "turns": [
+            {
+                "type": "human",
+                "content": "What are the specs for tablets?"
+            },
+            {
+                "type": "ai",
+                "content": "Using tools to answer your question...",
+                "tool_calls": [
+                    {
+                        "name": "get_product_info",
+                        "args": {
+                            "product_type": "tablets"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "tool",
+                "content": ""
+            },
+            {
+                "type": "ai",
+                "content": "The specifications for our tablets are as follows:\n- Display size: 10-12 inches\n- Battery life: All-day battery life\n- Input: Supports stylus input\n\nIf you need more detailed information or have any other questions, feel free to ask!"
+            }
+        ],
+        "trace_id": "54007f7a5cbc4508a5100f18ccd33efc",
+        "trace_ids": null,
+        "session_id": "6ce30eaf-4592-4843-a561-3565bbefe3e4",
+        "span_ids": [
+            "34d8f2af94e1ab94",
+            "34d8f2af94e1ab94",
+            "34d8f2af94e1ab94",
+            "34d8f2af94e1ab94",
+            "6f59a76435039d81",
+            "6f59a76435039d81",
+            "4a72e77de7da9dcd",
+            "4a72e77de7da9dcd",
+            "5938ca359ec7d74c",
+            "5938ca359ec7d74c",
+            "5938ca359ec7d74c",
+            "5938ca359ec7d74c",
+            "5938ca359ec7d74c",
+            "5938ca359ec7d74c",
+            "5938ca359ec7d74c",
+            "109c7733194603e6",
+            "109c7733194603e6",
+            "5bf8cf89cd635435",
+            "5bf8cf89cd635435",
+            "84487d2efa515e5a",
+            "84487d2efa515e5a",
+            "125f504df26063ac",
+            "125f504df26063ac",
+            "05f44b65edebdde9",
+            "05f44b65edebdde9",
+            "4323848a5f6c707c"
+        ],
+        "session_spans": [
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "opentelemetry.instrumentation.botocore.bedrock-runtime",
+                    "version": "0.60b1"
+                },
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "34d8f2af94e1ab94",
+                "parentSpanId": "6f59a76435039d81",
+                "flags": 256,
+                "name": "chat us.amazon.nova-micro-v1:0",
+                "kind": "CLIENT",
+                "startTimeUnixNano": 1773934287694017943,
+                "endTimeUnixNano": 1773934288310470213,
+                "durationNano": 616452270,
+                "attributes": {
+                    "aws.local.service": "agent.DEFAULT",
+                    "rpc.service": "Bedrock Runtime",
+                    "aws.remote.resource.identifier": "us.amazon.nova-micro-v1:0",
+                    "aws.local.environment": "bedrock-agentcore:default",
+                    "aws.remote.operation": "ConverseStream",
+                    "server.address": "bedrock-runtime.us-east-2.amazonaws.com",
+                    "aws.request_id": "5157d8b7-d290-4436-9ac7-4726f49e097d",
+                    "aws.local.operation": "UnmappedOperation",
+                    "gen_ai.request.temperature": 0,
+                    "aws.span.kind": "CLIENT",
+                    "aws.auth.region": "us-east-2",
+                    "rpc.method": "ConverseStream",
+                    "gen_ai.response.finish_reasons": [
+                        "tool_use"
+                    ],
+                    "server.port": 443,
+                    "gen_ai.request.model": "us.amazon.nova-micro-v1:0",
+                    "http.response.status_code": 200,
+                    "gen_ai.system": "aws.bedrock",
+                    "telemetry.extended": "true",
+                    "gen_ai.usage.output_tokens": 65,
+                    "rpc.system": "aws-api",
+                    "aws.remote.service": "AWS::BedrockRuntime",
+                    "http.status_code": 200,
+                    "aws.region": "us-east-2",
+                    "aws.remote.resource.type": "AWS::Bedrock::Model",
+                    "gen_ai.operation.name": "chat",
+                    "gen_ai.usage.input_tokens": 720,
+                    "retry_attempts": 0,
+                    "PlatformType": "AWS::BedrockAgentCore",
+                    "aws.auth.account.access_key": "AKIAIOSFODNN7EXAMPLE",
+                    "session.id": "6ce30eaf-4592-4843-a561-3565bbefe3e4"
+                },
+                "status": {
+                    "code": "UNSET"
+                }
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "opentelemetry.instrumentation.botocore.bedrock-runtime",
+                    "schemaUrl": "https://opentelemetry.io/schemas/1.30.0"
+                },
+                "timeUnixNano": 0,
+                "observedTimeUnixNano": 1773934287694047164,
+                "severityNumber": 0,
+                "severityText": "",
+                "body": {
+                    "content": [
+                        {
+                            "text": "You are a helpful customer support assistant for an electronics company.\n\nCRITICAL: You MUST use tools to answer questions. Never provide information without calling a tool first.\n\nTOOL USAGE RULES:\n1. Product questions (specs, features, details) → ALWAYS call get_product_info with product_type (laptops, tablets, or smartphones)\n2. Return/refund questions → ALWAYS call get_return_policy with product_category\n3. Any other questions → call web_search with the query\n\nIMPORTANT:\n- Call tools BEFORE answering, not after\n- Use exact product names: \"laptops\", \"tablets\", \"smartphones\"\n- For return policies, use the product category mentioned by the user\n- If unsure which tool to use, call web_search\n\nExample:\nUser: \"What are the specs for tablets?\"\nYou: [Call get_product_info with product_type=\"tablets\"]\nThen respond with the tool result."
+                        }
+                    ]
+                },
+                "attributes": {
+                    "gen_ai.system": "aws.bedrock",
+                    "event.name": "opentelemetry.instrumentation.botocore.bedrock-runtime"
+                },
+                "flags": 1,
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "34d8f2af94e1ab94"
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "opentelemetry.instrumentation.botocore.bedrock-runtime",
+                    "schemaUrl": "https://opentelemetry.io/schemas/1.30.0"
+                },
+                "timeUnixNano": 0,
+                "observedTimeUnixNano": 1773934287694094786,
+                "severityNumber": 0,
+                "severityText": "",
+                "body": {
+                    "content": [
+                        {
+                            "text": "What are the specs for tablets?"
+                        }
+                    ]
+                },
+                "attributes": {
+                    "gen_ai.system": "aws.bedrock",
+                    "event.name": "opentelemetry.instrumentation.botocore.bedrock-runtime"
+                },
+                "flags": 1,
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "34d8f2af94e1ab94"
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "opentelemetry.instrumentation.botocore.bedrock-runtime",
+                    "schemaUrl": "https://opentelemetry.io/schemas/1.30.0"
+                },
+                "timeUnixNano": 0,
+                "observedTimeUnixNano": 1773934288310189453,
+                "severityNumber": 0,
+                "severityText": "",
+                "body": {
+                    "message": {
+                        "tool_calls": [
+                            {
+                                "type": "function",
+                                "id": "tooluse_n0trqtTWUQUlqi3ngSJn8h",
+                                "function": {
+                                    "name": "get_product_info",
+                                    "arguments": {
+                                        "product_type": "tablets"
+                                    }
+                                }
+                            }
+                        ],
+                        "role": "assistant"
+                    },
+                    "index": 0,
+                    "finish_reason": "tool_use"
+                },
+                "attributes": {
+                    "gen_ai.system": "aws.bedrock",
+                    "event.name": "opentelemetry.instrumentation.botocore.bedrock-runtime"
+                },
+                "flags": 1,
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "34d8f2af94e1ab94"
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "strands.telemetry.tracer",
+                    "version": ""
+                },
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "6f59a76435039d81",
+                "parentSpanId": "84487d2efa515e5a",
+                "flags": 256,
+                "name": "chat",
+                "kind": "INTERNAL",
+                "startTimeUnixNano": 1773934287691912874,
+                "endTimeUnixNano": 1773934288310918308,
+                "durationNano": 619005434,
+                "attributes": {
+                    "aws.local.service": "agent.DEFAULT",
+                    "gen_ai.usage.prompt_tokens": 720,
+                    "gen_ai.usage.output_tokens": 65,
+                    "gen_ai.server.request.duration": 575,
+                    "gen_ai.usage.total_tokens": 785,
+                    "gen_ai.usage.completion_tokens": 65,
+                    "gen_ai.event.start_time": "2026-03-19T15:31:27.691919+00:00",
+                    "gen_ai.server.time_to_first_token": 379,
+                    "aws.local.environment": "bedrock-agentcore:default",
+                    "gen_ai.operation.name": "chat",
+                    "gen_ai.event.end_time": "2026-03-19T15:31:28.310818+00:00",
+                    "gen_ai.usage.input_tokens": 720,
+                    "gen_ai.request.model": "us.amazon.nova-micro-v1:0",
+                    "PlatformType": "AWS::BedrockAgentCore",
+                    "session.id": "6ce30eaf-4592-4843-a561-3565bbefe3e4",
+                    "gen_ai.system": "strands-agents"
+                },
+                "status": {
+                    "code": "UNSET"
+                }
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "strands.telemetry.tracer"
+                },
+                "timeUnixNano": 1773934288310918308,
+                "observedTimeUnixNano": 1773934288312570890,
+                "severityNumber": 9,
+                "severityText": "",
+                "body": {
+                    "output": {
+                        "messages": [
+                            {
+                                "content": {
+                                    "message": "[{\"text\": \"<thinking> The user is asking for specifications of tablets. To provide accurate information, I need to call the get_product_info tool with the product_type set to \\\"tablets\\\". </thinking>\\n\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_n0trqtTWUQUlqi3ngSJn8h\", \"name\": \"get_product_info\", \"input\": {\"product_type\": \"tablets\"}}}]",
+                                    "finish_reason": "tool_use"
+                                },
+                                "role": "assistant"
+                            }
+                        ]
+                    },
+                    "input": {
+                        "messages": [
+                            {
+                                "content": {
+                                    "content": "[{\"text\": \"What are the specs for tablets?\"}]"
+                                },
+                                "role": "user"
+                            }
+                        ]
+                    }
+                },
+                "attributes": {
+                    "event.name": "strands.telemetry.tracer",
+                    "session.id": "6ce30eaf-4592-4843-a561-3565bbefe3e4"
+                },
+                "flags": 1,
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "6f59a76435039d81"
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "strands.telemetry.tracer",
+                    "version": ""
+                },
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "4a72e77de7da9dcd",
+                "parentSpanId": "84487d2efa515e5a",
+                "flags": 256,
+                "name": "execute_tool get_product_info",
+                "kind": "INTERNAL",
+                "startTimeUnixNano": 1773934288311348861,
+                "endTimeUnixNano": 1773934288312062801,
+                "durationNano": 713940,
+                "attributes": {
+                    "aws.local.service": "agent.DEFAULT",
+                    "gen_ai.tool.status": "success",
+                    "gen_ai.tool.call.id": "tooluse_n0trqtTWUQUlqi3ngSJn8h",
+                    "gen_ai.tool.description": "Get information about a product type (laptops, tablets, or smartphones).",
+                    "gen_ai.tool.json_schema": "{\"properties\": {\"product_type\": {\"description\": \"Parameter product_type\", \"type\": \"string\"}}, \"required\": [\"product_type\"], \"type\": \"object\"}",
+                    "gen_ai.event.start_time": "2026-03-19T15:31:28.311362+00:00",
+                    "aws.local.environment": "bedrock-agentcore:default",
+                    "gen_ai.operation.name": "execute_tool",
+                    "gen_ai.event.end_time": "2026-03-19T15:31:28.312036+00:00",
+                    "gen_ai.tool.name": "get_product_info",
+                    "PlatformType": "AWS::BedrockAgentCore",
+                    "session.id": "6ce30eaf-4592-4843-a561-3565bbefe3e4",
+                    "gen_ai.system": "strands-agents"
+                },
+                "status": {
+                    "code": "OK"
+                }
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "strands.telemetry.tracer"
+                },
+                "timeUnixNano": 1773934288312062801,
+                "observedTimeUnixNano": 1773934288312689091,
+                "severityNumber": 9,
+                "severityText": "",
+                "body": {
+                    "output": {
+                        "messages": [
+                            {
+                                "content": {
+                                    "message": "[{\"text\": \"Our tablets have 10-12 inch displays, all-day battery life, and support stylus input.\"}]",
+                                    "id": "tooluse_n0trqtTWUQUlqi3ngSJn8h"
+                                },
+                                "role": "assistant"
+                            }
+                        ]
+                    },
+                    "input": {
+                        "messages": [
+                            {
+                                "content": {
+                                    "content": "{\"product_type\": \"tablets\"}",
+                                    "role": "tool",
+                                    "id": "tooluse_n0trqtTWUQUlqi3ngSJn8h"
+                                },
+                                "role": "tool"
+                            }
+                        ]
+                    }
+                },
+                "attributes": {
+                    "event.name": "strands.telemetry.tracer",
+                    "session.id": "6ce30eaf-4592-4843-a561-3565bbefe3e4"
+                },
+                "flags": 1,
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "4a72e77de7da9dcd"
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "opentelemetry.instrumentation.botocore.bedrock-runtime",
+                    "version": "0.60b1"
+                },
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "5938ca359ec7d74c",
+                "parentSpanId": "109c7733194603e6",
+                "flags": 256,
+                "name": "chat us.amazon.nova-micro-v1:0",
+                "kind": "CLIENT",
+                "startTimeUnixNano": 1773934288410636947,
+                "endTimeUnixNano": 1773934288921264623,
+                "durationNano": 510627676,
+                "attributes": {
+                    "aws.local.service": "agent.DEFAULT",
+                    "rpc.service": "Bedrock Runtime",
+                    "aws.remote.resource.identifier": "us.amazon.nova-micro-v1:0",
+                    "aws.local.environment": "bedrock-agentcore:default",
+                    "aws.remote.operation": "ConverseStream",
+                    "server.address": "bedrock-runtime.us-east-2.amazonaws.com",
+                    "aws.request_id": "35a3bf6e-5a7a-49ff-bec8-ca0219bf6c7f",
+                    "aws.local.operation": "UnmappedOperation",
+                    "gen_ai.request.temperature": 0,
+                    "aws.span.kind": "CLIENT",
+                    "aws.auth.region": "us-east-2",
+                    "rpc.method": "ConverseStream",
+                    "gen_ai.response.finish_reasons": [
+                        "end_turn"
+                    ],
+                    "server.port": 443,
+                    "gen_ai.request.model": "us.amazon.nova-micro-v1:0",
+                    "http.response.status_code": 200,
+                    "gen_ai.system": "aws.bedrock",
+                    "telemetry.extended": "true",
+                    "gen_ai.usage.output_tokens": 56,
+                    "rpc.system": "aws-api",
+                    "aws.remote.service": "AWS::BedrockRuntime",
+                    "http.status_code": 200,
+                    "aws.region": "us-east-2",
+                    "aws.remote.resource.type": "AWS::Bedrock::Model",
+                    "gen_ai.operation.name": "chat",
+                    "gen_ai.usage.input_tokens": 836,
+                    "retry_attempts": 0,
+                    "PlatformType": "AWS::BedrockAgentCore",
+                    "aws.auth.account.access_key": "AKIAIOSFODNN7EXAMPLE",
+                    "session.id": "6ce30eaf-4592-4843-a561-3565bbefe3e4"
+                },
+                "status": {
+                    "code": "UNSET"
+                }
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "opentelemetry.instrumentation.botocore.bedrock-runtime",
+                    "schemaUrl": "https://opentelemetry.io/schemas/1.30.0"
+                },
+                "timeUnixNano": 0,
+                "observedTimeUnixNano": 1773934288410666351,
+                "severityNumber": 0,
+                "severityText": "",
+                "body": {
+                    "content": [
+                        {
+                            "text": "You are a helpful customer support assistant for an electronics company.\n\nCRITICAL: You MUST use tools to answer questions. Never provide information without calling a tool first.\n\nTOOL USAGE RULES:\n1. Product questions (specs, features, details) → ALWAYS call get_product_info with product_type (laptops, tablets, or smartphones)\n2. Return/refund questions → ALWAYS call get_return_policy with product_category\n3. Any other questions → call web_search with the query\n\nIMPORTANT:\n- Call tools BEFORE answering, not after\n- Use exact product names: \"laptops\", \"tablets\", \"smartphones\"\n- For return policies, use the product category mentioned by the user\n- If unsure which tool to use, call web_search\n\nExample:\nUser: \"What are the specs for tablets?\"\nYou: [Call get_product_info with product_type=\"tablets\"]\nThen respond with the tool result."
+                        }
+                    ]
+                },
+                "attributes": {
+                    "gen_ai.system": "aws.bedrock",
+                    "event.name": "opentelemetry.instrumentation.botocore.bedrock-runtime"
+                },
+                "flags": 1,
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "5938ca359ec7d74c"
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "opentelemetry.instrumentation.botocore.bedrock-runtime",
+                    "schemaUrl": "https://opentelemetry.io/schemas/1.30.0"
+                },
+                "timeUnixNano": 0,
+                "observedTimeUnixNano": 1773934288410702894,
+                "severityNumber": 0,
+                "severityText": "",
+                "body": {
+                    "content": [
+                        {
+                            "text": "What are the specs for tablets?"
+                        }
+                    ]
+                },
+                "attributes": {
+                    "gen_ai.system": "aws.bedrock",
+                    "event.name": "opentelemetry.instrumentation.botocore.bedrock-runtime"
+                },
+                "flags": 1,
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "5938ca359ec7d74c"
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "opentelemetry.instrumentation.botocore.bedrock-runtime",
+                    "schemaUrl": "https://opentelemetry.io/schemas/1.30.0"
+                },
+                "timeUnixNano": 0,
+                "observedTimeUnixNano": 1773934288410720644,
+                "severityNumber": 0,
+                "severityText": "",
+                "body": {
+                    "content": [
+                        {
+                            "text": "<thinking> The user is asking for specifications of tablets. To provide accurate information, I need to call the get_product_info tool with the product_type set to \"tablets\". </thinking>\n"
+                        },
+                        {
+                            "toolUse": {
+                                "name": "get_product_info",
+                                "input": {
+                                    "product_type": "tablets"
+                                },
+                                "toolUseId": "tooluse_n0trqtTWUQUlqi3ngSJn8h"
+                            }
+                        }
+                    ],
+                    "tool_calls": [
+                        {
+                            "type": "function",
+                            "id": "tooluse_n0trqtTWUQUlqi3ngSJn8h",
+                            "function": {
+                                "name": "get_product_info",
+                                "arguments": {
+                                    "product_type": "tablets"
+                                }
+                            }
+                        }
+                    ]
+                },
+                "attributes": {
+                    "gen_ai.system": "aws.bedrock",
+                    "event.name": "opentelemetry.instrumentation.botocore.bedrock-runtime"
+                },
+                "flags": 1,
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "5938ca359ec7d74c"
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "opentelemetry.instrumentation.botocore.bedrock-runtime",
+                    "schemaUrl": "https://opentelemetry.io/schemas/1.30.0"
+                },
+                "timeUnixNano": 0,
+                "observedTimeUnixNano": 1773934288410733908,
+                "severityNumber": 0,
+                "severityText": "",
+                "body": {
+                    "content": [
+                        {
+                            "text": "Our tablets have 10-12 inch displays, all-day battery life, and support stylus input."
+                        }
+                    ],
+                    "id": "tooluse_n0trqtTWUQUlqi3ngSJn8h"
+                },
+                "attributes": {
+                    "gen_ai.system": "aws.bedrock",
+                    "event.name": "opentelemetry.instrumentation.botocore.bedrock-runtime"
+                },
+                "flags": 1,
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "5938ca359ec7d74c"
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "opentelemetry.instrumentation.botocore.bedrock-runtime",
+                    "schemaUrl": "https://opentelemetry.io/schemas/1.30.0"
+                },
+                "timeUnixNano": 0,
+                "observedTimeUnixNano": 1773934288410744519,
+                "severityNumber": 0,
+                "severityText": "",
+                "body": {
+                    "content": [
+                        {
+                            "toolResult": {
+                                "toolUseId": "tooluse_n0trqtTWUQUlqi3ngSJn8h",
+                                "content": [
+                                    {
+                                        "text": "Our tablets have 10-12 inch displays, all-day battery life, and support stylus input."
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "attributes": {
+                    "gen_ai.system": "aws.bedrock",
+                    "event.name": "opentelemetry.instrumentation.botocore.bedrock-runtime"
+                },
+                "flags": 1,
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "5938ca359ec7d74c"
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "opentelemetry.instrumentation.botocore.bedrock-runtime",
+                    "schemaUrl": "https://opentelemetry.io/schemas/1.30.0"
+                },
+                "timeUnixNano": 0,
+                "observedTimeUnixNano": 1773934288921039765,
+                "severityNumber": 0,
+                "severityText": "",
+                "body": {
+                    "message": {
+                        "content": [
+                            {
+                                "text": "The specifications for our tablets are as follows:\n- Display size: 10-12 inches\n- Battery life: All-day battery life\n- Input: Supports stylus input\n\nIf you need more detailed information or have any other questions, feel free to ask!"
+                            }
+                        ],
+                        "role": "assistant"
+                    },
+                    "index": 0,
+                    "finish_reason": "end_turn"
+                },
+                "attributes": {
+                    "gen_ai.system": "aws.bedrock",
+                    "event.name": "opentelemetry.instrumentation.botocore.bedrock-runtime"
+                },
+                "flags": 1,
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "5938ca359ec7d74c"
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "strands.telemetry.tracer",
+                    "version": ""
+                },
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "109c7733194603e6",
+                "parentSpanId": "5bf8cf89cd635435",
+                "flags": 256,
+                "name": "chat",
+                "kind": "INTERNAL",
+                "startTimeUnixNano": 1773934288410133365,
+                "endTimeUnixNano": 1773934288921674980,
+                "durationNano": 511541615,
+                "attributes": {
+                    "aws.local.service": "agent.DEFAULT",
+                    "gen_ai.usage.prompt_tokens": 836,
+                    "gen_ai.usage.output_tokens": 56,
+                    "gen_ai.server.request.duration": 506,
+                    "gen_ai.usage.total_tokens": 892,
+                    "gen_ai.usage.completion_tokens": 56,
+                    "gen_ai.event.start_time": "2026-03-19T15:31:28.410139+00:00",
+                    "gen_ai.server.time_to_first_token": 315,
+                    "aws.local.environment": "bedrock-agentcore:default",
+                    "gen_ai.operation.name": "chat",
+                    "gen_ai.event.end_time": "2026-03-19T15:31:28.921588+00:00",
+                    "gen_ai.usage.input_tokens": 836,
+                    "gen_ai.request.model": "us.amazon.nova-micro-v1:0",
+                    "PlatformType": "AWS::BedrockAgentCore",
+                    "session.id": "6ce30eaf-4592-4843-a561-3565bbefe3e4",
+                    "gen_ai.system": "strands-agents"
+                },
+                "status": {
+                    "code": "UNSET"
+                }
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "strands.telemetry.tracer"
+                },
+                "timeUnixNano": 1773934288921674980,
+                "observedTimeUnixNano": 1773934288922290859,
+                "severityNumber": 9,
+                "severityText": "",
+                "body": {
+                    "output": {
+                        "messages": [
+                            {
+                                "content": {
+                                    "content": "[{\"text\": \"<thinking> The user is asking for specifications of tablets. To provide accurate information, I need to call the get_product_info tool with the product_type set to \\\"tablets\\\". </thinking>\\n\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_n0trqtTWUQUlqi3ngSJn8h\", \"name\": \"get_product_info\", \"input\": {\"product_type\": \"tablets\"}}}]"
+                                },
+                                "role": "assistant"
+                            },
+                            {
+                                "content": {
+                                    "message": "[{\"text\": \"The specifications for our tablets are as follows:\\n- Display size: 10-12 inches\\n- Battery life: All-day battery life\\n- Input: Supports stylus input\\n\\nIf you need more detailed information or have any other questions, feel free to ask!\"}]",
+                                    "finish_reason": "end_turn"
+                                },
+                                "role": "assistant"
+                            }
+                        ]
+                    },
+                    "input": {
+                        "messages": [
+                            {
+                                "content": {
+                                    "content": "[{\"text\": \"What are the specs for tablets?\"}]"
+                                },
+                                "role": "user"
+                            },
+                            {
+                                "content": {
+                                    "content": "[{\"toolResult\": {\"toolUseId\": \"tooluse_n0trqtTWUQUlqi3ngSJn8h\", \"status\": \"success\", \"content\": [{\"text\": \"Our tablets have 10-12 inch displays, all-day battery life, and support stylus input.\"}]}}]"
+                                },
+                                "role": "tool"
+                            }
+                        ]
+                    }
+                },
+                "attributes": {
+                    "event.name": "strands.telemetry.tracer",
+                    "session.id": "6ce30eaf-4592-4843-a561-3565bbefe3e4"
+                },
+                "flags": 1,
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "109c7733194603e6"
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "strands.telemetry.tracer",
+                    "version": ""
+                },
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "5bf8cf89cd635435",
+                "parentSpanId": "125f504df26063ac",
+                "flags": 256,
+                "name": "execute_event_loop_cycle",
+                "kind": "INTERNAL",
+                "startTimeUnixNano": 1773934288409999334,
+                "endTimeUnixNano": 1773934288921956150,
+                "durationNano": 511956816,
+                "attributes": {
+                    "aws.local.service": "agent.DEFAULT",
+                    "gen_ai.event.end_time": "2026-03-19T15:31:28.921918+00:00",
+                    "event_loop.cycle_id": "21efa920-20ae-4601-89c8-f9928cd24279",
+                    "gen_ai.event.start_time": "2026-03-19T15:31:28.410011+00:00",
+                    "event_loop.parent_cycle_id": "d62bc3b6-0f58-44c2-880e-80f9d4be429a",
+                    "PlatformType": "AWS::BedrockAgentCore",
+                    "session.id": "6ce30eaf-4592-4843-a561-3565bbefe3e4",
+                    "aws.local.environment": "bedrock-agentcore:default"
+                },
+                "status": {
+                    "code": "UNSET"
+                }
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "strands.telemetry.tracer"
+                },
+                "timeUnixNano": 1773934288921956150,
+                "observedTimeUnixNano": 1773934288922393107,
+                "severityNumber": 9,
+                "severityText": "",
+                "body": {
+                    "output": {
+                        "messages": [
+                            {
+                                "content": {
+                                    "content": "[{\"text\": \"<thinking> The user is asking for specifications of tablets. To provide accurate information, I need to call the get_product_info tool with the product_type set to \\\"tablets\\\". </thinking>\\n\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_n0trqtTWUQUlqi3ngSJn8h\", \"name\": \"get_product_info\", \"input\": {\"product_type\": \"tablets\"}}}]"
+                                },
+                                "role": "assistant"
+                            }
+                        ]
+                    },
+                    "input": {
+                        "messages": [
+                            {
+                                "content": {
+                                    "content": "[{\"text\": \"What are the specs for tablets?\"}]"
+                                },
+                                "role": "user"
+                            },
+                            {
+                                "content": {
+                                    "content": "[{\"toolResult\": {\"toolUseId\": \"tooluse_n0trqtTWUQUlqi3ngSJn8h\", \"status\": \"success\", \"content\": [{\"text\": \"Our tablets have 10-12 inch displays, all-day battery life, and support stylus input.\"}]}}]"
+                                },
+                                "role": "tool"
+                            }
+                        ]
+                    }
+                },
+                "attributes": {
+                    "event.name": "strands.telemetry.tracer",
+                    "session.id": "6ce30eaf-4592-4843-a561-3565bbefe3e4"
+                },
+                "flags": 1,
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "5bf8cf89cd635435"
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "strands.telemetry.tracer",
+                    "version": ""
+                },
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "84487d2efa515e5a",
+                "parentSpanId": "125f504df26063ac",
+                "flags": 256,
+                "name": "execute_event_loop_cycle",
+                "kind": "INTERNAL",
+                "startTimeUnixNano": 1773934287691815208,
+                "endTimeUnixNano": 1773934288921974322,
+                "durationNano": 1230159114,
+                "attributes": {
+                    "aws.local.service": "agent.DEFAULT",
+                    "gen_ai.event.end_time": "2026-03-19T15:31:28.409737+00:00",
+                    "event_loop.cycle_id": "d62bc3b6-0f58-44c2-880e-80f9d4be429a",
+                    "gen_ai.event.start_time": "2026-03-19T15:31:27.691823+00:00",
+                    "PlatformType": "AWS::BedrockAgentCore",
+                    "session.id": "6ce30eaf-4592-4843-a561-3565bbefe3e4",
+                    "aws.local.environment": "bedrock-agentcore:default"
+                },
+                "status": {
+                    "code": "UNSET"
+                }
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "strands.telemetry.tracer"
+                },
+                "timeUnixNano": 1773934288921974322,
+                "observedTimeUnixNano": 1773934288922464336,
+                "severityNumber": 9,
+                "severityText": "",
+                "body": {
+                    "output": {
+                        "messages": [
+                            {
+                                "content": {
+                                    "message": "[{\"text\": \"<thinking> The user is asking for specifications of tablets. To provide accurate information, I need to call the get_product_info tool with the product_type set to \\\"tablets\\\". </thinking>\\n\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_n0trqtTWUQUlqi3ngSJn8h\", \"name\": \"get_product_info\", \"input\": {\"product_type\": \"tablets\"}}}]",
+                                    "tool.result": "[{\"toolResult\": {\"toolUseId\": \"tooluse_n0trqtTWUQUlqi3ngSJn8h\", \"status\": \"success\", \"content\": [{\"text\": \"Our tablets have 10-12 inch displays, all-day battery life, and support stylus input.\"}]}}]"
+                                },
+                                "role": "assistant"
+                            },
+                            {
+                                "content": "[{\"toolResult\": {\"toolUseId\": \"tooluse_n0trqtTWUQUlqi3ngSJn8h\", \"status\": \"success\", \"content\": [{\"text\": \"Our tablets have 10-12 inch displays, all-day battery life, and support stylus input.\"}]}}]",
+                                "role": "assistant"
+                            }
+                        ]
+                    },
+                    "input": {
+                        "messages": [
+                            {
+                                "content": {
+                                    "content": "[{\"text\": \"What are the specs for tablets?\"}]"
+                                },
+                                "role": "user"
+                            }
+                        ]
+                    }
+                },
+                "attributes": {
+                    "event.name": "strands.telemetry.tracer",
+                    "session.id": "6ce30eaf-4592-4843-a561-3565bbefe3e4"
+                },
+                "flags": 1,
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "84487d2efa515e5a"
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "strands.telemetry.tracer",
+                    "version": ""
+                },
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "125f504df26063ac",
+                "parentSpanId": "05f44b65edebdde9",
+                "flags": 256,
+                "name": "invoke_agent Strands Agents",
+                "kind": "INTERNAL",
+                "startTimeUnixNano": 1773934287691415372,
+                "endTimeUnixNano": 1773934288922088187,
+                "durationNano": 1230672815,
+                "attributes": {
+                    "aws.local.service": "agent.DEFAULT",
+                    "gen_ai.usage.prompt_tokens": 1556,
+                    "gen_ai.usage.output_tokens": 121,
+                    "gen_ai.usage.cache_write_input_tokens": 0,
+                    "gen_ai.agent.name": "Strands Agents",
+                    "gen_ai.usage.total_tokens": 1677,
+                    "gen_ai.usage.completion_tokens": 121,
+                    "gen_ai.event.start_time": "2026-03-19T15:31:27.691431+00:00",
+                    "aws.local.environment": "bedrock-agentcore:default",
+                    "gen_ai.operation.name": "invoke_agent",
+                    "gen_ai.event.end_time": "2026-03-19T15:31:28.922060+00:00",
+                    "gen_ai.usage.input_tokens": 1556,
+                    "gen_ai.request.model": "us.amazon.nova-micro-v1:0",
+                    "gen_ai.usage.cache_read_input_tokens": 0,
+                    "gen_ai.agent.tools": "[\"get_product_info\", \"get_return_policy\", \"web_search\"]",
+                    "PlatformType": "AWS::BedrockAgentCore",
+                    "session.id": "6ce30eaf-4592-4843-a561-3565bbefe3e4",
+                    "gen_ai.system": "strands-agents"
+                },
+                "status": {
+                    "code": "OK"
+                }
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "strands.telemetry.tracer"
+                },
+                "timeUnixNano": 1773934288922088187,
+                "observedTimeUnixNano": 1773934288922543473,
+                "severityNumber": 9,
+                "severityText": "",
+                "body": {
+                    "output": {
+                        "messages": [
+                            {
+                                "content": {
+                                    "message": "The specifications for our tablets are as follows:\n- Display size: 10-12 inches\n- Battery life: All-day battery life\n- Input: Supports stylus input\n\nIf you need more detailed information or have any other questions, feel free to ask!\n",
+                                    "finish_reason": "end_turn"
+                                },
+                                "role": "assistant"
+                            }
+                        ]
+                    },
+                    "input": {
+                        "messages": [
+                            {
+                                "content": "You are a helpful customer support assistant for an electronics company.\n\nCRITICAL: You MUST use tools to answer questions. Never provide information without calling a tool first.\n\nTOOL USAGE RULES:\n1. Product questions (specs, features, details) → ALWAYS call get_product_info with product_type (laptops, tablets, or smartphones)\n2. Return/refund questions → ALWAYS call get_return_policy with product_category\n3. Any other questions → call web_search with the query\n\nIMPORTANT:\n- Call tools BEFORE answering, not after\n- Use exact product names: \"laptops\", \"tablets\", \"smartphones\"\n- For return policies, use the product category mentioned by the user\n- If unsure which tool to use, call web_search\n\nExample:\nUser: \"What are the specs for tablets?\"\nYou: [Call get_product_info with product_type=\"tablets\"]\nThen respond with the tool result.",
+                                "role": "system"
+                            },
+                            {
+                                "content": {
+                                    "content": "[{\"text\": \"What are the specs for tablets?\"}]"
+                                },
+                                "role": "user"
+                            }
+                        ]
+                    }
+                },
+                "attributes": {
+                    "event.name": "strands.telemetry.tracer",
+                    "session.id": "6ce30eaf-4592-4843-a561-3565bbefe3e4"
+                },
+                "flags": 1,
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "125f504df26063ac"
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "opentelemetry.instrumentation.starlette",
+                    "version": "0.60b1"
+                },
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "05f44b65edebdde9",
+                "parentSpanId": "4323848a5f6c707c",
+                "flags": 768,
+                "name": "POST /invocations",
+                "kind": "SERVER",
+                "startTimeUnixNano": 1773934287690222715,
+                "endTimeUnixNano": 1773934288957310252,
+                "durationNano": 1267087537,
+                "attributes": {
+                    "aws.local.service": "agent.DEFAULT",
+                    "net.peer.port": 32770,
+                    "telemetry.extended": "true",
+                    "http.target": "/invocations",
+                    "http.flavor": "1.1",
+                    "http.url": "http://cell01.us-east-2.prod.arp.kepler-analytics.aws.dev/invocations",
+                    "net.peer.ip": "127.0.0.1",
+                    "http.host": "127.0.0.1:8080",
+                    "aws.local.environment": "bedrock-agentcore:default",
+                    "http.status_code": 200,
+                    "aws.local.operation": "POST /invocations",
+                    "aws.span.kind": "SERVER",
+                    "http.server_name": "cell01.us-east-2.prod.arp.kepler-analytics.aws.dev",
+                    "net.host.port": 8080,
+                    "http.route": "/invocations",
+                    "PlatformType": "AWS::BedrockAgentCore",
+                    "http.method": "POST",
+                    "http.response.status_code": 200,
+                    "session.id": "6ce30eaf-4592-4843-a561-3565bbefe3e4",
+                    "http.scheme": "http"
+                },
+                "status": {
+                    "code": "UNSET"
+                }
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "deployment.environment.name": "bedrock-agentcore:default",
+                        "aws.local.service": "agent.DEFAULT",
+                        "service.name": "agent.DEFAULT",
+                        "cloud.region": "us-east-2",
+                        "aws.log.stream.names": "otel-rt-logs",
+                        "telemetry.sdk.name": "opentelemetry",
+                        "aws.service.type": "gen_ai_agent",
+                        "telemetry.sdk.language": "python",
+                        "cloud.provider": "aws",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "aws.log.group.names": "/aws/bedrock-agentcore/runtimes/agent-XXXXXXXXXX-DEFAULT",
+                        "telemetry.sdk.version": "1.39.1",
+                        "cloud.platform": "aws_bedrock_agentcore",
+                        "telemetry.auto.version": "0.15.0-aws"
+                    }
+                },
+                "scope": {
+                    "name": "bedrock_agentcore.app"
+                },
+                "timeUnixNano": 1773934288956624128,
+                "observedTimeUnixNano": 1773934288956905572,
+                "severityNumber": 9,
+                "severityText": "INFO",
+                "body": "Invocation completed successfully (1.266s)",
+                "attributes": {
+                    "otelTraceSampled": true,
+                    "code.file.path": "/usr/local/lib/python3.13/site-packages/bedrock_agentcore/runtime/app.py",
+                    "code.function.name": "_handle_invocation",
+                    "otelTraceID": "54007f7a5cbc4508a5100f18ccd33efc",
+                    "otelSpanID": "05f44b65edebdde9",
+                    "code.line.number": 391,
+                    "otelServiceName": "agent.DEFAULT",
+                    "event.name": "bedrock_agentcore.app"
+                },
+                "flags": 1,
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "05f44b65edebdde9"
+            },
+            {
+                "resource": {
+                    "attributes": {
+                        "aws.service.type": "gen_ai_agent",
+                        "cloud.provider": "aws",
+                        "service.name": "agent.DEFAULT",
+                        "service.version": "2",
+                        "cloud.resource_id": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX/runtime-endpoint/DEFAULT:DEFAULT",
+                        "cloud.platform": "aws_bedrock_agentcore"
+                    }
+                },
+                "traceId": "54007f7a5cbc4508a5100f18ccd33efc",
+                "spanId": "4323848a5f6c707c",
+                "parentSpanId": "1d834a3f0e0044b1",
+                "flags": 0,
+                "name": "AgentCore.Runtime.Invoke",
+                "kind": "SERVER",
+                "startTimeUnixNano": 1773934280305000000,
+                "endTimeUnixNano": 1773934288963000000,
+                "durationNano": 8658000000,
+                "attributes": {
+                    "aws.local.service": "agent.DEFAULT",
+                    "aws.endpoint.name": "DEFAULT",
+                    "telemetry.extended": "true",
+                    "aws.request.id": "bbd6793f-19a8-4d43-93b7-efc4c6b83e2d",
+                    "aws.agent.id": "agent-XXXXXXXXXX",
+                    "aws.resource.type": "AWS::BedrockAgentCore::Runtime",
+                    "latency_ms": 8650,
+                    "aws.local.environment": "bedrock-agentcore:default",
+                    "http.status_code": 200,
+                    "aws.local.operation": "AgentCore.Runtime.Invoke",
+                    "aws.operation.name": "InvokeAgentRuntime",
+                    "aws.span.kind": "SERVER",
+                    "aws.region": "us-east-2",
+                    "aws.xray.origin": "AWS::BedrockAgentCore::Runtime",
+                    "aws.account.id": "111122223333",
+                    "aws.resource.arn": "arn:aws:bedrock-agentcore:us-east-2:111122223333:runtime/agent-XXXXXXXXXX",
+                    "PlatformType": "AWS::BedrockAgentCore",
+                    "http.method": "POST",
+                    "http.response.status_code": 200,
+                    "session.id": "6ce30eaf-4592-4843-a561-3565bbefe3e4"
+                },
+                "status": {
+                    "code": "OK"
+                }
+            }
+        ]
+    },
+    "metadata": {
+        "topics": [
+            "product info",
+            "tablets",
+            "specifications"
+        ]
+    }
+}

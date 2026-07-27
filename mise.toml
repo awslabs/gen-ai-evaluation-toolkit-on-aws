@@ -1,0 +1,224 @@
+[tools]
+node = "22"
+# Pin deliberately. mise's `latest` grabs whatever npm published most
+# recently, so an upstream nx/aws-cdk release can break CI on unchanged
+# code (nx@23.1.0 failed to resolve its linux-x64 native dep in CI on
+# 2026-07-23). Keep these in lockstep with the workspace pins in the root
+# package.json (nx) and packages/deployment (aws-cdk).
+"npm:nx" = "22.7.6"
+"npm:aws-cdk" = "2.1129.0"
+
+python = "3.12"
+
+# Used by smithy models
+java = "corretto-17" # should work with other Java distributions, but we use the AWS by default
+gradle = "8"
+
+# Used to publish docker images
+crane = "0.21"
+jq = "1"
+
+# Used by packages/terraform and packages/terraform-deployment
+# Pin both deliberately. Terraform minor-version bumps can silently change
+# resource defaults; tflint bumps can introduce new rules that retroactively
+# fail CI on unchanged code. CI also pins tflint via TFLINT_VERSION in
+# .gitlab/pipeline.yml — keep these in lockstep.
+terraform = "1.14"
+tflint = "0.63"
+
+
+[env]
+# Disable hatch/pip interactive TUI, they break nix's output
+HATCH_INTERACTIVE = "false"
+PIP_PROGRESS_BAR = "off"
+
+# Disable pupeteer download in CDK
+PUPPETEER_SKIP_DOWNLOAD = "true"
+
+# Increase node allowed memory limit for js tests and linters
+NODE_OPTIONS = "--max-old-space-size=4096"
+
+# AWS region is intentionally NOT defaulted here — set it in your AWS
+# profile or in mise.local.toml. Defaulting silently has burned us before
+# (deployed to an arbitrary region the user wasn't expecting). The TF
+# scripts under packages/terraform-deployment/scripts/ will fail loud with a clear
+# message if AWS_DEFAULT_REGION / AWS_REGION are unset.
+
+# packages/terraform: TF_VAR_project_name / TF_VAR_environment auto-populate
+# the Terraform variables of the same name, so you do not need to edit tfvars
+# per env. Override in mise.local.toml for your account.
+#
+# TF_ENV (environment segment in the deployed-image-tag SSM path and in
+# the generated backend.hcl state key) is intentionally NOT set here:
+# packages/terraform-deployment/scripts/common.sh defaults it to 'dev', and
+# CI exports TF_ENV=tf-beta in .gitlab/pipeline.yml for historical continuity.
+# Customers override TF_ENV=<their-env> in mise.local.toml. Committing a
+# default here would shadow the CI export.
+TF_VAR_project_name = "etk"
+TF_VAR_environment = "dev"
+
+[tasks.nx-refresh]
+description = "Refresh nix packages cache"
+run = '''
+nx daemon --stop >/dev/null
+'''
+
+[tasks.nx-reset]
+description = "Reset nix cache"
+run = "nx reset >/dev/null"
+
+[tasks.nx-ls]
+description = "List all tracked packages in the monorepo"
+run = "nx show projects | sort"
+
+[tasks.install]
+description = "Install base monorepo dependencies"
+run = '''
+# Install all workspace dependencies from root lock file
+# Uses npm install (not ci) to tolerate missing generated packages before codegen
+npm install
+
+# Install hatch
+./scripts/install-hatch.sh
+'''
+
+[tasks.install-all]
+description = "Install dependencies for all packages"
+run = '''
+# Install monorepo dependencies (tolerates missing generated packages)
+mise run install
+
+# Generate clients, resolve workspace packages, build generated packages
+mise run codegen
+
+# Run package-specific install tasks (e.g. copy assets)
+nx run-many --target=install --exclude='models,generated-*'
+'''
+
+[tasks.codegen]
+description = "Generate code from smithy models and build generated packages"
+run = '''
+nx run-many --target=clean --projects='models,generated-*' --outputStyle static
+nx run-many --target=build --projects='models,generated-*' --parallel 1 --outputStyle stream --nxBail
+nx run-many --target=test --projects='models,generated-*' --outputStyle static
+'''
+
+[tasks.build]
+description = "Build all packages (except models and generated code)"
+run = "nx run-many --target=build,docker:build --exclude='models,generated-*'"
+
+[tasks.test]
+description = "Run all tests for all packages"
+run = "nx run-many --target=test --exclude='models,generated-*'"
+
+[tasks.clean]
+description = "Clean all dependencies and build outputs"
+run = '''
+# Reset nix cache
+nx reset >/dev/null
+
+nx run-many --target=clean --outputStyle static
+
+# Clean outputs
+rm -rf output
+'''
+
+[tasks.clean-rebuild]
+description = "Nuclear rebuild: reset NX cache, regenerate clients, reinstall and build everything"
+run = '''
+npm ci
+nx reset
+mise run codegen
+nx run-many --target=install --exclude='models,generated-*'
+nx run-many --target=build --exclude='models,generated-*' --parallel 1 --outputStyle stream
+'''
+
+[tasks.release]
+description = "Builds the whole projects and runs its tests"
+run = '''
+mise run install
+mise run codegen
+mise run build
+mise run test
+'''
+
+[tasks.sync-versions]
+description = "Sync packages version number to that of the root package.json"
+run = "./scripts/sync-version.sh"
+
+[tasks.gen-pipeline]
+description = "Regenerate .gitlab/generated/docker-plugin-matrix.yml from packages/terraform-deployment/plugins.yaml"
+run = "npx --yes tsx packages/terraform-deployment/scripts/gen-pipeline.ts"
+
+[tasks.publish]
+description = "Publish packages to Gitlab registry"
+run = '''
+# Publish node and python packages
+nx run-many --target=publish --parallel 1
+
+# Publish docker images
+IMAGES_TAG=$(jq -r '.version' ./package.json) ./scripts/publish/docker.sh ./output/images
+'''
+
+[tasks.audit-fix]
+description = "Run npm audit fix across all node packages"
+run = "nx run-many --target=audit:fix"
+
+# === CI Tasks ===
+[tasks.build-ci]
+description = "Build packages for CI (excludes Docker images and deployment)"
+run = '''
+nx run-many --target=build \
+  --exclude='models,generated-*,deployment' \
+  --parallel 1 --outputStyle stream --nxBail
+
+nx run-many --target=prepare-wheels
+'''
+
+[tasks.test-ci]
+description = "Run tests for CI (excludes Docker packages and deployment)"
+run = '''
+nx run-many --target=test --exclude='models,generated-*,deployment'
+'''
+
+# === CDK Tasks ===
+[tasks.bootstrap]
+description = "Bootstrap CDK for your account"
+dir = "{{ config_root }}/packages/deployment"
+run = "npm run cdk:bootstrap"
+
+[tasks.deploy]
+description = "Deploy project to AWS"
+dir = "{{ config_root }}/packages/deployment"
+run = '''
+nx build deployment
+npm run cdk:deploy
+'''
+
+[tasks.destroy]
+description = "Destroy CDK deployment"
+dir = "{{ config_root }}/packages/deployment"
+run = "npm run cdk:destroy"
+
+# === Docs Tasks ===
+[tasks."docs:serve"]
+description = "Serve documentation locally with live reload"
+run = '''
+pip install -q -r docs/requirements.txt
+npx typedoc
+mkdocs serve
+'''
+
+[tasks."docs:build"]
+description = "Build documentation to public/"
+run = '''
+pip install -q -r docs/requirements.txt
+npx typedoc
+mkdocs build --strict
+'''
+
+[settings]
+# Do not echo task's command on execution
+quiet = true
+# Use precompiled Python binaries instead of building from source
+python_compile = false

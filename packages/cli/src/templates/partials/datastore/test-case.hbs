@@ -1,0 +1,18 @@
+Test Case Id: {{ testCaseId }}
+Created At: {{formatDate createdAt}}
+Created By: {{ createdBy }}
+{{#if input}}
+LLM Input: {{ input }}
+{{/if}}
+{{#if expected}}
+Expected Output: {{ expected }}
+{{/if}}
+{{#if annotations}}
+Annotations: 
+{{> common/list 
+    items=annotations 
+    itemPartial="datastore/annotation"
+    noItemsMessage="No Annotations"
+    compact=true
+}}
+{{/if}}

@@ -1,0 +1,3366 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App stack GenAiEtk-Base should match snapshot 1`] = `
+{
+  "Description": "Stack for the GenAI Evaluation Toolkit: Persistent and API GW Resources",
+  "Outputs": {
+    "ApiGatewayPublicRestApiEndpointD79AD479": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "ApiGatewayPublicRestApi84E6979A",
+            },
+            ".execute-api.us-east-1.",
+            {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            {
+              "Ref": "ApiGatewayPublicRestApiDeploymentStageprod52E4FD10",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+    "ApiGatewayRestApiEndpoint8A8A12DA": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "ApiGatewayRestApi7538854B",
+            },
+            ".execute-api.us-east-1.",
+            {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            {
+              "Ref": "ApiGatewayRestApiDeploymentStageprod083524AB",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+    "ExportsOutputFnGetAttApiGatewayPublicRestApi84E6979ARootResourceId9CDEA49F": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputFnGetAttApiGatewayPublicRestApi84E6979ARootResourceId9CDEA49F",
+      },
+      "Value": {
+        "Fn::GetAtt": [
+          "ApiGatewayPublicRestApi84E6979A",
+          "RootResourceId",
+        ],
+      },
+    },
+    "ExportsOutputFnGetAttApiGatewayRestApi7538854BRootResourceId63E518C2": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputFnGetAttApiGatewayRestApi7538854BRootResourceId63E518C2",
+      },
+      "Value": {
+        "Fn::GetAtt": [
+          "ApiGatewayRestApi7538854B",
+          "RootResourceId",
+        ],
+      },
+    },
+    "ExportsOutputFnGetAttDataStoreBucket0002DC8CArn498FA570": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputFnGetAttDataStoreBucket0002DC8CArn498FA570",
+      },
+      "Value": {
+        "Fn::GetAtt": [
+          "DataStoreBucket0002DC8C",
+          "Arn",
+        ],
+      },
+    },
+    "ExportsOutputFnGetAttDatastoreDdbTableD54D1059Arn8B8879AD": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputFnGetAttDatastoreDdbTableD54D1059Arn8B8879AD",
+      },
+      "Value": {
+        "Fn::GetAtt": [
+          "DatastoreDdbTableD54D1059",
+          "Arn",
+        ],
+      },
+    },
+    "ExportsOutputFnGetAttEventBus7B8748AAArn0B268F0E": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputFnGetAttEventBus7B8748AAArn0B268F0E",
+      },
+      "Value": {
+        "Fn::GetAtt": [
+          "EventBus7B8748AA",
+          "Arn",
+        ],
+      },
+    },
+    "ExportsOutputFnGetAttExperimentArtifactStore87DC89D4Arn6F2BDBEE": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputFnGetAttExperimentArtifactStore87DC89D4Arn6F2BDBEE",
+      },
+      "Value": {
+        "Fn::GetAtt": [
+          "ExperimentArtifactStore87DC89D4",
+          "Arn",
+        ],
+      },
+    },
+    "ExportsOutputFnGetAttExperimentConfigB5C2AFDDArn414CFB4B": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputFnGetAttExperimentConfigB5C2AFDDArn414CFB4B",
+      },
+      "Value": {
+        "Fn::GetAtt": [
+          "ExperimentConfigB5C2AFDD",
+          "Arn",
+        ],
+      },
+    },
+    "ExportsOutputFnGetAttGenAiEtkEcrRepository6FD44D84Arn3CDC3F72": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputFnGetAttGenAiEtkEcrRepository6FD44D84Arn3CDC3F72",
+      },
+      "Value": {
+        "Fn::GetAtt": [
+          "GenAiEtkEcrRepository6FD44D84",
+          "Arn",
+        ],
+      },
+    },
+    "ExportsOutputFnGetAttGenerationBucket72758BCDArn3B2D912C": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputFnGetAttGenerationBucket72758BCDArn3B2D912C",
+      },
+      "Value": {
+        "Fn::GetAtt": [
+          "GenerationBucket72758BCD",
+          "Arn",
+        ],
+      },
+    },
+    "ExportsOutputFnGetAttTestDataS3BucketC0F5F0E6ArnD7C4FA00": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputFnGetAttTestDataS3BucketC0F5F0E6ArnD7C4FA00",
+      },
+      "Value": {
+        "Fn::GetAtt": [
+          "TestDataS3BucketC0F5F0E6",
+          "Arn",
+        ],
+      },
+    },
+    "ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+      },
+      "Value": {
+        "Ref": "ApiGatewayPublicRestApi84E6979A",
+      },
+    },
+    "ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+      },
+      "Value": {
+        "Ref": "ApiGatewayRestApi7538854B",
+      },
+    },
+    "ExportsOutputRefApiGatewayRestApiDeploymentStageprod083524AB4F830766": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApiDeploymentStageprod083524AB4F830766",
+      },
+      "Value": {
+        "Ref": "ApiGatewayRestApiDeploymentStageprod083524AB",
+      },
+    },
+    "ExportsOutputRefDataStoreBucket0002DC8C3518599D": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputRefDataStoreBucket0002DC8C3518599D",
+      },
+      "Value": {
+        "Ref": "DataStoreBucket0002DC8C",
+      },
+    },
+    "ExportsOutputRefDatastoreDdbTableD54D105938ED1670": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputRefDatastoreDdbTableD54D105938ED1670",
+      },
+      "Value": {
+        "Ref": "DatastoreDdbTableD54D1059",
+      },
+    },
+    "ExportsOutputRefEventBus7B8748AA3BA3246C": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputRefEventBus7B8748AA3BA3246C",
+      },
+      "Value": {
+        "Ref": "EventBus7B8748AA",
+      },
+    },
+    "ExportsOutputRefExperimentArtifactStore87DC89D49574724C": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputRefExperimentArtifactStore87DC89D49574724C",
+      },
+      "Value": {
+        "Ref": "ExperimentArtifactStore87DC89D4",
+      },
+    },
+    "ExportsOutputRefExperimentConfigB5C2AFDD65D044A1": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputRefExperimentConfigB5C2AFDD65D044A1",
+      },
+      "Value": {
+        "Ref": "ExperimentConfigB5C2AFDD",
+      },
+    },
+    "ExportsOutputRefGenAiEtkEcrRepository6FD44D8477620B8E": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputRefGenAiEtkEcrRepository6FD44D8477620B8E",
+      },
+      "Value": {
+        "Ref": "GenAiEtkEcrRepository6FD44D84",
+      },
+    },
+    "ExportsOutputRefGenerationBucket72758BCD2E5E7217": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputRefGenerationBucket72758BCD2E5E7217",
+      },
+      "Value": {
+        "Ref": "GenerationBucket72758BCD",
+      },
+    },
+    "ExportsOutputRefTestDataS3BucketC0F5F0E6C4125D6F": {
+      "Export": {
+        "Name": "GenAiEtk-Base:ExportsOutputRefTestDataS3BucketC0F5F0E6C4125D6F",
+      },
+      "Value": {
+        "Ref": "TestDataS3BucketC0F5F0E6",
+      },
+    },
+  },
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "AnnotationSeederCustomResourceProviderRoleDB821B66": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Custom resource creates some internal policy",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "AnnotationSeederCustomResourceProviderRoleDefaultPolicy522B4226": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Custom resource creates some internal policy",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "AnnotationSeederSystemAnnotationsSeederHandlerDDFBD149",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "AnnotationSeederSystemAnnotationsSeederHandlerDDFBD149",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": "lambda:GetFunction",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "AnnotationSeederSystemAnnotationsSeederHandlerDDFBD149",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "AnnotationSeederCustomResourceProviderRoleDefaultPolicy522B4226",
+        "Roles": [
+          {
+            "Ref": "AnnotationSeederCustomResourceProviderRoleDB821B66",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "AnnotationSeederCustomResourceProviderframeworkonEvent11C21BD3": {
+      "DependsOn": [
+        "AnnotationSeederCustomResourceProviderRoleDefaultPolicy522B4226",
+        "AnnotationSeederCustomResourceProviderRoleDB821B66",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Custom resource creates some internal policy",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Description": "AWS CDK resource provider framework - onEvent (GenAiEtk-Base/AnnotationSeeder/CustomResourceProvider)",
+        "Environment": {
+          "Variables": {
+            "USER_ON_EVENT_FUNCTION_ARN": {
+              "Fn::GetAtt": [
+                "AnnotationSeederSystemAnnotationsSeederHandlerDDFBD149",
+                "Arn",
+              ],
+            },
+          },
+        },
+        "Handler": "framework.onEvent",
+        "LoggingConfig": {
+          "ApplicationLogLevel": "FATAL",
+          "LogFormat": "JSON",
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "AnnotationSeederCustomResourceProviderRoleDB821B66",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs24.x",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "AnnotationSeederSystemAnnotationsSeederCustomResourceE9DB6C68": {
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Custom resource creates some internal policy",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "AnnotationSeederCustomResourceProviderframeworkonEvent11C21BD3",
+            "Arn",
+          ],
+        },
+        "annotations": "[{"name":"Difficulty","description":"Defines annotation schema for Difficulty","valueType":{"string":{"enum":["LOW","MEDIUM","HARD"]}}},{"name":"Language","description":"Defines annotation schema for Language","valueType":{"string":{"enum":["EN","DE","FR","IT"]}}},{"name":"Input Length","description":"Defines annotation schema for Input Length","valueType":{"number":{}}},{"name":"Scope","description":"Defines annotation schema for Scope","valueType":{"string":{"enum":["TRUE","FALSE"]}}}]",
+      },
+      "Type": "AWS::CloudFormation::CustomResource",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "AnnotationSeederSystemAnnotationsSeederHandlerDDFBD149": {
+      "DependsOn": [
+        "AnnotationSeederSystemAnnotationsSeederHandlerLogGroupServiceRoleDefaultPolicyE6783DA6",
+        "AnnotationSeederSystemAnnotationsSeederHandlerLogGroupServiceRoleF972BCBD",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Custom resource creates some internal policy",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "DYNAMO_TABLE_NAME": {
+              "Ref": "DatastoreDdbTableD54D1059",
+            },
+          },
+        },
+        "Handler": "index.systemDefinedAnnotationsSeederHandler.lambdaHandler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "AnnotationSeederSystemAnnotationsSeederHandlerLogGroup3A610316",
+          },
+        },
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "AnnotationSeederSystemAnnotationsSeederHandlerLogGroupServiceRoleF972BCBD",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs22.x",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+        "Timeout": 60,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "AnnotationSeederSystemAnnotationsSeederHandlerSecurityGroup6E59B7BF",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "AnnotationSeederSystemAnnotationsSeederHandlerLogGroup3A610316": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Custom resource creates some internal policy",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "AnnotationSeederSystemAnnotationsSeederHandlerLogGroupServiceRoleDefaultPolicyE6783DA6": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Custom resource creates some internal policy",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "AnnotationSeederSystemAnnotationsSeederHandlerLogGroup3A610316",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem",
+                "dynamodb:DescribeTable",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "DatastoreDdbTableD54D1059",
+                    "Arn",
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "AnnotationSeederSystemAnnotationsSeederHandlerLogGroupServiceRoleDefaultPolicyE6783DA6",
+        "Roles": [
+          {
+            "Ref": "AnnotationSeederSystemAnnotationsSeederHandlerLogGroupServiceRoleF972BCBD",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "AnnotationSeederSystemAnnotationsSeederHandlerLogGroupServiceRoleF972BCBD": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Custom resource creates some internal policy",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into SystemAnnotationsSeederHandler-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "AnnotationSeederSystemAnnotationsSeederHandlerSecurityGroup6E59B7BF": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Custom resource creates some internal policy",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkBaseAnnotationSeederSystemAnnotationsSeederHandler80886473",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "ApiGatewayAccessLogsC78D6A1B": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "CloudWatch execution logging disabled per pentest review; access logs are sufficient for this use case.",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "Pentest-approved: access logging configured via separate access log group.",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "AWS managed policies used for API Gateway CloudWatch logging role; acceptable for logging-only permissions.",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "Request validation handled at application layer for flexibility.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "ApiGatewayApiGatewayAccount4F011DA1": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "CloudWatch execution logging disabled per pentest review; access logs are sufficient for this use case.",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "Pentest-approved: access logging configured via separate access log group.",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "AWS managed policies used for API Gateway CloudWatch logging role; acceptable for logging-only permissions.",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "Request validation handled at application layer for flexibility.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "CloudWatchRoleArn": {
+          "Fn::GetAtt": [
+            "ApiGatewayApiGatewayCloudWatchRole50DC301F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+    },
+    "ApiGatewayApiGatewayCloudWatchRole50DC301F": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "CloudWatch execution logging disabled per pentest review; access logs are sufficient for this use case.",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "Pentest-approved: access logging configured via separate access log group.",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "AWS managed policies used for API Gateway CloudWatch logging role; acceptable for logging-only permissions.",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "Request validation handled at application layer for flexibility.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ApiGatewayPublicAccessLogs12417C62": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "CloudWatch execution logging disabled per pentest review; access logs are sufficient for this use case.",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "Pentest-approved: access logging configured via separate access log group.",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "AWS managed policies used for API Gateway CloudWatch logging role; acceptable for logging-only permissions.",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "Request validation handled at application layer for flexibility.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "ApiGatewayPublicRestApi84E6979A": {
+      "DependsOn": [
+        "ApiGatewayApiGatewayAccount4F011DA1",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "CloudWatch execution logging disabled per pentest review; access logs are sufficient for this use case.",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "Pentest-approved: access logging configured via separate access log group.",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "Request validation handled at application layer for flexibility.",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "AWS managed policies used for API Gateway CloudWatch logging role; acceptable for logging-only permissions.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "EndpointConfiguration": {
+          "Types": [
+            "EDGE",
+          ],
+        },
+        "Name": "ApiGateway-public",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "ApiGatewayPublicRestApiANYAA318E34": {
+      "DependsOn": [
+        "ApiGatewayApiGatewayAccount4F011DA1",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW uses IAM auth, not Cognito.",
+            },
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "CloudWatch execution logging disabled per pentest review; access logs are sufficient for this use case.",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "Pentest-approved: access logging configured via separate access log group.",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "Request validation handled at application layer for flexibility.",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "AWS managed policies used for API Gateway CloudWatch logging role; acceptable for logging-only permissions.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "ANY",
+        "Integration": {
+          "Type": "MOCK",
+        },
+        "ResourceId": {
+          "Fn::GetAtt": [
+            "ApiGatewayPublicRestApi84E6979A",
+            "RootResourceId",
+          ],
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayPublicRestApi84E6979A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "ApiGatewayPublicRestApiAccount61A90E5E": {
+      "DeletionPolicy": "Retain",
+      "DependsOn": [
+        "ApiGatewayApiGatewayAccount4F011DA1",
+        "ApiGatewayPublicRestApi84E6979A",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "CloudWatch execution logging disabled per pentest review; access logs are sufficient for this use case.",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "Pentest-approved: access logging configured via separate access log group.",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "Request validation handled at application layer for flexibility.",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "AWS managed policies used for API Gateway CloudWatch logging role; acceptable for logging-only permissions.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "CloudWatchRoleArn": {
+          "Fn::GetAtt": [
+            "ApiGatewayPublicRestApiCloudWatchRole792E1B77",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "ApiGatewayPublicRestApiCloudWatchRole792E1B77": {
+      "DeletionPolicy": "Retain",
+      "DependsOn": [
+        "ApiGatewayApiGatewayAccount4F011DA1",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "CloudWatch execution logging disabled per pentest review; access logs are sufficient for this use case.",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "Pentest-approved: access logging configured via separate access log group.",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "Request validation handled at application layer for flexibility.",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "AWS managed policies used for API Gateway CloudWatch logging role; acceptable for logging-only permissions.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "ApiGatewayPublicRestApiDeployment59D16F7C3ea517407412ca3aa8a7d966695a4172": {
+      "DependsOn": [
+        "ApiGatewayApiGatewayAccount4F011DA1",
+        "ApiGatewayPublicRestApiANYAA318E34",
+      ],
+      "Metadata": {
+        "aws:cdk:do-not-refactor": true,
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "CloudWatch execution logging disabled per pentest review; access logs are sufficient for this use case.",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "Pentest-approved: access logging configured via separate access log group.",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "Request validation handled at application layer for flexibility.",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "AWS managed policies used for API Gateway CloudWatch logging role; acceptable for logging-only permissions.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": {
+          "Ref": "ApiGatewayPublicRestApi84E6979A",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "ApiGatewayPublicRestApiDeploymentStageprod52E4FD10": {
+      "DependsOn": [
+        "ApiGatewayApiGatewayAccount4F011DA1",
+        "ApiGatewayPublicRestApiAccount61A90E5E",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "CloudWatch execution logging disabled per pentest review; access logs are sufficient for this use case.",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "Pentest-approved: access logging configured via separate access log group.",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "Request validation handled at application layer for flexibility.",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "AWS managed policies used for API Gateway CloudWatch logging role; acceptable for logging-only permissions.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AccessLogSetting": {
+          "DestinationArn": {
+            "Fn::GetAtt": [
+              "ApiGatewayPublicAccessLogs12417C62",
+              "Arn",
+            ],
+          },
+          "Format": "{"requestId":"$context.requestId","ip":"$context.identity.sourceIp","user":"$context.identity.user","caller":"$context.identity.caller","requestTime":"$context.requestTime","httpMethod":"$context.httpMethod","resourcePath":"$context.resourcePath","status":"$context.status","protocol":"$context.protocol","responseLength":"$context.responseLength"}",
+        },
+        "DeploymentId": {
+          "Ref": "ApiGatewayPublicRestApiDeployment59D16F7C3ea517407412ca3aa8a7d966695a4172",
+        },
+        "MethodSettings": [
+          {
+            "DataTraceEnabled": false,
+            "HttpMethod": "*",
+            "LoggingLevel": "INFO",
+            "MetricsEnabled": true,
+            "ResourcePath": "/*",
+          },
+        ],
+        "RestApiId": {
+          "Ref": "ApiGatewayPublicRestApi84E6979A",
+        },
+        "StageName": "prod",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+        "TracingEnabled": true,
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "ApiGatewayRestApi7538854B": {
+      "DependsOn": [
+        "ApiGatewayApiGatewayAccount4F011DA1",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "CloudWatch execution logging disabled per pentest review; access logs are sufficient for this use case.",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "Pentest-approved: access logging configured via separate access log group.",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "AWS managed policies used for API Gateway CloudWatch logging role; acceptable for logging-only permissions.",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "Request validation handled at application layer for flexibility.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "EndpointConfiguration": {
+          "Types": [
+            "PRIVATE",
+          ],
+          "VpcEndpointIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcVpcEndpointApiGatewayE49EA65E1B2DE9D3",
+            },
+          ],
+        },
+        "Name": "ApiGateway-private",
+        "Policy": {
+          "Statement": [
+            {
+              "Action": "execute-api:Invoke",
+              "Condition": {
+                "StringNotEquals": {
+                  "aws:SourceVpc": {
+                    "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+                  },
+                },
+              },
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*",
+              },
+              "Resource": "execute-api:/*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "ApiGatewayRestApiANY2DB371C0": {
+      "DependsOn": [
+        "ApiGatewayApiGatewayAccount4F011DA1",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW uses IAM auth, not Cognito.",
+            },
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "CloudWatch execution logging disabled per pentest review; access logs are sufficient for this use case.",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "Pentest-approved: access logging configured via separate access log group.",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "AWS managed policies used for API Gateway CloudWatch logging role; acceptable for logging-only permissions.",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "Request validation handled at application layer for flexibility.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "ANY",
+        "Integration": {
+          "Type": "MOCK",
+        },
+        "ResourceId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi7538854B",
+            "RootResourceId",
+          ],
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi7538854B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "ApiGatewayRestApiAccount6F7770AB": {
+      "DeletionPolicy": "Retain",
+      "DependsOn": [
+        "ApiGatewayApiGatewayAccount4F011DA1",
+        "ApiGatewayRestApi7538854B",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "CloudWatch execution logging disabled per pentest review; access logs are sufficient for this use case.",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "Pentest-approved: access logging configured via separate access log group.",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "AWS managed policies used for API Gateway CloudWatch logging role; acceptable for logging-only permissions.",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "Request validation handled at application layer for flexibility.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "CloudWatchRoleArn": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApiCloudWatchRoleC428F9CB",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "ApiGatewayRestApiCloudWatchRoleC428F9CB": {
+      "DeletionPolicy": "Retain",
+      "DependsOn": [
+        "ApiGatewayApiGatewayAccount4F011DA1",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "CloudWatch execution logging disabled per pentest review; access logs are sufficient for this use case.",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "Pentest-approved: access logging configured via separate access log group.",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "AWS managed policies used for API Gateway CloudWatch logging role; acceptable for logging-only permissions.",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "Request validation handled at application layer for flexibility.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "ApiGatewayRestApiDeploymentF3960560d433c05fd169eaef48b5662f3993b21b": {
+      "DependsOn": [
+        "ApiGatewayApiGatewayAccount4F011DA1",
+        "ApiGatewayRestApiANY2DB371C0",
+      ],
+      "Metadata": {
+        "aws:cdk:do-not-refactor": true,
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "CloudWatch execution logging disabled per pentest review; access logs are sufficient for this use case.",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "Pentest-approved: access logging configured via separate access log group.",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "AWS managed policies used for API Gateway CloudWatch logging role; acceptable for logging-only permissions.",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "Request validation handled at application layer for flexibility.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi7538854B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "ApiGatewayRestApiDeploymentStageprod083524AB": {
+      "DependsOn": [
+        "ApiGatewayApiGatewayAccount4F011DA1",
+        "ApiGatewayRestApiAccount6F7770AB",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-APIG6",
+              "reason": "CloudWatch execution logging disabled per pentest review; access logs are sufficient for this use case.",
+            },
+            {
+              "id": "AwsSolutions-APIG1",
+              "reason": "Pentest-approved: access logging configured via separate access log group.",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "AWS managed policies used for API Gateway CloudWatch logging role; acceptable for logging-only permissions.",
+            },
+            {
+              "id": "AwsSolutions-APIG2",
+              "reason": "Request validation handled at application layer for flexibility.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AccessLogSetting": {
+          "DestinationArn": {
+            "Fn::GetAtt": [
+              "ApiGatewayAccessLogsC78D6A1B",
+              "Arn",
+            ],
+          },
+          "Format": "{"requestId":"$context.requestId","ip":"$context.identity.sourceIp","user":"$context.identity.user","caller":"$context.identity.caller","requestTime":"$context.requestTime","httpMethod":"$context.httpMethod","resourcePath":"$context.resourcePath","status":"$context.status","protocol":"$context.protocol","responseLength":"$context.responseLength"}",
+        },
+        "DeploymentId": {
+          "Ref": "ApiGatewayRestApiDeploymentF3960560d433c05fd169eaef48b5662f3993b21b",
+        },
+        "MethodSettings": [
+          {
+            "DataTraceEnabled": false,
+            "HttpMethod": "*",
+            "LoggingLevel": "INFO",
+            "MetricsEnabled": true,
+            "ResourcePath": "/*",
+          },
+        ],
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi7538854B",
+        },
+        "StageName": "prod",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+        "TracingEnabled": true,
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+      "DependsOn": [
+        "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Description": {
+          "Fn::Join": [
+            "",
+            [
+              "Lambda function for auto-deleting objects in ",
+              {
+                "Ref": "DataStoreBucketAccessLogsD07DE95C",
+              },
+              " S3 bucket.",
+            ],
+          ],
+        },
+        "Handler": "index.handler",
+        "MemorySize": 128,
+        "Role": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs24.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Sub": "arn:\${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "DataStoreBucket0002DC8C": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256",
+              },
+            },
+          ],
+        },
+        "BucketName": "genai-etk-datastore-123456789012-us-east-1",
+        "LifecycleConfiguration": {
+          "Rules": [
+            {
+              "AbortIncompleteMultipartUpload": {
+                "DaysAfterInitiation": 7,
+              },
+              "ExpiredObjectDeleteMarker": true,
+              "Id": "DataStoreBucket-CleanupMarkers",
+              "NoncurrentVersionExpiration": {
+                "NoncurrentDays": 90,
+              },
+              "Status": "Enabled",
+            },
+          ],
+        },
+        "LoggingConfiguration": {
+          "DestinationBucketName": {
+            "Ref": "DataStoreBucketAccessLogsD07DE95C",
+          },
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+        "VersioningConfiguration": {
+          "Status": "Enabled",
+        },
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "DataStoreBucketAccessLogsAutoDeleteObjectsCustomResource260830D1": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "DataStoreBucketAccessLogsPolicyBE3A7D5C",
+      ],
+      "Properties": {
+        "BucketName": {
+          "Ref": "DataStoreBucketAccessLogsD07DE95C",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::S3AutoDeleteObjects",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "DataStoreBucketAccessLogsD07DE95C": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "AccessControl": "LogDeliveryWrite",
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256",
+              },
+            },
+          ],
+        },
+        "LifecycleConfiguration": {
+          "Rules": [
+            {
+              "AbortIncompleteMultipartUpload": {
+                "DaysAfterInitiation": 7,
+              },
+              "ExpirationInDays": 30,
+              "Id": "DataStoreBucket-AccessLogs-LogRetention",
+              "NoncurrentVersionExpiration": {
+                "NoncurrentDays": 1,
+              },
+              "Status": "Enabled",
+            },
+            {
+              "ExpiredObjectDeleteMarker": true,
+              "Id": "DataStoreBucket-AccessLogs-DeleteMarkerCleanup",
+              "Status": "Enabled",
+            },
+          ],
+        },
+        "OwnershipControls": {
+          "Rules": [
+            {
+              "ObjectOwnership": "ObjectWriter",
+            },
+          ],
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "aws-cdk:auto-delete-objects",
+            "Value": "true",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "DataStoreBucketAccessLogsPolicyBE3A7D5C": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "DataStoreBucketAccessLogsD07DE95C",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false",
+                },
+              },
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*",
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "DataStoreBucketAccessLogsD07DE95C",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "DataStoreBucketAccessLogsD07DE95C",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "s3:PutBucketPolicy",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::GetAtt": [
+                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                    "Arn",
+                  ],
+                },
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "DataStoreBucketAccessLogsD07DE95C",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "DataStoreBucketAccessLogsD07DE95C",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "DataStoreBucketPolicy17BFD983": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "DataStoreBucket0002DC8C",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false",
+                },
+              },
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*",
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "DataStoreBucket0002DC8C",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "DataStoreBucket0002DC8C",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "DatastoreDdbTableD54D1059": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "entityType",
+            "AttributeType": "S",
+          },
+          {
+            "AttributeName": "entityId",
+            "AttributeType": "S",
+          },
+        ],
+        "BillingMode": "PAY_PER_REQUEST",
+        "KeySchema": [
+          {
+            "AttributeName": "entityType",
+            "KeyType": "HASH",
+          },
+          {
+            "AttributeName": "entityId",
+            "KeyType": "RANGE",
+          },
+        ],
+        "PointInTimeRecoverySpecification": {
+          "PointInTimeRecoveryEnabled": true,
+        },
+        "SSESpecification": {
+          "SSEEnabled": true,
+        },
+        "TableName": "GenAiEtkDatastoreDdbTable",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "DeadLetterQueue9F481546": {
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-SQS3",
+              "reason": "Queue is used as DLQ but it is not detected by NAG",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "SqsManagedSseEnabled": true,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::SQS::Queue",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "DeadLetterQueuePolicyB1FB890C": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-SQS3",
+              "reason": "Queue is used as DLQ but it is not detected by NAG",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sqs:*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false",
+                },
+              },
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*",
+              },
+              "Resource": {
+                "Fn::GetAtt": [
+                  "DeadLetterQueue9F481546",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Queues": [
+          {
+            "Ref": "DeadLetterQueue9F481546",
+          },
+        ],
+      },
+      "Type": "AWS::SQS::QueuePolicy",
+    },
+    "EventBus7B8748AA": {
+      "Properties": {
+        "DeadLetterConfig": {
+          "Arn": {
+            "Fn::GetAtt": [
+              "DeadLetterQueue9F481546",
+              "Arn",
+            ],
+          },
+        },
+        "Description": "Event Bus for Gen AI Evaluation Toolkit",
+        "Name": "GenAiEtkBaseEventBusBAE6A96D",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::Events::EventBus",
+    },
+    "ExperimentArtifactStore87DC89D4": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256",
+              },
+            },
+          ],
+        },
+        "BucketName": "genai-etk-experimentartifacts-123456789012-us-east-1",
+        "LifecycleConfiguration": {
+          "Rules": [
+            {
+              "AbortIncompleteMultipartUpload": {
+                "DaysAfterInitiation": 7,
+              },
+              "ExpiredObjectDeleteMarker": true,
+              "Id": "ExperimentArtifactStore-CleanupMarkers",
+              "NoncurrentVersionExpiration": {
+                "NoncurrentDays": 90,
+              },
+              "Status": "Enabled",
+            },
+          ],
+        },
+        "LoggingConfiguration": {
+          "DestinationBucketName": {
+            "Ref": "ExperimentArtifactStoreAccessLogs62A1FA04",
+          },
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+        "VersioningConfiguration": {
+          "Status": "Enabled",
+        },
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "ExperimentArtifactStoreAccessLogs62A1FA04": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "AccessControl": "LogDeliveryWrite",
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256",
+              },
+            },
+          ],
+        },
+        "LifecycleConfiguration": {
+          "Rules": [
+            {
+              "AbortIncompleteMultipartUpload": {
+                "DaysAfterInitiation": 7,
+              },
+              "ExpirationInDays": 30,
+              "Id": "ExperimentArtifactStore-AccessLogs-LogRetention",
+              "NoncurrentVersionExpiration": {
+                "NoncurrentDays": 1,
+              },
+              "Status": "Enabled",
+            },
+            {
+              "ExpiredObjectDeleteMarker": true,
+              "Id": "ExperimentArtifactStore-AccessLogs-DeleteMarkerCleanup",
+              "Status": "Enabled",
+            },
+          ],
+        },
+        "OwnershipControls": {
+          "Rules": [
+            {
+              "ObjectOwnership": "ObjectWriter",
+            },
+          ],
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "aws-cdk:auto-delete-objects",
+            "Value": "true",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "ExperimentArtifactStoreAccessLogsAutoDeleteObjectsCustomResource441444BB": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "ExperimentArtifactStoreAccessLogsPolicyFB6B5098",
+      ],
+      "Properties": {
+        "BucketName": {
+          "Ref": "ExperimentArtifactStoreAccessLogs62A1FA04",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::S3AutoDeleteObjects",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "ExperimentArtifactStoreAccessLogsPolicyFB6B5098": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "ExperimentArtifactStoreAccessLogs62A1FA04",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false",
+                },
+              },
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*",
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ExperimentArtifactStoreAccessLogs62A1FA04",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ExperimentArtifactStoreAccessLogs62A1FA04",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "s3:PutBucketPolicy",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::GetAtt": [
+                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                    "Arn",
+                  ],
+                },
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ExperimentArtifactStoreAccessLogs62A1FA04",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ExperimentArtifactStoreAccessLogs62A1FA04",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "ExperimentArtifactStorePolicy25047793": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "ExperimentArtifactStore87DC89D4",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false",
+                },
+              },
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*",
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ExperimentArtifactStore87DC89D4",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ExperimentArtifactStore87DC89D4",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "ExperimentConfigAccessLogs7F732864": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "AccessControl": "LogDeliveryWrite",
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256",
+              },
+            },
+          ],
+        },
+        "LifecycleConfiguration": {
+          "Rules": [
+            {
+              "AbortIncompleteMultipartUpload": {
+                "DaysAfterInitiation": 7,
+              },
+              "ExpirationInDays": 30,
+              "Id": "ExperimentConfig-AccessLogs-LogRetention",
+              "NoncurrentVersionExpiration": {
+                "NoncurrentDays": 1,
+              },
+              "Status": "Enabled",
+            },
+            {
+              "ExpiredObjectDeleteMarker": true,
+              "Id": "ExperimentConfig-AccessLogs-DeleteMarkerCleanup",
+              "Status": "Enabled",
+            },
+          ],
+        },
+        "OwnershipControls": {
+          "Rules": [
+            {
+              "ObjectOwnership": "ObjectWriter",
+            },
+          ],
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "aws-cdk:auto-delete-objects",
+            "Value": "true",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "ExperimentConfigAccessLogsAutoDeleteObjectsCustomResource6CBB51DC": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "ExperimentConfigAccessLogsPolicy639CB873",
+      ],
+      "Properties": {
+        "BucketName": {
+          "Ref": "ExperimentConfigAccessLogs7F732864",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::S3AutoDeleteObjects",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "ExperimentConfigAccessLogsPolicy639CB873": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "ExperimentConfigAccessLogs7F732864",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false",
+                },
+              },
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*",
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ExperimentConfigAccessLogs7F732864",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ExperimentConfigAccessLogs7F732864",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "s3:PutBucketPolicy",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::GetAtt": [
+                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                    "Arn",
+                  ],
+                },
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ExperimentConfigAccessLogs7F732864",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ExperimentConfigAccessLogs7F732864",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "ExperimentConfigB5C2AFDD": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256",
+              },
+            },
+          ],
+        },
+        "BucketName": "genai-etk-experimentconfig-123456789012-us-east-1",
+        "LifecycleConfiguration": {
+          "Rules": [
+            {
+              "AbortIncompleteMultipartUpload": {
+                "DaysAfterInitiation": 7,
+              },
+              "ExpiredObjectDeleteMarker": true,
+              "Id": "ExperimentConfig-CleanupMarkers",
+              "NoncurrentVersionExpiration": {
+                "NoncurrentDays": 90,
+              },
+              "Status": "Enabled",
+            },
+          ],
+        },
+        "LoggingConfiguration": {
+          "DestinationBucketName": {
+            "Ref": "ExperimentConfigAccessLogs7F732864",
+          },
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+        "VersioningConfiguration": {
+          "Status": "Enabled",
+        },
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "ExperimentConfigPolicyA7DED655": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "ExperimentConfigB5C2AFDD",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false",
+                },
+              },
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*",
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ExperimentConfigB5C2AFDD",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ExperimentConfigB5C2AFDD",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "ExperimentMlFlowBucketName656221CA": {
+      "Properties": {
+        "Description": "The name of the GenAI ETK experiment MLFlow bucket",
+        "Name": "/genai-etk/experimentMlFlowBucketName",
+        "Tags": {
+          "app": "genai-etk",
+          "stack": "GenAiEtk-Base",
+        },
+        "Type": "String",
+        "Value": {
+          "Ref": "ExperimentArtifactStore87DC89D4",
+        },
+      },
+      "Type": "AWS::SSM::Parameter",
+    },
+    "GenAiEtkEcrRepository6FD44D84": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "ImageTagMutability": "MUTABLE",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::ECR::Repository",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "GenerationBucket72758BCD": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256",
+              },
+            },
+          ],
+        },
+        "LifecycleConfiguration": {
+          "Rules": [
+            {
+              "AbortIncompleteMultipartUpload": {
+                "DaysAfterInitiation": 30,
+              },
+              "ExpirationInDays": 30,
+              "Id": "GenerationBucket-MonthlyDelete",
+              "NoncurrentVersionExpiration": {
+                "NoncurrentDays": 30,
+              },
+              "Status": "Enabled",
+            },
+            {
+              "ExpiredObjectDeleteMarker": true,
+              "Id": "GenerationBucket-DeleteMarkerCleanup",
+              "Status": "Enabled",
+            },
+          ],
+        },
+        "LoggingConfiguration": {
+          "DestinationBucketName": {
+            "Ref": "GenerationBucketAccessLogs4BC1F0D1",
+          },
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "aws-cdk:auto-delete-objects",
+            "Value": "true",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+        "VersioningConfiguration": {
+          "Status": "Enabled",
+        },
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "GenerationBucketAccessLogs4BC1F0D1": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "AccessControl": "LogDeliveryWrite",
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256",
+              },
+            },
+          ],
+        },
+        "LifecycleConfiguration": {
+          "Rules": [
+            {
+              "AbortIncompleteMultipartUpload": {
+                "DaysAfterInitiation": 7,
+              },
+              "ExpirationInDays": 30,
+              "Id": "GenerationBucket-AccessLogs-LogRetention",
+              "NoncurrentVersionExpiration": {
+                "NoncurrentDays": 1,
+              },
+              "Status": "Enabled",
+            },
+            {
+              "ExpiredObjectDeleteMarker": true,
+              "Id": "GenerationBucket-AccessLogs-DeleteMarkerCleanup",
+              "Status": "Enabled",
+            },
+          ],
+        },
+        "OwnershipControls": {
+          "Rules": [
+            {
+              "ObjectOwnership": "ObjectWriter",
+            },
+          ],
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "aws-cdk:auto-delete-objects",
+            "Value": "true",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "GenerationBucketAccessLogsAutoDeleteObjectsCustomResource4B205411": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "GenerationBucketAccessLogsPolicy80D4210C",
+      ],
+      "Properties": {
+        "BucketName": {
+          "Ref": "GenerationBucketAccessLogs4BC1F0D1",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::S3AutoDeleteObjects",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "GenerationBucketAccessLogsPolicy80D4210C": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "GenerationBucketAccessLogs4BC1F0D1",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false",
+                },
+              },
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*",
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "GenerationBucketAccessLogs4BC1F0D1",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "GenerationBucketAccessLogs4BC1F0D1",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "s3:PutBucketPolicy",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::GetAtt": [
+                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                    "Arn",
+                  ],
+                },
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "GenerationBucketAccessLogs4BC1F0D1",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "GenerationBucketAccessLogs4BC1F0D1",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "GenerationBucketAutoDeleteObjectsCustomResourceE8480BD9": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "GenerationBucketPolicy8D2D27C8",
+      ],
+      "Properties": {
+        "BucketName": {
+          "Ref": "GenerationBucket72758BCD",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::S3AutoDeleteObjects",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "GenerationBucketPolicy8D2D27C8": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "GenerationBucket72758BCD",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false",
+                },
+              },
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*",
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "GenerationBucket72758BCD",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "GenerationBucket72758BCD",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "s3:PutBucketPolicy",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::GetAtt": [
+                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                    "Arn",
+                  ],
+                },
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "GenerationBucket72758BCD",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "GenerationBucket72758BCD",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "RestApiEndpoint740A228A": {
+      "Properties": {
+        "Description": "URL for GenAI ETK REST API endpoints (public)",
+        "Name": "/genai-etk/restApiEndpoint",
+        "Tags": {
+          "app": "genai-etk",
+          "stack": "GenAiEtk-Base",
+        },
+        "Type": "String",
+        "Value": {
+          "Fn::Join": [
+            "",
+            [
+              "https://",
+              {
+                "Ref": "ApiGatewayPublicRestApi84E6979A",
+              },
+              ".execute-api.us-east-1.",
+              {
+                "Ref": "AWS::URLSuffix",
+              },
+              "/",
+              {
+                "Ref": "ApiGatewayPublicRestApiDeploymentStageprod52E4FD10",
+              },
+              "/",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::SSM::Parameter",
+    },
+    "SchedulerGroup": {
+      "Properties": {
+        "Name": "GenAiEtkEvaluationJobSchedulerGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::Scheduler::ScheduleGroup",
+    },
+    "TestDataS3BucketAccessLogs580F149E": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "AccessControl": "LogDeliveryWrite",
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256",
+              },
+            },
+          ],
+        },
+        "LifecycleConfiguration": {
+          "Rules": [
+            {
+              "AbortIncompleteMultipartUpload": {
+                "DaysAfterInitiation": 7,
+              },
+              "ExpirationInDays": 30,
+              "Id": "TestDataS3Bucket-AccessLogs-LogRetention",
+              "NoncurrentVersionExpiration": {
+                "NoncurrentDays": 1,
+              },
+              "Status": "Enabled",
+            },
+            {
+              "ExpiredObjectDeleteMarker": true,
+              "Id": "TestDataS3Bucket-AccessLogs-DeleteMarkerCleanup",
+              "Status": "Enabled",
+            },
+          ],
+        },
+        "OwnershipControls": {
+          "Rules": [
+            {
+              "ObjectOwnership": "ObjectWriter",
+            },
+          ],
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "aws-cdk:auto-delete-objects",
+            "Value": "true",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "TestDataS3BucketAccessLogsAutoDeleteObjectsCustomResource55013267": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "TestDataS3BucketAccessLogsPolicyDA144A65",
+      ],
+      "Properties": {
+        "BucketName": {
+          "Ref": "TestDataS3BucketAccessLogs580F149E",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::S3AutoDeleteObjects",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "TestDataS3BucketAccessLogsPolicyDA144A65": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "TestDataS3BucketAccessLogs580F149E",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false",
+                },
+              },
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*",
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "TestDataS3BucketAccessLogs580F149E",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "TestDataS3BucketAccessLogs580F149E",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "s3:PutBucketPolicy",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::GetAtt": [
+                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                    "Arn",
+                  ],
+                },
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "TestDataS3BucketAccessLogs580F149E",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "TestDataS3BucketAccessLogs580F149E",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "TestDataS3BucketAutoDeleteObjectsCustomResourceDF743273": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "TestDataS3BucketPolicy8D493C2C",
+      ],
+      "Properties": {
+        "BucketName": {
+          "Ref": "TestDataS3BucketC0F5F0E6",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::S3AutoDeleteObjects",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "TestDataS3BucketC0F5F0E6": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256",
+              },
+            },
+          ],
+        },
+        "LifecycleConfiguration": {
+          "Rules": [
+            {
+              "AbortIncompleteMultipartUpload": {
+                "DaysAfterInitiation": 7,
+              },
+              "ExpirationInDays": 7,
+              "Id": "TestDataS3Bucket-MonthlyDelete",
+              "NoncurrentVersionExpiration": {
+                "NoncurrentDays": 7,
+              },
+              "Status": "Enabled",
+            },
+            {
+              "ExpiredObjectDeleteMarker": true,
+              "Id": "TestDataS3Bucket-DeleteMarkerCleanup",
+              "Status": "Enabled",
+            },
+          ],
+        },
+        "LoggingConfiguration": {
+          "DestinationBucketName": {
+            "Ref": "TestDataS3BucketAccessLogs580F149E",
+          },
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "aws-cdk:auto-delete-objects",
+            "Value": "true",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Base",
+          },
+        ],
+        "VersioningConfiguration": {
+          "Status": "Enabled",
+        },
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "TestDataS3BucketPolicy8D493C2C": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "TestDataS3BucketC0F5F0E6",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false",
+                },
+              },
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*",
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "TestDataS3BucketC0F5F0E6",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "TestDataS3BucketC0F5F0E6",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "s3:PutBucketPolicy",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::GetAtt": [
+                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                    "Arn",
+                  ],
+                },
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "TestDataS3BucketC0F5F0E6",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "TestDataS3BucketC0F5F0E6",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;

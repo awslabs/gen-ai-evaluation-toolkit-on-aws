@@ -1,0 +1,312 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`AlternativeParams and descriptions snapshot tests AnnotationConditionExpression 1`] = `
+{
+  "description": "This is my favorite variable
+Can be provided as a serialized json object: --my-var '{..<config>..}'",
+  "variable": "myVariable",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests AnnotationConditionExpression 2`] = `
+{
+  "description": "Alternatively, provided as path to a local file: --my-var ./config.json",
+  "variable": "myVariableFile",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests AnnotationValue 1`] = `
+{
+  "description": "This is my favorite variable (string)",
+  "variable": "stringMyVariable",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests AnnotationValue 2`] = `
+{
+  "description": "This is my favorite variable (number)",
+  "variable": "numericMyVariable",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests AnnotationValueType 1`] = `
+{
+  "description": "This is my favorite variable (for specific annotations). Valid values have to be provided as e.g. --enum-value value1 --enum-value value2",
+  "variable": "enumValue",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests AnnotationValueType 2`] = `
+{
+  "description": "This is my favorite variable (for numeric annotations)",
+  "variable": "numberValue",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests AppConfig 1`] = `
+{
+  "description": "Alternatively, provided as a serialized json object: --my-var '{..<config>..}'",
+  "variable": "myVariableJson",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests AppConfig 2`] = `
+{
+  "description": "Alternatively, provided as path to a local file: --my-var ./config.json",
+  "variable": "myVariableFile",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests BatchResultInputList 1`] = `
+{
+  "description": "Alternatively, provided as a serialized json object: --my-var '{..<config>..}'",
+  "variable": "myVariableJson",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests BatchResultInputList 2`] = `
+{
+  "description": "Alternatively, provided as path to a local file: --my-var ./config.json",
+  "variable": "myVariableFile",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests BatchScoreItemList 1`] = `
+{
+  "description": "Alternatively, provided as a serialized json object: --my-var '{..<config>..}'",
+  "variable": "myVariableJson",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests BatchScoreItemList 2`] = `
+{
+  "description": "Alternatively, provided as path to a local file: --my-var ./config.json",
+  "variable": "myVariableFile",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests Boolean 1`] = `
+{
+  "description": "This is my favorite variable",
+  "variable": "myVariable",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests ConditionExpression 1`] = `
+{
+  "description": "This is my favorite variable
+Can be provided as a serialized json object: --my-var '{..<config>..}'",
+  "variable": "myVariable",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests ConditionExpression 2`] = `
+{
+  "description": "Alternatively, provided as path to a local file: --my-var ./config.json",
+  "variable": "myVariableFile",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests Document 1`] = `
+{
+  "description": "This is my favorite variable",
+  "variable": "myVariable",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests Document 2`] = `
+{
+  "description": "Alternatively, provided as a serialized json object: --my-var '{..<config>..}'",
+  "variable": "myVariableJson",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests Document 3`] = `
+{
+  "description": "Alternatively, provided as path to a local file: --my-var ./config.json",
+  "variable": "myVariableFile",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests GenerationStepList 1`] = `
+{
+  "description": "This is my favorite variable
+Can be provided as a serialized json object: --my-var '{..<config>..}'",
+  "variable": "myVariable",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests GenerationStepList 2`] = `
+{
+  "description": "Alternatively, provided as path to a local file: --my-var ./config.json",
+  "variable": "myVariableFile",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests InlineTestResultList 1`] = `
+{
+  "description": "Alternatively, provided as a serialized json object: --my-var '{..<config>..}'",
+  "variable": "myVariableJson",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests InlineTestResultList 2`] = `
+{
+  "description": "Alternatively, provided as path to a local file: --my-var ./config.json",
+  "variable": "myVariableFile",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests Integer 1`] = `
+{
+  "description": "This is my favorite variable (integer)",
+  "variable": "myVariable",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests JobId 1`] = `
+{
+  "description": "This is my favorite variable",
+  "variable": "myVariable",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests JobType 1`] = `
+{
+  "description": "This is my favorite variable
+Valid values: APP_INVOKE, FULL, SCORE",
+  "variable": "myVariable",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests OrderByList 1`] = `
+{
+  "description": "This is my favorite variable
+Provide multiple paramters by chaining: --my-var <value1> --my-var <value2>",
+  "variable": "myVariable",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests PaginationToken 1`] = `
+{
+  "description": "This is my favorite variable",
+  "variable": "myVariable",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests ReportMetadata 1`] = `
+{
+  "description": "Alternatively, provided as a serialized json object: --my-var '{..<config>..}'",
+  "variable": "myVariableJson",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests ReportMetadata 2`] = `
+{
+  "description": "Alternatively, provided as path to a local file: --my-var ./config.json",
+  "variable": "myVariableFile",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests ResourceId 1`] = `
+{
+  "description": "This is my favorite variable",
+  "variable": "myVariable",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests ResourceIdList 1`] = `
+{
+  "description": "Alternatively, provided as a serialized json object: --my-var '{..<config>..}'",
+  "variable": "myVariableJson",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests ResourceIdList 2`] = `
+{
+  "description": "Alternatively, provided as path to a local file: --my-var ./config.json",
+  "variable": "myVariableFile",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests ScorerMap 1`] = `
+{
+  "description": "Alternatively, provided as a serialized json object: --my-var '{..<config>..}'",
+  "variable": "myVariableJson",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests ScorerMap 2`] = `
+{
+  "description": "Alternatively, provided as path to a local file: --my-var ./config.json",
+  "variable": "myVariableFile",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests StepFunctionJobStatus 1`] = `
+{
+  "description": "This is my favorite variable
+Valid values: ABORTED, FAILED, PENDING_REDRIVE, RUNNING, SUCCEEDED, TIMED_OUT",
+  "variable": "myVariable",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests String 1`] = `
+{
+  "description": "This is my favorite variable",
+  "variable": "myVariable",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests StringList 1`] = `
+{
+  "description": "This is my favorite variable
+Provide multiple paramters by chaining: --my-var <value1> --my-var <value2>",
+  "variable": "myVariable",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests TestDataSource 1`] = `
+{
+  "description": "Alternatively, provided as a serialized json object: --my-var '{..<config>..}'",
+  "variable": "myVariableJson",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests TestDataSource 2`] = `
+{
+  "description": "Alternatively, provided as path to a local file: --my-var ./config.json",
+  "variable": "myVariableFile",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests Uuid 1`] = `
+{
+  "description": "This is my favorite variable",
+  "variable": "myVariable",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests VersionString 1`] = `
+{
+  "description": "This is my favorite variable
+The value has to be a number, 'latest' or 'head'",
+  "variable": "myVariable",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests ViewType 1`] = `
+{
+  "description": "This is my favorite variable
+Valid values: ACTIVE_ONLY, ALL, DELETED_ONLY",
+  "variable": "myVariable",
+}
+`;
+
+exports[`AlternativeParams and descriptions snapshot tests WorkflowList 1`] = `
+{
+  "description": "This is my favorite variable
+Provide multiple paramters by chaining: --my-var <value1> --my-var <value2>",
+  "variable": "myVariable",
+}
+`;

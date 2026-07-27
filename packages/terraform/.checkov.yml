@@ -1,0 +1,155 @@
+---
+# Checkov configuration for ETK Terraform deployment path.
+#
+# The Terraform path mirrors the CDK path's security posture. The CDK path is
+# guarded by the `AwsSolutionsChecks` cdk-nag aspect with zero-error policy
+# (packages/cdk/test/etkConstructs.test.ts → assertNoNagErrors). cdk-nag
+# AwsSolutions is the authoritative IaC-misconfiguration baseline for both
+# deployment paths — Checkov parity here guarantees the Terraform path does
+# not regress that baseline relative to CDK; but it is not a claim to the
+# full suite of mitigations and controls in the threat model.
+#
+# Coverage philosophy:
+#   1. Run Checkov's full default ruleset (no `check:` allowlist).
+#   2. `skip-check` below carries each rule we deliberately do NOT enforce,
+#      one entry per rule with a parity rationale. Mirrors how
+#      cdk-nag-suppressions.ts justifies each AwsSolutions-* suppression.
+#   3. Inline `# checkov:skip=CKV_AWS_xxx: <reason>` comments are preferred
+#      whenever the suppression applies to specific resources (vendored
+#      modules, security groups with documented egress posture, etc.).
+#
+# Two AwsSolutions cdk-nag rules have NO Checkov equivalent: APIG2 (request
+# validation) and COG4 (Cognito authorizer). Coverage for those concerns remains
+# owned by the CDK threat-model test. The SigV4-on-method assertion in
+# etkConstructs.test.ts is mirrored on the Terraform side by the custom Checkov
+# policy `CKV_ETK_1` (see `.checkov-policies/ckv_etk_1_apigw_iam_auth.yaml`),
+# which asserts every `aws_api_gateway_method` uses `authorization = "AWS_IAM"`
+# — exhaustive across all current and future methods in the same Checkov scan,
+# no separate test fixture to maintain.
+
+framework:
+  - terraform
+
+output: cli
+compact: true
+soft-fail: false
+
+# Default ruleset minus the deliberate parity skips below. Do NOT add a
+# `check:` allowlist — it silently restricts coverage to the listed IDs and
+# breaks equivalence with cdk-nag's AwsSolutionsChecks aspect.
+skip-check:
+  # ---- Stack-wide parity with cdk-nag suppressions ----
+
+  # CDK does not enable VPC flow logs either (see test/etkConstructs.test.ts
+  # `suppressCdkNag(vpc, 'AwsSolutions-VPC7', ...)`). Cross-cutting hardening
+  # follow-up tracked separately across both deployment paths.
+  - CKV_AWS_35   # VPC should have flow logs enabled
+
+  # Plugin Lambdas and datastore-export Lambdas are invoked synchronously
+  # (API Gateway, Step Functions, EventBridge Scheduler). DLQs do not apply.
+  # Matches CDK behaviour — the AwsSolutions ruleset has no equivalent rule,
+  # and CDK's SecuredNodejsFunction does not configure DLQs by default.
+  - CKV_AWS_116  # Lambda function should have DLQ configured
+
+  # Lambda env vars carry resource names/ARNs only (no secrets). Default
+  # AWS-managed encryption matches CDK's SecuredNodejsFunction. CMK-on-env-vars
+  # is a cross-cutting hardening follow-up. No AwsSolutions equivalent.
+  - CKV_AWS_173  # Lambda environment variable encryption
+
+  # Concurrency limits and code signing are operational/release-engineering
+  # choices, not in scope for the threat model. CDK does not configure them
+  # either. No AwsSolutions equivalents.
+  - CKV_AWS_115  # Lambda function-level concurrent execution limit
+  - CKV_AWS_272  # Lambda code-signing config
+
+  # Disaster-recovery configuration (cross-region replication) is a customer
+  # decision for their own deployment, not a property of the customer module
+  # we ship. CDK does not configure CRR either.
+  - CKV_AWS_144  # S3 cross-region replication
+
+  # ---- Parity with cdk-nag AwsSolutions-IAM5 (wildcard *) suppressions ----
+  #
+  # ETK's CDK path suppresses AwsSolutions-IAM5 at specific constructs where
+  # wildcards are unavoidable (log groups, S3 prefix grants, scheduler resource
+  # fan-out, MLflow artifact storage, scheduler-trigger Lambda, ECS execution
+  # roles for ECR). See packages/cdk/src/**/*.ts:`suppressCdkNag(*, 'AwsSolutions-IAM5'`).
+  # Checkov surfaces the same wildcards via three more granular IAM rules
+  # (CKV_AWS_287, CKV_AWS_290, CKV_AWS_355). Those are NOT suppressed globally
+  # here — instead, each affected resource carries an inline
+  # `# checkov:skip=CKV_AWS_xxx: <reason>` comment so future IAM policies are
+  # checked by default. See:
+  #   modules/plugins/iam/ecs.tf  (ecs_execution_ecr — CKV_AWS_287)
+  #   modules/plugins/ecs/iam.tf  (trigger_lambda_vpc — CKV_AWS_290, CKV_AWS_355)
+  #   modules/plugins/iam/lambda.tf (lambda_vpc — CKV_AWS_290, CKV_AWS_355)
+
+  # ---- Customer-choice / API-Gateway design parity ----
+
+  # Caching is a customer-tunable performance knob, off by default in both
+  # CDK (default RestApi) and TF. No AwsSolutions equivalent.
+  - CKV_AWS_120  # API Gateway caching enabled
+  - CKV_AWS_225  # API Gateway method setting caching enabled
+
+  # TF-only resource-management hint, not a runtime security property.
+  - CKV_AWS_237  # API Gateway create_before_destroy
+
+  # Data-trace logging is intentionally OFF (matches AwsSolutions-APIG6
+  # suppression in the CDK path — see apiGateway.ts). Enabling would log
+  # request/response bodies, which is undesirable.
+  - CKV_AWS_276  # API Gateway data trace should not be enabled
+
+  # ---- Other deliberate parity decisions ----
+
+  # The access-logs bucket already has a 30-day expiration lifecycle; failed
+  # multipart uploads to a low-volume log target are a negligible edge case.
+  - CKV_AWS_300  # S3 lifecycle: abort failed uploads
+
+  # The public subnet is intentionally public — it hosts the NAT gateway that
+  # routes private-subnet egress. Nothing else is launched into it.
+  - CKV_AWS_130  # VPC subnets do not assign public IP by default
+
+  # ---- Composite graph checks (CKV2_AWS_*) ----
+
+  # Parity with cdk-nag AwsSolutions-APIG2 suppression
+  # (packages/cdk/src/common/constructs/apiGateway.ts). Request body validation
+  # is enforced at the handler/Lambda layer via Smithy-generated input shapes,
+  # not at the API Gateway integration.
+  - CKV2_AWS_53  # API Gateway request validation
+
+  # SSM String parameters surfaced by ETK carry resource names/ARNs (bucket
+  # names, table names, REST API endpoint URLs, EventBridge bus name). They
+  # are not secrets, do not benefit from KMS-backed SecureString, and are
+  # readable by the same IAM principals that already have list/describe access
+  # to the underlying resources. Parity with CDK's CfnParameter usage.
+  - CKV2_AWS_34  # SSM Parameter should be encrypted
+
+  # S3 event notifications are an operational/integration concern (e.g. wiring
+  # a Lambda to a bucket put), not a security control. Customers who need
+  # event-driven processing on top of ETK buckets supply their own
+  # notifications via the bucket name outputs.
+  - CKV2_AWS_62  # S3 buckets should have event notifications enabled
+
+  # CKV2_AWS_5 (unattached security groups) is NOT suppressed globally — it's
+  # carried inline on the three SGs that Checkov's static graph mis-flags as
+  # unattached due to cross-module variable indirection
+  # (modules/common/security-groups.tf — `lambda`, `ecs`,
+  # `api_gateway_vpc_endpoint`). New SGs added in the future are checked by
+  # default; remove the inline skips when Checkov's variable-following improves.
+
+  # Client-certificate authentication is for backend-to-backend trust where
+  # API Gateway is itself a client of the customer's origin. ETK uses IAM
+  # SigV4 (and OAuth in the planned dual-endpoint design) at the method level
+  # for caller authentication; client certs would not add a security property
+  # in this topology. Not in the AwsSolutions cdk-nag pack.
+  - CKV2_AWS_51  # API Gateway endpoints should use client certificate auth
+
+  # Parity with CDK's BYOVPC pattern: CDK takes a `vpc` prop from the
+  # customer and does not manage the VPC's default security group either.
+  # When the TF customer module creates its own VPC, locking down the
+  # default SG is a defense-in-depth follow-up tracked as cross-cutting
+  # hardening across both deployment paths.
+  - CKV2_AWS_12  # Default security group of every VPC restricts all traffic
+
+external-checks-dir:
+  - .checkov-policies
+download-external-modules: true
+evaluate-variables: true

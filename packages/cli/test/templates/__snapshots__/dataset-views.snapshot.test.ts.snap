@@ -1,0 +1,341 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`"genai-etk dataset archive-annotation-schema" rendered by /views/dataset/archive-annotation-schema.hbs : Populated 1`] = `
+"
+Successfully archived annotation schema.
+--------------------------------------------------
+
+Name: name-string
+Description: description-string
+Created At: <timestamp>
+Created By: createdBy-string
+Value Type: Number
+Is Archived: true"
+`;
+
+exports[`"genai-etk dataset create" rendered by /views/dataset/create.hbs : Populated 1`] = `
+"
+Dataset created successfully!
+--------------------------------------------------
+
+Id: datasetId-string
+Name: name-string
+Description: description-string
+Current Version: 32
+Created At: <timestamp>
+Source: source-string
+Status: ACTIVE"
+`;
+
+exports[`"genai-etk dataset create-annotation-schema" rendered by /views/dataset/create-annotation-schema.hbs : Populated 1`] = `
+"
+Successfully created annotation schema.
+--------------------------------------------------
+
+Name: name-string
+Description: description-string
+Created At: <timestamp>
+Created By: createdBy-string
+Value Type: Number
+Is Archived: true"
+`;
+
+exports[`"genai-etk dataset create-test-case" rendered by /views/dataset/create-test-case.hbs : Populated 1`] = `
+"
+Successfully created the test case!
+--------------------------------------------------
+
+Test Case Id: testCaseId-string
+Created At: <timestamp>
+Created By: createdBy-string
+LLM Input: [object Object]
+Expected Output: [object Object]
+Annotations: 
+    Name: annotations-1-name-string
+    Value: annotations-1-value-stringValue-string
+    Comment: annotations-1-comment-string
+    Annotated By: annotations-1-annotatedBy-string
+Annotated At: <timestamp>
+    Name: annotations-2-name-string
+    Value: annotations-2-value-stringValue-string
+    Comment: annotations-2-comment-string
+    Annotated By: annotations-2-annotatedBy-string
+Annotated At: <timestamp>"
+`;
+
+exports[`"genai-etk dataset create-version" rendered by /views/dataset/create-version.hbs : Populated 1`] = `
+"
+Successfully started to mint a new version of the dataset.
+--------------------------------------------------
+
+Id: dataset-datasetId-string
+Name: dataset-name-string
+Description: dataset-description-string
+Current Version: 40
+Created At: <timestamp>
+Source: dataset-source-string
+Status: ACTIVE
+--------------------------------------------------
+
+This process may take a while to complete."
+`;
+
+exports[`"genai-etk dataset delete" rendered by /views/dataset/delete.hbs : Populated 1`] = `
+"
+Successfully deleted dataset."
+`;
+
+exports[`"genai-etk dataset delete-test-case" rendered by /views/dataset/delete-test-case.hbs : Populated 1`] = `
+"
+Successfully deleted the test case."
+`;
+
+exports[`"genai-etk dataset delete-testcase-annotation" rendered by /views/dataset/delete-testcase-annotation.hbs : Populated 1`] = `
+"
+Successfully deleted annotation."
+`;
+
+exports[`"genai-etk dataset delete-version-annotation" rendered by /views/dataset/delete-version-annotation.hbs : Populated 1`] = `
+"
+Successfully deleted annotation from the dataset version."
+`;
+
+exports[`"genai-etk dataset get" rendered by /views/dataset/get.hbs : Populated 1`] = `
+"
+Dataset Details
+--------------------------------------------------
+
+Id: datasetId-string
+Name: name-string
+Description: description-string
+Current Version: 32
+Created At: <timestamp>
+Source: source-string
+Status: ACTIVE"
+`;
+
+exports[`"genai-etk dataset get-annotation-schema" rendered by /views/dataset/get-annotation-schema.hbs : Populated 1`] = `
+"
+Successfully retrieved annotation schema.
+--------------------------------------------------
+
+Name: name-string
+Description: description-string
+Created At: <timestamp>
+Created By: createdBy-string
+Value Type: Number
+Is Archived: true"
+`;
+
+exports[`"genai-etk dataset get-test-case" rendered by /views/dataset/get-test-case.hbs : Populated 1`] = `
+"
+Test case fetched successfully
+--------------------------------------------------
+
+Test Case Id: testCaseId-string
+Created At: <timestamp>
+Created By: createdBy-string
+LLM Input: [object Object]
+Expected Output: [object Object]
+Annotations: 
+    Name: annotations-1-name-string
+    Value: annotations-1-value-stringValue-string
+    Comment: annotations-1-comment-string
+    Annotated By: annotations-1-annotatedBy-string
+Annotated At: <timestamp>
+    Name: annotations-2-name-string
+    Value: annotations-2-value-stringValue-string
+    Comment: annotations-2-comment-string
+    Annotated By: annotations-2-annotatedBy-string
+Annotated At: <timestamp>"
+`;
+
+exports[`"genai-etk dataset get-version" rendered by /views/dataset/get-version.hbs : Populated 1`] = `
+"
+Dataset Version Details
+--------------------------------------------------
+
+Dataset Id: datasetId-string
+Version: 25
+Created At: <timestamp>
+Created By: createdBy-string
+S3 Location: s3Location-string
+Annotations: 
+    Name: annotations-1-name-string
+    Value: annotations-1-value-stringValue-string
+    Comment: annotations-1-comment-string
+    Annotated By: annotations-1-annotatedBy-string
+Annotated At: <timestamp>
+    Name: annotations-2-name-string
+    Value: annotations-2-value-stringValue-string
+    Comment: annotations-2-comment-string
+    Annotated By: annotations-2-annotatedBy-string
+Annotated At: <timestamp>"
+`;
+
+exports[`"genai-etk dataset list" rendered by /views/dataset/list.hbs : Populated 1`] = `
+"
+Datasets
+--------------------------------------------------
+
+Id: datasets-1-datasetId-string
+Name: datasets-1-name-string
+Description: datasets-1-description-string
+Current Version: 43
+Created At: <timestamp>
+Source: datasets-1-source-string
+Status: ACTIVE
+--------------------------------------------------
+
+Id: datasets-2-datasetId-string
+Name: datasets-2-name-string
+Description: datasets-2-description-string
+Current Version: 43
+Created At: <timestamp>
+Source: datasets-2-source-string
+Status: ACTIVE
+--------------------------------------------------
+
+
+Next Token: nextToken-string
+
+More results available. Use \`dataset list --next-token nextToken-string\` to retrieve the next page."
+`;
+
+exports[`"genai-etk dataset list-annotation-schemas" rendered by /views/dataset/list-annotation-schemas.hbs : Populated 1`] = `
+"
+Annotation Schemas
+--------------------------------------------------
+
+Name: annotationSchemas-1-name-string
+Description: annotationSchemas-1-description-string
+Created At: <timestamp>
+Created By: annotationSchemas-1-createdBy-string
+Value Type: Number
+Is Archived: true
+--------------------------------------------------
+
+Name: annotationSchemas-2-name-string
+Description: annotationSchemas-2-description-string
+Created At: <timestamp>
+Created By: annotationSchemas-2-createdBy-string
+Value Type: Number
+Is Archived: true
+--------------------------------------------------
+
+
+Next Token: nextToken-string
+
+More results available. Use \`dataset list-annotation-schemas --next-token nextToken-string\` to retrieve the next page."
+`;
+
+exports[`"genai-etk dataset list-test-cases" rendered by /views/dataset/list-test-cases.hbs : Populated 1`] = `
+"
+Test Cases
+--------------------------------------------------
+
+Test Case Id: testCases-1-id-string
+URL: testCases-1-url-string
+
+--------------------------------------------------
+
+Test Case Id: testCases-2-id-string
+URL: testCases-2-url-string
+
+--------------------------------------------------
+
+
+Next Token: nextToken-string
+
+More results available. Use \`dataset list-test-cases --next-token nextToken-string\` to retrieve the next page."
+`;
+
+exports[`"genai-etk dataset list-versions" rendered by /views/dataset/list-versions.hbs : Populated 1`] = `
+"
+Dataset Versions
+--------------------------------------------------
+
+Dataset Id: versions-1-datasetId-string
+Version: 36
+Created At: <timestamp>
+Created By: versions-1-createdBy-string
+S3 Location: versions-1-s3Location-string
+Annotations: 
+    Name: versions-1-annotations-1-name-string
+    Value: versions-1-annotations-1-value-stringValue-string
+    Comment: versions-1-annotations-1-comment-string
+    Annotated By: versions-1-annotations-1-annotatedBy-string
+Annotated At: <timestamp>
+    Name: versions-1-annotations-2-name-string
+    Value: versions-1-annotations-2-value-stringValue-string
+    Comment: versions-1-annotations-2-comment-string
+    Annotated By: versions-1-annotations-2-annotatedBy-string
+Annotated At: <timestamp>
+
+--------------------------------------------------
+
+Dataset Id: versions-2-datasetId-string
+Version: 36
+Created At: <timestamp>
+Created By: versions-2-createdBy-string
+S3 Location: versions-2-s3Location-string
+Annotations: 
+    Name: versions-2-annotations-1-name-string
+    Value: versions-2-annotations-1-value-stringValue-string
+    Comment: versions-2-annotations-1-comment-string
+    Annotated By: versions-2-annotations-1-annotatedBy-string
+Annotated At: <timestamp>
+    Name: versions-2-annotations-2-name-string
+    Value: versions-2-annotations-2-value-stringValue-string
+    Comment: versions-2-annotations-2-comment-string
+    Annotated By: versions-2-annotations-2-annotatedBy-string
+Annotated At: <timestamp>
+
+--------------------------------------------------
+
+
+Next Token: nextToken-string
+
+More results available. Use \`dataset list-versions --next-token nextToken-string\` to retrieve the next page."
+`;
+
+exports[`"genai-etk dataset put-testcase-annotation" rendered by /views/dataset/put-testcase-annotation.hbs : Populated 1`] = `
+"
+Successfully annotated testcase.
+--------------------------------------------------
+
+Name: name-string
+Value: value-stringValue-string
+Comment: comment-string
+Annotated By: annotatedBy-string
+Annotated At: <timestamp>"
+`;
+
+exports[`"genai-etk dataset put-version-annotation" rendered by /views/dataset/put-version-annotation.hbs : Populated 1`] = `
+"
+Successfully annotated dataset version.
+--------------------------------------------------
+
+Name: name-string
+Value: value-stringValue-string
+Comment: comment-string
+Annotated By: annotatedBy-string
+Annotated At: <timestamp>"
+`;
+
+exports[`"genai-etk dataset restore" rendered by /views/dataset/restore.hbs : Populated 1`] = `
+"
+Successfully started to rollback the dataset to a previous version.
+--------------------------------------------------
+
+Id: dataset-datasetId-string
+Name: dataset-name-string
+Description: dataset-description-string
+Current Version: 40
+Created At: <timestamp>
+Source: dataset-source-string
+Status: ACTIVE
+--------------------------------------------------
+
+This process may take a while to complete."
+`;

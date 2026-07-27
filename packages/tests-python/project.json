@@ -1,0 +1,24 @@
+{
+  "name": "tests-python",
+  "sourceRoot": "{projectRoot}/src",
+  "projectType": "application",
+  "implicitDependencies": ["generated-python-client"],
+  "targets": {
+    "install": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["hatch run pip install ../generated/python-client/dist/*.whl"],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["rm -rf .hatch .venv .pytest_cache build ", "find . -type d -name __pycache__ -exec rm -rf {} +"],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    }
+  }
+}

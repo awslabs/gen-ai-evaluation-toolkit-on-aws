@@ -1,0 +1,15 @@
+{{#if (or (and experimentName (neq experimentName 'None')) id)}}
+{{~> common/separator~}}
+
+Workflow Monitoring Instructions:
+{{#if (and experimentName (neq experimentName 'None'))}}
+
+You can launch the MLFlow UI for experiment analysis using the following command:
+genai-etk experiment launch-ui
+{{/if}}
+{{#if id}}
+
+You can monitor the job status and retrieve retrieve the results through:
+genai-etk {{type}} job get --id "{{id}}"
+{{/if}}
+{{/if}}

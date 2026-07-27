@@ -1,0 +1,26 @@
+sequenceDiagram
+    autonumber
+    participant Client as CLI / SDK Client
+    participant APIGW as Amazon API Gateway
+    participant API as Evaluator API Lambda
+    participant DDB as DynamoDB
+    participant SFN as Step Functions
+    participant EB as EventBridge
+    participant EV as Evaluator Lambda
+    participant MLF as SageMaker MLflow
+
+    Client->>APIGW: Submit job (POST /v2/evaluators/{name}/jobs/evaluate)
+    APIGW->>API: Route request (IAM auth)
+    API->>DDB: Create job + report
+    API->>SFN: Start universal pipeline
+    SFN->>EB: EvaluatorTaskDispatched (app_invoke, task token)
+    EB->>EV: Route by evaluatorName
+    EV->>APIGW: POST /v2/reports/{id}/results/batch (private API)
+    EV->>APIGW: PUT /v2/jobs/{id}/status (heartbeat / complete)
+    APIGW->>SFN: Bridge callback (task token)
+    SFN->>EB: EvaluatorTaskDispatched (one per scorer, parallel)
+    EB->>EV: Route scoring tasks
+    EV->>APIGW: POST /v2/reports/{id}/results/scores/batch
+    SFN->>SFN: Post-process task (aggregate scores)
+    SFN->>MLF: Log metrics + artifacts to experiment run
+    Client->>APIGW: GET /v2/jobs/{jobId} (status from task states)

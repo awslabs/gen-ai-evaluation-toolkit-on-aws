@@ -1,0 +1,10 @@
+Batch update scores:
+{{~> common/separator~}}
+
+Updated: {{ updatedCount }}
+{{#if errors}}
+Errors:
+{{#each errors}}
+  - [{{ id }}] {{ code }}: {{ message }}
+{{/each}}
+{{/if}}

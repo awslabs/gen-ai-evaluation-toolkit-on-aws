@@ -1,0 +1,14 @@
+# Peru artifact directories
+/build
+/private
+/.hatch
+
+# Python
+*.egg-info/
+__pycache__/
+.coverage
+.ruff_cache
+.pytest_cache
+.mypy_cache
+.venv
+/htmlcov

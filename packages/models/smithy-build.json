@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "sources": ["model"],
+  "plugins": {
+    "typescript-client-codegen": {
+      "package": "@awssolutions/gen-ai-evaluation-toolkit-ts-client",
+      "packageVersion": "2.0.0",
+      "requiredMemberMode": "strict",
+      "packageManager": "npm"
+    },
+    "typescript-ssdk-codegen": {
+      "package": "@awssolutions/gen-ai-evaluation-toolkit-ts-ssdk",
+      "packageVersion": "2.0.0",
+      "requiredMemberMode": "strict",
+      "packageManager": "npm"
+    },
+    "openapi": {
+      "service": "com.amzn.aws.pse.genaietk#GenAiEtk",
+      "protocol": "aws.protocols#restJson1",
+      "openApiVersion": "3.0.2"
+    }
+  }
+}

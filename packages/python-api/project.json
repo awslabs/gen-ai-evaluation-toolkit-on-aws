@@ -1,0 +1,91 @@
+{
+  "name": "python-api",
+  "sourceRoot": "{projectRoot}/src",
+  "projectType": "library",
+  "targets": {
+    "install": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["generated-python-client:build"],
+      "options": {
+        "commands": ["UV_PROJECT_ENVIRONMENT=.venv uv sync --dev"],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["rm -rf .venv build dist"],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["uv run ruff check src tests", "uv run mypy src"],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["install"],
+      "options": {
+        "commands": ["uv run pytest tests/unit tests/integration --cov=evaluator_api --cov-report=term"],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "test:e2e": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["ETK_TEST_MODE=e2e uv run pytest tests/integration -m 'not onebox_only' -v"],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "ci": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["check", "test"],
+      "options": {
+        "commands": [],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "dependsOn": ["install", "check"],
+      "inputs": [
+        "{projectRoot}/**/*",
+        "!{projectRoot}/tests",
+        "{workspaceRoot}/packages/generated/python-client/awssolutions_gen_ai_evaluation_toolkit_python_client/**/*",
+        "{workspaceRoot}/packages/evaluator-sdk/src/**/*"
+      ],
+      "outputs": [
+        "{projectRoot}/build",
+        "{workspaceRoot}/output/lambdas/python-api.zip"
+      ],
+      "options": {
+        "commands": [
+          "./scripts/build-lambda-zip.sh",
+          "mkdir -p $NX_WORKSPACE_ROOT/output/lambdas",
+          "cp ./build/python-api.zip $NX_WORKSPACE_ROOT/output/lambdas/python-api.zip"
+        ],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "package": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "commands": [
+          "uv build --no-build-isolation",
+          "mkdir -p $NX_WORKSPACE_ROOT/output/python/wheels $NX_WORKSPACE_ROOT/output/python/tars",
+          "cp ./dist/*.whl $NX_WORKSPACE_ROOT/output/python/wheels/",
+          "cp ./dist/*.tar.* $NX_WORKSPACE_ROOT/output/python/tars/"
+        ],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    }
+  }
+}

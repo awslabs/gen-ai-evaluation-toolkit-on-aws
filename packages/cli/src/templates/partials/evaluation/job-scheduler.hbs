@@ -1,0 +1,17 @@
+Name: {{ name }}
+{{#if configVersion}}
+Config Version: {{configVersion}}
+{{/if}}
+{{#if createdAt}}
+Created At: {{formatDate createdAt}}
+{{/if}}
+{{#if cron}}
+Cron Expression: {{cron}}
+{{/if}}
+{{#if config}}
+Configuration:
+    {{> evaluation/evaluation-config config}}
+{{/if}}
+{{#if (and experimentName (neq experimentName 'None'))}}
+Experiment: {{ experimentName }}
+{{/if}}

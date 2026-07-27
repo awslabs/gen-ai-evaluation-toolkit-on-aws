@@ -1,0 +1,7 @@
+{{#if nextToken}}
+Next Token: {{ nextToken }}
+
+More results available. Use `{{emitSameCommandWith nextToken=nextToken}}` to retrieve the next page.
+{{else}}
+No more results available.
+{{/if}}

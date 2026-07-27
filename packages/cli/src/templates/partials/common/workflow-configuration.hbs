@@ -1,0 +1,7 @@
+Name: {{name}}
+Version: {{version}}
+{{#if config.evaluationConfiguration}}
+Type: Evaluation
+Configuration:
+    {{> common/genericObject config.evaluationConfiguration}}
+{{/if}}

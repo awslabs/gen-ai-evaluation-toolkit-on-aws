@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Difficulty",
+    "description": "Defines annotation schema for Difficulty",
+    "valueType": {
+      "string": {
+        "enum": ["LOW", "MEDIUM", "HARD"]
+      }
+    }
+  },
+  {
+    "name": "Language",
+    "description": "Defines annotation schema for Language",
+    "valueType": {
+      "string": {
+        "enum": ["EN", "DE", "FR", "IT"]
+      }
+    }
+  },
+  {
+    "name": "Input Length",
+    "description": "Defines annotation schema for Input Length",
+    "valueType": {
+      "number": {}
+    }
+  },
+  {
+    "name": "Scope",
+    "description": "Defines annotation schema for Scope",
+    "valueType": {
+      "string": {
+        "enum": ["TRUE", "FALSE"]
+      }
+    }
+  }
+]

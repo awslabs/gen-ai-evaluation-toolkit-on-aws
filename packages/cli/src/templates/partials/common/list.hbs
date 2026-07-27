@@ -1,0 +1,15 @@
+{{#if items}}
+{{#each items}}
+{{#if ../compact}}
+    {{> (lookup .. "itemPartial")}}
+{{else}}
+{{> (lookup .. "itemPartial")}}
+{{~> common/separator~}}
+{{/if}}
+{{/each}}
+{{else}}
+{{noItemsMessage}}
+{{/if}}
+{{#unless compact}}
+
+{{> common/pagination}}{{/unless}}

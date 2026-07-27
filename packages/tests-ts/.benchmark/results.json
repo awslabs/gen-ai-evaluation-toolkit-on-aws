@@ -1,0 +1,1318 @@
+{
+  "empty-work-flow": {
+    "id": "empty-work-flow",
+    "timestamp": "2025-06-19T09:11:39.960Z",
+    "results": {
+      "min": 457.302,
+      "max": 925.603,
+      "average": 734.696,
+      "median": 786.631,
+      "p90": 866.303,
+      "p99": 925.603
+    }
+  },
+  "generation-plugin": {
+    "id": "generation-plugin",
+    "timestamp": "2025-06-19T09:11:39.960Z",
+    "results": {
+      "min": 659562.28,
+      "max": 998419.448,
+      "average": 832506.975,
+      "median": 872873.018,
+      "p90": 998419.448,
+      "p99": 998419.448
+    }
+  },
+  "fmeval (metrics: 1, test-cases: 50)": {
+    "id": "fmeval (metrics: 1, test-cases: 50)",
+    "timestamp": "2025-07-16T13:04:27.457Z",
+    "results": {
+      "min": 394227.422,
+      "max": 554484.483,
+      "average": 474232.263,
+      "median": 444883.49,
+      "p90": 554484.483,
+      "p99": 554484.483
+    },
+    "comment": "Average time: 8 minutes"
+  },
+  "fmeval (metrics: 2, test-cases: 50)": {
+    "id": "fmeval (metrics: 2, test-cases: 50)",
+    "timestamp": "2025-07-16T13:04:27.457Z",
+    "results": {
+      "min": 601103.257,
+      "max": 886001.424,
+      "average": 795133.576,
+      "median": 827620.657,
+      "p90": 886001.424,
+      "p99": 886001.424
+    },
+    "comment": "Average time: 13 minutes"
+  },
+  "fmeval (metrics: 1, test-cases: 100)": {
+    "id": "fmeval (metrics: 1, test-cases: 100)",
+    "timestamp": "2025-07-16T13:04:27.457Z",
+    "results": {
+      "min": 642468.036,
+      "max": 950959.193,
+      "average": 774363.288,
+      "median": 692619.103,
+      "p90": 950959.193,
+      "p99": 950959.193
+    },
+    "comment": "Average time: 13 minutes"
+  },
+  "fmeval (metrics: 2, test-cases: 100)": {
+    "id": "fmeval (metrics: 2, test-cases: 100)",
+    "timestamp": "2025-07-16T13:04:27.457Z",
+    "results": {
+      "min": 998373.13,
+      "max": 1455422.634,
+      "average": 1246416.218,
+      "median": 1321463.415,
+      "p90": 1455422.634,
+      "p99": 1455422.634
+    },
+    "comment": "Average time: 21 minutes"
+  },
+  "fmeval (metrics: 1, test-cases: 200)": {
+    "id": "fmeval (metrics: 1, test-cases: 200)",
+    "timestamp": "2025-07-16T13:04:27.457Z",
+    "results": {
+      "min": 1135841.822,
+      "max": 1701475.256,
+      "average": 1457641.157,
+      "median": 1631319.879,
+      "p90": 1701475.256,
+      "p99": 1701475.256
+    },
+    "comment": "Average time: 24 minutes"
+  },
+  "fmeval (metrics: 4, test-cases: 50)": {
+    "id": "fmeval (metrics: 4, test-cases: 50)",
+    "timestamp": "2025-07-16T13:04:27.457Z",
+    "results": {
+      "min": 887571.991,
+      "max": 1176783.849,
+      "average": 1019907.794,
+      "median": 949035.638,
+      "p90": 1176783.849,
+      "p99": 1176783.849
+    },
+    "comment": "Average time: 17 minutes"
+  },
+  "fmeval (metrics: 4, test-cases: 100)": {
+    "id": "fmeval (metrics: 4, test-cases: 100)",
+    "timestamp": "2025-07-16T13:04:27.457Z",
+    "results": {
+      "min": 1455073.391,
+      "max": 2249621.845,
+      "average": 1898644.302,
+      "median": 2116254.633,
+      "p90": 2249621.845,
+      "p99": 2249621.845
+    },
+    "comment": "Average time: 32 minutes"
+  },
+  "fmeval (metrics: 2, test-cases: 200)": {
+    "id": "fmeval (metrics: 2, test-cases: 200)",
+    "timestamp": "2025-07-16T13:04:27.457Z",
+    "results": {
+      "min": 1801546.562,
+      "max": 2656287.262,
+      "average": 2034700.552,
+      "median": 1867455.138,
+      "p90": 2656287.262,
+      "p99": 2656287.262
+    },
+    "comment": "Average time: 34 minutes"
+  },
+  "fmeval (metrics: 4, test-cases: 200)": {
+    "id": "fmeval (metrics: 4, test-cases: 200)",
+    "timestamp": "2025-07-16T13:04:27.457Z",
+    "results": {
+      "min": 2771776.363,
+      "max": 2835958.491,
+      "average": 2813146.943,
+      "median": 2825260.113,
+      "p90": 2835958.491,
+      "p99": 2835958.491
+    },
+    "comment": "Average time: 47 minutes"
+  },
+  "RAGAS (metrics: 1, test-cases: 50)": {
+    "id": "RAGAS (metrics: 1, test-cases: 50)",
+    "timestamp": "2025-07-16T15:29:13.135Z",
+    "results": {
+      "min": 758600.783,
+      "max": 758600.783,
+      "average": 758600.783,
+      "median": 758600.783,
+      "p90": 758600.783,
+      "p99": 758600.783
+    },
+    "comment": "Average time: 13 minutes"
+  },
+  "RAGAS (metrics: 1, test-cases: 100)": {
+    "id": "RAGAS (metrics: 1, test-cases: 100)",
+    "timestamp": "2025-07-16T15:29:13.135Z",
+    "results": {
+      "min": 1387949.711,
+      "max": 1387949.711,
+      "average": 1387949.711,
+      "median": 1387949.711,
+      "p90": 1387949.711,
+      "p99": 1387949.711
+    },
+    "comment": "Average time: 23 minutes"
+  },
+  "RAGAS (metrics: 2, test-cases: 50)": {
+    "id": "RAGAS (metrics: 2, test-cases: 50)",
+    "timestamp": "2025-07-16T15:29:13.135Z",
+    "results": {
+      "min": 964359.479,
+      "max": 964359.479,
+      "average": 964359.479,
+      "median": 964359.479,
+      "p90": 964359.479,
+      "p99": 964359.479
+    },
+    "comment": "Average time: 16 minutes"
+  },
+  "RAGAS (metrics: 1, test-cases: 200)": {
+    "id": "RAGAS (metrics: 1, test-cases: 200)",
+    "timestamp": "2025-07-16T15:29:13.135Z",
+    "results": {
+      "min": 3120475.677,
+      "max": 3120475.677,
+      "average": 3120475.677,
+      "median": 3120475.677,
+      "p90": 3120475.677,
+      "p99": 3120475.677
+    },
+    "comment": "Average time: 52 minutes"
+  },
+  "RAGAS (metrics: 2, test-cases: 100)": {
+    "id": "RAGAS (metrics: 2, test-cases: 100)",
+    "timestamp": "2025-07-16T15:29:13.135Z",
+    "results": {
+      "min": 1631226.935,
+      "max": 1631226.935,
+      "average": 1631226.935,
+      "median": 1631226.935,
+      "p90": 1631226.935,
+      "p99": 1631226.935
+    },
+    "comment": "Average time: 27 minutes"
+  },
+  "RAGAS (metrics: 4, test-cases: 50)": {
+    "id": "RAGAS (metrics: 4, test-cases: 50)",
+    "timestamp": "2025-07-16T15:29:13.135Z",
+    "results": {
+      "min": 1040191.773,
+      "max": 1040191.773,
+      "average": 1040191.773,
+      "median": 1040191.773,
+      "p90": 1040191.773,
+      "p99": 1040191.773
+    },
+    "comment": "Average time: 17 minutes"
+  },
+  "RAGAS (metrics: 2, test-cases: 200)": {
+    "id": "RAGAS (metrics: 2, test-cases: 200)",
+    "timestamp": "2025-07-16T15:29:13.135Z",
+    "results": {
+      "min": 3406820.724,
+      "max": 3406820.724,
+      "average": 3406820.724,
+      "median": 3406820.724,
+      "p90": 3406820.724,
+      "p99": 3406820.724
+    },
+    "comment": "Average time: 57 minutes"
+  },
+  "RAGAS (metrics: 4, test-cases: 100)": {
+    "id": "RAGAS (metrics: 4, test-cases: 100)",
+    "timestamp": "2025-07-16T15:29:13.135Z",
+    "results": {
+      "min": 1928804.547,
+      "max": 1928804.547,
+      "average": 1928804.547,
+      "median": 1928804.547,
+      "p90": 1928804.547,
+      "p99": 1928804.547
+    },
+    "comment": "Average time: 32 minutes"
+  },
+  "get dataset - 500 calls, 500 concurrently": {
+    "id": "get dataset - 500 calls, 500 concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 225.371,
+      "max": 2558.022,
+      "average": 2070.173,
+      "median": 2116.064,
+      "p90": 2398.664,
+      "p99": 2493.216
+    },
+    "context": {
+      "totalRuns": 500,
+      "concurrentRuns": 500
+    },
+    "comment": "Average time: 2 seconds"
+  },
+  "get dataset - 1K calls, 1K concurrently": {
+    "id": "get dataset - 1K calls, 1K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 211.72,
+      "max": 1351.124,
+      "average": 779.43,
+      "median": 788.194,
+      "p90": 1219.81,
+      "p99": 1313.136
+    },
+    "context": {
+      "totalRuns": 1000,
+      "concurrentRuns": 1000
+    },
+    "comment": "Average time: 779.43 ms"
+  },
+  "get dataset - 5K calls, 5K concurrently": {
+    "id": "get dataset - 5K calls, 5K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 748.418,
+      "max": 5339.53,
+      "average": 3105.238,
+      "median": 3158.561,
+      "p90": 4828.447,
+      "p99": 5211.842
+    },
+    "context": {
+      "totalRuns": 5000,
+      "concurrentRuns": 5000
+    },
+    "comment": "Average time: 3 seconds"
+  },
+  "get dataset version - 500 calls, 500 concurrently": {
+    "id": "get dataset version - 500 calls, 500 concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 179.918,
+      "max": 2548.386,
+      "average": 2078.811,
+      "median": 2114.354,
+      "p90": 2460.337,
+      "p99": 2533.63
+    },
+    "context": {
+      "totalRuns": 500,
+      "concurrentRuns": 500
+    },
+    "comment": "Average time: 2 seconds"
+  },
+  "get dataset version - 1K calls, 1K concurrently": {
+    "id": "get dataset version - 1K calls, 1K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 208.893,
+      "max": 1424.738,
+      "average": 818.122,
+      "median": 823.562,
+      "p90": 1281.22,
+      "p99": 1393.257
+    },
+    "context": {
+      "totalRuns": 1000,
+      "concurrentRuns": 1000
+    },
+    "comment": "Average time: 818.122 ms"
+  },
+  "get dataset version - 5K calls, 5K concurrently": {
+    "id": "get dataset version - 5K calls, 5K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 815.975,
+      "max": 6225.032,
+      "average": 3635.381,
+      "median": 3731.778,
+      "p90": 5720.428,
+      "p99": 6162.395
+    },
+    "context": {
+      "totalRuns": 5000,
+      "concurrentRuns": 5000
+    },
+    "comment": "Average time: 4 seconds"
+  },
+  "get test case - 500 calls, 500 concurrently": {
+    "id": "get test case - 500 calls, 500 concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 203.837,
+      "max": 3037.365,
+      "average": 2435.361,
+      "median": 2526.577,
+      "p90": 2874.997,
+      "p99": 2962.837
+    },
+    "context": {
+      "totalRuns": 500,
+      "concurrentRuns": 500
+    },
+    "comment": "Average time: 2 seconds"
+  },
+  "get test case - 1K calls, 1K concurrently": {
+    "id": "get test case - 1K calls, 1K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 217.732,
+      "max": 1844.713,
+      "average": 978.684,
+      "median": 973.788,
+      "p90": 1595.018,
+      "p99": 1735.537
+    },
+    "context": {
+      "totalRuns": 1000,
+      "concurrentRuns": 1000
+    },
+    "comment": "Average time: 978.684 ms"
+  },
+  "get test case - 5K calls, 5K concurrently": {
+    "id": "get test case - 5K calls, 5K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 910.149,
+      "max": 8168.976,
+      "average": 4660.058,
+      "median": 4727.408,
+      "p90": 7455.579,
+      "p99": 8073.986
+    },
+    "context": {
+      "totalRuns": 5000,
+      "concurrentRuns": 5000
+    },
+    "comment": "Average time: 5 seconds"
+  },
+  "list datasets - 10 calls, 10 concurrently": {
+    "id": "list datasets - 10 calls, 10 concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 975.036,
+      "max": 2957.121,
+      "average": 2600.445,
+      "median": 2736.412,
+      "p90": 2920.404,
+      "p99": 2957.121
+    },
+    "context": {
+      "totalRuns": 10,
+      "concurrentRuns": 10
+    },
+    "comment": "Average time: 3 seconds"
+  },
+  "list datasets - 25 calls, 25 concurrently": {
+    "id": "list datasets - 25 calls, 25 concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 812.18,
+      "max": 3185.467,
+      "average": 2156.929,
+      "median": 2703.168,
+      "p90": 3109.366,
+      "p99": 3185.467
+    },
+    "context": {
+      "totalRuns": 25,
+      "concurrentRuns": 25
+    },
+    "comment": "Average time: 2 seconds"
+  },
+  "list dataset versions - 500 calls, 500 concurrently": {
+    "id": "list dataset versions - 500 calls, 500 concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 185.851,
+      "max": 2939.269,
+      "average": 2040.552,
+      "median": 2054.047,
+      "p90": 2428.429,
+      "p99": 2518.462
+    },
+    "context": {
+      "totalRuns": 500,
+      "concurrentRuns": 500
+    },
+    "comment": "Average time: 2 seconds"
+  },
+  "list dataset versions - 1K calls, 1K concurrently": {
+    "id": "list dataset versions - 1K calls, 1K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 205.842,
+      "max": 1447.161,
+      "average": 859.041,
+      "median": 880.644,
+      "p90": 1324.733,
+      "p99": 1417.214
+    },
+    "context": {
+      "totalRuns": 1000,
+      "concurrentRuns": 1000
+    },
+    "comment": "Average time: 859.041 ms"
+  },
+  "list dataset versions - 5K calls, 5K concurrently": {
+    "id": "list dataset versions - 5K calls, 5K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 840.306,
+      "max": 6968.887,
+      "average": 3536.234,
+      "median": 3463.29,
+      "p90": 5829.646,
+      "p99": 6424.925
+    },
+    "context": {
+      "totalRuns": 5000,
+      "concurrentRuns": 5000
+    },
+    "comment": "Average time: 4 seconds"
+  },
+  "list test cases - 500 calls, 500 concurrently": {
+    "id": "list test cases - 500 calls, 500 concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 400.429,
+      "max": 4340.324,
+      "average": 3131.076,
+      "median": 3254.994,
+      "p90": 3874.728,
+      "p99": 4146.637
+    },
+    "context": {
+      "totalRuns": 500,
+      "concurrentRuns": 500
+    },
+    "comment": "Average time: 3 seconds"
+  },
+  "list test cases - 1K calls, 1K concurrently": {
+    "id": "list test cases - 1K calls, 1K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 248.751,
+      "max": 2350.018,
+      "average": 1240.155,
+      "median": 1227.92,
+      "p90": 2051.997,
+      "p99": 2231.829
+    },
+    "context": {
+      "totalRuns": 1000,
+      "concurrentRuns": 1000
+    },
+    "comment": "Average time: 1 second"
+  },
+  "list test cases - 5K calls, 5K concurrently": {
+    "id": "list test cases - 5K calls, 5K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 894.596,
+      "max": 9520.232,
+      "average": 5304.46,
+      "median": 5358.7,
+      "p90": 8688.258,
+      "p99": 9433.903
+    },
+    "context": {
+      "totalRuns": 5000,
+      "concurrentRuns": 5000
+    },
+    "comment": "Average time: 5 seconds"
+  },
+  "create annotation schema - 500 calls, 500 concurrently": {
+    "id": "create annotation schema - 500 calls, 500 concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 182.438,
+      "max": 2140.378,
+      "average": 1729.015,
+      "median": 1757.582,
+      "p90": 2021.218,
+      "p99": 2121.857
+    },
+    "context": {
+      "totalRuns": 500,
+      "concurrentRuns": 500
+    },
+    "comment": "Average time: 2 seconds"
+  },
+  "create annotation schema - 1K calls, 1K concurrently": {
+    "id": "create annotation schema - 1K calls, 1K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 189.681,
+      "max": 1305.615,
+      "average": 743.724,
+      "median": 751.695,
+      "p90": 1168.034,
+      "p99": 1279.793
+    },
+    "context": {
+      "totalRuns": 1000,
+      "concurrentRuns": 1000
+    },
+    "comment": "Average time: 743.724 ms"
+  },
+  "create annotation schema - 5K calls, 5K concurrently": {
+    "id": "create annotation schema - 5K calls, 5K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 906.973,
+      "max": 5358.103,
+      "average": 3142.695,
+      "median": 3175.693,
+      "p90": 4826.585,
+      "p99": 5200.275
+    },
+    "context": {
+      "totalRuns": 5000,
+      "concurrentRuns": 5000
+    },
+    "comment": "Average time: 3 seconds"
+  },
+  "create test case - 500 calls, 500 concurrently": {
+    "id": "create test case - 500 calls, 500 concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 160.753,
+      "max": 1928.083,
+      "average": 1038.263,
+      "median": 1071.878,
+      "p90": 1585.178,
+      "p99": 1768.481
+    },
+    "context": {
+      "totalRuns": 500,
+      "concurrentRuns": 500
+    },
+    "comment": "Average time: 1 second"
+  },
+  "create test case - 1K calls, 1K concurrently": {
+    "id": "create test case - 1K calls, 1K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 258.406,
+      "max": 2011.674,
+      "average": 1055.38,
+      "median": 1065.068,
+      "p90": 1669.464,
+      "p99": 1812.1
+    },
+    "context": {
+      "totalRuns": 1000,
+      "concurrentRuns": 1000
+    },
+    "comment": "Average time: 1 second"
+  },
+  "create test case - 5K calls, 5K concurrently": {
+    "id": "create test case - 5K calls, 5K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 903.749,
+      "max": 6100.255,
+      "average": 3503.912,
+      "median": 3549.897,
+      "p90": 5435.105,
+      "p99": 5888.637
+    },
+    "context": {
+      "totalRuns": 5000,
+      "concurrentRuns": 5000
+    },
+    "comment": "Average time: 4 seconds"
+  },
+  "create dataset - 500 calls, 500 concurrently": {
+    "id": "create dataset - 500 calls, 500 concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 246.29,
+      "max": 1689.365,
+      "average": 1047.355,
+      "median": 1121.532,
+      "p90": 1519.895,
+      "p99": 1605.119
+    },
+    "context": {
+      "totalRuns": 500,
+      "concurrentRuns": 500
+    },
+    "comment": "Average time: 1 second"
+  },
+  "create dataset - 1K calls, 1K concurrently": {
+    "id": "create dataset - 1K calls, 1K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 231.329,
+      "max": 1966.975,
+      "average": 1087.356,
+      "median": 1079.912,
+      "p90": 1778.238,
+      "p99": 1930.232
+    },
+    "context": {
+      "totalRuns": 1000,
+      "concurrentRuns": 1000
+    },
+    "comment": "Average time: 1 second"
+  },
+  "create dataset - 5K calls, 5K concurrently": {
+    "id": "create dataset - 5K calls, 5K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 848.506,
+      "max": 8623.454,
+      "average": 4854.454,
+      "median": 4921.975,
+      "p90": 7900.244,
+      "p99": 8552.767
+    },
+    "context": {
+      "totalRuns": 5000,
+      "concurrentRuns": 5000
+    },
+    "comment": "Average time: 5 seconds"
+  },
+  "get annotation schema - 500 calls, 500 concurrently": {
+    "id": "get annotation schema - 500 calls, 500 concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 140.754,
+      "max": 2126.826,
+      "average": 1713.205,
+      "median": 1749.789,
+      "p90": 2011.858,
+      "p99": 2080.79
+    },
+    "context": {
+      "totalRuns": 500,
+      "concurrentRuns": 500
+    },
+    "comment": "Average time: 2 seconds"
+  },
+  "get annotation schema - 1K calls, 1K concurrently": {
+    "id": "get annotation schema - 1K calls, 1K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 173.223,
+      "max": 1218.413,
+      "average": 697.963,
+      "median": 707.578,
+      "p90": 1098.561,
+      "p99": 1187.165
+    },
+    "context": {
+      "totalRuns": 1000,
+      "concurrentRuns": 1000
+    },
+    "comment": "Average time: 697.963 ms"
+  },
+  "get annotation schema - 5K calls, 5K concurrently": {
+    "id": "get annotation schema - 5K calls, 5K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 777.692,
+      "max": 5097.954,
+      "average": 2964.372,
+      "median": 2994.579,
+      "p90": 4593.905,
+      "p99": 4957.419
+    },
+    "context": {
+      "totalRuns": 5000,
+      "concurrentRuns": 5000
+    },
+    "comment": "Average time: 3 seconds"
+  },
+  "list annotation schema - 10 calls, 10 concurrently": {
+    "id": "list annotation schema - 10 calls, 10 concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 984.396,
+      "max": 3098.543,
+      "average": 2711.132,
+      "median": 2860.895,
+      "p90": 3058.039,
+      "p99": 3098.543
+    },
+    "context": {
+      "totalRuns": 10,
+      "concurrentRuns": 10
+    },
+    "comment": "Average time: 3 seconds"
+  },
+  "list annotation schema - 25 calls, 25 concurrently": {
+    "id": "list annotation schema - 25 calls, 25 concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 931.63,
+      "max": 3358.555,
+      "average": 2289.817,
+      "median": 2831.735,
+      "p90": 3271.641,
+      "p99": 3358.555
+    },
+    "context": {
+      "totalRuns": 25,
+      "concurrentRuns": 25
+    },
+    "comment": "Average time: 2 seconds"
+  },
+  "put version annotation benchmark - 100 calls, 1 concurrently": {
+    "id": "put version annotation benchmark - 100 calls, 1 concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 44.726,
+      "max": 204.471,
+      "average": 74.87,
+      "median": 68.835,
+      "p90": 99.453,
+      "p99": 192.851
+    },
+    "context": {
+      "totalRuns": 100,
+      "concurrentRuns": 1
+    },
+    "comment": "Average time: 74.87 ms"
+  },
+  "put version annotation - whole scenario - 100 calls, 100 concurrently": {
+    "id": "put version annotation - whole scenario - 100 calls, 100 concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 159.228,
+      "max": 2147.419,
+      "average": 856.385,
+      "median": 588.821,
+      "p90": 1762.032,
+      "p99": 2145.461
+    },
+    "context": {
+      "totalRuns": 100,
+      "concurrentRuns": 100
+    },
+    "comment": "Average time: 856.385 ms"
+  },
+  "put version annotation - whole scenario - 500 calls, 500 concurrently": {
+    "id": "put version annotation - whole scenario - 500 calls, 500 concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 156.239,
+      "max": 1517.369,
+      "average": 802.711,
+      "median": 773.556,
+      "p90": 1114.235,
+      "p99": 1445.407
+    },
+    "context": {
+      "totalRuns": 500,
+      "concurrentRuns": 500
+    },
+    "comment": "Average time: 802.711 ms"
+  },
+  "put version annotation - whole scenario - 1K calls, 1K concurrently": {
+    "id": "put version annotation - whole scenario - 1K calls, 1K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 1387.485,
+      "max": 3155.397,
+      "average": 2085.182,
+      "median": 2152.761,
+      "p90": 2469.198,
+      "p99": 2666.608
+    },
+    "context": {
+      "totalRuns": 1000,
+      "concurrentRuns": 1000
+    },
+    "comment": "Average time: 2 seconds"
+  },
+  "put test case annotation benchmark - 100 calls, 1 concurrently": {
+    "id": "put test case annotation benchmark - 100 calls, 1 concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 70.422,
+      "max": 253.201,
+      "average": 98.156,
+      "median": 87.608,
+      "p90": 133.013,
+      "p99": 198.786
+    },
+    "context": {
+      "totalRuns": 100,
+      "concurrentRuns": 1
+    },
+    "comment": "Average time: 98.156 ms"
+  },
+  "put test case annotation - whole scenario - 100 calls, 100 concurrently": {
+    "id": "put test case annotation - whole scenario - 100 calls, 100 concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 364.364,
+      "max": 3096.962,
+      "average": 2019.099,
+      "median": 2189.489,
+      "p90": 2394.279,
+      "p99": 2497.296
+    },
+    "context": {
+      "totalRuns": 100,
+      "concurrentRuns": 100
+    },
+    "comment": "Average time: 2 seconds"
+  },
+  "put test case annotation - whole scenario - 500 calls, 500 concurrently": {
+    "id": "put test case annotation - whole scenario - 500 calls, 500 concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 1019.594,
+      "max": 2628.916,
+      "average": 1918.713,
+      "median": 2079.559,
+      "p90": 2342.167,
+      "p99": 2529.001
+    },
+    "context": {
+      "totalRuns": 500,
+      "concurrentRuns": 500
+    },
+    "comment": "Average time: 2 seconds"
+  },
+  "put test case annotation - whole scenario - 1K calls, 1K concurrently": {
+    "id": "put test case annotation - whole scenario - 1K calls, 1K concurrently",
+    "timestamp": "2025-07-28T09:05:51.544Z",
+    "results": {
+      "min": 1933.63,
+      "max": 3978.924,
+      "average": 3210.039,
+      "median": 3350.805,
+      "p90": 3833.713,
+      "p99": 3907.308
+    },
+    "context": {
+      "totalRuns": 1000,
+      "concurrentRuns": 1000
+    },
+    "comment": "Average time: 3 seconds"
+  },
+  "Get experiment - 500 calls, 500 concurrently": {
+    "id": "Get experiment - 500 calls, 500 concurrently",
+    "timestamp": "2025-08-20T17:23:08.538Z",
+    "results": {
+      "min": 468.14,
+      "max": 38833.553,
+      "average": 11721.273,
+      "median": 10706.651,
+      "p90": 18685.886,
+      "p99": 38274.165
+    },
+    "context": {
+      "totalRuns": 500,
+      "concurrentRuns": 500
+    },
+    "comment": "Average time: 12 seconds"
+  },
+  "Get experiment - 1K calls, 1K concurrently": {
+    "id": "Get experiment - 1K calls, 1K concurrently",
+    "timestamp": "2025-08-20T17:23:08.538Z",
+    "results": {
+      "min": 324.979,
+      "max": 55723.948,
+      "average": 18596.297,
+      "median": 18153.468,
+      "p90": 34140.04,
+      "p99": 41636.519
+    },
+    "context": {
+      "totalRuns": 1000,
+      "concurrentRuns": 1000
+    },
+    "comment": "Average time: 19 seconds"
+  },
+  "Get experiment - 5K calls, 5K concurrently": {
+    "id": "Get experiment - 5K calls, 5K concurrently",
+    "timestamp": "2025-08-20T17:23:08.538Z",
+    "results": {
+      "min": 1131.898,
+      "max": 214389.509,
+      "average": 98599.336,
+      "median": 98511.935,
+      "p90": 178453.232,
+      "p99": 196595.448
+    },
+    "context": {
+      "totalRuns": 5000,
+      "concurrentRuns": 5000
+    },
+    "comment": "Average time: 2 minutes"
+  },
+  "Get experiment - 50 calls, 50 concurrently": {
+    "id": "Get experiment - 50 calls, 50 concurrently",
+    "timestamp": "2025-08-20T17:49:54.411Z",
+    "results": {
+      "min": 204.744,
+      "max": 5571.261,
+      "average": 4655.126,
+      "median": 5021.743,
+      "p90": 5203.74,
+      "p99": 5571.261
+    },
+    "context": {
+      "totalRuns": 50,
+      "concurrentRuns": 50
+    },
+    "comment": "Average time: 5 seconds"
+  },
+  "Get experiment - 100 calls, 100 concurrently": {
+    "id": "Get experiment - 100 calls, 100 concurrently",
+    "timestamp": "2025-08-20T17:49:54.411Z",
+    "results": {
+      "min": 160.63,
+      "max": 5465.819,
+      "average": 888.507,
+      "median": 335.15,
+      "p90": 4631.583,
+      "p99": 5367.78
+    },
+    "context": {
+      "totalRuns": 100,
+      "concurrentRuns": 100
+    },
+    "comment": "Average time: 888.507 ms"
+  },
+  "Get experiment - 250 calls, 250 concurrently": {
+    "id": "Get experiment - 250 calls, 250 concurrently",
+    "timestamp": "2025-08-20T17:49:54.411Z",
+    "results": {
+      "min": 189.297,
+      "max": 14397.987,
+      "average": 4063.247,
+      "median": 4472.827,
+      "p90": 10034.999,
+      "p99": 14132.602
+    },
+    "context": {
+      "totalRuns": 250,
+      "concurrentRuns": 250
+    },
+    "comment": "Average time: 4 seconds"
+  },
+  "get experiment configuration - 50 calls, 50 concurrently": {
+    "id": "get experiment configuration - 50 calls, 50 concurrently",
+    "timestamp": "2025-08-20T17:35:19.514Z",
+    "results": {
+      "min": 154.662,
+      "max": 1634.103,
+      "average": 1358.021,
+      "median": 1525.727,
+      "p90": 1565.353,
+      "p99": 1634.103
+    },
+    "context": {
+      "totalRuns": 50,
+      "concurrentRuns": 50
+    },
+    "comment": "Average time: 1 second"
+  },
+  "get experiment configuration - 100 calls, 100 concurrently": {
+    "id": "get experiment configuration - 100 calls, 100 concurrently",
+    "timestamp": "2025-08-20T17:35:19.514Z",
+    "results": {
+      "min": 80.209,
+      "max": 600.068,
+      "average": 164.834,
+      "median": 170.332,
+      "p90": 233.685,
+      "p99": 588.906
+    },
+    "context": {
+      "totalRuns": 100,
+      "concurrentRuns": 100
+    },
+    "comment": "Average time: 164.834 ms"
+  },
+  "get experiment configuration - 250 calls, 250 concurrently": {
+    "id": "get experiment configuration - 250 calls, 250 concurrently",
+    "timestamp": "2025-08-20T17:35:19.514Z",
+    "results": {
+      "min": 103.513,
+      "max": 507.829,
+      "average": 276.711,
+      "median": 269.136,
+      "p90": 433.229,
+      "p99": 492.079
+    },
+    "context": {
+      "totalRuns": 250,
+      "concurrentRuns": 250
+    },
+    "comment": "Average time: 276.711 ms"
+  },
+  "get experiment configuration - 500 calls, 500 concurrently": {
+    "id": "get experiment configuration - 500 calls, 500 concurrently",
+    "timestamp": "2025-08-20T17:49:54.411Z",
+    "results": {
+      "min": 162.094,
+      "max": 2234.318,
+      "average": 1791.986,
+      "median": 1802.313,
+      "p90": 2133.235,
+      "p99": 2209.387
+    },
+    "context": {
+      "totalRuns": 500,
+      "concurrentRuns": 500
+    },
+    "comment": "Average time: 2 seconds"
+  },
+  "get experiment configuration - 1K calls, 1K concurrently": {
+    "id": "get experiment configuration - 1K calls, 1K concurrently",
+    "timestamp": "2025-08-20T17:49:54.411Z",
+    "results": {
+      "min": 217.041,
+      "max": 1573.658,
+      "average": 896.029,
+      "median": 907.219,
+      "p90": 1421.1,
+      "p99": 1532.733
+    },
+    "context": {
+      "totalRuns": 1000,
+      "concurrentRuns": 1000
+    },
+    "comment": "Average time: 896.029 ms"
+  },
+  "get experiment configuration - 5K calls, 5K concurrently": {
+    "id": "get experiment configuration - 5K calls, 5K concurrently",
+    "timestamp": "2025-08-20T17:49:54.411Z",
+    "results": {
+      "min": 877.131,
+      "max": 6623.838,
+      "average": 3845.447,
+      "median": 3908.354,
+      "p90": 6075.512,
+      "p99": 6564.373
+    },
+    "context": {
+      "totalRuns": 5000,
+      "concurrentRuns": 5000
+    },
+    "comment": "Average time: 4 seconds"
+  },
+  "list experiments command - 50 calls, 50 concurrently": {
+    "id": "list experiments command - 50 calls, 50 concurrently",
+    "timestamp": "2025-08-20T17:49:54.411Z",
+    "results": {
+      "min": 290.139,
+      "max": 5950.399,
+      "average": 4723.559,
+      "median": 4906.844,
+      "p90": 5106.372,
+      "p99": 5950.399
+    },
+    "context": {
+      "totalRuns": 50,
+      "concurrentRuns": 50
+    },
+    "comment": "Average time: 5 seconds"
+  },
+  "list experiments command - 100 calls, 100 concurrently": {
+    "id": "list experiments command - 100 calls, 100 concurrently",
+    "timestamp": "2025-08-20T17:49:54.411Z",
+    "results": {
+      "min": 263.521,
+      "max": 5553.824,
+      "average": 3199.8,
+      "median": 4604.367,
+      "p90": 5388.844,
+      "p99": 5552.083
+    },
+    "context": {
+      "totalRuns": 100,
+      "concurrentRuns": 100
+    },
+    "comment": "Average time: 3 seconds"
+  },
+  "list experiments command - 250 calls, 250 concurrently": {
+    "id": "list experiments command - 250 calls, 250 concurrently",
+    "timestamp": "2025-08-20T17:49:54.411Z",
+    "results": {
+      "min": 254.139,
+      "max": 33431.442,
+      "average": 10684.778,
+      "median": 9740.085,
+      "p90": 19004.182,
+      "p99": 33318.865
+    },
+    "context": {
+      "totalRuns": 250,
+      "concurrentRuns": 250
+    },
+    "comment": "Average time: 11 seconds"
+  },
+  "create experiment configuration - 500 calls, 500 concurrently": {
+    "id": "create experiment configuration - 500 calls, 500 concurrently",
+    "timestamp": "2025-08-20T17:49:54.411Z",
+    "results": {
+      "min": 160.633,
+      "max": 1309.959,
+      "average": 812.524,
+      "median": 813.209,
+      "p90": 1200.038,
+      "p99": 1279.554
+    },
+    "context": {
+      "totalRuns": 500,
+      "concurrentRuns": 500
+    },
+    "comment": "Average time: 812.524 ms"
+  },
+  "create experiment configuration - 1K calls, 1K concurrently": {
+    "id": "create experiment configuration - 1K calls, 1K concurrently",
+    "timestamp": "2025-08-20T17:49:54.411Z",
+    "results": {
+      "min": 214.79,
+      "max": 1850.574,
+      "average": 1029.919,
+      "median": 1032.234,
+      "p90": 1688.266,
+      "p99": 1826.483
+    },
+    "context": {
+      "totalRuns": 1000,
+      "concurrentRuns": 1000
+    },
+    "comment": "Average time: 1 second"
+  },
+  "create experiment configuration - 5K calls, 5K concurrently": {
+    "id": "create experiment configuration - 5K calls, 5K concurrently",
+    "timestamp": "2025-08-20T17:49:54.411Z",
+    "results": {
+      "min": 1010.679,
+      "max": 9083.649,
+      "average": 5100.972,
+      "median": 5108.689,
+      "p90": 8301.56,
+      "p99": 8973.109
+    },
+    "context": {
+      "totalRuns": 5000,
+      "concurrentRuns": 5000
+    },
+    "comment": "Average time: 5 seconds"
+  },
+  "update experiment configuration - 50 calls, 1 concurrently": {
+    "id": "update experiment configuration - 50 calls, 1 concurrently",
+    "timestamp": "2025-08-20T17:44:26.491Z",
+    "results": {
+      "min": 102.031,
+      "max": 195.906,
+      "average": 133.932,
+      "median": 131.012,
+      "p90": 158.509,
+      "p99": 195.906
+    },
+    "context": {
+      "totalRuns": 50,
+      "concurrentRuns": 1
+    },
+    "comment": "Average time: 133.932 ms"
+  },
+  "update experiment configuration - 100 calls, 1 concurrently": {
+    "id": "update experiment configuration - 100 calls, 1 concurrently",
+    "timestamp": "2025-08-20T17:44:26.491Z",
+    "results": {
+      "min": 92.99,
+      "max": 249.892,
+      "average": 126.839,
+      "median": 113.858,
+      "p90": 171.002,
+      "p99": 232.766
+    },
+    "context": {
+      "totalRuns": 100,
+      "concurrentRuns": 1
+    },
+    "comment": "Average time: 126.839 ms"
+  },
+  "update experiment configuration - 250 calls, 1 concurrently": {
+    "id": "update experiment configuration - 250 calls, 1 concurrently",
+    "timestamp": "2025-08-20T17:44:26.491Z",
+    "results": {
+      "min": 92.376,
+      "max": 222.888,
+      "average": 117.835,
+      "median": 110.118,
+      "p90": 146.797,
+      "p99": 202.601
+    },
+    "context": {
+      "totalRuns": 250,
+      "concurrentRuns": 1
+    },
+    "comment": "Average time: 117.835 ms"
+  },
+  "update experiment configuration - 500 calls, 500 concurrently": {
+    "id": "update experiment configuration - 500 calls, 500 concurrently",
+    "timestamp": "2025-08-20T17:49:54.411Z",
+    "results": {
+      "min": 954.813,
+      "max": 1313.823,
+      "average": 1171.768,
+      "median": 1192.826,
+      "p90": 1242.09,
+      "p99": 1286.964
+    },
+    "context": {
+      "totalRuns": 500,
+      "concurrentRuns": 500
+    },
+    "comment": "Average time: 1 second"
+  },
+  "update experiment configuration - 1K calls, 1K concurrently": {
+    "id": "update experiment configuration - 1K calls, 1K concurrently",
+    "timestamp": "2025-08-20T17:49:54.411Z",
+    "results": {
+      "min": 1593.403,
+      "max": 2262.528,
+      "average": 1874.43,
+      "median": 1855.752,
+      "p90": 2114.68,
+      "p99": 2187.734
+    },
+    "context": {
+      "totalRuns": 1000,
+      "concurrentRuns": 1000
+    },
+    "comment": "Average time: 2 seconds"
+  },
+  "update experiment configuration - 5K calls, 5K concurrently": {
+    "id": "update experiment configuration - 5K calls, 5K concurrently",
+    "timestamp": "2025-08-20T17:49:54.411Z",
+    "results": {
+      "min": 8145.313,
+      "max": 12085.927,
+      "average": 10123.002,
+      "median": 10078.174,
+      "p90": 11730.588,
+      "p99": 11975.689
+    },
+    "context": {
+      "totalRuns": 5000,
+      "concurrentRuns": 5000
+    },
+    "comment": "Average time: 10 seconds"
+  }
+}

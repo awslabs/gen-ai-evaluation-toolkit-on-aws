@@ -1,0 +1,44 @@
+{
+  "name": "etk-local-debug",
+  "description": "ETK debugging agent with ETK documentation and ETK debug prompt",
+  "prompt": "file://../prompts/ETK_DEBUG_AGENT_PROMPT.md",
+  "mcpServers": {},
+  "tools": [
+    "aws",
+    "read",
+    "shell",
+    "write"
+  ],
+  "allowedTools": [
+    "read"
+  ],
+  "resources": [
+    "file://README.md",
+    "file://AGENTS.md",
+    "file://docs/**/*.md"
+  ],
+  "hooks": {
+    "preToolUse": [
+      {
+        "name": "enforce-current-aws-profile",
+        "matcher": "use_aws",
+        "command": "../scripts/check-aws-profile.sh"
+      }
+    ]
+  },
+  "toolsSettings": {
+    "aws": {
+      "autoAllowReadonly": true
+    },
+    "execute_bash": {
+      "deniedCommands": [
+        ".*AWS_PROFILE.*",
+        ".*aws.*--profile.*",
+        ".*git push.*",
+        ".*sudo.*"
+      ]
+    }
+  },
+  "useLegacyMcpJson": true,
+  "model": null
+}

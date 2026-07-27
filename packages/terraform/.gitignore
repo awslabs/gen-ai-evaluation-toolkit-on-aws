@@ -1,0 +1,19 @@
+.terraform/
+.terraform.lock.hcl
+*.tfplan
+tfplan*
+tf-outputs.json
+# Generated Lambda zips (staged by `nx run terraform:stage-assets`)
+assets/lambda/*.zip
+assets/python-api.zip
+assets/layers/
+# Container image zips + hash sidecars (staged from packages/deployment/assets/images/)
+assets/images/
+*.log
+terraform.tfstate*
+# Terraform fetches external git modules here; never commit.
+.external_modules/
+# Generated per-run by scripts/gen-backend-hcl.sh (local) or the tf:plan
+# pipeline job (CI). Never committed — account-specific by design.
+backend.hcl
+SECURITY_HARDENING_PLAN.md

@@ -1,0 +1,189 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App stack GenAiEtk-TLM should match snapshot 1`] = `
+{
+  "Description": "Stack for the GenAI Evaluation Toolkit: Monitoring",
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "DashboardMonitoringDashboardFactoryDashboardD5DF70A1": {
+      "Properties": {
+        "DashboardBody": {
+          "Fn::Join": [
+            "",
+            [
+              "{"start":"-PT8H","periodOverride":"inherit","widgets":[{"type":"text","width":24,"height":1,"x":0,"y":0,"properties":{"markdown":"## GenAiEvaluationToolkit"}},{"type":"text","width":24,"height":1,"x":0,"y":1,"properties":{"markdown":"### API"}},{"type":"metric","width":6,"height":4,"x":0,"y":2,"properties":{"view":"timeSeries","title":"4XX Errors","region":"",
+              {
+                "Ref": "AWS::Region",
+              },
+              "","metrics":[["AWS/ApiGateway","4XXError","ApiName","ApiGateway","Stage","prod",{"label":"ApiGateway 4XX Error"}]],"yAxis":{"left":{"showUnits":false,"label":"Rate"}},"legend":{"position":"right"}}},{"type":"metric","width":6,"height":4,"x":6,"y":2,"properties":{"view":"timeSeries","title":"5XX Errors","region":"",
+              {
+                "Ref": "AWS::Region",
+              },
+              "","metrics":[["AWS/ApiGateway","5XXError","ApiName","ApiGateway","Stage","prod",{"label":"ApiGateway 5XX Error"}]],"annotations":{"horizontal":[{"label":"ApiGateway 5XX Error > 0.01 for 3 datapoints within 15 minutes","value":0.01,"yAxis":"left"},{"label":"ApiGateway 5XX Error > 0.05 for 3 datapoints within 15 minutes","value":0.05,"yAxis":"left"}]},"yAxis":{"left":{"showUnits":false,"label":"Rate"}},"legend":{"position":"right"}}},{"type":"metric","width":6,"height":4,"x":12,"y":2,"properties":{"view":"timeSeries","title":"Latency","region":"",
+              {
+                "Ref": "AWS::Region",
+              },
+              "","metrics":[["AWS/ApiGateway","Latency","ApiName","ApiGateway","Stage","prod",{"label":"ApiGateway P50","stat":"p50"}],["AWS/ApiGateway","Latency","ApiName","ApiGateway","Stage","prod",{"label":"ApiGateway P90","stat":"p90"}],["AWS/ApiGateway","Latency","ApiName","ApiGateway","Stage","prod",{"label":"ApiGateway P99","stat":"p99"}]],"yAxis":{"left":{"showUnits":false,"label":"Milliseconds"}},"legend":{"position":"right"}}},{"type":"metric","width":6,"height":4,"x":18,"y":2,"properties":{"view":"timeSeries","title":"TPS","region":"",
+              {
+                "Ref": "AWS::Region",
+              },
+              "","metrics":[[{"label":"ApiGateway","expression":"FILL(apiGatewayRequests,0) / PERIOD(apiGatewayRequests)"}],["AWS/ApiGateway","Count","ApiName","ApiGateway","Stage","prod",{"label":"Count","id":"apiGatewayRequests","visible":false,"stat":"Sum"}]],"yAxis":{"left":{"showUnits":false,"label":"Count"}},"legend":{"position":"right"}}}]}",
+            ],
+          ],
+        },
+        "DashboardName": {
+          "Fn::Join": [
+            "",
+            [
+              "MonitoringDashboard-",
+              {
+                "Ref": "AWS::Region",
+              },
+            ],
+          ],
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-TLM",
+          },
+        ],
+      },
+      "Type": "AWS::CloudWatch::Dashboard",
+    },
+    "DashboardMonitoringDashboardGenAiEvaluationToolkitApiGateway5XXErrorAlarmCriticalB518E243": {
+      "Properties": {
+        "ActionsEnabled": true,
+        "AlarmDescription": "Threshold of 0.05 has been breached.",
+        "AlarmName": "GenAiEvaluationToolkitApiGateway5XXErrorAlarmCritical",
+        "ComparisonOperator": "GreaterThanThreshold",
+        "DatapointsToAlarm": 3,
+        "EvaluationPeriods": 3,
+        "Metrics": [
+          {
+            "Id": "m1",
+            "Label": "ApiGateway 5XX Error",
+            "MetricStat": {
+              "Metric": {
+                "Dimensions": [
+                  {
+                    "Name": "ApiName",
+                    "Value": "ApiGateway",
+                  },
+                  {
+                    "Name": "Stage",
+                    "Value": "prod",
+                  },
+                ],
+                "MetricName": "5XXError",
+                "Namespace": "AWS/ApiGateway",
+              },
+              "Period": 300,
+              "Stat": "Average",
+            },
+            "ReturnData": true,
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-TLM",
+          },
+        ],
+        "Threshold": 0.05,
+        "TreatMissingData": "ignore",
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
+    "DashboardMonitoringDashboardGenAiEvaluationToolkitApiGateway5XXErrorAlarmWarningA946FD18": {
+      "Properties": {
+        "ActionsEnabled": true,
+        "AlarmDescription": "Threshold of 0.01 has been breached.",
+        "AlarmName": "GenAiEvaluationToolkitApiGateway5XXErrorAlarmWarning",
+        "ComparisonOperator": "GreaterThanThreshold",
+        "DatapointsToAlarm": 3,
+        "EvaluationPeriods": 3,
+        "Metrics": [
+          {
+            "Id": "m1",
+            "Label": "ApiGateway 5XX Error",
+            "MetricStat": {
+              "Metric": {
+                "Dimensions": [
+                  {
+                    "Name": "ApiName",
+                    "Value": "ApiGateway",
+                  },
+                  {
+                    "Name": "Stage",
+                    "Value": "prod",
+                  },
+                ],
+                "MetricName": "5XXError",
+                "Namespace": "AWS/ApiGateway",
+              },
+              "Period": 300,
+              "Stat": "Average",
+            },
+            "ReturnData": true,
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-TLM",
+          },
+        ],
+        "Threshold": 0.01,
+        "TreatMissingData": "ignore",
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;

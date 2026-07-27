@@ -1,0 +1,19 @@
+# Config
+.idea
+.vscode
+
+# Dependencies
+/node_modules
+
+# Build
+/build
+/dist/
+/assets
+
+# Cache
+.eslintcache
+coverage
+cdk.context.json
+
+# CDK asset images (large build artifacts)
+packages/deployment/assets/images/

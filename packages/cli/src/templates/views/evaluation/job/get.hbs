@@ -1,0 +1,19 @@
+Evaluation job details:
+{{~> common/separator~}}
+
+Job ID: {{ jobId }}
+Report ID: {{ reportId }}
+Evaluator: {{ evaluatorName }}
+Type: {{ jobType }}
+Status: {{ status }}
+Stage: {{ stage }}
+Created at: {{formatDate createdAt}}
+{{#if updatedAt}}
+Updated at: {{formatDate updatedAt}}
+{{/if}}
+{{#if experimentName}}
+Experiment: {{ experimentName }}
+{{/if}}
+{{#if error}}
+Error: {{ error.message }}
+{{/if}}

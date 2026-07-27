@@ -1,0 +1,189 @@
+{
+  "agent": {
+    "systemPrompt": "You are an AI-powered customer service agent for TechMart, an online electronics retailer. You can help customers with:\n- Product information and recommendations\n- Order tracking and status\n- Returns and refunds\n- Technical support and troubleshooting\n- Account management\n\nAlways be professional, helpful, and empathetic. If you cannot resolve an issue, offer to escalate to a human agent.",
+    "tools": [
+      {
+        "name": "search_products",
+        "description": "Search the product catalog for items matching a query",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "query": { "type": "string", "description": "Search query for products" },
+            "category": {
+              "type": "string",
+              "enum": ["laptops", "phones", "tablets", "accessories", "audio", "gaming"],
+              "description": "Optional category filter"
+            },
+            "max_price": { "type": "number", "description": "Maximum price filter" },
+            "min_rating": { "type": "number", "description": "Minimum rating filter (1-5)" }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "get_product_details",
+        "description": "Get detailed information about a specific product",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "product_id": { "type": "string", "description": "The unique product identifier" }
+          },
+          "required": ["product_id"]
+        }
+      },
+      {
+        "name": "check_inventory",
+        "description": "Check stock availability for a product",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "product_id": { "type": "string", "description": "The product ID to check" },
+            "warehouse": {
+              "type": "string",
+              "enum": ["east", "west", "central"],
+              "description": "Specific warehouse to check (optional)"
+            }
+          },
+          "required": ["product_id"]
+        }
+      },
+      {
+        "name": "get_order_status",
+        "description": "Get the current status of a customer order",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "order_id": { "type": "string", "description": "The order ID to look up" }
+          },
+          "required": ["order_id"]
+        }
+      },
+      {
+        "name": "initiate_return",
+        "description": "Start a return process for an order item",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "order_id": { "type": "string", "description": "The original order ID" },
+            "product_id": { "type": "string", "description": "The product to return" },
+            "reason": {
+              "type": "string",
+              "enum": ["defective", "wrong_item", "not_as_described", "changed_mind", "arrived_late"],
+              "description": "Reason for the return"
+            }
+          },
+          "required": ["order_id", "product_id", "reason"]
+        }
+      },
+      {
+        "name": "get_customer_info",
+        "description": "Retrieve customer account information",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "customer_id": { "type": "string", "description": "The customer ID" }
+          },
+          "required": ["customer_id"]
+        }
+      },
+      {
+        "name": "update_customer_info",
+        "description": "Update customer account details",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "customer_id": { "type": "string", "description": "The customer ID" },
+            "field": {
+              "type": "string",
+              "enum": ["email", "phone", "address", "name"],
+              "description": "Field to update"
+            },
+            "value": { "type": "string", "description": "New value for the field" }
+          },
+          "required": ["customer_id", "field", "value"]
+        }
+      },
+      {
+        "name": "create_support_ticket",
+        "description": "Create a support ticket for complex issues requiring human follow-up",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "customer_id": { "type": "string", "description": "The customer ID" },
+            "category": {
+              "type": "string",
+              "enum": ["billing", "technical", "shipping", "product", "account"],
+              "description": "Ticket category"
+            },
+            "priority": {
+              "type": "string",
+              "enum": ["low", "medium", "high", "urgent"],
+              "description": "Ticket priority"
+            },
+            "description": { "type": "string", "description": "Detailed description of the issue" }
+          },
+          "required": ["customer_id", "category", "priority", "description"]
+        }
+      }
+    ]
+  },
+  "generation": {
+    "totalTestCases": 50,
+    "focusAreas": [
+      "complex multi-step order issues",
+      "product comparison and recommendations",
+      "handling frustrated customers",
+      "return and refund edge cases"
+    ],
+    "taxonomyAxes": {
+      "turnCounts": [1, 2, 3, 4],
+      "difficulty": ["easy", "medium", "hard", "expert"],
+      "outcomes": ["happy_path", "refusal", "clarification", "escalation"]
+    },
+    "seedExamples": [
+      {
+        "input": "I ordered a laptop last week (order #ORD-12345) but it still hasn't shipped. Can you check what's going on?",
+        "expected": {
+          "response": "I checked your order #ORD-12345 and I see it's currently in 'processing' status. The delay is due to the laptop model being temporarily out of stock at our nearest warehouse. Good news - it's now back in stock and your order has been prioritized for shipping today. You should receive a shipping confirmation email within the next 4-6 hours, and delivery is estimated for Thursday.",
+          "topics": ["order_tracking", "shipping"],
+          "toolCalls": [
+            { "name": "get_order_status", "args": { "order_id": "ORD-12345" } }
+          ]
+        }
+      },
+      {
+        "input": [
+          "I'm looking for a good gaming laptop under $1500. What do you recommend?",
+          "How does the ASUS ROG compare to the MSI Katana you mentioned?",
+          "I'll take the ASUS. Is it in stock?"
+        ],
+        "expected": {
+          "response": "Great choice! The ASUS ROG Strix G15 is currently in stock at our East and Central warehouses. I can see we have 12 units available for immediate shipping. Would you like me to help you place the order? With standard shipping, it would arrive by next Wednesday.",
+          "topics": ["product_recommendation", "inventory"],
+          "toolCalls": [
+            { "name": "search_products", "args": { "query": "gaming laptop", "category": "laptops", "max_price": 1500 } },
+            { "name": "get_product_details", "args": { "product_id": "ASUS-ROG-G15" } },
+            { "name": "get_product_details", "args": { "product_id": "MSI-KATANA-15" } },
+            { "name": "check_inventory", "args": { "product_id": "ASUS-ROG-G15" } }
+          ]
+        }
+      },
+      {
+        "input": [
+          "This is ridiculous! I've been waiting 2 weeks for my order and nobody can tell me where it is!",
+          "Order number is ORD-99887. I want a refund NOW.",
+          "Fine, but I want to speak to a manager about this."
+        ],
+        "expected": {
+          "response": "I completely understand your frustration, and I sincerely apologize for this experience. I've created an urgent support ticket (#TKT-44521) and flagged it for immediate manager review. A senior customer service manager will call you within 2 hours at the phone number on your account. In the meantime, I've also initiated a full refund of $899.99 which will appear on your card within 3-5 business days. Is there anything else I can do to help make this right?",
+          "topics": ["order_tracking", "escalation", "refund"],
+          "toolCalls": [
+            { "name": "get_order_status", "args": { "order_id": "ORD-99887" } },
+            { "name": "get_customer_info", "args": { "customer_id": "CUST-99887" } },
+            { "name": "create_support_ticket", "args": { "customer_id": "CUST-99887", "category": "shipping", "priority": "urgent", "description": "Customer waiting 2 weeks for order, requesting manager callback and refund" } }
+          ]
+        }
+      }
+    ]
+  }
+}

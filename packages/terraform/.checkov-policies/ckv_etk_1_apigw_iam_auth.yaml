@@ -1,0 +1,36 @@
+---
+# Custom Checkov policy — API Gateway IAM authorization.
+#
+# Asserts that every `aws_api_gateway_method` resource in the Terraform path
+# uses `authorization = "AWS_IAM"`. Terraform-side parity with cdk-nag
+# AwsSolutions-APIG4 (packages/cdk/test/etkConstructs.test.ts → assertNoNagErrors),
+# which fails the CDK build if any method exposes a non-IAM auth scheme.
+#
+# Discovered via `external-checks-dir: .checkov-policies` in ../.checkov.yml
+# (relative to packages/terraform/; CI invokes checkov from there).
+#
+# Why the scan reports 4 PASSED hits, not ~53 ─────────────────────────────────
+# The four source `aws_api_gateway_method.route` declarations (one per module:
+# datastore, evaluation, experiment, generation) each use
+# `for_each = local.<module>_route_targets` to fan out into the ~53 deployed
+# methods at apply time. Checkov is a static IaC scanner — it does NOT run
+# `terraform plan` and cannot expand `for_each` at scan time, so it sees the
+# four source declarations rather than the expanded instance set.
+#
+# That is structurally sufficient for parity with cdk-nag AwsSolutions-APIG4:
+# in each of the four sources `authorization = "AWS_IAM"` is a hardcoded
+# literal — there is no per-`each.value` branch that could choose a different
+# auth scheme — so every expanded instance inherits AWS_IAM by construction.
+# Flipping the literal to anything other than `"AWS_IAM"` in any of the four
+# sources fires this rule FAILED and blocks the gate.
+metadata:
+  id: CKV_ETK_1
+  name: "Ensure API Gateway methods use AWS_IAM authorization"
+  category: IAM
+definition:
+  cond_type: attribute
+  resource_types:
+    - aws_api_gateway_method
+  attribute: authorization
+  operator: equals
+  value: AWS_IAM

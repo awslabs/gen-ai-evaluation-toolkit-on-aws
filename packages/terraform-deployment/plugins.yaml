@@ -1,0 +1,65 @@
+# Single source of truth for plugin image registration.
+#
+# Consumed by:
+#   - packages/terraform-deployment/bootstrap/main.tf  (aws_ecr_repository for_each)
+#   - packages/terraform-deployment/main.tf            (deploy_key -> repo URI mapping
+#                                                       passed into the customer module
+#                                                       as var.deployed_image_uris)
+#   - packages/terraform-deployment/scripts/*.sh       (build/push/preflight/seed scripts)
+#   - .gitlab/pipeline.yml                             (docker:plugin parallel:matrix,
+#                                                       via generated/docker-plugin-matrix.yml)
+#
+# Adding a new plugin:
+#   1. Create packages/<package>/ with a Dockerfile (or <name>.Dockerfile variants).
+#   2. Append an entry below with name / package / dockerfile / ecr_repo / deploy_key.
+#   3. For plugins consumed by evaluation/generation workflows, upstream an MR
+#      to the recipe's modules/{evaluation,generation}/plugins.tf deploy_key
+#      mapping (monorepo lift stays byte-identical with recipe main).
+#   4. Re-run `nx run terraform-deployment:bootstrap-apply` to create the new ECR repo.
+#   5. Push — pipeline matrix picks up the new entry automatically.
+#
+# Schema:
+#   name        — short id; drives the CI matrix entry label. Unique.
+#   package     — source directory under packages/ (multiple entries may share a package
+#                 when it ships multiple Dockerfile variants).
+#   dockerfile  — Dockerfile filename inside the package. Omit to default to `Dockerfile`.
+#   docker_context — build context relative to repo root. Omit to default to
+#                 `packages/<package>`. Use `packages` for plugins that COPY
+#                 sibling packages (e.g. plugin-gen-* COPY plugin-gen-sdk).
+#   ecr_repo    — bootstrap-created ECR repository name. Must be globally unique per-account.
+#   deploy_key  — key consumed by modules/{evaluation,generation}/plugins.tf `_resolve_image`.
+#                 Preserve EXACT string incl. underscores (`_ecs` / `_lambda`); changing
+#                 these breaks upstream module consumption (modify-never policy).
+
+plugins:
+  # SDKV2 consolidated evaluator — bundles LLM-as-Judge, RAGAS, and AgentCore scorers
+  - name: evaluator-builtin
+    package: evaluator-builtin
+    dockerfile: lambda.Dockerfile
+    ecr_repo: genai-etk-evaluator-builtin
+    deploy_key: evaluator-builtin
+
+  # Generation plugins (ECS-based, unchanged by SDKV2)
+  - name: plugin-gen-llm-as-judge
+    package: plugin-gen-llm-as-judge
+    docker_context: packages
+    ecr_repo: genai-etk-plugin-gen-llm-as-judge
+    deploy_key: plugin-gen-llm-as-judge
+
+  - name: plugin-gen-rag
+    package: plugin-gen-rag
+    docker_context: packages
+    ecr_repo: genai-etk-plugin-gen-rag
+    deploy_key: plugin-gen-rag
+
+  - name: plugin-gen-agentic
+    package: plugin-gen-agentic
+    docker_context: packages
+    ecr_repo: genai-etk-plugin-gen-agentic
+    deploy_key: plugin-gen-agentic
+
+  - name: evaluator-agent-as-judge
+    package: evaluator-agent-as-judge
+    dockerfile: lambda.Dockerfile
+    ecr_repo: genai-etk-evaluator-agent-as-judge
+    deploy_key: evaluator-agent-as-judge

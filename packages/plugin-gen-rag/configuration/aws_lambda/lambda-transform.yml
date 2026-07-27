@@ -1,0 +1,4 @@
+archive_system: archive_empty
+data_files:
+  - docker-archive/
+  - awssolutions-cfn-output/

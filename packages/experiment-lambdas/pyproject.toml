@@ -1,0 +1,231 @@
+[build-system]
+requires = ["hatchling", "hatch-zipped-directory"]
+build-backend = "hatchling.build"
+
+[project]
+name = "awssolutions-gen-ai-evaluation-toolkit-experiment-lambda"
+version = "2.0.0"
+license = "Apache-2.0"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "aws-lambda-powertools == 2.11.0",
+  "boto3 == 1.34",
+  "mlflow-skinny == 2.13.2",
+  "sagemaker-mlflow-skinny == 0.1.1",
+  "pydantic >= 2.0",
+  # lxml <6.1.0 iterparse()/ETCompatXMLParser() default config allows XXE
+  # against local files.
+  "lxml == 6.1.0",
+
+  # Required for pkg_resources which is used by MLFlow (pinned to avoid deprecation warnings)
+  "setuptools < 81",
+
+  # transitive dependencies of sagemaker-mlflow-skinny because they ship mlflow instead of mlflow skinny:
+  # https://github.com/aws/sagemaker-mlflow/issues/6
+  "numpy == 1.26.4",
+  "pandas == 2.2.3",
+  # TEMPORARY FIX: virtualenv 20.35.0 causes Hatch compatibility issues
+  # Remove this constraint once upstream fix is available
+  # See: https://github.com/pypa/hatch/issues/2079
+  "virtualenv < 20.35.0",
+
+  # Pin pip to compatible version for hatch-pip-compile
+  # See: https://github.com/jazzband/pip-tools/issues/2252
+  "pip == 26.0.1",
+]
+
+[project.optional-dependencies]
+tests = [
+  "pytest >= 6",
+  "pytest-cov",
+  "pytest-xdist",
+  "coverage[toml]",
+
+  # CycloneDX BOM generator for Python package attribution notices
+  "cyclonedx-bom",
+]
+
+[tool.pytest.ini_options]
+addopts = ["--durations=5", "--color=yes", "--ignore=tests/skipped"]
+testpaths = ["tests"]
+filterwarnings = [
+  # Google Protobuf warning about Python 3.14 compatibility
+  # Can be removed once the protobuf library is updated to fix this issue
+  "ignore::DeprecationWarning:importlib._bootstrap",
+
+  # MLflow warning about pkg_resources being deprecated
+  # Can be removed once MLflow updates to stop using pkg_resources
+  "ignore::UserWarning:mlflow.utils.requirements_utils",
+]
+
+### TEST COVERAGE
+
+[tool.coverage.run]
+branch = true
+parallel = true
+source_pkgs = ["experiment_lambda"]
+
+[tool.coverage.paths]
+"experiment_lambda" = [
+  "src/experiment_lambda",
+]
+
+[tool.coverage.report]
+exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
+show_missing = true
+
+[tool.coverage.xml]
+output = "build/documentation/coverage/coverage.xml"
+
+[tool.coverage.html]
+directory = "build/documentation/coverage/"
+
+### FORMATTING AND LINTING
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+  "E",  # pycodestyle errors
+  "W",  # pycodestyle warnings
+  "F",  # pyflakes
+  "I",  # isort
+  "B",  # flake8-bugbear
+  "C4", # flake8-comprehensions
+]
+isort.known-first-party = ["experiment_lambda"]
+exclude = ["./build", ".hatch", "private"]
+
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+### HATCH CONFIGURATION
+
+[tool.hatch.build]
+directory = "./build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/experiment_lambda"]
+require-runtime-dependencies = true
+
+[tool.hatch.env]
+# pip is pinned here to declare this package's build-time pip requirement.
+# Must match the `pip install --upgrade 'pip==X'` line in
+# `scripts/install-hatch.sh` so the workspace .venv is created with this
+# version up front, pre-empting an in-place upgrade by Hatch that would
+# otherwise race across parallel NX Python builds.
+requires = ["hatch-pip-compile", "pip==26.0.1"]
+
+[tool.hatch.envs.default]
+type = "pip-compile"
+extra-dependencies = [
+  "pip-licenses",      # Required for generate-notices script
+  "mypy",
+  "ruff",
+  "boto3-stubs[full]",
+  "pytest",
+  "pytest-cov",
+  "pytest-xdist",
+  "coverage[toml]",
+  "pip == 26.0.1",
+]
+
+[tool.hatch.envs.default.scripts]
+generate-notices = [
+  "echo 'Generating attribution notices...'",
+  "mkdir -p private",
+  "pip-licenses --format=plain-vertical --with-license-file --output-file=private/NOTICES.md",
+]
+
+# Development Commands
+fix = ["ruff format src tests", "ruff check --fix --unsafe-fixes src tests"]
+
+[tool.hatch.envs.test]
+python = "3.12"
+extra-dependencies = [
+  "pytest",
+  "pytest-cov",
+  "pytest-xdist",
+  "coverage[toml]",
+  "setuptools < 81", # Required for pkg_resources which is used by MLFlow (pinned to avoid deprecation warnings)
+  "mypy",
+  "ruff",
+]
+
+[tool.hatch.envs.test.scripts]
+test = [
+  "pytest tests --cov=experiment_lambda --cov-report=term --cov-report=xml --cov-report=html",
+]
+typing = [
+  "mkdir -p .mypy_cache",
+  "mypy --install-types --non-interactive src tests",
+]
+format = ["ruff format src tests"]
+lint = ["ruff check src tests", "mypy src"]
+check = ["ruff check src tests", "mypy src"]
+
+# For generating software bill of materials
+[tool.hatch.envs.sbom]
+dependencies = ["cyclonedx-bom"]
+
+[tool.hatch.envs.sbom.scripts]
+generate = [
+  "echo 'Generating software bill of materials...'",
+  "prepare-directories",
+  "cyclonedx-py --environment --format json --force --output build/bom.json",
+  "echo 'Generated BOM file: build/bom.json'",
+]
+
+
+# Used solely to generate a lock file on hatch and hatch-pip-compile
+[tool.hatch.envs.build-tools]
+python = "3.12"
+detached = true
+skip-install = true
+dependencies = [
+  "hatch",
+  "hatch-pip-compile >= 1.11.0",
+  "wheel==0.45.1",
+  "pip-tools >= 7.4.0",
+  "pip == 26.0.1",
+]
+
+# Type checking configuration
+[tool.mypy]
+# Enable all strict settings for maximum type safety
+python_version = "3.12"
+warn_return_any = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_no_return = true
+warn_unreachable = true
+disallow_any_generics = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_decorators = true
+disallow_subclassing_any = false   # This would normally be enabled but causes false positives with Pydantic and MLflow
+check_untyped_defs = true
+no_implicit_optional = true
+strict_optional = true
+strict_equality = true
+strict_concatenate = true
+implicit_reexport = false
+warn_incomplete_stub = true
+show_error_codes = true
+pretty = true
+ignore_missing_imports = true      # Required for third-party libs without type stubs
+files = ["src/**/*.py"]
+
+[[tool.hatch.envs.hatch-test.matrix]]
+# This defines multiple variables you can generate combinations
+# to test underneath different environments.  A separate environment and
+# lock file will be created for every combination located in `./requirements/`
+python = ["3.12"]

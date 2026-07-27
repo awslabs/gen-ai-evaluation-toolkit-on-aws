@@ -1,0 +1,9 @@
+Name: {{ name }}
+{{#if value}}
+Value: {{#if value.stringValue}}{{value.stringValue}}{{/if}}{{#if value.numericValue}}{{value.numericValue}}{{/if}}
+{{/if}}
+{{#if comment}}
+Comment: {{ comment }}
+{{/if}}
+Annotated By: {{ annotatedBy }}
+Annotated At: {{formatDate annotatedAt}}

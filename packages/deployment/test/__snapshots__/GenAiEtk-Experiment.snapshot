@@ -1,0 +1,5974 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App stack GenAiEtk-Experiment should match snapshot 1`] = `
+{
+  "Description": "Stack for the GenAI Evaluation Toolkit: Experimentation",
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "CreateConfigurationLambda6B34C7B7": {
+      "DependsOn": [
+        "CreateConfigurationLambdaLogGroupServiceRoleDefaultPolicyCE76AAD3",
+        "CreateConfigurationLambdaLogGroupServiceRoleED679B4E",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Description": "Creates a new workflow configuration using the supplied workflow details.",
+        "Environment": {
+          "Variables": {
+            "S3_BUCKET_NAME": {
+              "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefExperimentConfigB5C2AFDD65D044A1",
+            },
+          },
+        },
+        "Handler": "index.createConfigurationLambda.lambdaHandler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "CreateConfigurationLambdaLogGroupEB11DCDB",
+          },
+        },
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "CreateConfigurationLambdaLogGroupServiceRoleED679B4E",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs22.x",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "Timeout": 29,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "CreateConfigurationLambdaSecurityGroupF0641574",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CreateConfigurationLambdaLogGroupEB11DCDB": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "CreateConfigurationLambdaLogGroupServiceRoleDefaultPolicyCE76AAD3": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "CreateConfigurationLambdaLogGroupEB11DCDB",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttExperimentConfigB5C2AFDDArn414CFB4B",
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttExperimentConfigB5C2AFDDArn414CFB4B",
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "CreateConfigurationLambdaLogGroupServiceRoleDefaultPolicyCE76AAD3",
+        "Roles": [
+          {
+            "Ref": "CreateConfigurationLambdaLogGroupServiceRoleED679B4E",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "CreateConfigurationLambdaLogGroupServiceRoleED679B4E": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into CreateConfiguration-Lambda-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "CreateConfigurationLambdaSecurityGroupF0641574": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkExperimentCreateConfigurationLambdaF9EF9983",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "CreateExperimentLambdaAC4269FA": {
+      "DependsOn": [
+        "CreateExperimentLambdaLogGroupServiceRoleDefaultPolicy88C00431",
+        "CreateExperimentLambdaLogGroupServiceRole8E992F2C",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Python 3.11 is required for compatibility with dependencies",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "x86_64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "MLFLOW_TRACKING_SERVER_ARN": {
+              "Fn::GetAtt": [
+                "MLFlowMLFlowTrackingServer2CF4B322",
+                "TrackingServerArn",
+              ],
+            },
+          },
+        },
+        "Handler": "experiment_lambda.api.create_experiment_lambda.handler",
+        "LoggingConfig": {
+          "LogFormat": "JSON",
+          "LogGroup": {
+            "Ref": "CreateExperimentLambdaLogGroup8C972896",
+          },
+        },
+        "MemorySize": 256,
+        "Role": {
+          "Fn::GetAtt": [
+            "CreateExperimentLambdaLogGroupServiceRole8E992F2C",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.12",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "Timeout": 29,
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "CreateExperimentLambdaSecurityGroup259FDC87",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CreateExperimentLambdaLogGroup8C972896": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "CreateExperimentLambdaLogGroupServiceRole8E992F2C": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into CreateExperiment-Lambda-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "CreateExperimentLambdaLogGroupServiceRoleDefaultPolicy88C00431": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "CreateExperimentLambdaLogGroup8C972896",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "sagemaker-mlflow:CreateExperiment",
+                "sagemaker-mlflow:DeleteExperiment",
+                "sagemaker-mlflow:RestoreExperiment",
+                "sagemaker-mlflow:UpdateExperiment",
+                "sagemaker-mlflow:SetTag",
+                "sagemaker-mlflow:SetExperimentTag",
+                "sagemaker-mlflow:DeleteTag",
+                "sagemaker-mlflow:LogParam",
+                "sagemaker-mlflow:GetExperiment",
+                "sagemaker-mlflow:GetExperimentByName",
+                "sagemaker-mlflow:SearchExperiments",
+                "sagemaker-mlflow:SearchRuns",
+                "sagemaker-mlflow:GetRun",
+                "sagemaker-mlflow:ListArtifacts",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "MLFlowMLFlowTrackingServer2CF4B322",
+                  "TrackingServerArn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "CreateExperimentLambdaLogGroupServiceRoleDefaultPolicy88C00431",
+        "Roles": [
+          {
+            "Ref": "CreateExperimentLambdaLogGroupServiceRole8E992F2C",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "CreateExperimentLambdaSecurityGroup259FDC87": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Python 3.11 is required for compatibility with dependencies",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkExperimentCreateExperimentLambda9BAC8DF2",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "DeleteExperimentLambdaAF38EB5C": {
+      "DependsOn": [
+        "DeleteExperimentLambdaLogGroupServiceRoleDefaultPolicyFFA7A477",
+        "DeleteExperimentLambdaLogGroupServiceRoleC9569A5F",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Python 3.11 is required for compatibility with dependencies",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "x86_64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "MLFLOW_TRACKING_SERVER_ARN": {
+              "Fn::GetAtt": [
+                "MLFlowMLFlowTrackingServer2CF4B322",
+                "TrackingServerArn",
+              ],
+            },
+          },
+        },
+        "Handler": "experiment_lambda.api.delete_experiment_lambda.handler",
+        "LoggingConfig": {
+          "LogFormat": "JSON",
+          "LogGroup": {
+            "Ref": "DeleteExperimentLambdaLogGroupF77110D8",
+          },
+        },
+        "MemorySize": 256,
+        "Role": {
+          "Fn::GetAtt": [
+            "DeleteExperimentLambdaLogGroupServiceRoleC9569A5F",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.12",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "Timeout": 29,
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "DeleteExperimentLambdaSecurityGroupC9987E61",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "DeleteExperimentLambdaLogGroupF77110D8": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "DeleteExperimentLambdaLogGroupServiceRoleC9569A5F": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into DeleteExperiment-Lambda-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "DeleteExperimentLambdaLogGroupServiceRoleDefaultPolicyFFA7A477": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "DeleteExperimentLambdaLogGroupF77110D8",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "sagemaker-mlflow:CreateExperiment",
+                "sagemaker-mlflow:DeleteExperiment",
+                "sagemaker-mlflow:RestoreExperiment",
+                "sagemaker-mlflow:UpdateExperiment",
+                "sagemaker-mlflow:SetTag",
+                "sagemaker-mlflow:SetExperimentTag",
+                "sagemaker-mlflow:DeleteTag",
+                "sagemaker-mlflow:LogParam",
+                "sagemaker-mlflow:GetExperiment",
+                "sagemaker-mlflow:GetExperimentByName",
+                "sagemaker-mlflow:SearchExperiments",
+                "sagemaker-mlflow:SearchRuns",
+                "sagemaker-mlflow:GetRun",
+                "sagemaker-mlflow:ListArtifacts",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "MLFlowMLFlowTrackingServer2CF4B322",
+                  "TrackingServerArn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "DeleteExperimentLambdaLogGroupServiceRoleDefaultPolicyFFA7A477",
+        "Roles": [
+          {
+            "Ref": "DeleteExperimentLambdaLogGroupServiceRoleC9569A5F",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "DeleteExperimentLambdaSecurityGroupC9987E61": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Python 3.11 is required for compatibility with dependencies",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkExperimentDeleteExperimentLambda892666BC",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "EvaluationRunMetricReportingEvaluationRunEndEventRuleForFinishedRun27D52CF2": {
+      "Properties": {
+        "Description": {
+          "Fn::Join": [
+            "",
+            [
+              "Rule to invoke ",
+              {
+                "Ref": "EvaluationRunMetricReportingEvaluationRunMetricReportingExperimentMetricReportingFunction860C9019",
+              },
+            ],
+          ],
+        },
+        "EventBusName": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefEventBus7B8748AA3BA3246C",
+        },
+        "EventPattern": {
+          "detail-type": [
+            "EvaluationRunFinishedEventType",
+          ],
+        },
+        "State": "ENABLED",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::GetAtt": [
+                "EvaluationRunMetricReportingEvaluationRunMetricReportingExperimentMetricReportingFunction860C9019",
+                "Arn",
+              ],
+            },
+            "Id": "Target0",
+          },
+        ],
+      },
+      "Type": "AWS::Events::Rule",
+    },
+    "EvaluationRunMetricReportingEvaluationRunEndEventRuleForFinishedRunAllowEventRuleGenAiEtkExperimentEvaluationRunMetricReportingEvaluationRunMetricReportingExperimentMetricReportingFunctionD2041F656F040975": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "EvaluationRunMetricReportingEvaluationRunMetricReportingExperimentMetricReportingFunction860C9019",
+            "Arn",
+          ],
+        },
+        "Principal": "events.amazonaws.com",
+        "SourceArn": {
+          "Fn::GetAtt": [
+            "EvaluationRunMetricReportingEvaluationRunEndEventRuleForFinishedRun27D52CF2",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "EvaluationRunMetricReportingEvaluationRunMetricReportingExperimentMetricReportingFunction860C9019": {
+      "DependsOn": [
+        "EvaluationRunMetricReportingEvaluationRunMetricReportingExperimentMetricReportingFunctionLogGroupServiceRoleDefaultPolicy87525202",
+        "EvaluationRunMetricReportingEvaluationRunMetricReportingExperimentMetricReportingFunctionLogGroupServiceRoleE6C4C5CD",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Python 3.11 is required for compatibility with dependencies",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "x86_64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "MLFLOW_TRACKING_SERVER_ARN": {
+              "Fn::GetAtt": [
+                "MLFlowMLFlowTrackingServer2CF4B322",
+                "TrackingServerArn",
+              ],
+            },
+          },
+        },
+        "Handler": "experiment_lambda.eventbridge.report_metrics_lambda.handler",
+        "LoggingConfig": {
+          "LogFormat": "JSON",
+          "LogGroup": {
+            "Ref": "EvaluationRunMetricReportingEvaluationRunMetricReportingExperimentMetricReportingFunctionLogGroupB39E5A61",
+          },
+        },
+        "MemorySize": 256,
+        "Role": {
+          "Fn::GetAtt": [
+            "EvaluationRunMetricReportingEvaluationRunMetricReportingExperimentMetricReportingFunctionLogGroupServiceRoleE6C4C5CD",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.12",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "Timeout": 15,
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "EvaluationRunMetricReportingEvaluationRunMetricReportingExperimentMetricReportingFunctionSecurityGroup32282EE0",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "EvaluationRunMetricReportingEvaluationRunMetricReportingExperimentMetricReportingFunctionLogGroupB39E5A61": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "EvaluationRunMetricReportingEvaluationRunMetricReportingExperimentMetricReportingFunctionLogGroupServiceRoleDefaultPolicy87525202": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "EvaluationRunMetricReportingEvaluationRunMetricReportingExperimentMetricReportingFunctionLogGroupB39E5A61",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "sagemaker-mlflow:LogMetric",
+                "sagemaker-mlflow:GetExperimentByName",
+                "sagemaker-mlflow:GetRun",
+                "sagemaker-mlflow:UpdateRun",
+                "sagemaker-mlflow:SearchRuns",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "MLFlowMLFlowTrackingServer2CF4B322",
+                  "TrackingServerArn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "valuationRunMetricReportingEvaluationRunMetricReportingExperimentMetricReportingFunctionLogGroupServiceRoleDefaultPolicy87525202",
+        "Roles": [
+          {
+            "Ref": "EvaluationRunMetricReportingEvaluationRunMetricReportingExperimentMetricReportingFunctionLogGroupServiceRoleE6C4C5CD",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "EvaluationRunMetricReportingEvaluationRunMetricReportingExperimentMetricReportingFunctionLogGroupServiceRoleE6C4C5CD": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into EvaluationRunMetricReporting-ExperimentMetricReportingFunction-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "EvaluationRunMetricReportingEvaluationRunMetricReportingExperimentMetricReportingFunctionSecurityGroup32282EE0": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Python 3.11 is required for compatibility with dependencies",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkExperimentEvaluationRunMetricReportingEvaluationRunMetricReportingExperimentMetricReportingFunctionD2041F65",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "EvaluationRunParamReportingEvaluationRunStartEventRuleA1C03963": {
+      "Properties": {
+        "Description": {
+          "Fn::Join": [
+            "",
+            [
+              "Rule to invoke ",
+              {
+                "Ref": "EvaluationRunParamReportingExperimentReportFunction2B666809",
+              },
+            ],
+          ],
+        },
+        "EventBusName": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefEventBus7B8748AA3BA3246C",
+        },
+        "EventPattern": {
+          "detail-type": [
+            "EvaluationRunStartEventType",
+          ],
+        },
+        "State": "ENABLED",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::GetAtt": [
+                "EvaluationRunParamReportingExperimentReportFunction2B666809",
+                "Arn",
+              ],
+            },
+            "Id": "Target0",
+          },
+        ],
+      },
+      "Type": "AWS::Events::Rule",
+    },
+    "EvaluationRunParamReportingEvaluationRunStartEventRuleAllowEventRuleGenAiEtkExperimentEvaluationRunParamReportingExperimentReportFunctionF46853612701AF93": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "EvaluationRunParamReportingExperimentReportFunction2B666809",
+            "Arn",
+          ],
+        },
+        "Principal": "events.amazonaws.com",
+        "SourceArn": {
+          "Fn::GetAtt": [
+            "EvaluationRunParamReportingEvaluationRunStartEventRuleA1C03963",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "EvaluationRunParamReportingExperimentReportFunction2B666809": {
+      "DependsOn": [
+        "EvaluationRunParamReportingExperimentReportFunctionLogGroupServiceRoleDefaultPolicy8450EC30",
+        "EvaluationRunParamReportingExperimentReportFunctionLogGroupServiceRoleA8AF2FD5",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Python 3.11 is required for compatibility with dependencies",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "x86_64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "MLFLOW_TRACKING_SERVER_ARN": {
+              "Fn::GetAtt": [
+                "MLFlowMLFlowTrackingServer2CF4B322",
+                "TrackingServerArn",
+              ],
+            },
+          },
+        },
+        "Handler": "experiment_lambda.eventbridge.report_configuration_lambda.handler",
+        "LoggingConfig": {
+          "LogFormat": "JSON",
+          "LogGroup": {
+            "Ref": "EvaluationRunParamReportingExperimentReportFunctionLogGroup91FBF0D7",
+          },
+        },
+        "MemorySize": 256,
+        "Role": {
+          "Fn::GetAtt": [
+            "EvaluationRunParamReportingExperimentReportFunctionLogGroupServiceRoleA8AF2FD5",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.12",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "Timeout": 15,
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "EvaluationRunParamReportingExperimentReportFunctionSecurityGroup48045A8C",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "EvaluationRunParamReportingExperimentReportFunctionLogGroup91FBF0D7": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "EvaluationRunParamReportingExperimentReportFunctionLogGroupServiceRoleA8AF2FD5": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into ExperimentReportFunction-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "EvaluationRunParamReportingExperimentReportFunctionLogGroupServiceRoleDefaultPolicy8450EC30": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "EvaluationRunParamReportingExperimentReportFunctionLogGroup91FBF0D7",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "sagemaker-mlflow:CreateRun",
+                "sagemaker-mlflow:GetExperiment",
+                "sagemaker-mlflow:LogParam",
+                "sagemaker-mlflow:LogMetric",
+                "sagemaker-mlflow:GetExperimentByName",
+                "sagemaker-mlflow:GetRun",
+                "sagemaker-mlflow:UpdateRun",
+                "sagemaker-mlflow:LogBatch",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "MLFlowMLFlowTrackingServer2CF4B322",
+                  "TrackingServerArn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "EvaluationRunParamReportingExperimentReportFunctionLogGroupServiceRoleDefaultPolicy8450EC30",
+        "Roles": [
+          {
+            "Ref": "EvaluationRunParamReportingExperimentReportFunctionLogGroupServiceRoleA8AF2FD5",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "EvaluationRunParamReportingExperimentReportFunctionSecurityGroup48045A8C": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Python 3.11 is required for compatibility with dependencies",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkExperimentEvaluationRunParamReportingExperimentReportFunctionF4685361",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "EvaluationRunTerminationEvaluationRunEndEventRuleForFailedRun9038A244": {
+      "Properties": {
+        "Description": {
+          "Fn::Join": [
+            "",
+            [
+              "Rule to invoke ",
+              {
+                "Ref": "EvaluationRunTerminationExperimentRunTerminationFunction747359CB",
+              },
+            ],
+          ],
+        },
+        "EventBusName": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefEventBus7B8748AA3BA3246C",
+        },
+        "EventPattern": {
+          "detail-type": [
+            "EvaluationRunFailedEventType",
+          ],
+        },
+        "State": "ENABLED",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::GetAtt": [
+                "EvaluationRunTerminationExperimentRunTerminationFunction747359CB",
+                "Arn",
+              ],
+            },
+            "Id": "Target0",
+          },
+        ],
+      },
+      "Type": "AWS::Events::Rule",
+    },
+    "EvaluationRunTerminationEvaluationRunEndEventRuleForFailedRunAllowEventRuleGenAiEtkExperimentEvaluationRunTerminationExperimentRunTerminationFunction116378A79B85E62A": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "EvaluationRunTerminationExperimentRunTerminationFunction747359CB",
+            "Arn",
+          ],
+        },
+        "Principal": "events.amazonaws.com",
+        "SourceArn": {
+          "Fn::GetAtt": [
+            "EvaluationRunTerminationEvaluationRunEndEventRuleForFailedRun9038A244",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "EvaluationRunTerminationExperimentRunTerminationFunction747359CB": {
+      "DependsOn": [
+        "EvaluationRunTerminationExperimentRunTerminationFunctionLogGroupServiceRoleDefaultPolicy40F829C3",
+        "EvaluationRunTerminationExperimentRunTerminationFunctionLogGroupServiceRoleA844D4B7",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Python 3.11 is required for compatibility with dependencies",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "x86_64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "MLFLOW_TRACKING_SERVER_ARN": {
+              "Fn::GetAtt": [
+                "MLFlowMLFlowTrackingServer2CF4B322",
+                "TrackingServerArn",
+              ],
+            },
+          },
+        },
+        "Handler": "experiment_lambda.eventbridge.terminate_run_handler.handler",
+        "LoggingConfig": {
+          "LogFormat": "JSON",
+          "LogGroup": {
+            "Ref": "EvaluationRunTerminationExperimentRunTerminationFunctionLogGroup57D276E7",
+          },
+        },
+        "MemorySize": 256,
+        "Role": {
+          "Fn::GetAtt": [
+            "EvaluationRunTerminationExperimentRunTerminationFunctionLogGroupServiceRoleA844D4B7",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.12",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "Timeout": 15,
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "EvaluationRunTerminationExperimentRunTerminationFunctionSecurityGroupD7CE5E54",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "EvaluationRunTerminationExperimentRunTerminationFunctionLogGroup57D276E7": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "EvaluationRunTerminationExperimentRunTerminationFunctionLogGroupServiceRoleA844D4B7": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into ExperimentRunTerminationFunction-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "EvaluationRunTerminationExperimentRunTerminationFunctionLogGroupServiceRoleDefaultPolicy40F829C3": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "EvaluationRunTerminationExperimentRunTerminationFunctionLogGroup57D276E7",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "sagemaker-mlflow:GetExperimentByName",
+                "sagemaker-mlflow:GetRun",
+                "sagemaker-mlflow:UpdateRun",
+                "sagemaker-mlflow:SearchRuns",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "MLFlowMLFlowTrackingServer2CF4B322",
+                  "TrackingServerArn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "EvaluationRunTerminationExperimentRunTerminationFunctionLogGroupServiceRoleDefaultPolicy40F829C3",
+        "Roles": [
+          {
+            "Ref": "EvaluationRunTerminationExperimentRunTerminationFunctionLogGroupServiceRoleA844D4B7",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "EvaluationRunTerminationExperimentRunTerminationFunctionSecurityGroupD7CE5E54": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Python 3.11 is required for compatibility with dependencies",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkExperimentEvaluationRunTerminationExperimentRunTerminationFunction116378A7",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "GetConfigurationLambdaDA873EF5": {
+      "DependsOn": [
+        "GetConfigurationLambdaLogGroupServiceRoleDefaultPolicy8187E228",
+        "GetConfigurationLambdaLogGroupServiceRole9DC622DA",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Description": "Gets the details of the requested workflow configuration.",
+        "Environment": {
+          "Variables": {
+            "S3_BUCKET_NAME": {
+              "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefExperimentConfigB5C2AFDD65D044A1",
+            },
+          },
+        },
+        "Handler": "index.getConfigurationLambda.lambdaHandler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "GetConfigurationLambdaLogGroup305A6F8C",
+          },
+        },
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "GetConfigurationLambdaLogGroupServiceRole9DC622DA",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs22.x",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "Timeout": 29,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "GetConfigurationLambdaSecurityGroup0A70AA86",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "GetConfigurationLambdaLogGroup305A6F8C": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "GetConfigurationLambdaLogGroupServiceRole9DC622DA": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into GetConfiguration-Lambda-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "GetConfigurationLambdaLogGroupServiceRoleDefaultPolicy8187E228": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "GetConfigurationLambdaLogGroup305A6F8C",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttExperimentConfigB5C2AFDDArn414CFB4B",
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttExperimentConfigB5C2AFDDArn414CFB4B",
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "GetConfigurationLambdaLogGroupServiceRoleDefaultPolicy8187E228",
+        "Roles": [
+          {
+            "Ref": "GetConfigurationLambdaLogGroupServiceRole9DC622DA",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "GetConfigurationLambdaSecurityGroup0A70AA86": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkExperimentGetConfigurationLambdaB99D7BFD",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "GetExperimentLambda35139705": {
+      "DependsOn": [
+        "GetExperimentLambdaLogGroupServiceRoleDefaultPolicyAA165F1A",
+        "GetExperimentLambdaLogGroupServiceRoleB2EAC2FF",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Python 3.11 is required for compatibility with dependencies",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "x86_64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "MLFLOW_TRACKING_SERVER_ARN": {
+              "Fn::GetAtt": [
+                "MLFlowMLFlowTrackingServer2CF4B322",
+                "TrackingServerArn",
+              ],
+            },
+          },
+        },
+        "Handler": "experiment_lambda.api.get_experiment_lambda.handler",
+        "LoggingConfig": {
+          "LogFormat": "JSON",
+          "LogGroup": {
+            "Ref": "GetExperimentLambdaLogGroup6EF1A130",
+          },
+        },
+        "MemorySize": 256,
+        "Role": {
+          "Fn::GetAtt": [
+            "GetExperimentLambdaLogGroupServiceRoleB2EAC2FF",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.12",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "Timeout": 29,
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "GetExperimentLambdaSecurityGroup393B8BF3",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "GetExperimentLambdaLogGroup6EF1A130": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "GetExperimentLambdaLogGroupServiceRoleB2EAC2FF": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into GetExperiment-Lambda-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "GetExperimentLambdaLogGroupServiceRoleDefaultPolicyAA165F1A": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "GetExperimentLambdaLogGroup6EF1A130",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "sagemaker-mlflow:GetExperiment",
+                "sagemaker-mlflow:GetExperimentByName",
+                "sagemaker-mlflow:SearchExperiments",
+                "sagemaker-mlflow:SearchRuns",
+                "sagemaker-mlflow:GetRun",
+                "sagemaker-mlflow:ListArtifacts",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "MLFlowMLFlowTrackingServer2CF4B322",
+                  "TrackingServerArn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "GetExperimentLambdaLogGroupServiceRoleDefaultPolicyAA165F1A",
+        "Roles": [
+          {
+            "Ref": "GetExperimentLambdaLogGroupServiceRoleB2EAC2FF",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "GetExperimentLambdaSecurityGroup393B8BF3": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Python 3.11 is required for compatibility with dependencies",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkExperimentGetExperimentLambdaBB556311",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "ListConfigurationsLambda556F3D31": {
+      "DependsOn": [
+        "ListConfigurationsLambdaLogGroupServiceRoleDefaultPolicy6AA3C85B",
+        "ListConfigurationsLambdaLogGroupServiceRoleF22840F0",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Description": "Lists workflow configurations",
+        "Environment": {
+          "Variables": {
+            "S3_BUCKET_NAME": {
+              "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefExperimentConfigB5C2AFDD65D044A1",
+            },
+          },
+        },
+        "Handler": "index.listConfigurationsLambda.lambdaHandler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "ListConfigurationsLambdaLogGroupA65B3FD8",
+          },
+        },
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "ListConfigurationsLambdaLogGroupServiceRoleF22840F0",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs22.x",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "Timeout": 29,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "ListConfigurationsLambdaSecurityGroup247AA268",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "ListConfigurationsLambdaLogGroupA65B3FD8": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "ListConfigurationsLambdaLogGroupServiceRoleDefaultPolicy6AA3C85B": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "ListConfigurationsLambdaLogGroupA65B3FD8",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttExperimentConfigB5C2AFDDArn414CFB4B",
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttExperimentConfigB5C2AFDDArn414CFB4B",
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "ListConfigurationsLambdaLogGroupServiceRoleDefaultPolicy6AA3C85B",
+        "Roles": [
+          {
+            "Ref": "ListConfigurationsLambdaLogGroupServiceRoleF22840F0",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "ListConfigurationsLambdaLogGroupServiceRoleF22840F0": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into ListConfigurations-Lambda-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ListConfigurationsLambdaSecurityGroup247AA268": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkExperimentListConfigurationsLambdaF4AA3ADD",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "ListExperimentOutputsLambda27D71F0F": {
+      "DependsOn": [
+        "ListExperimentOutputsLambdaLogGroupServiceRoleDefaultPolicyDCB94EC5",
+        "ListExperimentOutputsLambdaLogGroupServiceRoleBA7EA9EF",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Python 3.11 is required for compatibility with dependencies",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "x86_64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "MLFLOW_TRACKING_SERVER_ARN": {
+              "Fn::GetAtt": [
+                "MLFlowMLFlowTrackingServer2CF4B322",
+                "TrackingServerArn",
+              ],
+            },
+          },
+        },
+        "Handler": "experiment_lambda.api.list_experiment_outputs_lambda.handler",
+        "LoggingConfig": {
+          "LogFormat": "JSON",
+          "LogGroup": {
+            "Ref": "ListExperimentOutputsLambdaLogGroupBBAEB19B",
+          },
+        },
+        "MemorySize": 256,
+        "Role": {
+          "Fn::GetAtt": [
+            "ListExperimentOutputsLambdaLogGroupServiceRoleBA7EA9EF",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.12",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "Timeout": 29,
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "ListExperimentOutputsLambdaSecurityGroup4F623DA9",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "ListExperimentOutputsLambdaLogGroupBBAEB19B": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "ListExperimentOutputsLambdaLogGroupServiceRoleBA7EA9EF": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into ListExperimentOutputs-Lambda-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ListExperimentOutputsLambdaLogGroupServiceRoleDefaultPolicyDCB94EC5": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "ListExperimentOutputsLambdaLogGroupBBAEB19B",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "sagemaker-mlflow:GetExperiment",
+                "sagemaker-mlflow:GetExperimentByName",
+                "sagemaker-mlflow:SearchExperiments",
+                "sagemaker-mlflow:SearchRuns",
+                "sagemaker-mlflow:GetRun",
+                "sagemaker-mlflow:ListArtifacts",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "MLFlowMLFlowTrackingServer2CF4B322",
+                  "TrackingServerArn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "ListExperimentOutputsLambdaLogGroupServiceRoleDefaultPolicyDCB94EC5",
+        "Roles": [
+          {
+            "Ref": "ListExperimentOutputsLambdaLogGroupServiceRoleBA7EA9EF",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "ListExperimentOutputsLambdaSecurityGroup4F623DA9": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Python 3.11 is required for compatibility with dependencies",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkExperimentListExperimentOutputsLambda4A3308EA",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "ListExperimentsLambda61CA5829": {
+      "DependsOn": [
+        "ListExperimentsLambdaLogGroupServiceRoleDefaultPolicyC37D227C",
+        "ListExperimentsLambdaLogGroupServiceRoleBCAB79D7",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Python 3.11 is required for compatibility with dependencies",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "x86_64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "MLFLOW_TRACKING_SERVER_ARN": {
+              "Fn::GetAtt": [
+                "MLFlowMLFlowTrackingServer2CF4B322",
+                "TrackingServerArn",
+              ],
+            },
+          },
+        },
+        "Handler": "experiment_lambda.api.list_experiments_lambda.handler",
+        "LoggingConfig": {
+          "LogFormat": "JSON",
+          "LogGroup": {
+            "Ref": "ListExperimentsLambdaLogGroupDEFAFDFC",
+          },
+        },
+        "MemorySize": 256,
+        "Role": {
+          "Fn::GetAtt": [
+            "ListExperimentsLambdaLogGroupServiceRoleBCAB79D7",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.12",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "Timeout": 29,
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "ListExperimentsLambdaSecurityGroup366F5022",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "ListExperimentsLambdaLogGroupDEFAFDFC": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "ListExperimentsLambdaLogGroupServiceRoleBCAB79D7": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into ListExperiments-Lambda-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ListExperimentsLambdaLogGroupServiceRoleDefaultPolicyC37D227C": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "ListExperimentsLambdaLogGroupDEFAFDFC",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "sagemaker-mlflow:GetExperiment",
+                "sagemaker-mlflow:GetExperimentByName",
+                "sagemaker-mlflow:SearchExperiments",
+                "sagemaker-mlflow:SearchRuns",
+                "sagemaker-mlflow:GetRun",
+                "sagemaker-mlflow:ListArtifacts",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "MLFlowMLFlowTrackingServer2CF4B322",
+                  "TrackingServerArn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "ListExperimentsLambdaLogGroupServiceRoleDefaultPolicyC37D227C",
+        "Roles": [
+          {
+            "Ref": "ListExperimentsLambdaLogGroupServiceRoleBCAB79D7",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "ListExperimentsLambdaSecurityGroup366F5022": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Python 3.11 is required for compatibility with dependencies",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkExperimentListExperimentsLambda1B4C3525",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "MLFlowMLFlowRole40BAE08B": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "MLflow requires wildcard S3 permissions for artifact storage",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "sagemaker.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "MLFlowMLFlowRoleDefaultPolicy27970F8C": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "MLflow requires wildcard S3 permissions for artifact storage",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttExperimentArtifactStore87DC89D4Arn6F2BDBEE",
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttExperimentArtifactStore87DC89D4Arn6F2BDBEE",
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "MLFlowMLFlowRoleDefaultPolicy27970F8C",
+        "Roles": [
+          {
+            "Ref": "MLFlowMLFlowRole40BAE08B",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "MLFlowMLFlowTrackingServer2CF4B322": {
+      "Properties": {
+        "ArtifactStoreUri": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefExperimentArtifactStore87DC89D49574724C",
+              },
+            ],
+          ],
+        },
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "MLFlowMLFlowRole40BAE08B",
+            "Arn",
+          ],
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "TrackingServerName": "GenAiEvaluationToolkitMLFlow",
+      },
+      "Type": "AWS::SageMaker::MlflowTrackingServer",
+    },
+    "PublicRestApiApiPermissionApiScopedGenAiEtkExperimentCreateConfigurationLambdaF9EF9983GenAiEtkExperimentPublicRestApiBEE2EE39DEC91DB1": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "CreateConfigurationLambda6B34C7B7",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+              },
+              "/*/*/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PublicRestApiApiPermissionApiScopedGenAiEtkExperimentCreateExperimentLambda9BAC8DF2GenAiEtkExperimentPublicRestApiBEE2EE397F8D8B45": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "CreateExperimentLambdaAC4269FA",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+              },
+              "/*/*/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PublicRestApiApiPermissionApiScopedGenAiEtkExperimentDeleteExperimentLambda892666BCGenAiEtkExperimentPublicRestApiBEE2EE398EB17670": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "DeleteExperimentLambdaAF38EB5C",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+              },
+              "/*/*/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PublicRestApiApiPermissionApiScopedGenAiEtkExperimentGetConfigurationLambdaB99D7BFDGenAiEtkExperimentPublicRestApiBEE2EE39D56A6E0A": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "GetConfigurationLambdaDA873EF5",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+              },
+              "/*/*/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PublicRestApiApiPermissionApiScopedGenAiEtkExperimentGetExperimentLambdaBB556311GenAiEtkExperimentPublicRestApiBEE2EE39B25C82A2": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "GetExperimentLambda35139705",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+              },
+              "/*/*/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PublicRestApiApiPermissionApiScopedGenAiEtkExperimentListConfigurationsLambdaF4AA3ADDGenAiEtkExperimentPublicRestApiBEE2EE392B650BD4": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ListConfigurationsLambda556F3D31",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+              },
+              "/*/*/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PublicRestApiApiPermissionApiScopedGenAiEtkExperimentListExperimentOutputsLambda4A3308EAGenAiEtkExperimentPublicRestApiBEE2EE394B5FBD35": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ListExperimentOutputsLambda27D71F0F",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+              },
+              "/*/*/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PublicRestApiApiPermissionApiScopedGenAiEtkExperimentListExperimentsLambda1B4C3525GenAiEtkExperimentPublicRestApiBEE2EE39364FE247": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ListExperimentsLambda61CA5829",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+              },
+              "/*/*/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PublicRestApiApiPermissionApiScopedGenAiEtkExperimentUpdateConfigurationLambdaC9091BFCGenAiEtkExperimentPublicRestApiBEE2EE39B321D6F6": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "UpdateConfigurationLambda6C5D329E",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+              },
+              "/*/*/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PublicRestApiApiPermissionApiScopedGenAiEtkExperimentUpdateExperimentLambda9C45834DGenAiEtkExperimentPublicRestApiBEE2EE39FBB043B6": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "UpdateExperimentLambdaE3D8FBD6",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+              },
+              "/*/*/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "PublicRestApiconfigurations3FDFCE38": {
+      "Properties": {
+        "ParentId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttApiGatewayPublicRestApi84E6979ARootResourceId9CDEA49F",
+        },
+        "PathPart": "configurations",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "PublicRestApiconfigurationsPOST7041CEC6": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW uses IAM auth, not Cognito.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "POST",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "CreateConfigurationLambda6B34C7B7",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "PublicRestApiconfigurations3FDFCE38",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PublicRestApiconfigurationsPUTC638D5AA": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW uses IAM auth, not Cognito.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "PUT",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "UpdateConfigurationLambda6C5D329E",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "PublicRestApiconfigurations3FDFCE38",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PublicRestApiconfigurationslistDFA38C03": {
+      "Properties": {
+        "ParentId": {
+          "Ref": "PublicRestApiconfigurations3FDFCE38",
+        },
+        "PathPart": "list",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "PublicRestApiconfigurationslistPOSTA6B877E6": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW uses IAM auth, not Cognito.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "POST",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "ListConfigurationsLambda556F3D31",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "PublicRestApiconfigurationslistDFA38C03",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PublicRestApiconfigurationsnameC360A5A6": {
+      "Properties": {
+        "ParentId": {
+          "Ref": "PublicRestApiconfigurations3FDFCE38",
+        },
+        "PathPart": "{name}",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "PublicRestApiconfigurationsnameGET7356D696": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW uses IAM auth, not Cognito.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "GET",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "GetConfigurationLambdaDA873EF5",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "PublicRestApiconfigurationsnameC360A5A6",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PublicRestApiexperiments57EF462F": {
+      "Properties": {
+        "ParentId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttApiGatewayPublicRestApi84E6979ARootResourceId9CDEA49F",
+        },
+        "PathPart": "experiments",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "PublicRestApiexperimentsPOSTD93CDA64": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW uses IAM auth, not Cognito.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "POST",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "CreateExperimentLambdaAC4269FA",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "PublicRestApiexperiments57EF462F",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PublicRestApiexperimentslist830D4954": {
+      "Properties": {
+        "ParentId": {
+          "Ref": "PublicRestApiexperiments57EF462F",
+        },
+        "PathPart": "list",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "PublicRestApiexperimentslistPOST5539CB3D": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW uses IAM auth, not Cognito.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "POST",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "ListExperimentsLambda61CA5829",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "PublicRestApiexperimentslist830D4954",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PublicRestApiexperimentsname8D550582": {
+      "Properties": {
+        "ParentId": {
+          "Ref": "PublicRestApiexperiments57EF462F",
+        },
+        "PathPart": "{name}",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "PublicRestApiexperimentsnameDELETE4E0D2E60": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW uses IAM auth, not Cognito.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "DELETE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "DeleteExperimentLambdaAF38EB5C",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "PublicRestApiexperimentsname8D550582",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PublicRestApiexperimentsnameGETCC8F3414": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW uses IAM auth, not Cognito.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "GET",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "GetExperimentLambda35139705",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "PublicRestApiexperimentsname8D550582",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PublicRestApiexperimentsnamePATCH4541F3F4": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW uses IAM auth, not Cognito.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "PATCH",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "UpdateExperimentLambdaE3D8FBD6",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "PublicRestApiexperimentsname8D550582",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "PublicRestApiexperimentsnameoutputs1D460C90": {
+      "Properties": {
+        "ParentId": {
+          "Ref": "PublicRestApiexperimentsname8D550582",
+        },
+        "PathPart": "outputs",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "PublicRestApiexperimentsnameoutputsPOST027D3370": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW uses IAM auth, not Cognito.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "POST",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "ListExperimentOutputsLambda27D71F0F",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "PublicRestApiexperimentsnameoutputs1D460C90",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayPublicRestApi84E6979ADCBEDAC3",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RestApiconfigurations63F04558": {
+      "Properties": {
+        "ParentId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttApiGatewayRestApi7538854BRootResourceId63E518C2",
+        },
+        "PathPart": "configurations",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RestApiconfigurationsPOSTApiPermissionGenAiEtkExperimentRestApi6BFFB827POSTconfigurations21F0146F": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "CreateConfigurationLambda6B34C7B7",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/*/POST/configurations",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApiconfigurationsPOSTApiPermissionTestGenAiEtkExperimentRestApi6BFFB827POSTconfigurations399AE6C1": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "CreateConfigurationLambda6B34C7B7",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/test-invoke-stage/POST/configurations",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApiconfigurationsPOSTC82D333B": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "POST",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "CreateConfigurationLambda6B34C7B7",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RestApiconfigurations63F04558",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RestApiconfigurationsPUT1F9FBCA7": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "PUT",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "UpdateConfigurationLambda6C5D329E",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RestApiconfigurations63F04558",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RestApiconfigurationsPUTApiPermissionGenAiEtkExperimentRestApi6BFFB827PUTconfigurationsF4BD4C86": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "UpdateConfigurationLambda6C5D329E",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/*/PUT/configurations",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApiconfigurationsPUTApiPermissionTestGenAiEtkExperimentRestApi6BFFB827PUTconfigurationsB15AD4FC": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "UpdateConfigurationLambda6C5D329E",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/test-invoke-stage/PUT/configurations",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApiconfigurationslist9BEBDFD8": {
+      "Properties": {
+        "ParentId": {
+          "Ref": "RestApiconfigurations63F04558",
+        },
+        "PathPart": "list",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RestApiconfigurationslistPOST46335F37": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "POST",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "ListConfigurationsLambda556F3D31",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RestApiconfigurationslist9BEBDFD8",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RestApiconfigurationslistPOSTApiPermissionGenAiEtkExperimentRestApi6BFFB827POSTconfigurationslistE98BEA60": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ListConfigurationsLambda556F3D31",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/*/POST/configurations/list",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApiconfigurationslistPOSTApiPermissionTestGenAiEtkExperimentRestApi6BFFB827POSTconfigurationslistB9754DC1": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ListConfigurationsLambda556F3D31",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/test-invoke-stage/POST/configurations/list",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApiconfigurationsnameB8136E89": {
+      "Properties": {
+        "ParentId": {
+          "Ref": "RestApiconfigurations63F04558",
+        },
+        "PathPart": "{name}",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RestApiconfigurationsnameGET8B2C1765": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "GET",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "GetConfigurationLambdaDA873EF5",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RestApiconfigurationsnameB8136E89",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RestApiconfigurationsnameGETApiPermissionGenAiEtkExperimentRestApi6BFFB827GETconfigurationsname6DF41E79": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "GetConfigurationLambdaDA873EF5",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/*/GET/configurations/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApiconfigurationsnameGETApiPermissionTestGenAiEtkExperimentRestApi6BFFB827GETconfigurationsnameAD9BE6FD": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "GetConfigurationLambdaDA873EF5",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/test-invoke-stage/GET/configurations/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApiexperimentsC2BC4881": {
+      "Properties": {
+        "ParentId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttApiGatewayRestApi7538854BRootResourceId63E518C2",
+        },
+        "PathPart": "experiments",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RestApiexperimentsPOST1E94E46D": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "POST",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "CreateExperimentLambdaAC4269FA",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RestApiexperimentsC2BC4881",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RestApiexperimentsPOSTApiPermissionGenAiEtkExperimentRestApi6BFFB827POSTexperiments35276E77": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "CreateExperimentLambdaAC4269FA",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/*/POST/experiments",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApiexperimentsPOSTApiPermissionTestGenAiEtkExperimentRestApi6BFFB827POSTexperimentsE2271F3E": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "CreateExperimentLambdaAC4269FA",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/test-invoke-stage/POST/experiments",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApiexperimentslist0F8A7D42": {
+      "Properties": {
+        "ParentId": {
+          "Ref": "RestApiexperimentsC2BC4881",
+        },
+        "PathPart": "list",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RestApiexperimentslistPOST79066E76": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "POST",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "ListExperimentsLambda61CA5829",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RestApiexperimentslist0F8A7D42",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RestApiexperimentslistPOSTApiPermissionGenAiEtkExperimentRestApi6BFFB827POSTexperimentslist1E4718D9": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ListExperimentsLambda61CA5829",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/*/POST/experiments/list",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApiexperimentslistPOSTApiPermissionTestGenAiEtkExperimentRestApi6BFFB827POSTexperimentslist49E20BE5": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ListExperimentsLambda61CA5829",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/test-invoke-stage/POST/experiments/list",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApiexperimentsname3001564D": {
+      "Properties": {
+        "ParentId": {
+          "Ref": "RestApiexperimentsC2BC4881",
+        },
+        "PathPart": "{name}",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RestApiexperimentsnameDELETE48F48DAF": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "DELETE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "DeleteExperimentLambdaAF38EB5C",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RestApiexperimentsname3001564D",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RestApiexperimentsnameDELETEApiPermissionGenAiEtkExperimentRestApi6BFFB827DELETEexperimentsname1C11766D": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "DeleteExperimentLambdaAF38EB5C",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/*/DELETE/experiments/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApiexperimentsnameDELETEApiPermissionTestGenAiEtkExperimentRestApi6BFFB827DELETEexperimentsname1EE21B34": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "DeleteExperimentLambdaAF38EB5C",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/test-invoke-stage/DELETE/experiments/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApiexperimentsnameGET405FDCA5": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "GET",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "GetExperimentLambda35139705",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RestApiexperimentsname3001564D",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RestApiexperimentsnameGETApiPermissionGenAiEtkExperimentRestApi6BFFB827GETexperimentsname72771ED3": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "GetExperimentLambda35139705",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/*/GET/experiments/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApiexperimentsnameGETApiPermissionTestGenAiEtkExperimentRestApi6BFFB827GETexperimentsname3EF1A401": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "GetExperimentLambda35139705",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/test-invoke-stage/GET/experiments/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApiexperimentsnamePATCH11630E23": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "PATCH",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "UpdateExperimentLambdaE3D8FBD6",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RestApiexperimentsname3001564D",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RestApiexperimentsnamePATCHApiPermissionGenAiEtkExperimentRestApi6BFFB827PATCHexperimentsname934ACE4C": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "UpdateExperimentLambdaE3D8FBD6",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/*/PATCH/experiments/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApiexperimentsnamePATCHApiPermissionTestGenAiEtkExperimentRestApi6BFFB827PATCHexperimentsnameBA9E8F1D": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "UpdateExperimentLambdaE3D8FBD6",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/test-invoke-stage/PATCH/experiments/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApiexperimentsnameoutputs1FE5CBB8": {
+      "Properties": {
+        "ParentId": {
+          "Ref": "RestApiexperimentsname3001564D",
+        },
+        "PathPart": "outputs",
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RestApiexperimentsnameoutputsPOST274C9E24": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "POST",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "ListExperimentOutputsLambda27D71F0F",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RestApiexperimentsnameoutputs1FE5CBB8",
+        },
+        "RestApiId": {
+          "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RestApiexperimentsnameoutputsPOSTApiPermissionGenAiEtkExperimentRestApi6BFFB827POSTexperimentsnameoutputs27FE0B40": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ListExperimentOutputsLambda27D71F0F",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/*/POST/experiments/*/outputs",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RestApiexperimentsnameoutputsPOSTApiPermissionTestGenAiEtkExperimentRestApi6BFFB827POSTexperimentsnameoutputsB8251DF2": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-COG4",
+              "reason": "API GW is located behind a customer facing API GW with Resource Policies enabled. No need for Cognito user pool authorizer.",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ListExperimentOutputsLambda27D71F0F",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefApiGatewayRestApi7538854BDA8E47F0",
+              },
+              "/test-invoke-stage/POST/experiments/*/outputs",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "UpdateConfigurationLambda6C5D329E": {
+      "DependsOn": [
+        "UpdateConfigurationLambdaLogGroupServiceRoleDefaultPolicy92EDD5E8",
+        "UpdateConfigurationLambdaLogGroupServiceRole271707FE",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Description": "Updates the supplied workflow configuration.",
+        "Environment": {
+          "Variables": {
+            "S3_BUCKET_NAME": {
+              "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputRefExperimentConfigB5C2AFDD65D044A1",
+            },
+          },
+        },
+        "Handler": "index.updateConfigurationLambda.lambdaHandler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "UpdateConfigurationLambdaLogGroup98B07A0C",
+          },
+        },
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "UpdateConfigurationLambdaLogGroupServiceRole271707FE",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs22.x",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "Timeout": 29,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "UpdateConfigurationLambdaSecurityGroup45E32ADF",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "UpdateConfigurationLambdaLogGroup98B07A0C": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "UpdateConfigurationLambdaLogGroupServiceRole271707FE": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into UpdateConfiguration-Lambda-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "UpdateConfigurationLambdaLogGroupServiceRoleDefaultPolicy92EDD5E8": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "UpdateConfigurationLambdaLogGroup98B07A0C",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttExperimentConfigB5C2AFDDArn414CFB4B",
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::ImportValue": "GenAiEtk-Base:ExportsOutputFnGetAttExperimentConfigB5C2AFDDArn414CFB4B",
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "UpdateConfigurationLambdaLogGroupServiceRoleDefaultPolicy92EDD5E8",
+        "Roles": [
+          {
+            "Ref": "UpdateConfigurationLambdaLogGroupServiceRole271707FE",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "UpdateConfigurationLambdaSecurityGroup45E32ADF": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Using latest Node.js LTS version (22.x)",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkExperimentUpdateConfigurationLambdaC9091BFC",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "UpdateExperimentLambdaE3D8FBD6": {
+      "DependsOn": [
+        "UpdateExperimentLambdaLogGroupServiceRoleDefaultPolicy4933D05E",
+        "UpdateExperimentLambdaLogGroupServiceRole80A54909",
+      ],
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Python 3.11 is required for compatibility with dependencies",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "Architectures": [
+          "x86_64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "MLFLOW_TRACKING_SERVER_ARN": {
+              "Fn::GetAtt": [
+                "MLFlowMLFlowTrackingServer2CF4B322",
+                "TrackingServerArn",
+              ],
+            },
+          },
+        },
+        "Handler": "experiment_lambda.api.update_experiment_lambda.handler",
+        "LoggingConfig": {
+          "LogFormat": "JSON",
+          "LogGroup": {
+            "Ref": "UpdateExperimentLambdaLogGroupBC8929B8",
+          },
+        },
+        "MemorySize": 256,
+        "Role": {
+          "Fn::GetAtt": [
+            "UpdateExperimentLambdaLogGroupServiceRole80A54909",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.12",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "Timeout": 29,
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "UpdateExperimentLambdaSecurityGroup0C9FC39B",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+            },
+            {
+              "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "UpdateExperimentLambdaLogGroupBC8929B8": {
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "Properties": {
+        "RetentionInDays": 545,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "UpdateExperimentLambdaLogGroupServiceRole80A54909": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Description": "Minimal execution role for ServicePrincipal(lambda.amazonaws.com) to write into UpdateExperiment-Lambda-LogGroup",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "UpdateExperimentLambdaLogGroupServiceRoleDefaultPolicy4933D05E": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "No way to avoid wildcards for log groups",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "UpdateExperimentLambdaLogGroupBC8929B8",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:UnassignPrivateIpAddresses",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "sagemaker-mlflow:CreateExperiment",
+                "sagemaker-mlflow:DeleteExperiment",
+                "sagemaker-mlflow:RestoreExperiment",
+                "sagemaker-mlflow:UpdateExperiment",
+                "sagemaker-mlflow:SetTag",
+                "sagemaker-mlflow:SetExperimentTag",
+                "sagemaker-mlflow:DeleteTag",
+                "sagemaker-mlflow:LogParam",
+                "sagemaker-mlflow:GetExperiment",
+                "sagemaker-mlflow:GetExperimentByName",
+                "sagemaker-mlflow:SearchExperiments",
+                "sagemaker-mlflow:SearchRuns",
+                "sagemaker-mlflow:GetRun",
+                "sagemaker-mlflow:ListArtifacts",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "MLFlowMLFlowTrackingServer2CF4B322",
+                  "TrackingServerArn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "UpdateExperimentLambdaLogGroupServiceRoleDefaultPolicy4933D05E",
+        "Roles": [
+          {
+            "Ref": "UpdateExperimentLambdaLogGroupServiceRole80A54909",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "UpdateExperimentLambdaSecurityGroup0C9FC39B": {
+      "Metadata": {
+        "cdk_nag": {
+          "rules_to_suppress": [
+            {
+              "id": "AwsSolutions-L1",
+              "reason": "Python 3.11 is required for compatibility with dependencies",
+            },
+            {
+              "id": "AwsSolutions-IAM4",
+              "reason": "Using AWS managed policies for Lambda execution role is AWS best practice",
+            },
+            {
+              "id": "AwsSolutions-IAM5",
+              "reason": "Wildcard permissions are necessary for Lambda to access CloudWatch Logs, X-Ray, and other AWS services",
+            },
+          ],
+        },
+      },
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function GenAiEtkExperimentUpdateExperimentLambda9C45834D",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-Experiment",
+          },
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;

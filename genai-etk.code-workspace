@@ -1,0 +1,16 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "name": "python-api",
+      "path": "packages/python-api"
+    },
+    {
+      "name": "evaluator-sdk",
+      "path": "packages/evaluator-sdk"
+    },
+  ],
+  "settings": {}
+}

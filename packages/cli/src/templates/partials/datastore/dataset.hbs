@@ -1,0 +1,11 @@
+Id: {{ datasetId }}
+Name: {{ name }}
+{{#if description}}
+Description: {{ description }}
+{{/if}}
+{{#if currentVersion}}
+Current Version: {{ currentVersion }}
+{{/if}}
+Created At: {{formatDate createdAt}}
+Source: {{ source }}
+Status: {{ status }}

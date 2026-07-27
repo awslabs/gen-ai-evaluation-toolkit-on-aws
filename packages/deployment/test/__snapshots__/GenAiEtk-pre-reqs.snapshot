@@ -1,0 +1,1785 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App stack GenAiEtk-pre-reqs should match snapshot 1`] = `
+{
+  "Description": "GenAi-ETK pre-requisite resources that are required for GenAi-ETK CDK deployments",
+  "Outputs": {
+    "ExportsOutputFnGetAttContainerImagesBucket2328BB67Arn44EEC1C2": {
+      "Export": {
+        "Name": "GenAiEtk-pre-reqs:ExportsOutputFnGetAttContainerImagesBucket2328BB67Arn44EEC1C2",
+      },
+      "Value": {
+        "Fn::GetAtt": [
+          "ContainerImagesBucket2328BB67",
+          "Arn",
+        ],
+      },
+    },
+    "ExportsOutputFnGetAttContainerImagesEcrRepositoryDFEABE69Arn580C874E": {
+      "Export": {
+        "Name": "GenAiEtk-pre-reqs:ExportsOutputFnGetAttContainerImagesEcrRepositoryDFEABE69Arn580C874E",
+      },
+      "Value": {
+        "Fn::GetAtt": [
+          "ContainerImagesEcrRepositoryDFEABE69",
+          "Arn",
+        ],
+      },
+    },
+    "ExportsOutputFnGetAttEcrDeploymentRole433057E3ArnD43BFC4E": {
+      "Export": {
+        "Name": "GenAiEtk-pre-reqs:ExportsOutputFnGetAttEcrDeploymentRole433057E3ArnD43BFC4E",
+      },
+      "Value": {
+        "Fn::GetAtt": [
+          "EcrDeploymentRole433057E3",
+          "Arn",
+        ],
+      },
+    },
+    "ExportsOutputRefContainerImagesBucket2328BB67593575F9": {
+      "Export": {
+        "Name": "GenAiEtk-pre-reqs:ExportsOutputRefContainerImagesBucket2328BB67593575F9",
+      },
+      "Value": {
+        "Ref": "ContainerImagesBucket2328BB67",
+      },
+    },
+    "ExportsOutputRefContainerImagesEcrRepositoryDFEABE691BAFD265": {
+      "Export": {
+        "Name": "GenAiEtk-pre-reqs:ExportsOutputRefContainerImagesEcrRepositoryDFEABE691BAFD265",
+      },
+      "Value": {
+        "Ref": "ContainerImagesEcrRepositoryDFEABE69",
+      },
+    },
+    "ExportsOutputRefvpcIsolatedSubnet1BC75EE4E22C2DC4F": {
+      "Export": {
+        "Name": "GenAiEtk-pre-reqs:ExportsOutputRefvpcIsolatedSubnet1BC75EE4E22C2DC4F",
+      },
+      "Value": {
+        "Ref": "vpcIsolatedSubnet1BC75EE4E",
+      },
+    },
+    "ExportsOutputRefvpcIsolatedSubnet28C92F4E0CAC33A87": {
+      "Export": {
+        "Name": "GenAiEtk-pre-reqs:ExportsOutputRefvpcIsolatedSubnet28C92F4E0CAC33A87",
+      },
+      "Value": {
+        "Ref": "vpcIsolatedSubnet28C92F4E0",
+      },
+    },
+    "ExportsOutputRefvpcIsolatedSubnet338DF853ABEE0130D": {
+      "Export": {
+        "Name": "GenAiEtk-pre-reqs:ExportsOutputRefvpcIsolatedSubnet338DF853ABEE0130D",
+      },
+      "Value": {
+        "Ref": "vpcIsolatedSubnet338DF853A",
+      },
+    },
+    "ExportsOutputRefvpcVpc987C3DD93F7400FD": {
+      "Export": {
+        "Name": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpc987C3DD93F7400FD",
+      },
+      "Value": {
+        "Ref": "vpcVpc987C3DD9",
+      },
+    },
+    "ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1": {
+      "Export": {
+        "Name": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet1SubnetDC3E5FB29F5E8EE1",
+      },
+      "Value": {
+        "Ref": "vpcVpcPrivateSubnet1SubnetDC3E5FB2",
+      },
+    },
+    "ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804": {
+      "Export": {
+        "Name": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet2Subnet33F43786E2F5C804",
+      },
+      "Value": {
+        "Ref": "vpcVpcPrivateSubnet2Subnet33F43786",
+      },
+    },
+    "ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE": {
+      "Export": {
+        "Name": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcPrivateSubnet3Subnet57D5E74ADD52C5DE",
+      },
+      "Value": {
+        "Ref": "vpcVpcPrivateSubnet3Subnet57D5E74A",
+      },
+    },
+    "ExportsOutputRefvpcVpcVpcEndpointApiGatewayE49EA65E1B2DE9D3": {
+      "Export": {
+        "Name": "GenAiEtk-pre-reqs:ExportsOutputRefvpcVpcVpcEndpointApiGatewayE49EA65E1B2DE9D3",
+      },
+      "Value": {
+        "Ref": "vpcVpcVpcEndpointApiGatewayE49EA65E",
+      },
+    },
+  },
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "ContainerImagesBucket2328BB67": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "aws-cdk:auto-delete-objects",
+            "Value": "true",
+          },
+          {
+            "Key": "aws-cdk:cr-owned:images:3ef6d90f",
+            "Value": "true",
+          },
+          {
+            "Key": "aws-cdk:cr-owned:images:83f4325c",
+            "Value": "true",
+          },
+          {
+            "Key": "aws-cdk:cr-owned:images:c32b237f",
+            "Value": "true",
+          },
+          {
+            "Key": "aws-cdk:cr-owned:images:dddfcd58",
+            "Value": "true",
+          },
+          {
+            "Key": "aws-cdk:cr-owned:images:e5e74ddb",
+            "Value": "true",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "ContainerImagesBucketAutoDeleteObjectsCustomResourceC249DB90": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "ContainerImagesBucketPolicyEAA50C6F",
+      ],
+      "Properties": {
+        "BucketName": {
+          "Ref": "ContainerImagesBucket2328BB67",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::S3AutoDeleteObjects",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "ContainerImagesBucketPolicyEAA50C6F": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "ContainerImagesBucket2328BB67",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false",
+                },
+              },
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*",
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ContainerImagesBucket2328BB67",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ContainerImagesBucket2328BB67",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "s3:PutBucketPolicy",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::GetAtt": [
+                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                    "Arn",
+                  ],
+                },
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ContainerImagesBucket2328BB67",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ContainerImagesBucket2328BB67",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "ContainerImagesEcrRepositoryDFEABE69": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "ImageTagMutability": "MUTABLE",
+        "RepositoryPolicyText": {
+          "Statement": [
+            {
+              "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage",
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+      },
+      "Type": "AWS::ECR::Repository",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+      "DependsOn": [
+        "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "DUMMY_STATIC_HASH.zip",
+        },
+        "Description": {
+          "Fn::Join": [
+            "",
+            [
+              "Lambda function for auto-deleting objects in ",
+              {
+                "Ref": "ContainerImagesBucket2328BB67",
+              },
+              " S3 bucket.",
+            ],
+          ],
+        },
+        "Handler": "index.handler",
+        "MemorySize": 128,
+        "Role": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs24.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Sub": "arn:\${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "EcrDeploymentRole433057E3": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "EcrDeploymentRoleDefaultPolicyE320ABC3": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ContainerImagesBucket2328BB67",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ContainerImagesBucket2328BB67",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "ecr:GetAuthorizationToken",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:GetRepositoryPolicy",
+                "ecr:DescribeRepositories",
+                "ecr:ListImages",
+                "ecr:DescribeImages",
+                "ecr:BatchGetImage",
+                "ecr:ListTagsForResource",
+                "ecr:DescribeImageScanFindings",
+                "ecr:InitiateLayerUpload",
+                "ecr:UploadLayerPart",
+                "ecr:CompleteLayerUpload",
+                "ecr:PutImage",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": "s3:GetObject",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "EcrDeploymentRoleDefaultPolicyE320ABC3",
+        "Roles": [
+          {
+            "Ref": "EcrDeploymentRole433057E3",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "vpcIsolatedRouteTable56B6C1E2": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-IsolatedRouteTable",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "vpcIsolatedSubnet1BC75EE4E": {
+      "DependsOn": [
+        "vpcSecondaryCidrBlock1B3B3108",
+      ],
+      "Properties": {
+        "AvailabilityZone": "dummy1a",
+        "CidrBlock": "10.1.0.0/20",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-IsolatedSubnet-1",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "vpcIsolatedSubnet1RouteTableAssoc42A69208": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcIsolatedRouteTable56B6C1E2",
+        },
+        "SubnetId": {
+          "Ref": "vpcIsolatedSubnet1BC75EE4E",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "vpcIsolatedSubnet28C92F4E0": {
+      "DependsOn": [
+        "vpcSecondaryCidrBlock1B3B3108",
+      ],
+      "Properties": {
+        "AvailabilityZone": "dummy1b",
+        "CidrBlock": "10.1.16.0/20",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-IsolatedSubnet-2",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "vpcIsolatedSubnet2RouteTableAssoc9FA28337": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcIsolatedRouteTable56B6C1E2",
+        },
+        "SubnetId": {
+          "Ref": "vpcIsolatedSubnet28C92F4E0",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "vpcIsolatedSubnet338DF853A": {
+      "DependsOn": [
+        "vpcSecondaryCidrBlock1B3B3108",
+      ],
+      "Properties": {
+        "AvailabilityZone": "dummy1c",
+        "CidrBlock": "10.1.32.0/20",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-IsolatedSubnet-3",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "vpcIsolatedSubnet3RouteTableAssoc9F7ECEC7": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcIsolatedRouteTable56B6C1E2",
+        },
+        "SubnetId": {
+          "Ref": "vpcIsolatedSubnet338DF853A",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "vpcSecondaryCidrBlock1B3B3108": {
+      "Properties": {
+        "CidrBlock": "10.1.0.0/16",
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::VPCCidrBlock",
+    },
+    "vpcVPCEndPointSecurityGroup51FF5BAB": {
+      "Properties": {
+        "GroupDescription": "Allow from VPC",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "SecurityGroupIngress": [
+          {
+            "CidrIp": "10.1.0.0/16",
+            "Description": "Allow HTTPS from isolated subnets (secondary CIDR) to interface endpoints",
+            "FromPort": 443,
+            "IpProtocol": "tcp",
+            "ToPort": 443,
+          },
+          {
+            "CidrIp": {
+              "Fn::GetAtt": [
+                "vpcVpc987C3DD9",
+                "CidrBlock",
+              ],
+            },
+            "Description": {
+              "Fn::Join": [
+                "",
+                [
+                  "from ",
+                  {
+                    "Fn::GetAtt": [
+                      "vpcVpc987C3DD9",
+                      "CidrBlock",
+                    ],
+                  },
+                  ":443",
+                ],
+              ],
+            },
+            "FromPort": 443,
+            "IpProtocol": "tcp",
+            "ToPort": 443,
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "vpcVpc987C3DD9": {
+      "Properties": {
+        "CidrBlock": "10.0.0.0/16",
+        "EnableDnsHostnames": true,
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-VPC",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::VPC",
+    },
+    "vpcVpcFlowLogsFlowLog57699440": {
+      "Properties": {
+        "DeliverLogsPermissionArn": {
+          "Fn::GetAtt": [
+            "vpcVpcFlowLogsIAMRoleD78E62D5",
+            "Arn",
+          ],
+        },
+        "LogDestinationType": "cloud-watch-logs",
+        "LogGroupName": {
+          "Ref": "vpcVpcFlowLogsLogGroup41BD8FC5",
+        },
+        "ResourceId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+        "ResourceType": "VPC",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "GenAiEtk-pre-reqs/vpc/VpcFlowLogs",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "TrafficType": "ALL",
+      },
+      "Type": "AWS::EC2::FlowLog",
+    },
+    "vpcVpcFlowLogsIAMRoleD78E62D5": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "vpc-flow-logs.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "GenAiEtk-pre-reqs/vpc/VpcFlowLogs",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "vpcVpcFlowLogsIAMRoleDefaultPolicyF2BF2245": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "logs:DescribeLogStreams",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "vpcVpcFlowLogsLogGroup41BD8FC5",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "vpcVpcFlowLogsIAMRoleDefaultPolicyF2BF2245",
+        "Roles": [
+          {
+            "Ref": "vpcVpcFlowLogsIAMRoleD78E62D5",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "vpcVpcFlowLogsLogGroup41BD8FC5": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "LogGroupName": "VpcFlowLogs",
+        "RetentionInDays": 365,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "vpcVpcGatewayEndpointS3CD7F672B": {
+      "Properties": {
+        "RouteTableIds": [
+          {
+            "Ref": "vpcVpcPrivateSubnet1RouteTableB2D3C611",
+          },
+          {
+            "Ref": "vpcVpcPrivateSubnet2RouteTable9B6D43B5",
+          },
+          {
+            "Ref": "vpcVpcPrivateSubnet3RouteTable8EDF9193",
+          },
+          {
+            "Ref": "vpcVpcPublicSubnet1RouteTable1900BD4A",
+          },
+          {
+            "Ref": "vpcVpcPublicSubnet2RouteTableAFDA6CFA",
+          },
+          {
+            "Ref": "vpcVpcPublicSubnet3RouteTable6B22AAE2",
+          },
+          {
+            "Ref": "vpcIsolatedRouteTable56B6C1E2",
+          },
+        ],
+        "ServiceName": {
+          "Fn::Join": [
+            "",
+            [
+              "com.amazonaws.",
+              {
+                "Ref": "AWS::Region",
+              },
+              ".s3",
+            ],
+          ],
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-VPC",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcEndpointType": "Gateway",
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::VPCEndpoint",
+    },
+    "vpcVpcIGWACA8CB6D": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-VPC",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::InternetGateway",
+    },
+    "vpcVpcPrivateSubnet1DefaultRouteB909427E": {
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": {
+          "Ref": "vpcVpcPublicSubnet1NATGateway33AFDB17",
+        },
+        "RouteTableId": {
+          "Ref": "vpcVpcPrivateSubnet1RouteTableB2D3C611",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "vpcVpcPrivateSubnet1RouteTableAssociationF1DCA585": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcVpcPrivateSubnet1RouteTableB2D3C611",
+        },
+        "SubnetId": {
+          "Ref": "vpcVpcPrivateSubnet1SubnetDC3E5FB2",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "vpcVpcPrivateSubnet1RouteTableB2D3C611": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "GenAiEtk-pre-reqs/vpc/Vpc/PrivateSubnet1",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "vpcVpcPrivateSubnet1SubnetDC3E5FB2": {
+      "Properties": {
+        "AvailabilityZone": "dummy1a",
+        "CidrBlock": "10.0.96.0/19",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private",
+          },
+          {
+            "Key": "Name",
+            "Value": "GenAiEtk-pre-reqs/vpc/Vpc/PrivateSubnet1",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "vpcVpcPrivateSubnet2DefaultRoute1C8B88C5": {
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": {
+          "Ref": "vpcVpcPublicSubnet2NATGatewayBBAFD457",
+        },
+        "RouteTableId": {
+          "Ref": "vpcVpcPrivateSubnet2RouteTable9B6D43B5",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "vpcVpcPrivateSubnet2RouteTable9B6D43B5": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "GenAiEtk-pre-reqs/vpc/Vpc/PrivateSubnet2",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "vpcVpcPrivateSubnet2RouteTableAssociationEA3577B1": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcVpcPrivateSubnet2RouteTable9B6D43B5",
+        },
+        "SubnetId": {
+          "Ref": "vpcVpcPrivateSubnet2Subnet33F43786",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "vpcVpcPrivateSubnet2Subnet33F43786": {
+      "Properties": {
+        "AvailabilityZone": "dummy1b",
+        "CidrBlock": "10.0.128.0/19",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private",
+          },
+          {
+            "Key": "Name",
+            "Value": "GenAiEtk-pre-reqs/vpc/Vpc/PrivateSubnet2",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "vpcVpcPrivateSubnet3DefaultRouteA5A90033": {
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": {
+          "Ref": "vpcVpcPublicSubnet3NATGatewayF61B7848",
+        },
+        "RouteTableId": {
+          "Ref": "vpcVpcPrivateSubnet3RouteTable8EDF9193",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "vpcVpcPrivateSubnet3RouteTable8EDF9193": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "GenAiEtk-pre-reqs/vpc/Vpc/PrivateSubnet3",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "vpcVpcPrivateSubnet3RouteTableAssociation1505FA43": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcVpcPrivateSubnet3RouteTable8EDF9193",
+        },
+        "SubnetId": {
+          "Ref": "vpcVpcPrivateSubnet3Subnet57D5E74A",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "vpcVpcPrivateSubnet3Subnet57D5E74A": {
+      "Properties": {
+        "AvailabilityZone": "dummy1c",
+        "CidrBlock": "10.0.160.0/19",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private",
+          },
+          {
+            "Key": "Name",
+            "Value": "GenAiEtk-pre-reqs/vpc/Vpc/PrivateSubnet3",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "vpcVpcPublicSubnet1DefaultRoute37E42084": {
+      "DependsOn": [
+        "vpcVpcVPCGW5EA121D2",
+      ],
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "vpcVpcIGWACA8CB6D",
+        },
+        "RouteTableId": {
+          "Ref": "vpcVpcPublicSubnet1RouteTable1900BD4A",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "vpcVpcPublicSubnet1EIPBAB96CF3": {
+      "Properties": {
+        "Domain": "vpc",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-PublicSubnet-1",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::EIP",
+    },
+    "vpcVpcPublicSubnet1NATGateway33AFDB17": {
+      "DependsOn": [
+        "vpcVpcPublicSubnet1DefaultRoute37E42084",
+        "vpcVpcPublicSubnet1RouteTableAssociation22AF757A",
+      ],
+      "Properties": {
+        "AllocationId": {
+          "Fn::GetAtt": [
+            "vpcVpcPublicSubnet1EIPBAB96CF3",
+            "AllocationId",
+          ],
+        },
+        "SubnetId": {
+          "Ref": "vpcVpcPublicSubnet1SubnetA706A2D7",
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-PublicSubnet-1",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::NatGateway",
+    },
+    "vpcVpcPublicSubnet1RouteTable1900BD4A": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-PublicSubnet-1",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "vpcVpcPublicSubnet1RouteTableAssociation22AF757A": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcVpcPublicSubnet1RouteTable1900BD4A",
+        },
+        "SubnetId": {
+          "Ref": "vpcVpcPublicSubnet1SubnetA706A2D7",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "vpcVpcPublicSubnet1SubnetA706A2D7": {
+      "Properties": {
+        "AvailabilityZone": "dummy1a",
+        "CidrBlock": "10.0.0.0/19",
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-PublicSubnet-1",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "vpcVpcPublicSubnet2DefaultRoute3F3F0531": {
+      "DependsOn": [
+        "vpcVpcVPCGW5EA121D2",
+      ],
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "vpcVpcIGWACA8CB6D",
+        },
+        "RouteTableId": {
+          "Ref": "vpcVpcPublicSubnet2RouteTableAFDA6CFA",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "vpcVpcPublicSubnet2EIPF1E0847D": {
+      "Properties": {
+        "Domain": "vpc",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-PublicSubnet-2",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::EIP",
+    },
+    "vpcVpcPublicSubnet2NATGatewayBBAFD457": {
+      "DependsOn": [
+        "vpcVpcPublicSubnet2DefaultRoute3F3F0531",
+        "vpcVpcPublicSubnet2RouteTableAssociationF7133703",
+      ],
+      "Properties": {
+        "AllocationId": {
+          "Fn::GetAtt": [
+            "vpcVpcPublicSubnet2EIPF1E0847D",
+            "AllocationId",
+          ],
+        },
+        "SubnetId": {
+          "Ref": "vpcVpcPublicSubnet2Subnet7F17EE6B",
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-PublicSubnet-2",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::NatGateway",
+    },
+    "vpcVpcPublicSubnet2RouteTableAFDA6CFA": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-PublicSubnet-2",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "vpcVpcPublicSubnet2RouteTableAssociationF7133703": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcVpcPublicSubnet2RouteTableAFDA6CFA",
+        },
+        "SubnetId": {
+          "Ref": "vpcVpcPublicSubnet2Subnet7F17EE6B",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "vpcVpcPublicSubnet2Subnet7F17EE6B": {
+      "Properties": {
+        "AvailabilityZone": "dummy1b",
+        "CidrBlock": "10.0.32.0/19",
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-PublicSubnet-2",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "vpcVpcPublicSubnet3DefaultRouteD8BDA0C1": {
+      "DependsOn": [
+        "vpcVpcVPCGW5EA121D2",
+      ],
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "vpcVpcIGWACA8CB6D",
+        },
+        "RouteTableId": {
+          "Ref": "vpcVpcPublicSubnet3RouteTable6B22AAE2",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "vpcVpcPublicSubnet3EIP445007ED": {
+      "Properties": {
+        "Domain": "vpc",
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-PublicSubnet-3",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::EIP",
+    },
+    "vpcVpcPublicSubnet3NATGatewayF61B7848": {
+      "DependsOn": [
+        "vpcVpcPublicSubnet3DefaultRouteD8BDA0C1",
+        "vpcVpcPublicSubnet3RouteTableAssociationAD2094BB",
+      ],
+      "Properties": {
+        "AllocationId": {
+          "Fn::GetAtt": [
+            "vpcVpcPublicSubnet3EIP445007ED",
+            "AllocationId",
+          ],
+        },
+        "SubnetId": {
+          "Ref": "vpcVpcPublicSubnet3Subnet677751D8",
+        },
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-PublicSubnet-3",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::NatGateway",
+    },
+    "vpcVpcPublicSubnet3RouteTable6B22AAE2": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-PublicSubnet-3",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "vpcVpcPublicSubnet3RouteTableAssociationAD2094BB": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcVpcPublicSubnet3RouteTable6B22AAE2",
+        },
+        "SubnetId": {
+          "Ref": "vpcVpcPublicSubnet3Subnet677751D8",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "vpcVpcPublicSubnet3Subnet677751D8": {
+      "Properties": {
+        "AvailabilityZone": "dummy1c",
+        "CidrBlock": "10.0.64.0/19",
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-PublicSubnet-3",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "vpcVpcVPCGW5EA121D2": {
+      "Properties": {
+        "InternetGatewayId": {
+          "Ref": "vpcVpcIGWACA8CB6D",
+        },
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+    },
+    "vpcVpcVpcEndpointApiGatewayE49EA65E": {
+      "Properties": {
+        "PrivateDnsEnabled": true,
+        "SecurityGroupIds": [
+          {
+            "Fn::GetAtt": [
+              "vpcVPCEndPointSecurityGroup51FF5BAB",
+              "GroupId",
+            ],
+          },
+        ],
+        "ServiceName": "com.amazonaws.us-east-1.execute-api",
+        "SubnetIds": [
+          {
+            "Ref": "vpcVpcPrivateSubnet1SubnetDC3E5FB2",
+          },
+          {
+            "Ref": "vpcVpcPrivateSubnet2Subnet33F43786",
+          },
+          {
+            "Ref": "vpcVpcPrivateSubnet3Subnet57D5E74A",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-VPC",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcEndpointType": "Interface",
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::VPCEndpoint",
+    },
+    "vpcVpcVpcEndpointBedrockRuntime63A1DCEF": {
+      "Properties": {
+        "PrivateDnsEnabled": true,
+        "SecurityGroupIds": [
+          {
+            "Fn::GetAtt": [
+              "vpcVPCEndPointSecurityGroup51FF5BAB",
+              "GroupId",
+            ],
+          },
+        ],
+        "ServiceName": "com.amazonaws.us-east-1.bedrock-runtime",
+        "SubnetIds": [
+          {
+            "Ref": "vpcVpcPrivateSubnet1SubnetDC3E5FB2",
+          },
+          {
+            "Ref": "vpcVpcPrivateSubnet2Subnet33F43786",
+          },
+          {
+            "Ref": "vpcVpcPrivateSubnet3Subnet57D5E74A",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-VPC",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcEndpointType": "Interface",
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::VPCEndpoint",
+    },
+    "vpcVpcVpcEndpointCloudWatchDD7AADB4": {
+      "Properties": {
+        "PrivateDnsEnabled": true,
+        "SecurityGroupIds": [
+          {
+            "Fn::GetAtt": [
+              "vpcVPCEndPointSecurityGroup51FF5BAB",
+              "GroupId",
+            ],
+          },
+        ],
+        "ServiceName": "com.amazonaws.us-east-1.monitoring",
+        "SubnetIds": [
+          {
+            "Ref": "vpcVpcPrivateSubnet1SubnetDC3E5FB2",
+          },
+          {
+            "Ref": "vpcVpcPrivateSubnet2Subnet33F43786",
+          },
+          {
+            "Ref": "vpcVpcPrivateSubnet3Subnet57D5E74A",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-VPC",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcEndpointType": "Interface",
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::VPCEndpoint",
+    },
+    "vpcVpcVpcEndpointCloudWatchLogs869402AB": {
+      "Properties": {
+        "PrivateDnsEnabled": true,
+        "SecurityGroupIds": [
+          {
+            "Fn::GetAtt": [
+              "vpcVPCEndPointSecurityGroup51FF5BAB",
+              "GroupId",
+            ],
+          },
+        ],
+        "ServiceName": "com.amazonaws.us-east-1.logs",
+        "SubnetIds": [
+          {
+            "Ref": "vpcVpcPrivateSubnet1SubnetDC3E5FB2",
+          },
+          {
+            "Ref": "vpcVpcPrivateSubnet2Subnet33F43786",
+          },
+          {
+            "Ref": "vpcVpcPrivateSubnet3Subnet57D5E74A",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-VPC",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcEndpointType": "Interface",
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::VPCEndpoint",
+    },
+    "vpcVpcVpcEndpointEvents2693D774": {
+      "Properties": {
+        "PrivateDnsEnabled": true,
+        "SecurityGroupIds": [
+          {
+            "Fn::GetAtt": [
+              "vpcVPCEndPointSecurityGroup51FF5BAB",
+              "GroupId",
+            ],
+          },
+        ],
+        "ServiceName": "com.amazonaws.us-east-1.events",
+        "SubnetIds": [
+          {
+            "Ref": "vpcVpcPrivateSubnet1SubnetDC3E5FB2",
+          },
+          {
+            "Ref": "vpcVpcPrivateSubnet2Subnet33F43786",
+          },
+          {
+            "Ref": "vpcVpcPrivateSubnet3Subnet57D5E74A",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "app",
+            "Value": "genai-etk",
+          },
+          {
+            "Key": "Name",
+            "Value": "vpc-VPC",
+          },
+          {
+            "Key": "stack",
+            "Value": "GenAiEtk-pre-reqs",
+          },
+        ],
+        "VpcEndpointType": "Interface",
+        "VpcId": {
+          "Ref": "vpcVpc987C3DD9",
+        },
+      },
+      "Type": "AWS::EC2::VPCEndpoint",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;

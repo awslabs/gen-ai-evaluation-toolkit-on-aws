@@ -1,0 +1,135 @@
+{
+  "name": "evaluator-agent-as-judge",
+  "sourceRoot": "{projectRoot}/src",
+  "projectType": "library",
+  "targets": {
+    "install": {
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        "evaluator-sdk:install"
+      ],
+      "options": {
+        "commands": [
+          "UV_PROJECT_ENVIRONMENT=.venv uv sync --dev --reinstall-package awssolutions-gen-ai-evaluation-toolkit-evaluator-sdk"
+        ],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf .venv build dist"
+        ],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "uv run ruff check src tests",
+          "uv run mypy src"
+        ],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        "install"
+      ],
+      "options": {
+        "commands": [
+          "uv run pytest tests/unit tests/onebox --cov=evaluator_agent_as_judge --cov-report=term --cov-report=xml --cov-report=html"
+        ],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "test:e2e": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "uv run pytest tests -m e2e -v --timeout=600"
+        ],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "ci": {
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        "install",
+        "check",
+        "test"
+      ],
+      "options": {
+        "commands": [],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "prepare-wheels": {
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        "evaluator-sdk:build",
+        "generated-python-client:build"
+      ],
+      "inputs": [
+        "{workspaceRoot}/packages/evaluator-sdk/build/*.whl",
+        "{workspaceRoot}/packages/generated/python-client/dist/*.whl"
+      ],
+      "outputs": [
+        "{projectRoot}/.wheels"
+      ],
+      "options": {
+        "commands": [
+          "mkdir -p .wheels",
+          "cp ../evaluator-sdk/build/*.whl ../generated/python-client/dist/*.whl .wheels/"
+        ],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "dependsOn": [
+        "install",
+        "check",
+        "prepare-wheels"
+      ],
+      "outputs": [
+        "{projectRoot}/build"
+      ],
+      "options": {
+        "commands": [
+          "rm -rf build",
+          "mkdir build",
+          "uv build --no-build-isolation --out-dir build"
+        ],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "docker:build": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/output/images/{projectName}.tar"
+      ],
+      "options": {
+        "commands": [
+          "docker build -f lambda.Dockerfile -t {projectName} .",
+          "mkdir -p $NX_WORKSPACE_ROOT/output/images",
+          "docker save {projectName} -o $NX_WORKSPACE_ROOT/output/images/{projectName}.tar",
+          "chmod a+rw $NX_WORKSPACE_ROOT/output/images/{projectName}.tar"
+        ],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      },
+      "dependsOn": [
+        "prepare-wheels"
+      ]
+    }
+  }
+}

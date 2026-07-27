@@ -1,0 +1,10 @@
+Batch create results:
+{{~> common/separator~}}
+
+Created: {{ count }}
+{{#if errors}}
+Errors:
+{{#each errors}}
+  - [{{ id }}] {{ code }}: {{ message }}
+{{/each}}
+{{/if}}

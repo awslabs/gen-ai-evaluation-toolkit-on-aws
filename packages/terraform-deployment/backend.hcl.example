@@ -1,0 +1,11 @@
+# Reference shape for backend.hcl. You do NOT normally hand-write this
+# file — `scripts/gen-backend-hcl.sh` generates it from the active AWS
+# profile + TF_ENV before every `nx run terraform-deployment:plan`, and
+# the `tf:plan` CI job regenerates it from pipeline env vars. The generated
+# file is gitignored. Copy this example only if you need to pin values
+# that diverge from the generator (rare).
+
+bucket         = "genai-etk-terraform-state-<your-account-id>"
+key            = "etk/<your-env>/terraform.tfstate"
+region         = "<your-region>"
+dynamodb_table = "genai-etk-terraform-locks"

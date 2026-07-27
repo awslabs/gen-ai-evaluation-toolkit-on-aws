@@ -1,0 +1,350 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`"genai-etk evaluation configuration create" rendered by /views/evaluation/configuration/create.hbs : Populated 1`] = `
+"
+Configuration created successfully!
+--------------------------------------------------
+
+Name: configuration-name-string
+Version: 39
+Type: Evaluation
+Configuration:
+    some:
+        complex: object
+    with: nested,properties"
+`;
+
+exports[`"genai-etk evaluation configuration get" rendered by /views/evaluation/configuration/get.hbs : Populated 1`] = `
+"
+Configuration details:
+--------------------------------------------------
+
+Name: configuration-name-string
+Version: 39
+Type: Evaluation
+Configuration:
+    some:
+        complex: object
+    with: nested,properties"
+`;
+
+exports[`"genai-etk evaluation configuration list" rendered by /views/evaluation/configuration/list.hbs : Populated 1`] = `
+"
+Configuration List
+--------------------------------------------------
+
+Name: configurations-1-name-string
+Version: 42
+
+--------------------------------------------------
+
+Name: configurations-2-name-string
+Version: 42
+
+--------------------------------------------------
+
+
+Next Token: nextToken-string
+
+More results available. Use \`evaluation configuration list --next-token nextToken-string\` to retrieve the next page."
+`;
+
+exports[`"genai-etk evaluation configuration update" rendered by /views/evaluation/configuration/update.hbs : Populated 1`] = `
+"
+Configuration updated successfully!
+--------------------------------------------------
+
+Name: configuration-name-string
+Version: 39
+Type: Evaluation
+Configuration:
+    some:
+        complex: object
+    with: nested,properties"
+`;
+
+exports[`"genai-etk evaluation job get" rendered by /views/evaluation/job/get.hbs : Populated 1`] = `
+"
+Evaluation job details:
+--------------------------------------------------
+
+Job ID: jobId-string
+Report ID: reportId-string
+Evaluator: evaluatorName-string
+Type: FULL
+Status: PENDING
+Stage: PENDING
+Created At: <timestamp>
+Updated At: <timestamp>
+Experiment: experimentName-string
+Error: error-message-string"
+`;
+
+exports[`"genai-etk evaluation job list" rendered by /views/evaluation/job/list.hbs : Populated 1`] = `
+"
+Evaluation Jobs
+--------------------------------------------------
+
+Job ID: jobs-1-jobId-string
+Evaluator: 
+Type: FULL
+Status: PENDING
+Created At: <timestamp>
+--------------------------------------------------
+
+Job ID: jobs-2-jobId-string
+Evaluator: 
+Type: FULL
+Status: PENDING
+Created At: <timestamp>
+--------------------------------------------------"
+`;
+
+exports[`"genai-etk evaluation job submit" rendered by /views/evaluation/job/submit.hbs : Populated 1`] = `
+"
+Evaluation job submitted successfully!
+--------------------------------------------------
+
+Job ID: jobId-string
+Report ID: reportId-string
+Evaluator: evaluatorName-string
+Type: FULL
+Status: PENDING
+Created At: <timestamp>
+Experiment: experimentName-string"
+`;
+
+exports[`"genai-etk evaluation job submit-invoke" rendered by /views/evaluation/job/submit-invoke.hbs : Populated 1`] = `
+"
+Evaluation job submitted successfully!
+--------------------------------------------------
+
+Job ID: jobId-string
+Report ID: reportId-string
+Evaluator: evaluatorName-string
+Type: FULL
+Status: PENDING
+Created At: <timestamp>
+Experiment: experimentName-string"
+`;
+
+exports[`"genai-etk evaluation job submit-scoring" rendered by /views/evaluation/job/submit-scoring.hbs : Populated 1`] = `
+"
+Evaluation job submitted successfully!
+--------------------------------------------------
+
+Job ID: jobId-string
+Report ID: reportId-string
+Evaluator: evaluatorName-string
+Type: FULL
+Status: PENDING
+Created At: <timestamp>
+Experiment: experimentName-string"
+`;
+
+exports[`"genai-etk evaluation report create" rendered by /views/evaluation/report/create.hbs : Populated 1`] = `
+"
+Report created successfully!
+--------------------------------------------------
+
+Report ID: report-reportId-string
+Name: report-name-string
+Description: report-description-string
+Status: ACTIVE
+Created At: <timestamp>"
+`;
+
+exports[`"genai-etk evaluation report delete" rendered by /views/evaluation/report/delete.hbs : Populated 1`] = `
+"
+Report deleted successfully."
+`;
+
+exports[`"genai-etk evaluation report get" rendered by /views/evaluation/report/get.hbs : Populated 1`] = `
+"
+Report details:
+--------------------------------------------------
+
+Report ID: report-reportId-string
+Name: report-name-string
+Description: report-description-string
+Status: ACTIVE
+Experiment: report-experimentName-string
+Jobs: report-jobIds-1-string, report-jobIds-2-string
+Created At: <timestamp>
+Updated At: <timestamp>"
+`;
+
+exports[`"genai-etk evaluation report list" rendered by /views/evaluation/report/list.hbs : Populated 1`] = `
+"
+Reports:
+--------------------------------------------------
+
+Report ID: reports-1-reportId-string
+Name: reports-1-name-string
+Status: ACTIVE
+Created At: <timestamp>
+
+--------------------------------------------------
+
+Report ID: reports-2-reportId-string
+Name: reports-2-name-string
+Status: ACTIVE
+Created At: <timestamp>
+
+--------------------------------------------------
+
+Next Token: nextToken-string
+
+More results available. Use \`evaluation report list --next-token nextToken-string\` to retrieve the next page."
+`;
+
+exports[`"genai-etk evaluation result batch-create" rendered by /views/evaluation/result/batch-create.hbs : Populated 1`] = `
+"
+Batch create results:
+--------------------------------------------------
+
+Created: 23
+Errors:
+  - [errors-1-id-string] errors-1-code-string: errors-1-message-string
+  - [errors-2-id-string] errors-2-code-string: errors-2-message-string"
+`;
+
+exports[`"genai-etk evaluation result batch-delete" rendered by /views/evaluation/result/batch-delete.hbs : Populated 1`] = `
+"
+Batch delete results:
+--------------------------------------------------
+
+Deleted: 30
+Errors:
+  - [errors-1-id-string] errors-1-code-string: errors-1-message-string
+  - [errors-2-id-string] errors-2-code-string: errors-2-message-string"
+`;
+
+exports[`"genai-etk evaluation result batch-update-scores" rendered by /views/evaluation/result/batch-update-scores.hbs : Populated 1`] = `
+"
+Batch update scores:
+--------------------------------------------------
+
+Updated: 30
+Errors:
+  - [errors-1-id-string] errors-1-code-string: errors-1-message-string
+  - [errors-2-id-string] errors-2-code-string: errors-2-message-string"
+`;
+
+exports[`"genai-etk evaluation result get" rendered by /views/evaluation/result/get.hbs : Populated 1`] = `
+"
+Test result details:
+--------------------------------------------------
+
+Result ID: result-resultId-string
+Report ID: result-reportId-string
+Test Case ID: result-testcaseId-string
+Input:
+    some:
+        complex: object
+    with: nested,properties
+Output:
+    some:
+        complex: object
+    with: nested,properties
+Expected:
+    some:
+        complex: object
+    with: nested,properties
+Scores:
+    result-scores-key1-string: result-scores-value1-string
+    result-scores-key2-string: result-scores-value2-string
+Created At: <timestamp>
+Updated At: <timestamp>"
+`;
+
+exports[`"genai-etk evaluation result list" rendered by /views/evaluation/result/list.hbs : Populated 1`] = `
+"
+Test results:
+--------------------------------------------------
+
+Result ID: testResults-1-resultId-string
+Test Case ID: testResults-1-testcaseId-string
+Scores: testResults-1-scores-key1-string: testResults-1-scores-value1-string
+testResults-1-scores-key2-string: testResults-1-scores-value2-string
+Created At: <timestamp>
+
+--------------------------------------------------
+
+Result ID: testResults-2-resultId-string
+Test Case ID: testResults-2-testcaseId-string
+Scores: testResults-2-scores-key1-string: testResults-2-scores-value1-string
+testResults-2-scores-key2-string: testResults-2-scores-value2-string
+Created At: <timestamp>
+
+--------------------------------------------------
+
+Next Token: nextToken-string
+
+More results available. Use \`evaluation result list --next-token nextToken-string\` to retrieve the next page."
+`;
+
+exports[`"genai-etk evaluation schedule create" rendered by /views/evaluation/schedule/create.hbs : Populated 1`] = `
+"
+Evaluation schedule created successfully!
+--------------------------------------------------
+
+Name: name-string
+Created At: <timestamp>
+Cron Expression: cron-string
+Experiment: experimentName-string"
+`;
+
+exports[`"genai-etk evaluation schedule delete" rendered by /views/evaluation/schedule/delete.hbs : Populated 1`] = `
+"
+Evaluation schedule deleted successfully!
+--------------------------------------------------
+
+Name: name-string
+Created At: <timestamp>
+Cron Expression: cron-string
+Experiment: experimentName-string"
+`;
+
+exports[`"genai-etk evaluation schedule get" rendered by /views/evaluation/schedule/get.hbs : Populated 1`] = `
+"
+Evaluation schedule details:
+--------------------------------------------------
+
+Name: name-string
+Created At: <timestamp>
+Cron Expression: cron-string
+Experiment: experimentName-string"
+`;
+
+exports[`"genai-etk evaluation schedule list" rendered by /views/evaluation/schedule/list.hbs : Populated 1`] = `
+"
+Evaluation Schedules
+--------------------------------------------------
+
+Name: jobSchedulers-1-name-string
+Created At: <timestamp>
+
+--------------------------------------------------
+
+Name: jobSchedulers-2-name-string
+Created At: <timestamp>
+
+--------------------------------------------------
+
+
+Next Token: nextToken-string
+
+More results available. Use \`evaluation schedule list --next-token nextToken-string\` to retrieve the next page."
+`;
+
+exports[`"genai-etk evaluation schedule update" rendered by /views/evaluation/schedule/update.hbs : Populated 1`] = `
+"
+Evaluation schedule updated successfully!
+--------------------------------------------------
+
+Name: name-string
+Created At: <timestamp>
+Cron Expression: cron-string
+Experiment: experimentName-string"
+`;

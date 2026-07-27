@@ -1,0 +1,16 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["packages/generated/ts-client/src/index.ts"],
+  "tsconfig": "packages/generated/ts-client/tsconfig.json",
+  "plugin": ["typedoc-plugin-markdown"],
+  "out": "docs/sdk/typescript",
+  "readme": "none",
+  "entryFileName": "index",
+  "excludeExternals": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "disableSources": true,
+  "hideGenerator": true,
+  "githubPages": false,
+  "skipErrorChecking": true
+}

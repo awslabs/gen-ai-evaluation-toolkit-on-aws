@@ -1,0 +1,53 @@
+{
+  "name": "experiment-lambdas",
+  "sourceRoot": "{projectRoot}/src",
+  "projectType": "library",
+  "targets": {
+    "install": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["hatch env create default", "hatch env create test"],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/build",
+        "{workspaceRoot}/output/lambdas/experiment-lambdas.zip"
+      ],
+      "options": {
+        "commands": [
+          "rm -rf build",
+          "mkdir build",
+          "hatch build",
+          "python scripts/archive.py",
+          "mkdir -p $NX_WORKSPACE_ROOT/output/python/wheels $NX_WORKSPACE_ROOT/output/python/tars $NX_WORKSPACE_ROOT/output/lambdas",
+          "cp ./dist/*.whl $NX_WORKSPACE_ROOT/output/python/wheels/",
+          "cp ./dist/*.tar.* $NX_WORKSPACE_ROOT/output/python/tars/",
+          "cp ./build/experiment-lambdas.zip $NX_WORKSPACE_ROOT/output/lambdas/experiment-lambdas.zip"
+        ],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["hatch run test:check", "hatch test --all --cover"],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["rm -rf .venv .hatch build"],
+        "cwd": "{projectRoot}",
+        "parallel": false
+      }
+    }
+  }
+}

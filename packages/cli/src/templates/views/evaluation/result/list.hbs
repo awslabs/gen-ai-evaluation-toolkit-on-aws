@@ -1,0 +1,15 @@
+Test results:
+{{~> common/separator~}}
+
+{{#each testResults}}
+Result ID: {{ resultId }}
+{{#if testcaseId}}
+Test Case ID: {{ testcaseId }}
+{{/if}}
+{{#if scores}}
+Scores: {{> common/genericObject scores}}
+{{/if}}
+Created at: {{formatDate createdAt}}
+{{> common/separator}}
+{{/each}}
+{{> common/pagination}}

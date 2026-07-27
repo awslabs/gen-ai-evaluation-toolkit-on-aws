@@ -1,0 +1,49 @@
+{
+  "name": "plugin-gen-agentic",
+  "sourceRoot": "{projectRoot}/src",
+  "projectType": "application",
+  "targets": {
+    "install": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["{projectRoot}/package.json", "{projectRoot}/package-lock.json"],
+      "outputs": ["{projectRoot}/node_modules"],
+      "options": {
+        "command": "npm ci",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "docker:build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["plugin-gen-sdk:build"],
+      "cache": true,
+      "outputs": ["{workspaceRoot}/output/images/{projectName}.tar"],
+      "options": {
+        "commands": [
+          "docker build -t {projectName} -f {projectName}/Dockerfile .",
+          "mkdir -p $NX_WORKSPACE_ROOT/output/images",
+          "docker save {projectName} -o $NX_WORKSPACE_ROOT/output/images/{projectName}.tar",
+          "chmod a+rw $NX_WORKSPACE_ROOT/output/images/{projectName}.tar"
+        ],
+        "cwd": "{workspaceRoot}/packages",
+        "parallel": false
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npm run lint", "npm run test"],
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["install"],
+      "parallel": false
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run clean",
+        "cwd": "{projectRoot}"
+      }
+    }
+  }
+}

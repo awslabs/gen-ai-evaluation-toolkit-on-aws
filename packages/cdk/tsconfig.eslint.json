@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "rootDir": ".",
+    "declaration": true
+  },
+  "include": ["src", "src/**/*.json", "test", "test/**/*.ts", "jest.config.ts"],
+  "exclude": ["cdk.out", "build", "node_modules", "dist"]
+}
