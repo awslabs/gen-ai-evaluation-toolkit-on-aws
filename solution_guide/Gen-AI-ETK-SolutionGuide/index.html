@@ -1,0 +1,2504 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../../user_guide/Gen-AI-ETK-UserGuide/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Solution Guide - Gen AI Evaluation Toolkit on AWS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/print.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Gen AI Evaluation Toolkit on AWS" class="md-header__button md-logo" aria-label="Gen AI Evaluation Toolkit on AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Gen AI Evaluation Toolkit on AWS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Solution Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Gen AI Evaluation Toolkit on AWS" class="md-nav__button md-logo" aria-label="Gen AI Evaluation Toolkit on AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Gen AI Evaluation Toolkit on AWS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Core guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solution Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solution Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#business-problems-solved" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business problems solved
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#target-audiences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Target audiences
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/Gen-AI-ETK-UserGuide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDK references
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SDK references
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sdk/evaluator-sdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluator SDK
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sdk/evaluator-pyrit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluator PyRIT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sdk/python-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sdk/typescript-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TypeScript client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+<div class="print-cover" data-print-title="Solution Guide">
+  <p style="margin-top: 20pt; color: #444;">Gen AI Evaluation Toolkit on AWS</p>
+  <p style="margin-top: 10pt; color: #7a7a7a; font-size: 14pt;">v2.0.0</p>
+  <img src="../../stylesheets/aws_logo.png" alt="AWS" />
+</div>
+
+<div class="print-copyright">
+  <p>Copyright &copy; 2026 Amazon Web Services, Inc. and/or its affiliates. All rights reserved. Amazon&rsquo;s trademarks and trade dress may not be used in connection with any product or service that is not Amazon&rsquo;s, in any manner that is likely to cause confusion among customers, or in any manner that disparages or discredits Amazon. All other trademarks not owned by Amazon are the property of their respective owners, who may or may not be affiliated with, connected to, or sponsored by Amazon.</p>
+  
+</div>
+
+
+<div class="print-toc">
+  <h2>Table of contents</h2>
+  <ul>
+    
+    <li class="print-toc__l1"><a href="#overview">Overview</a>
+      
+      <ul>
+        
+        <li class="print-toc__l2"><a href="#key-features">Key features</a></li>
+        
+        <li class="print-toc__l2"><a href="#business-problems-solved">Business problems solved</a></li>
+        
+        <li class="print-toc__l2"><a href="#target-audiences">Target audiences</a></li>
+        
+      </ul>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#architecture">Architecture</a>
+      
+      <ul>
+        
+        <li class="print-toc__l2"><a href="#architecture-diagram">Architecture diagram</a></li>
+        
+        <li class="print-toc__l2"><a href="#architecture-details">Architecture details</a></li>
+        
+        <li class="print-toc__l2"><a href="#evaluator-architecture">Evaluator architecture</a></li>
+        
+        <li class="print-toc__l2"><a href="#security-architecture">Security architecture</a></li>
+        
+      </ul>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#aws-services-in-this-solution">AWS services in this solution</a>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#how-gen-ai-evaluation-toolkit-works">How Gen AI Evaluation Toolkit works</a>
+      
+      <ul>
+        
+        <li class="print-toc__l2"><a href="#core-components">Core components</a></li>
+        
+        <li class="print-toc__l2"><a href="#workflows">Workflows</a></li>
+        
+        <li class="print-toc__l2"><a href="#plugin-communication">Plugin communication</a></li>
+        
+        <li class="print-toc__l2"><a href="#data-models">Data models</a></li>
+        
+      </ul>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#plan-your-deployment">Plan your deployment</a>
+      
+      <ul>
+        
+        <li class="print-toc__l2"><a href="#cost">Cost</a></li>
+        
+        <li class="print-toc__l2"><a href="#prerequisites">Prerequisites</a></li>
+        
+        <li class="print-toc__l2"><a href="#ai-gateway-integration-optional">AI gateway integration (optional)</a></li>
+        
+        <li class="print-toc__l2"><a href="#supported-aws-regions">Supported AWS Regions</a></li>
+        
+        <li class="print-toc__l2"><a href="#quotas">Quotas</a></li>
+        
+        <li class="print-toc__l2"><a href="#amazon-bedrock-model-access">Amazon Bedrock model access</a></li>
+        
+      </ul>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#security">Security</a>
+      
+      <ul>
+        
+        <li class="print-toc__l2"><a href="#iam-roles">IAM roles</a></li>
+        
+        <li class="print-toc__l2"><a href="#access-control">Access control</a></li>
+        
+        <li class="print-toc__l2"><a href="#data-protection">Data protection</a></li>
+        
+        <li class="print-toc__l2"><a href="#network-security">Network security</a></li>
+        
+        <li class="print-toc__l2"><a href="#monitoring-and-logging">Monitoring and logging</a></li>
+        
+        <li class="print-toc__l2"><a href="#data-handling">Data handling</a></li>
+        
+        <li class="print-toc__l2"><a href="#terraform-security-features">Terraform security features</a></li>
+        
+      </ul>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#deploy-the-solution">Deploy the solution</a>
+      
+      <ul>
+        
+        <li class="print-toc__l2"><a href="#deployment-options">Deployment options</a></li>
+        
+        <li class="print-toc__l2"><a href="#deployment-overview">Deployment overview</a></li>
+        
+        <li class="print-toc__l2"><a href="#step-by-step-deployment">Step-by-step deployment</a></li>
+        
+        <li class="print-toc__l2"><a href="#step-by-step-deployment-terraform">Step-by-step deployment (Terraform)</a></li>
+        
+        <li class="print-toc__l2"><a href="#deploying-custom-plugins">Deploying custom plugins</a></li>
+        
+      </ul>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#update-the-solution">Update the solution</a>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#monitoring">Monitoring</a>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#backup-and-disaster-recovery">Backup and disaster recovery</a>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#uninstall-the-solution">Uninstall the solution</a>
+      
+      <ul>
+        
+        <li class="print-toc__l2"><a href="#prerequisites_1">Prerequisites</a></li>
+        
+        <li class="print-toc__l2"><a href="#cdk-uninstallation">CDK uninstallation</a></li>
+        
+        <li class="print-toc__l2"><a href="#handling-protected-resources">Handling protected resources</a></li>
+        
+        <li class="print-toc__l2"><a href="#cost-implications">Cost implications</a></li>
+        
+      </ul>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#contributors">Contributors</a>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#notices">Notices</a>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#revisions">Revisions</a>
+      
+    </li>
+    
+  </ul>
+</div>
+
+
+
+                  
+
+
+
+<h1 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h1>
+<p>Gen AI Evaluation Toolkit on AWS (Gen AI ETK) is a flexible, enterprise-grade, cloud-native accelerator built on AWS serverless architecture that enables comprehensive evaluation of generative AI applications — a foundation you deploy into your own AWS account, own in full source, and extend. Developed from Amazon and AWS field experience, the toolkit provides end-to-end capabilities including test case generation and version management, both metrics-based and LLM-based quality assessments, and visualization of experiment results. With its plugin-based extensible architecture, Gen AI ETK can support multiple evaluation frameworks and methodologies while offering robust experiment management for systematic comparison of different configurations and models. This integrated approach allows teams to track performance metrics across iterations and make data-driven decisions throughout the application lifecycle from discovery, to CI/CD, to continuous improvement at scale.</p>
+<h2 id="key-features">Key features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Dataset management</strong>: Centralized storage with versioning, metadata tracking, filtering, and test case annotation.</li>
+<li><strong>Test case generation</strong>: Synthetic test case creation through an extensible plugin architecture, including RAG-specific QA pair generation using Amazon Bedrock.</li>
+<li><strong>Evaluation</strong>: Quantitative metrics assessment with built-in RAG evaluation metrics, a customizable plugin framework, and scheduled execution through Amazon EventBridge.</li>
+<li><strong>Experimentation</strong>: Systematic comparison with versioned experiment conditions, performance tracking through MLflow, and comparative analysis across models and configurations.</li>
+<li><strong>Gateway integration (optional)</strong>: Route all LLM calls through an AI gateway for centralized cost tracking and budget enforcement, instead of calling Amazon Bedrock directly. The AI gateway referenced here is a customer-provided, third-party component — it is not an AWS service. It must be an OAuth2-fronted LLM gateway compatible with the Bedrock Converse API. See <a href="#ai-gateway-integration-optional">AI gateway integration (optional)</a>.</li>
+</ul>
+<h2 id="business-problems-solved">Business problems solved<a class="headerlink" href="#business-problems-solved" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Quality assurance</strong>: Identify hallucinations and factual errors, measure relevance and coherence, and help ensure consistency across varying inputs through automated testing.</li>
+<li><strong>Compliance and risk</strong>: Document testing processes and results, standardise evaluation against benchmarks, and track performance improvements over time.</li>
+<li><strong>Continuous improvement</strong>: Compare configurations quantitatively, identify specific weaknesses through detailed metrics, and monitor performance across versions.</li>
+<li><strong>Development integration</strong>: Integrate evaluations into CI/CD pipelines through the CLI and SDK, with comprehensive API interfaces and experiment tracking.</li>
+</ul>
+<h2 id="target-audiences">Target audiences<a class="headerlink" href="#target-audiences" title="Permanent link">&para;</a></h2>
+<p>This Solution Guide is intended for IT infrastructure teams, DevOps engineers, and solution architects who are responsible for deploying, operating, and maintaining the toolkit. If you are looking for guidance on running evaluations and using the toolkit's features, see the User Guide.</p>
+<h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
+<p>Gen AI ETK uses a serverless, event-driven architecture that prioritizes modularity, extensibility, and fault tolerance.</p>
+<h2 id="architecture-diagram">Architecture diagram<a class="headerlink" href="#architecture-diagram" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>graph TB
+    subgraph CLI["CLI Layer"]
+        client["CLI and SDKs"]
+    end
+
+    subgraph API["API Layer"]
+        apigw["API Gateway\n(REST + IAM Auth)"]
+        handlers["Lambda Handlers"]
+    end
+
+    subgraph Services["Core Components"]
+        datastore[Data Store]
+        evaluation[Evaluation]
+        generation[Generation]
+        experiment[Experimentation]
+    end
+
+    subgraph Processing["Processing Layer"]
+        sfn["Step Functions\nWorkflows"]
+        eb["EventBridge\nEvent Bus"]
+        evallambda["Lambda\nEvaluators"]
+        ecs["ECS Fargate\nGeneration Plugins"]
+    end
+
+    subgraph Storage["Storage Layer"]
+        ddb["DynamoDB\nMetadata"]
+        s3["S3\nContent and Artifacts"]
+        mlflow["SageMaker\nMLflow"]
+    end
+
+    client --&gt; apigw
+    apigw --&gt; handlers
+    handlers --&gt; datastore &amp; evaluation &amp; generation &amp; experiment
+    evaluation &amp; generation --&gt; sfn
+    sfn --&gt; eb
+    eb --&gt; evallambda
+    eb --&gt; ecs
+    evallambda --&gt;|"results via private API"| apigw
+    datastore --&gt; ddb &amp; s3
+    ecs --&gt; s3
+    experiment --&gt; mlflow</code></pre>
+<p>The architecture is organised into five functional layers, described from top to bottom.</p>
+<h2 id="architecture-details">Architecture details<a class="headerlink" href="#architecture-details" title="Permanent link">&para;</a></h2>
+<h3 id="cli-layer">CLI layer<a class="headerlink" href="#cli-layer" title="Permanent link">&para;</a></h3>
+<p>A Node.js command-line interface that provides the primary user interaction point. The CLI communicates with the API layer using IAM-authenticated requests. A generated TypeScript client and Python client are also available for programmatic access.</p>
+<h3 id="api-layer">API layer<a class="headerlink" href="#api-layer" title="Permanent link">&para;</a></h3>
+<p>Two API Gateway instances expose REST endpoints consumed by the CLI and SDKs:</p>
+<ul>
+<li><strong>Public API</strong> (EDGE by default): used by external callers. The endpoint URL is published to SSM Parameter Store at <code>/genai-etk/restApiEndpoint</code>.</li>
+<li><strong>Private API</strong> (always created): accessible only from within the VPC via the <code>execute-api</code> VPC endpoint. Used by all internal Lambdas, including the Agent-as-Judge evaluator in its isolated subnets.</li>
+</ul>
+<p>Both APIs share the same Lambda handlers — requests are processed identically regardless of entry point. All requests are authenticated using IAM (SigV4).</p>
+<h3 id="core-components-layer">Core components layer<a class="headerlink" href="#core-components-layer" title="Permanent link">&para;</a></h3>
+<p>Four specialized components implement the toolkit's primary capabilities:</p>
+<ul>
+<li><strong>Data store</strong>: Manages datasets, test cases, and annotations with versioning. Uses DynamoDB (single-table design) for metadata and S3 for content storage.</li>
+<li><strong>Evaluation</strong>: Coordinates metrics processing and evaluation jobs. Uses Step Functions for workflow orchestration and EventBridge for plugin coordination.</li>
+<li><strong>Generation</strong>: Handles synthetic test case creation and LLM-based quality filtering. Uses a sequential plugin execution workflow with S3 for data exchange.</li>
+<li><strong>Experimentation</strong>: Tracks experiment configurations and results. Integrates with Amazon SageMaker MLflow for metrics visualization and comparison.</li>
+</ul>
+<h3 id="storage-layer">Storage layer<a class="headerlink" href="#storage-layer" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Amazon DynamoDB</strong>: Metadata storage using a single-table design.</li>
+<li><strong>Amazon S3</strong>: Content storage for datasets, evaluation results, generation artifacts, and experiment data. Separate buckets are used for each domain.</li>
+<li><strong>Amazon SageMaker MLflow</strong>: Metrics tracking and experiment visualization.</li>
+</ul>
+<h3 id="processing-layer">Processing layer<a class="headerlink" href="#processing-layer" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>AWS Step Functions</strong>: Orchestrates evaluation and generation workflows via a universal pipeline (app_invoke → scoring → post-processing).</li>
+<li><strong>Amazon EventBridge</strong>: Routes evaluation tasks to registered evaluators by <code>evaluatorName</code>.</li>
+<li><strong>AWS Lambda</strong>: Runs built-in evaluators (LLM-as-Judge, RAGAS, AgentCore) and custom evaluator functions. Custom evaluators can run on any compute that receives EventBridge events and calls the ETK API, but the provided <code>LambdaEvaluator</code> CDK construct targets Lambda.</li>
+<li><strong>Amazon ECS (Fargate)</strong>: Runs generation plugins (RAG test case generator, LLM-as-Judge quality filter).</li>
+</ul>
+<h2 id="evaluator-architecture">Evaluator architecture<a class="headerlink" href="#evaluator-architecture" title="Permanent link">&para;</a></h2>
+<p><img alt="Plugin Architecture" src="../img/plugin_architecture.png" /></p>
+<p>Evaluators are Lambda functions that perform evaluation work (app invocation, scoring, or both). ETK orchestrates them via Step Functions and EventBridge:</p>
+<ol>
+<li><strong>Dispatch</strong>: Step Functions emits an <code>EvaluatorTaskDispatched</code> event to EventBridge with a <code>taskToken</code> for callback.</li>
+<li><strong>Routing</strong>: EventBridge routes the event to the correct evaluator Lambda based on <code>evaluatorName</code>.</li>
+<li><strong>Execution</strong>: The evaluator processes test cases, writes results to DynamoDB via the ETK API, and sends heartbeat signals.</li>
+<li><strong>Heartbeat</strong>: Step Functions enforces a configurable heartbeat timeout (default: 300s). If no heartbeat is received, the task is marked as timed out.</li>
+<li><strong>Completion</strong>: The evaluator signals completion via the API, which bridges the callback to Step Functions.</li>
+<li><strong>CONTINUE</strong>: For large datasets, evaluators checkpoint progress and return <code>CONTINUE</code> — Step Functions re-invokes with the checkpoint to resume.</li>
+</ol>
+<p>Evaluators are registered using the <code>LambdaEvaluator</code> CDK construct, which wires EventBridge routing, on-failure detection, and API permissions automatically.</p>
+<h3 id="built-in-evaluators">Built-in evaluators<a class="headerlink" href="#built-in-evaluators" title="Permanent link">&para;</a></h3>
+<p>All built-in scorers run inside a single <code>evaluator-builtin</code> Lambda (2048 MB, 15-minute timeout):</p>
+<table>
+<thead>
+<tr>
+<th>Scorer</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLM-as-Judge</td>
+<td><code>llm_as_judge</code></td>
+<td>LLM-based assessment using Bedrock. Built-in sub-scores: toxicity, tool_use, sample. Custom sub-scores via description.</td>
+</tr>
+<tr>
+<td>RAGAS</td>
+<td><code>ragas</code></td>
+<td>RAG metrics: faithfulness, answer relevancy, context recall. Uses Bedrock for LLM and embeddings.</td>
+</tr>
+<tr>
+<td>AgentCore</td>
+<td><code>agentcore</code></td>
+<td>Evaluates agentic systems via Bedrock AgentCore built-in evaluators (GoalSuccessRate, Correctness, etc.).</td>
+</tr>
+<tr>
+<td>DeepEval</td>
+<td><code>deepeval</code></td>
+<td>Comprehensive LLM evaluation across 37 single-turn and conversational metrics (e.g. answer relevancy, faithfulness, toxicity, bias, hallucination). Uses Bedrock. See the User Guide for the full metric list.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="deepeval-lambda-configuration">DeepEval Lambda configuration<a class="headerlink" href="#deepeval-lambda-configuration" title="Permanent link">&para;</a></h4>
+<p>DeepEval <a href="https://deepeval.com/docs/data-privacy">enables anonymous telemetry by default</a> and writes a cache/telemetry directory at import time. The <code>evaluator-builtin</code> Lambda has a read-only filesystem, so the scorer sets two environment variables <strong>in code, before importing DeepEval</strong>:</p>
+<ul>
+<li><code>DEEPEVAL_TELEMETRY_OPT_OUT=YES</code> — <strong>disables DeepEval's built-in telemetry in ETK deployments</strong>: no usage data is transmitted to DeepEval or any third party. (DeepEval ships with telemetry enabled; ETK turns it off unless you deliberately override this variable.)</li>
+<li><code>DEEPEVAL_CACHE_FOLDER=/tmp/.deepeval</code> — redirects DeepEval's cache to Lambda's writable <code>/tmp</code>, avoiding <code>OSError: Read-only file system</code> on cold start.</li>
+</ul>
+<p>Both are set unconditionally and require no deployment configuration. If you run the scorer outside Lambda (e.g. locally via the SDK), the same defaults apply unless you override the variables.</p>
+<p>The <strong>Agent-as-Judge</strong> scorer runs in a dedicated <code>evaluator-agent-as-judge</code> Lambda (2048 MB, 15-minute timeout):</p>
+<table>
+<thead>
+<tr>
+<th>Scorer</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent-as-Judge</td>
+<td><code>agent-as-judge</code></td>
+<td>Agentic evaluation: launches an OpenCode judge agent per evaluator that actively explores test case artifacts and optional S3-hosted requirement documents before producing a structured verdict. Ships with a built-in <code>requirements-compliance</code> evaluator. Runs in isolated subnets with no public-internet egress (see <a href="#network-isolation-for-the-agent-as-judge-evaluator">Network isolation for the Agent-as-Judge evaluator</a>). <code>app_invoke</code> is not supported.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Generation plugins:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Plugin</th>
+<th>Deployment Options</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAG Test Case Generator</td>
+<td>ECS: <code>generateTestCases</code></td>
+<td>Creates question-answer pairs from source documents. ECS deployment for document processing workloads.</td>
+</tr>
+<tr>
+<td>Agentic Test Case Generator</td>
+<td>ECS: <code>agenticTestCases</code></td>
+<td>Generates test cases for AI agents using taxonomy-driven planning and optional OTEL trace extraction.</td>
+</tr>
+<tr>
+<td>LLM-as-Judge</td>
+<td>ECS: <code>llmAsAJudge</code></td>
+<td>Quality filtering for generated test cases.</td>
+</tr>
+<tr>
+<td>DataStore Export</td>
+<td>StepFunction: <code>DatastoreExport</code></td>
+<td>Exports generated data to a dataset. Lambda deployment for lightweight export operations.</td>
+</tr>
+</tbody>
+</table>
+<p>When multiple deployment options are available, choose based on your workload: Lambda variants offer faster cold starts and are suitable for smaller datasets, while ECS variants support larger datasets and longer processing times.</p>
+<h2 id="security-architecture">Security architecture<a class="headerlink" href="#security-architecture" title="Permanent link">&para;</a></h2>
+<p>Authentication uses IAM throughout: API Gateway uses SigV4, service-to-service communication uses IAM roles, and plugins receive scoped IAM task roles. All data is encrypted at rest (S3, DynamoDB, CloudWatch Logs) with optional customer-managed KMS keys. Plugins run in VPC-isolated ECS tasks with security groups that deny inbound traffic. The Agent-as-Judge evaluator additionally runs in subnets with no internet route, reaching AWS services exclusively through VPC endpoints — see <a href="#network-isolation-for-the-agent-as-judge-evaluator">Network isolation for the Agent-as-Judge evaluator</a> and the rest of the <a href="#security-architecture">Security</a> section for full details.</p>
+<p>When the optional AI gateway integration is enabled, evaluator and plugin LLM calls authenticate to the gateway with short-lived <strong>OAuth2 Bearer tokens</strong> (client-credentials flow) instead of direct Amazon Bedrock SigV4. The OAuth2 client secret is stored in AWS Secrets Manager and read at runtime by the scoped task roles; all gateway traffic is HTTPS. See <a href="#ai-gateway-integration-optional">AI gateway integration (optional)</a>.</p>
+<h1 id="aws-services-in-this-solution">AWS services in this solution<a class="headerlink" href="#aws-services-in-this-solution" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>AWS service</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://aws.amazon.com/lambda/">AWS Lambda</a></td>
+<td><strong>Core.</strong> Runs API handlers for all CRUD operations across data store, evaluation, experimentation, and generation. Also runs serverless evaluation and generation plugins with code-based and container-based deployments.</td>
+</tr>
+<tr>
+<td><a href="https://aws.amazon.com/step-functions/">AWS Step Functions</a></td>
+<td><strong>Core.</strong> Orchestrates evaluation and generation workflows, coordinating plugin execution and result aggregation.</td>
+</tr>
+<tr>
+<td><a href="https://aws.amazon.com/fargate/">Amazon ECS on Fargate</a></td>
+<td><strong>Core.</strong> Runs containerized evaluation and generation plugins. Complementary to Lambda for plugins requiring high memory (&gt;10GB) or long execution times (&gt;15 minutes). Both Lambda and ECS plugins scale automatically.</td>
+</tr>
+<tr>
+<td><a href="https://aws.amazon.com/dynamodb/">Amazon DynamoDB</a></td>
+<td><strong>Core.</strong> Stores metadata for datasets, test cases, annotations, and evaluation configurations using a single-table design.</td>
+</tr>
+<tr>
+<td><a href="https://aws.amazon.com/s3/">Amazon S3</a></td>
+<td><strong>Core.</strong> Stores dataset content, evaluation results, generation artifacts, experiment data, and plugin container images.</td>
+</tr>
+<tr>
+<td><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/mlflow.html">Amazon SageMaker MLflow</a></td>
+<td><strong>Core.</strong> Provides experiment tracking, metrics logging, and visualization through a managed MLflow tracking server.</td>
+</tr>
+<tr>
+<td><a href="https://aws.amazon.com/api-gateway/">Amazon API Gateway</a></td>
+<td><strong>Core.</strong> Exposes REST API endpoints with IAM authentication for CLI and SDK access.</td>
+</tr>
+<tr>
+<td><a href="https://aws.amazon.com/eventbridge/">Amazon EventBridge</a></td>
+<td><strong>Core.</strong> Enables event-driven communication between workflows and plugins, and supports scheduled evaluations.</td>
+</tr>
+<tr>
+<td><a href="https://aws.amazon.com/sqs/">Amazon SQS</a></td>
+<td><strong>Supporting.</strong> Provides reliable message queuing for asynchronous operations such as dataset versioning.</td>
+</tr>
+<tr>
+<td><a href="https://aws.amazon.com/iam/">AWS IAM</a></td>
+<td><strong>Supporting.</strong> Manages authentication and authorization with least-privilege roles for all components.</td>
+</tr>
+<tr>
+<td><a href="https://aws.amazon.com/kms/">AWS KMS</a></td>
+<td><strong>Supporting.</strong> Provides optional customer-managed encryption keys for S3, DynamoDB, and CloudWatch Logs.</td>
+</tr>
+<tr>
+<td><a href="https://aws.amazon.com/cloudwatch/">Amazon CloudWatch</a></td>
+<td><strong>Supporting.</strong> Collects logs, metrics, and alarms for operational monitoring across all components.</td>
+</tr>
+<tr>
+<td><a href="https://aws.amazon.com/bedrock/">Amazon Bedrock</a></td>
+<td><strong>Supporting.</strong> Provides foundation model access for LLM-based evaluation and test case generation plugins.</td>
+</tr>
+<tr>
+<td><a href="https://aws.amazon.com/ecr/">Amazon ECR</a></td>
+<td><strong>Supporting.</strong> Stores container images for evaluation and generation plugins.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="how-gen-ai-evaluation-toolkit-works">How Gen AI Evaluation Toolkit works<a class="headerlink" href="#how-gen-ai-evaluation-toolkit-works" title="Permanent link">&para;</a></h1>
+<p>This section describes the core components and workflows in detail.</p>
+<h2 id="core-components">Core components<a class="headerlink" href="#core-components" title="Permanent link">&para;</a></h2>
+<h3 id="data-store">Data store<a class="headerlink" href="#data-store" title="Permanent link">&para;</a></h3>
+<p>Manages datasets, test cases, and annotations.</p>
+<ul>
+<li>Datasets are versioned. Creating a version takes a snapshot of the current test cases.</li>
+<li>Test cases contain an input, optional expected output, optional context (for RAG), optional conversation history, and arbitrary metadata.</li>
+<li>Annotation schemas define structured labels that can be applied to test cases and dataset versions.</li>
+<li>DynamoDB stores metadata; S3 stores content with version-specific prefixes.</li>
+<li>Dataset versioning operations are processed asynchronously through SQS.</li>
+</ul>
+<h3 id="evaluation">Evaluation<a class="headerlink" href="#evaluation" title="Permanent link">&para;</a></h3>
+<p>Assesses generative AI application performance through configurable scorers.</p>
+<ul>
+<li>An evaluation job specifies the target evaluator, the test data source (a versioned dataset reference or inline test cases), which scorers to run with their parameters, and an optional app-invocation configuration. Jobs are submitted through the v2 API (<code>POST /v2/evaluators/{evaluatorName}/jobs/evaluate</code>, <code>/score</code>, or <code>/invoke</code>).</li>
+<li>Submitting a job starts the universal Step Functions pipeline: an optional app-invocation (primary) task, then parallel scoring tasks (one per scorer), then a post-processing task that aggregates scores and logs metrics to an experiment.</li>
+<li>Each task is dispatched to its evaluator as an <code>EvaluatorTaskDispatched</code> event on EventBridge; the evaluator writes results and scores back through the private ETK API and signals completion, which resumes the Step Functions callback.</li>
+<li>Evaluations can be scheduled using EventBridge Scheduler through the job scheduler API (<code>/evaluation-schedulers</code>).</li>
+<li>Results are stored in DynamoDB as reports (one per job) containing per-test-case results and per-scorer scores, retrievable through the <code>/v2/reports</code> API.</li>
+</ul>
+<h3 id="generation">Generation<a class="headerlink" href="#generation" title="Permanent link">&para;</a></h3>
+<p>Creates synthetic test cases for evaluation.</p>
+<ul>
+<li>A generation configuration specifies source documents (in S3), the generation plugins to run, and their parameters.</li>
+<li>The generation workflow executes plugins sequentially: first the RAG generator creates QA pairs from documents, then the LLM-as-Judge filters for quality, and finally the DataStore Export plugin writes results to a data store.</li>
+<li>Plugins exchange data through S3, with each plugin reading the previous plugin's output.</li>
+</ul>
+<h3 id="experimentation">Experimentation<a class="headerlink" href="#experimentation" title="Permanent link">&para;</a></h3>
+<p>Tracks configurations and results for systematic comparison.</p>
+<ul>
+<li>An experiment groups related evaluation runs. Each evaluation run is logged as an MLflow run under the experiment.</li>
+<li>Experiment configurations capture the parameters used for each run, enabling reproducibility.</li>
+<li>MLflow tracks metrics (evaluation scores), parameters (configuration), and artifacts (per-test-case results) for each run.</li>
+<li>The MLflow UI (accessible through the CLI) provides visualization and comparison of runs.</li>
+</ul>
+<h2 id="workflows">Workflows<a class="headerlink" href="#workflows" title="Permanent link">&para;</a></h2>
+<h3 id="evaluation-workflow">Evaluation workflow<a class="headerlink" href="#evaluation-workflow" title="Permanent link">&para;</a></h3>
+<p><img alt="Evaluation flow" src="../img/evaluation_flow.png" /></p>
+<ol>
+<li>User submits an evaluation job through the CLI, SDK, or API (<code>POST /v2/evaluators/{evaluatorName}/jobs/evaluate</code>, <code>/score</code>, or <code>/invoke</code>), specifying the test data source (dataset reference or inline test cases), scorers, and an optional experiment name.</li>
+<li>The API handler creates the job and its report in DynamoDB and starts the universal Step Functions pipeline (app_invoke → parallel scoring → post-process).</li>
+<li>If the job includes app invocation, the pipeline dispatches the primary task as an <code>EvaluatorTaskDispatched</code> event to EventBridge (with a Step Functions task token) and waits for the callback. The evaluator invokes the application under test and records per-test-case results through the private ETK API (<code>POST /v2/reports/{reportId}/results/batch</code>).</li>
+<li>Scoring tasks run in parallel — one <code>EvaluatorTaskDispatched</code> event per scorer, routed by EventBridge to the evaluator registered for it. Each evaluator scores the results and writes scores back via <code>POST /v2/reports/{reportId}/results/scores/batch</code>.</li>
+<li>While processing, evaluators report progress through <code>PUT /v2/jobs/{jobId}/status</code>, which bridges heartbeats to Step Functions. If no heartbeat arrives within the configured interval (default 300s), the pipeline emits an <code>EvaluatorTaskTimedOut</code> event and marks the task failed. For large datasets, evaluators checkpoint and return <code>CONTINUE</code>, and the pipeline re-dispatches the task to resume from the checkpoint.</li>
+<li>The post-processing task aggregates scores across the report and logs metrics to the MLflow experiment run.</li>
+<li>The job's overall status (SUCCESS, PARTIAL_FAILURE, or FAILURE) is computed from the individual task states and is available via <code>GET /v2/jobs/{jobId}</code>.</li>
+</ol>
+<p><strong>Local execution.</strong> Evaluation does not require the deployed orchestration path. With the Evaluator SDK, <code>Evaluator(..., local_only=True)</code> runs app invocation and scorers entirely in-process — no deployed ETK instance and no API calls — which is the standard path for developing and iterating on custom evaluators. Constructing the <code>Evaluator</code> with an <code>api_endpoint</code> instead runs the evaluation locally while persisting the report, results, and scores to a deployed ETK API: the submitted job carries <code>processLocally=true</code>, which suppresses the Step Functions dispatch so only post-processing runs server-side. Within a call, tasks either run in-process (the default) or are routed to deployed evaluator workers by setting <code>evaluatorName</code> on the scorer or app config — see the User Guide for the routing rules.</p>
+<h3 id="generation-workflow">Generation workflow<a class="headerlink" href="#generation-workflow" title="Permanent link">&para;</a></h3>
+<p><img alt="Generation flow" src="../img/generation_flow.png" /></p>
+<ol>
+<li>User starts a generation job through the CLI or API, providing a generation configuration.</li>
+<li>The API handler starts a Step Functions execution.</li>
+<li>Plugins execute sequentially: RAG Generator → LLM-as-Judge → DataStore Export.</li>
+<li>Each plugin reads its input from S3 (source documents or previous plugin output), processes it, and writes output to S3.</li>
+<li>The DataStore Export plugin writes the final filtered test cases to a dataset.</li>
+</ol>
+<h3 id="experimentation-workflow">Experimentation workflow<a class="headerlink" href="#experimentation-workflow" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant User as CLI Client
+    participant API as API Gateway
+    participant Lambda as Experiment Lambda
+    participant MLflow as MLflow&lt;br/&gt;(SageMaker)
+    participant EvalWF as Evaluation Workflow
+
+    User-&gt;&gt;API: Create Experiment
+    API-&gt;&gt;Lambda: Process Request
+    Lambda-&gt;&gt;MLflow: Create MLflow Experiment
+    Lambda--&gt;&gt;User: Return Experiment ID
+
+    User-&gt;&gt;API: Start Evaluation (with experiment name)
+    API-&gt;&gt;EvalWF: Start Workflow
+
+    Note over EvalWF,MLflow: Evaluation runs (see Evaluation workflow)
+
+    EvalWF-&gt;&gt;MLflow: Log Metrics &amp; Parameters
+    EvalWF-&gt;&gt;MLflow: Store Test Case Artifacts
+
+    User-&gt;&gt;API: Launch MLflow UI
+    API-&gt;&gt;Lambda: Generate Presigned URL
+    Lambda-&gt;&gt;MLflow: CreatePresignedMlflowTrackingServerUrl
+    Lambda--&gt;&gt;User: Return UI URL
+
+    Note over User,MLflow: User compares runs in MLflow UI</code></pre>
+<ol>
+<li>User creates an experiment and defines evaluation configurations.</li>
+<li>Evaluation runs are associated with the experiment. Each run is logged as an MLflow run.</li>
+<li>MLflow captures metrics, parameters, and test case result artifacts for each run.</li>
+<li>Users compare results across runs using the MLflow UI.</li>
+</ol>
+<h2 id="plugin-communication">Plugin communication<a class="headerlink" href="#plugin-communication" title="Permanent link">&para;</a></h2>
+<p>Evaluators and generation plugins communicate through EventBridge, but use different contracts.</p>
+<p><strong>Evaluation (v2)</strong> — the universal pipeline dispatches tasks and detects timeouts with these detail types (source <code>GenAiEvaluationToolkit</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Detail type</th>
+<th>Direction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Evaluator task dispatch</td>
+<td><code>EvaluatorTaskDispatched</code></td>
+<td>Step Functions pipeline → Evaluator</td>
+</tr>
+<tr>
+<td>Evaluator task timeout</td>
+<td><code>EvaluatorTaskTimedOut</code></td>
+<td>Step Functions pipeline → Internal handler</td>
+</tr>
+<tr>
+<td>Evaluator crash/OOM</td>
+<td><code>Lambda Function Invocation Result - Failure</code></td>
+<td>Lambda on-failure destination → Internal handler</td>
+</tr>
+</tbody>
+</table>
+<p>Each <code>EvaluatorTaskDispatched</code> event carries a Step Functions <code>taskToken</code>. Evaluators do not respond with events — they call back through the private ETK API (<code>PUT /v2/jobs/{jobId}/status</code>), which bridges heartbeats, <code>CONTINUE</code> checkpoints, completion, and failure to Step Functions.</p>
+<p><strong>Generation (v1 plugin contract)</strong> — generation plugins still use the event-based trigger/done contract:</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Detail type</th>
+<th>Direction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Generation done</td>
+<td><code>genAiEtkGenerationDoneEvent</code></td>
+<td>Workflow → EventBridge subscribers</td>
+</tr>
+<tr>
+<td>Generation plugin trigger</td>
+<td><code>genAiEtkGenerationPluginTriggerEvent</code></td>
+<td>Workflow → Plugin</td>
+</tr>
+<tr>
+<td>Generation plugin done</td>
+<td><code>genAiEtkGenerationPluginDoneEvent</code></td>
+<td>Plugin → Workflow</td>
+</tr>
+</tbody>
+</table>
+<p>Generation plugin responses use a task token mechanism for Step Functions callback integration. Each response includes a <code>taskToken</code> and one of three statuses:</p>
+<ul>
+<li><code>success</code>: Plugin completed. Includes optional output.</li>
+<li><code>error</code>: Plugin failed. Includes error type and cause.</li>
+<li><code>inProgress</code>: Plugin is still running. Includes progress percentage.</li>
+</ul>
+<h2 id="data-models">Data models<a class="headerlink" href="#data-models" title="Permanent link">&para;</a></h2>
+<h3 id="test-case">Test case<a class="headerlink" href="#test-case" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tc-456&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;datasetId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dataset-123&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;What is the capital of France?&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;expected&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Paris is the capital of France.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;context&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Paris is the capital and most populous city of France.&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;geography&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;difficulty&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;easy&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="test-result">Test result<a class="headerlink" href="#test-result" title="Permanent link">&para;</a></h3>
+<p>Each evaluated test case produces a <code>TestResult</code> in the job's report. It carries the test-case core (<code>input</code>, <code>expected</code>, <code>context</code>, <code>metadata</code>), the execution artifacts (<code>output</code>, <code>appMetrics</code>, <code>error</code>), and a <code>scores</code> map keyed by scorer name:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;resultId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;result-789&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;reportId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;report-123&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;testcaseId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tc-456&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;What is the capital of France?&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;expected&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Paris is the capital of France.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;output&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Paris is the capital of France.&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;appMetrics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;latencyMs&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">812</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;inputTokens&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;outputTokens&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;scores&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;ragas&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.95</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Answer is fully supported by the retrieved context.&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scoredAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-07-01T12:00:00Z&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;llm_as_judge&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.87</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Response is accurate and relevant.&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scoredAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-07-01T12:00:05Z&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-07-01T11:59:30Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;updatedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-07-01T12:00:05Z&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Each entry in <code>scores</code> is a <code>ScoreOutput</code> with <code>value</code> (typically 0–1), a human-readable <code>reason</code>, an optional <code>error</code> if scoring failed, and an optional structured <code>context</code> detail produced by the scorer.</p>
+<h1 id="plan-your-deployment">Plan your deployment<a class="headerlink" href="#plan-your-deployment" title="Permanent link">&para;</a></h1>
+<h2 id="cost">Cost<a class="headerlink" href="#cost" title="Permanent link">&para;</a></h2>
+<p>You are responsible for the cost of the AWS services used while running this solution. Cost estimates below are approximate and may vary based on configuration, usage patterns, your AWS Region, and AWS pricing changes; see the pricing page for each AWS service for current rates. The primary cost drivers are:</p>
+<ul>
+<li><strong>MLflow tracking server</strong>: Approximately $500/month (runs continuously on a SageMaker managed instance).</li>
+<li><strong>Amazon Bedrock API calls</strong>: Varies by model and usage volume. This is typically the largest variable cost.</li>
+<li><strong>AWS Lambda, Step Functions, API Gateway</strong>: Pay-per-use; costs scale with evaluation volume. Built-in evaluators (LLM-as-Judge, RAGAS, AgentCore, DeepEval, Agent-as-Judge) run on Lambda.</li>
+<li><strong>Amazon S3 and DynamoDB</strong>: Storage costs scale with dataset size and evaluation history.</li>
+<li><strong>ECS Fargate</strong>: Pay-per-use for generation plugin execution time (test case generation and quality filtering). Custom plugins may use alternative compute.</li>
+</ul>
+<p>We recommend creating a <a href="https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-create.html">budget</a> through <a href="https://aws.amazon.com/aws-cost-management/aws-cost-explorer/">AWS Cost Explorer</a> to help manage costs. For full pricing details, see the pricing page for each AWS service listed in the <a href="#aws-services-in-this-solution">AWS services in this solution</a> section.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>Two deployment paths are supported (CDK and Terraform). The lists below are split so you can skip the path you won't use.</p>
+<h3 id="common-both-cdk-and-terraform">Common (both CDK and Terraform)<a class="headerlink" href="#common-both-cdk-and-terraform" title="Permanent link">&para;</a></h3>
+<ul>
+<li>An AWS account with appropriate permissions for the chosen IaC tool.</li>
+<li>AWS credentials exported into your shell (or configured through a profile).</li>
+<li>Docker engine installed and running (or <code>finch</code> / <code>podman</code> / <code>colima</code> with a <code>docker</code> shim on PATH).</li>
+<li><code>mise</code> installed (<code>brew install mise</code> or see <a href="https://mise.jdx.dev/getting-started.html">mise: getting started</a>). Then run <code>mise install</code> to install the required tooling (Node.js, Python, Gradle, Terraform, and so on).</li>
+<li>Amazon Bedrock model access enabled in your target region for the models used by the plugins. See <a href="#amazon-bedrock-model-access">Amazon Bedrock model access</a> for the full list of required models.</li>
+</ul>
+<h3 id="cdk-specific">CDK-specific<a class="headerlink" href="#cdk-specific" title="Permanent link">&para;</a></h3>
+<ul>
+<li>AWS CDK CLI (provided by <code>mise install</code>).</li>
+<li>One-time <code>cdk bootstrap</code> against the target account/region.</li>
+</ul>
+<h3 id="terraform-specific">Terraform-specific<a class="headerlink" href="#terraform-specific" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Terraform &gt;= 1.6 and AWS provider &gt;= 5.x (both pinned by <code>mise install</code>). Terraform manages infrastructure state in a remote backend — unlike CDK which delegates state to CloudFormation — so a one-time account setup is required.</li>
+<li>AWS CLI v2 (<code>aws sts get-caller-identity</code> should resolve against the target account).</li>
+<li>One-time <strong>bootstrap</strong> of the AWS account: creates the remote-state S3 bucket, DynamoDB lock table, plugin ECR repositories, and SSM image-tag parameter. See <code>packages/terraform-deployment/README.md</code> and the Terraform deploy steps below.</li>
+</ul>
+<h3 id="cli-and-sdk-distribution">CLI and SDK distribution<a class="headerlink" href="#cli-and-sdk-distribution" title="Permanent link">&para;</a></h3>
+<p>The CLI and generated SDKs are not published to public registries. When planning your deployment, consider how you will distribute these to end users. Options include:</p>
+<ul>
+<li>Providing the built npm tarball (produced by <code>nx build cli</code>) to users for local installation.</li>
+<li>Hosting the package on a private npm registry.</li>
+<li>Giving users access to the source repository so they can build and link the CLI locally.</li>
+</ul>
+<p>See the <a href="../../user_guide/Gen-AI-ETK-UserGuide/#install-the-cli">User Guide</a> for end-user CLI installation instructions.</p>
+<h2 id="ai-gateway-integration-optional">AI gateway integration (optional)<a class="headerlink" href="#ai-gateway-integration-optional" title="Permanent link">&para;</a></h2>
+<p>By default, evaluator and generation plugins call Amazon Bedrock directly using IAM (SigV4). You can optionally route all LLM calls through an AI gateway — an OAuth2-fronted LLM gateway (Bedrock Converse-compatible) — instead, for centralized cost tracking and budget enforcement across teams. The AI gateway is a customer-provided, third-party component; it is not an AWS service, and this solution does not include one.</p>
+<p>When enabled (by providing <code>gatewayConfig</code> at deploy time):</p>
+<ul>
+<li>LLM calls are sent to the gateway endpoint instead of Bedrock and authenticate with an <strong>OAuth2 Bearer token</strong> (client-credentials flow) rather than direct Bedrock SigV4.</li>
+<li>The OAuth2 client secret is stored in <strong>AWS Secrets Manager</strong>; the evaluator and plugin task roles are granted <code>secretsmanager:GetSecretValue</code> on that secret and read it at runtime to mint short-lived tokens.</li>
+<li>Tokens are cached and refreshed automatically, and all gateway traffic is HTTPS.</li>
+<li>The integration is fully opt-in and backward compatible — with no <code>gatewayConfig</code>, plugins call Bedrock directly as before, with no IAM or behavioral changes.</li>
+</ul>
+<p>Configuration (gateway endpoint, OAuth2 token endpoint, client ID, client-secret ARN, and model ID) is a deploy-time concern set on the CDK construct. See the CDK package README (<code>packages/cdk/README.md</code>) for the full prop reference and prerequisites (AI gateway deployed, OAuth2 client registered, and the Secrets Manager secret created).</p>
+<h2 id="supported-aws-regions">Supported AWS Regions<a class="headerlink" href="#supported-aws-regions" title="Permanent link">&para;</a></h2>
+<p>Gen AI ETK can be deployed in any AWS Region that supports all required services. The primary constraint is Amazon Bedrock availability, as the evaluation and generation plugins depend on foundation model access.</p>
+<p>For current Bedrock region availability, see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html">Model support by AWS Region in Amazon Bedrock</a>. For general AWS service availability, see the <a href="https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/">AWS Regional Services List</a>.</p>
+<h3 id="cross-region-model-access">Cross-region model access<a class="headerlink" href="#cross-region-model-access" title="Permanent link">&para;</a></h3>
+<p>The IAM roles created by the solution allow Bedrock calls to any region, enabling cross-region inference when a model is not available in the deployment region. Cross-region calls incur additional latency and data transfer costs. To restrict cross-region access, use <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html">AWS Organizations Service Control Policies (SCPs)</a>.</p>
+<h2 id="quotas">Quotas<a class="headerlink" href="#quotas" title="Permanent link">&para;</a></h2>
+<p>Service quotas, also referred to as limits, are the maximum number of service resources or operations for your AWS account. The following quotas are most likely to affect Gen AI ETK deployments:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Quota</th>
+<th>Default</th>
+<th>Adjustable</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AWS Lambda</td>
+<td>Concurrent executions</td>
+<td>1,000 per region</td>
+<td>Yes</td>
+<td>Limits parallel evaluation jobs</td>
+</tr>
+<tr>
+<td>Step Functions</td>
+<td>State transitions per second</td>
+<td>2,000 per account</td>
+<td>Yes</td>
+<td>Affects workflow execution speed</td>
+</tr>
+<tr>
+<td>Amazon Bedrock</td>
+<td>API requests per minute</td>
+<td>Varies by model</td>
+<td>Yes</td>
+<td>Limits evaluation throughput</td>
+</tr>
+<tr>
+<td>API Gateway</td>
+<td>Requests per second</td>
+<td>10,000 per account</td>
+<td>Yes</td>
+<td>API call throttling</td>
+</tr>
+<tr>
+<td>EventBridge</td>
+<td>PutEvents transactions per second</td>
+<td>10,000</td>
+<td>Yes</td>
+<td>Rate of plugin event processing</td>
+</tr>
+<tr>
+<td>EventBridge</td>
+<td>Event size</td>
+<td>256 KB</td>
+<td>No</td>
+<td>Plugin coordination data volume</td>
+</tr>
+<tr>
+<td>ECS</td>
+<td>Tasks per service</td>
+<td>1,000</td>
+<td>No</td>
+<td>Plugin execution capacity</td>
+</tr>
+<tr>
+<td>SageMaker</td>
+<td>MLflow tracking servers</td>
+<td>Varies by region</td>
+<td>Yes</td>
+<td>Experiment tracking</td>
+</tr>
+</tbody>
+</table>
+<p>Gen AI ETK does not impose additional limits beyond those of the underlying AWS services. For the most current information, see the <a href="https://console.aws.amazon.com/servicequotas/">AWS Service Quotas console</a>. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">AWS service quotas</a>.</p>
+<h2 id="amazon-bedrock-model-access">Amazon Bedrock model access<a class="headerlink" href="#amazon-bedrock-model-access" title="Permanent link">&para;</a></h2>
+<p>The following scorers and generation plugins require Amazon Bedrock model access. Ensure the required models are enabled in your deployment region before using them. Customers can configure alternative models through the scorer parameters or plugin configuration — see the <a href="../../user_guide/Gen-AI-ETK-UserGuide/">User Guide</a> for details.</p>
+<table>
+<thead>
+<tr>
+<th>Scorer / plugin</th>
+<th>Purpose</th>
+<th>Default model(s)</th>
+<th>Configurable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAGAS (<code>ragas</code>)</td>
+<td>RAG evaluation metrics</td>
+<td><code>amazon.nova-micro-v1:0</code> (LLM), <code>amazon.titan-embed-text-v2:0</code> (embeddings)</td>
+<td>Yes (<code>model_id</code>, <code>embeddings_id</code>)</td>
+</tr>
+<tr>
+<td>LLM-as-Judge (<code>llm_as_judge</code>)</td>
+<td>LLM-based evaluation</td>
+<td><code>global.amazon.nova-2-lite-v1:0</code></td>
+<td>Yes (<code>model_id</code>)</td>
+</tr>
+<tr>
+<td>DeepEval (<code>deepeval</code>)</td>
+<td>LLM evaluation metrics (37 metrics)</td>
+<td><code>us.amazon.nova-lite-v1:0</code></td>
+<td>Yes (<code>model_id</code>)</td>
+</tr>
+<tr>
+<td>Agent-as-Judge (<code>agent-as-judge</code>)</td>
+<td>Agentic judge evaluation</td>
+<td><code>global.anthropic.claude-sonnet-4-6</code></td>
+<td>Yes (<code>agentModel</code>)</td>
+</tr>
+<tr>
+<td>RAG Test Case Generator (<code>generateTestCases</code>)</td>
+<td>Test case generation from documents</td>
+<td><code>anthropic.claude-haiku-4-5-20251001-v1:0</code></td>
+<td>Yes (via plugin configuration)</td>
+</tr>
+<tr>
+<td>LLM-as-Judge Gen (<code>llmAsAJudge</code>)</td>
+<td>Quality filtering of generated test cases</td>
+<td><code>anthropic.claude-haiku-4-5-20251001-v1:0</code></td>
+<td>Yes (via plugin configuration)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="amazon-bedrock-agentcore-access">Amazon Bedrock AgentCore access<a class="headerlink" href="#amazon-bedrock-agentcore-access" title="Permanent link">&para;</a></h3>
+<p>The AgentCore scorer (<code>agentcore</code>) uses the Amazon Bedrock AgentCore Evaluations API rather than direct model invocation, and that API is available in a limited set of regions. Regional availability is subject to change — consult the <a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agentcore-regions.html">official AWS documentation</a> for the latest supported regions. The scorer's <code>region</code> parameter allows cross-region API calls, so the toolkit does not need to be deployed in a supported region.</p>
+<p>To check which models are available in your account, use:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>bedrock<span class="w"> </span>list-foundation-models<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;modelSummaries[].modelId&quot;</span>
+</code></pre></div>
+<p>To request model access, see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html">Manage access to Amazon Bedrock foundation models</a>.</p>
+<h1 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h1>
+<p>When you build systems on AWS infrastructure, security responsibilities are shared between you and AWS. This <a href="https://aws.amazon.com/compliance/shared-responsibility-model/">shared responsibility model</a> reduces your operational burden because AWS operates, manages, and controls the components including the host operating system, the virtualization layer, and the physical security of the facilities in which the services operate. For more information about AWS security, visit <a href="https://aws.amazon.com/security/">AWS Cloud Security</a>.</p>
+<p>As a customer, you are responsible for "security in the cloud" — this includes configuring the toolkit securely according to your own security requirements, managing access to the AWS account hosting the solution, and monitoring the operating environment. The guidance in this section is intended to help you do this.</p>
+<h2 id="iam-roles">IAM roles<a class="headerlink" href="#iam-roles" title="Permanent link">&para;</a></h2>
+<p>The solution creates least-privilege IAM roles for each component:</p>
+<ul>
+<li><strong>Lambda function roles</strong>: Scoped to the specific DynamoDB, S3, and EventBridge resources each function needs.</li>
+<li><strong>Evaluation workflow role</strong>: Grants the Step Functions state machine access to invoke plugins, read/write the evaluation S3 bucket, and log to MLflow.</li>
+<li><strong>Generation workflow role</strong>: Grants the Step Functions state machine access to invoke generation plugins and read/write the generation S3 bucket.</li>
+<li><strong>Plugin task roles</strong>: Each ECS plugin task and Lambda plugin receives a role scoped to its specific S3 bucket prefix and EventBridge permissions. The <code>evaluator-builtin</code> Lambda — which hosts the RAGAS, LLM-as-Judge, and DeepEval scorers — receives <code>bedrock:InvokeModel</code> for the Bedrock models those scorers use (configurable per scorer via <code>model_id</code>/<code>modelId</code>). The Agent-as-Judge Lambda additionally receives <code>bedrock:InvokeModel</code> on all foundation models and inference profiles (required for the judge agent), and read access to the <code>evaluation/agent-as-judge/*</code> prefix of the data bucket (for artifacts and requirement documents). The AgentCore Evaluations Lambda additionally receives <code>bedrock-agentcore:Evaluate</code>, <code>bedrock-agentcore:ListEvaluators</code>, <code>bedrock-agentcore:GetEvaluator</code>, <code>bedrock-agentcore:CreateEvaluator</code>, and <code>bedrock-agentcore:UpdateEvaluator</code> permissions scoped to the deployment account. These permissions are required for inline custom evaluator definitions (get-or-create with automatic update on drift).</li>
+</ul>
+<h3 id="bedrock-access-patterns">Bedrock access patterns<a class="headerlink" href="#bedrock-access-patterns" title="Permanent link">&para;</a></h3>
+<p>Generation plugins use different Bedrock API access patterns based on their workload characteristics:</p>
+<table>
+<thead>
+<tr>
+<th>Access Pattern</th>
+<th>Plugins</th>
+<th>API</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Real-time Converse</strong></td>
+<td>Agentic Test Case Generator</td>
+<td><code>bedrock:InvokeModel</code></td>
+<td>Direct synchronous calls to the Bedrock Converse API. Lower latency, pay-per-request pricing. Used for interactive test case generation with retry logic.</td>
+</tr>
+<tr>
+<td><strong>Batch Inference</strong></td>
+<td>RAG Test Case Generator, LLM-as-Judge (Generation)</td>
+<td><code>bedrock:CreateModelInvocationJob</code></td>
+<td>Asynchronous batch processing via Bedrock Batch API. Higher throughput for large datasets, reduced per-token cost. Requires a separate IAM role for Bedrock to access S3.</td>
+</tr>
+</tbody>
+</table>
+<p>The Agentic plugin uses real-time Converse API because it requires iterative LLM calls with retry logic for JSON parsing and validation. Batch inference is better suited for the RAG and LLM-as-Judge plugins which process large document sets in a single pass.
+- <strong>MLflow tracking server role</strong>: Access to the experiment S3 bucket and SageMaker resources.
+- <strong>EventBridge scheduler role</strong>: Permission to start Step Functions executions for scheduled evaluations.</p>
+<h2 id="access-control">Access control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h2>
+<p>The Gen AI ETK API Gateway uses <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/permissions.html">IAM authentication</a> (<code>AWS_IAM</code>) on every route. Callers sign requests with <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signature Version 4</a> using the credentials of an IAM principal (a user, role, or federated identity), and API Gateway evaluates <code>execute-api:Invoke</code> against that principal's IAM policies before forwarding the request to the backend. The toolkit does not perform any additional in-line authorization on top of API Gateway, so the IAM policies you attach to your callers are the access control mechanism.</p>
+<p>This section explains how to map the operations exposed by ETK onto IAM policies, gives example policies for three common personas (admin, evaluator, viewer), and describes setup and audit considerations. User-level identity features such as fine-grained per-user resource ownership require Cognito or Lambda Authorizer integration, which is not currently supported and not covered here.</p>
+<h3 id="resource-arn-format">Resource ARN format<a class="headerlink" href="#resource-arn-format" title="Permanent link">&para;</a></h3>
+<p>API Gateway represents each route as an <code>execute-api</code> resource ARN of the form:</p>
+<div class="highlight"><pre><span></span><code>arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/&lt;METHOD&gt;/&lt;PATH&gt;
+</code></pre></div>
+<p>Where:</p>
+<ul>
+<li><code>&lt;PARTITION&gt;</code> is the AWS partition for your deployment region. ETK is currently deployed and validated only in commercial AWS regions, so use <code>aws</code>. The placeholder is kept in the example ARNs because IAM policies require the partition field.</li>
+<li><code>&lt;API-ID&gt;</code> is the REST API ID (for example <code>abc123def4</code>). After deployment the <strong>public</strong> API endpoint URL is published to AWS Systems Manager Parameter Store at <code>/genai-etk/restApiEndpoint</code> (the host portion of that URL is <code>&lt;API-ID&gt;.execute-api.&lt;REGION&gt;.amazonaws.com</code>); you can also find both API IDs in the API Gateway console. If <code>publicEndpointType</code> is <code>DISABLED</code>, no SSM parameter is created — use the private API URL directly from the CloudFormation stack outputs.</li>
+<li><code>&lt;STAGE&gt;</code> is the deployed stage name. The toolkit deploys a single API stage named <code>prod</code>. Use <code>*</code> to match every stage if you want a forward-compatible policy.</li>
+<li><code>&lt;METHOD&gt;</code> is the HTTP verb (<code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>PATCH</code>, <code>DELETE</code>) or <code>*</code> for all verbs.</li>
+<li><code>&lt;PATH&gt;</code> is the route path <strong>without</strong> a leading slash, for example <code>datasets</code>, <code>datasets/*</code>, <code>v2/jobs/*/status</code>. Note that <code>*</code> in an <code>execute-api</code> resource ARN matches any sequence of characters, including <code>/</code> — it is not limited to a single path segment. For example, <code>datasets/*</code> matches <code>datasets/abc</code>, <code>datasets/abc/versions/1</code>, and <code>datasets/abc/versions/1/testcases/foo</code>. Use the most specific path you can.</li>
+</ul>
+<p>For example, to allow read-only access to all datasets and their versions on a stage named <code>prod</code>:</p>
+<div class="highlight"><pre><span></span><code>arn:aws:execute-api:us-east-1:123456789012:abc123def4/prod/GET/datasets
+arn:aws:execute-api:us-east-1:123456789012:abc123def4/prod/GET/datasets/*
+</code></pre></div>
+<p>See <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/permissions.html">Control access to a REST API using IAM permissions</a> for the full reference.</p>
+<h3 id="api-operation-reference">API operation reference<a class="headerlink" href="#api-operation-reference" title="Permanent link">&para;</a></h3>
+<p>The following table groups every ETK operation by capability. Use it to compose IAM policies tailored to your personas.</p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Operations (method + path)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>List/read datasets and test cases</td>
+<td><code>GET /datasets</code>, <code>GET /datasets/{datasetId}</code>, <code>GET /datasets/{datasetId}/versions/{version}</code>, <code>GET /datasets/{datasetId}/versions/{version}/testcases/{testCaseId}</code>, <code>POST /datasets/{datasetId}/versions/list</code>, <code>POST /datasets/{datasetId}/versions/{version}/testcases/list</code></td>
+</tr>
+<tr>
+<td>Manage datasets and test cases</td>
+<td><code>POST /datasets</code>, <code>POST /datasets/{datasetId}/testcases</code>, <code>POST /datasets/{datasetId}/versions</code>, <code>POST /datasets/{datasetId}/restore</code>, <code>DELETE /datasets/{datasetId}</code>, <code>DELETE /datasets/{datasetId}/testcases/{testCaseId}</code></td>
+</tr>
+<tr>
+<td>Read annotations and schemas</td>
+<td><code>GET /annotations/schemas</code>, <code>GET /annotations/schemas/{annotationName}</code></td>
+</tr>
+<tr>
+<td>Manage annotations and schemas</td>
+<td><code>POST /annotations/schemas</code>, <code>PUT /annotations/schemas/{annotationName}/archive</code>, <code>PUT /datasets/{datasetId}/testcases/{testCaseId}/annotations</code>, <code>PUT /datasets/{datasetId}/versions/{version}/annotations</code>, <code>DELETE /datasets/{datasetId}/testcases/{testCaseId}/annotations/{annotationName}</code>, <code>DELETE /datasets/{datasetId}/versions/{version}/annotations/{annotationName}</code></td>
+</tr>
+<tr>
+<td>Submit evaluation jobs</td>
+<td><code>POST /v2/evaluators/{evaluatorName}/jobs/evaluate</code>, <code>POST /v2/evaluators/{evaluatorName}/jobs/score</code>, <code>POST /v2/evaluators/{evaluatorName}/jobs/invoke</code></td>
+</tr>
+<tr>
+<td>List/read evaluation jobs</td>
+<td><code>GET /v2/jobs</code>, <code>GET /v2/jobs/{jobId}</code></td>
+</tr>
+<tr>
+<td>Update evaluation job status</td>
+<td><code>PUT /v2/jobs/{jobId}/status</code> — used by evaluator workers (heartbeats, checkpoints, completion) and by the SDK when running locally with API persistence</td>
+</tr>
+<tr>
+<td>List/read reports and results</td>
+<td><code>GET /v2/reports</code>, <code>GET /v2/reports/{reportId}</code>, <code>GET /v2/reports/{reportId}/results</code>, <code>GET /v2/reports/{reportId}/results/{resultId}</code></td>
+</tr>
+<tr>
+<td>Manage reports</td>
+<td><code>POST /v2/reports</code>, <code>DELETE /v2/reports/{reportId}</code></td>
+</tr>
+<tr>
+<td>Write results and scores</td>
+<td><code>POST /v2/reports/{reportId}/results/batch</code>, <code>POST /v2/reports/{reportId}/results/scores/batch</code>, <code>POST /v2/reports/{reportId}/results/delete/batch</code></td>
+</tr>
+<tr>
+<td>List/read evaluation schedulers</td>
+<td><code>GET /evaluation-schedulers</code>, <code>GET /evaluation-schedulers/{name}</code></td>
+</tr>
+<tr>
+<td>Manage evaluation schedulers</td>
+<td><code>POST /evaluation-schedulers</code>, <code>PATCH /evaluation-schedulers/{name}</code>, <code>DELETE /evaluation-schedulers/{name}</code></td>
+</tr>
+<tr>
+<td>List/read generation jobs</td>
+<td><code>GET /generation-jobs</code>, <code>GET /generation-jobs/{id}</code></td>
+</tr>
+<tr>
+<td>Run and manage generation jobs</td>
+<td><code>POST /generation-jobs</code>, <code>POST /generation-jobs/{id}/stop</code></td>
+</tr>
+<tr>
+<td>List/read experiments and configurations</td>
+<td><code>GET /experiments/{name}</code>, <code>GET /configurations/{name}</code>, <code>POST /experiments/list</code>, <code>POST /experiments/{name}/outputs</code>, <code>POST /configurations/list</code></td>
+</tr>
+<tr>
+<td>Manage experiments and configurations</td>
+<td><code>POST /experiments</code>, <code>PATCH /experiments/{name}</code>, <code>DELETE /experiments/{name}</code>, <code>POST /configurations</code>, <code>PUT /configurations</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note</strong>: There is no stop operation for v2 evaluation jobs. A running job either completes, fails, or times out via the heartbeat mechanism. Generation jobs do have a stop operation (<code>POST /generation-jobs/{id}/stop</code>).</p>
+</blockquote>
+<h3 id="example-iam-policies">Example IAM policies<a class="headerlink" href="#example-iam-policies" title="Permanent link">&para;</a></h3>
+<p>The examples below assume the placeholders <code>&lt;PARTITION&gt;</code> (<code>aws</code>), <code>&lt;REGION&gt;</code>, <code>&lt;ACCOUNT-ID&gt;</code>, <code>&lt;API-ID&gt;</code>, and <code>&lt;STAGE&gt;</code> (always <code>prod</code> for ETK). Replace them with your deployment's values.</p>
+<h4 id="admin">Admin<a class="headerlink" href="#admin" title="Permanent link">&para;</a></h4>
+<p>Full access to every operation. Suitable for platform owners and operators who need to deploy datasets, manage schedulers, and respond to incidents.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Sid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EtkAdminFullAccess&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;execute-api:Invoke&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/*&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="evaluator">Evaluator<a class="headerlink" href="#evaluator" title="Permanent link">&para;</a></h4>
+<p>Read everything plus submit evaluation jobs, write reports/results/scores (required when the SDK runs an evaluation locally and persists to the API), run and stop generation jobs, and manage evaluation schedulers. Cannot mutate datasets, test cases, annotations, schemas, experiments, or configurations, and cannot delete reports.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Sid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EtkEvaluatorRead&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;execute-api:Invoke&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/GET/*&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/POST/datasets/*/versions/list&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/POST/datasets/*/versions/*/testcases/list&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/POST/experiments/list&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/POST/experiments/*/outputs&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/POST/configurations/list&quot;</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Sid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EtkEvaluatorRunJobs&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;execute-api:Invoke&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/POST/v2/evaluators/*/jobs/evaluate&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/POST/v2/evaluators/*/jobs/score&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/POST/v2/evaluators/*/jobs/invoke&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/PUT/v2/jobs/*/status&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/POST/generation-jobs&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/POST/generation-jobs/*/stop&quot;</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Sid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EtkEvaluatorWriteResults&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;execute-api:Invoke&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/POST/v2/reports&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/POST/v2/reports/*/results/batch&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/POST/v2/reports/*/results/scores/batch&quot;</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Sid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EtkEvaluatorManageSchedulers&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;execute-api:Invoke&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/POST/evaluation-schedulers&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/PATCH/evaluation-schedulers/*&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/DELETE/evaluation-schedulers/*&quot;</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The same pattern applies to evaluator worker Lambdas registered with the <code>LambdaEvaluator</code> CDK construct: by default the construct grants <code>execute-api:Invoke</code> on <code>*/v2/*</code> and <code>*/datasets/*</code> of the private API, and you can pass <code>executeApiRoutes</code> with explicit method+path pairs to enforce least privilege. For example, the built-in Agent-as-Judge evaluator is scoped down to exactly the routes it calls:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">executeApiRoutes</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/v2/jobs/*&#39;</span><span class="w"> </span><span class="p">},</span><span class="w">                          </span><span class="c1">// dedup check</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;PUT&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/v2/jobs/*/status&#39;</span><span class="w"> </span><span class="p">},</span><span class="w">                   </span><span class="c1">// status updates</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/v2/reports/*/results&#39;</span><span class="w"> </span><span class="p">},</span><span class="w">               </span><span class="c1">// list existing results</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/v2/reports/*/results/scores/batch&#39;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="c1">// write scores</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/datasets/*/testcases&#39;</span><span class="w"> </span><span class="p">},</span><span class="w">               </span><span class="c1">// dataset-sourced jobs</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/datasets/*/testcases/*&#39;</span><span class="w"> </span><span class="p">},</span><span class="w">             </span><span class="c1">// single test case</span>
+<span class="p">],</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Note</strong>: The list endpoints <code>POST /datasets/{datasetId}/versions/list</code>, <code>POST /datasets/{datasetId}/versions/{version}/testcases/list</code>, <code>POST /experiments/list</code>, <code>POST /experiments/{name}/outputs</code>, and <code>POST /configurations/list</code> use <code>POST</code> rather than <code>GET</code> because the request body carries filter and pagination parameters that exceed practical query-string limits. They are read-only operations and are included alongside <code>GET</code> in read scopes.</p>
+</blockquote>
+<h4 id="viewer">Viewer<a class="headerlink" href="#viewer" title="Permanent link">&para;</a></h4>
+<p>Read-only access. Suitable for stakeholders, product managers, anyone who needs to inspect evaluation results without changing anything, and audit-only use cases (security teams, compliance tooling). For audit use cases, reuse this policy and tighten the role's trust policy as described in <a href="#trust-policy-guidance">Trust policy guidance</a> below.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Sid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EtkViewerRead&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;execute-api:Invoke&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/GET/*&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/POST/datasets/*/versions/list&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/POST/datasets/*/versions/*/testcases/list&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/POST/experiments/list&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/POST/experiments/*/outputs&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;arn:&lt;PARTITION&gt;:execute-api:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:&lt;API-ID&gt;/&lt;STAGE&gt;/POST/configurations/list&quot;</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="trust-policy-guidance">Trust policy guidance<a class="headerlink" href="#trust-policy-guidance" title="Permanent link">&para;</a></h3>
+<p>Each role's trust policy controls which principals can assume the role and obtain credentials for ETK. Choose the trust pattern that matches how your callers will authenticate:</p>
+<ul>
+<li><strong>Server-side credential vending (recommended)</strong>: Use <a href="https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html">AWS IAM Identity Center</a> permission sets, <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html">SAML 2.0 federation</a>, or <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html">OIDC federation</a> so the assumed-role session name is set from the upstream identity provider's user attribute. This gives reliable, human-readable session names that ETK records into <code>createdBy</code> and <code>updatedBy</code> (see <a href="#iam-identity-tracking">IAM identity tracking</a>) and that appear in CloudTrail.</li>
+</ul>
+<p>IAM Identity Center generates the trust policy for permission-set roles automatically — you do not need to author one. For self-managed SAML or OIDC federation, follow the linked AWS guides for the trust-policy structure and condition keys appropriate to your IdP.</p>
+<ul>
+<li><strong>Cross-account assumption</strong>: When auditors or operators sit in a different AWS account, allow assumption from that account and require an <code>sts:ExternalId</code> to defend against the <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html">confused deputy problem</a>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Principal&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;AWS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:iam::&lt;AUDITOR-ACCOUNT-ID&gt;:root&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sts:AssumeRole&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;StringEquals&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sts:ExternalId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;UNIQUE-EXTERNAL-ID&gt;&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>IAM users (development only)</strong>: Allow specific IAM users in the same account to assume the role for local development and demos. Use <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html#Conditions_Boolean"><code>aws:MultiFactorAuthPresent</code></a> to require MFA. Avoid for production.</li>
+</ul>
+<p>For all roles, follow <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html">IAM best practices</a>: require MFA via <code>aws:MultiFactorAuthPresent</code> in the trust policy when human users assume the role, and set <code>MaxSessionDuration</code> (a property of the role, not the trust policy) to a value that fits your operational and compliance requirements.</p>
+<h3 id="auditing-access">Auditing access<a class="headerlink" href="#auditing-access" title="Permanent link">&para;</a></h3>
+<p>When server-side credential vending sets the session name from an upstream identity (Identity Center user, SAML <code>NameID</code>, OIDC <code>sub</code>), every API call carries that identity through to:</p>
+<ul>
+<li>The <code>createdBy</code> and <code>updatedBy</code> fields on every resource that ETK writes to DynamoDB (see <a href="#iam-identity-tracking">IAM identity tracking</a>).</li>
+<li>The <code>userIdentity.arn</code> field of the corresponding CloudTrail event for <code>execute-api:Invoke</code>. Enable CloudTrail (see <a href="#audit-logging">Audit logging</a>) to retain these events.</li>
+<li>The <code>requestContext.identity.userArn</code> field of API Gateway access logs, if you enable access logging on the stage.</li>
+</ul>
+<p>For roles assumed without server-side vending — for example when an engineer runs <code>aws sts assume-role</code> from their workstation — the session name is whatever the caller passes to <code>--role-session-name</code>, which is unreliable for audit. Prefer Identity Center or SAML/OIDC federation for any persona whose actions need to be attributable to a real human.</p>
+<h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Resource ownership is not enforced per user.</strong> Any caller authorized for a path can read or modify any record returned by it. Two evaluators sharing the role can see and overwrite each other's experiments. Per-user resource scoping requires user-level identity (Cognito or Lambda Authorizer integration), which is not currently supported.</li>
+<li><strong>There is no project-level or experiment-level IAM scoping.</strong> ETK resource ARNs do not include resource identifiers in the API Gateway path in a way that lets <code>execute-api:Invoke</code> distinguish, for example, "experiment A" from "experiment B" in the same operation. Coarser separation by environment or team is achieved by deploying separate ETK stacks.</li>
+<li><strong>API Gateway IAM auth does not pass JWT claims, group memberships, or attributes</strong> to the backend. Claims-based RBAC is not available without a Lambda Authorizer.</li>
+</ul>
+<h2 id="data-protection">Data protection<a class="headerlink" href="#data-protection" title="Permanent link">&para;</a></h2>
+<h3 id="encryption-at-rest">Encryption at rest<a class="headerlink" href="#encryption-at-rest" title="Permanent link">&para;</a></h3>
+<p>All data is encrypted at rest by default:</p>
+<ul>
+<li><strong>Amazon S3</strong>: Server-side encryption (SSE-S3 by default, SSE-KMS when a customer-managed key is provided).</li>
+<li><strong>Amazon DynamoDB</strong>: Table-level encryption (AWS-managed key by default, customer-managed key when provided).</li>
+<li><strong>CloudWatch Logs</strong>: Log group encryption (customer-managed key when provided).</li>
+</ul>
+<h3 id="customer-managed-kms-keys">Customer-managed KMS keys<a class="headerlink" href="#customer-managed-kms-keys" title="Permanent link">&para;</a></h3>
+<p>To use a customer-managed KMS key, set <code>createCustomerKmsKey: true</code> in the pre-requisites stack configuration. When enabled, all S3 buckets, DynamoDB tables, and CloudWatch Log Groups use the customer-managed key.</p>
+<p>Your KMS key policy must include permissions for CloudWatch Logs. The solution's CDK construct configures this automatically, but if you provide your own key, ensure it includes:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Sid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow CloudWatch Logs&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Principal&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Service&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;logs.&lt;REGION&gt;.amazonaws.com&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;kms:Encrypt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;kms:Decrypt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;kms:ReEncrypt*&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;kms:GenerateDataKey*&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;kms:DescribeKey&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;ArnEquals&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;kms:EncryptionContext:aws:logs:arn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:logs:&lt;REGION&gt;:&lt;ACCOUNT-ID&gt;:*&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="encryption-in-transit">Encryption in transit<a class="headerlink" href="#encryption-in-transit" title="Permanent link">&para;</a></h3>
+<p>All communications use HTTPS/TLS. Internal service communication (Lambda to DynamoDB, S3, and so on) uses AWS SDK default TLS encryption.</p>
+<p>For the API Gateway endpoints:</p>
+<ul>
+<li><strong>Private API endpoint</strong>: TLS 1.2 is enforced by default.</li>
+<li><strong>Public API endpoint</strong> (EDGE or REGIONAL): The default API Gateway endpoint does not enforce a minimum TLS version. To enforce TLS 1.2, configure a <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html">custom domain name</a> for your API Gateway with a <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-custom-domain-tls-version.html">security policy</a> that specifies TLS 1.2 as the minimum version. This configuration is outside the scope of the Gen AI ETK deployment.</li>
+</ul>
+<h2 id="network-security">Network security<a class="headerlink" href="#network-security" title="Permanent link">&para;</a></h2>
+<p>The solution requires a VPC. All ECS plugin tasks and Lambda functions are deployed within the VPC. How you facilitate ingress to the VPC (ACLs, VPC peering, Transit Gateway, VPN, and so on) is your responsibility.</p>
+<p>The deployment always creates <strong>two API Gateway instances</strong> that share the same Lambda handlers:</p>
+<ul>
+<li><strong>Private API</strong> (always created): A <code>PRIVATE</code> endpoint accessible only from within the VPC via an <code>execute-api</code> VPC interface endpoint. All internal Lambdas (evaluators, plugins) communicate exclusively through this API. This is required for the Agent-as-Judge evaluator, which runs in isolated subnets with no internet egress.</li>
+<li><strong>Public API</strong> (default: <code>EDGE</code>): An internet-facing endpoint for external callers (CLI, SDKs, customer tooling). The same Lambda handlers back both APIs — requests are processed identically regardless of which entry point is used. The public API type is controlled by <code>publicEndpointType</code>:</li>
+<li><code>EDGE</code> (default): CloudFront-backed, globally distributed.</li>
+<li><code>REGIONAL</code>: Regional AWS endpoint, no CloudFront.</li>
+<li><code>DISABLED</code>: No public API is created — access is restricted to within the VPC only.</li>
+</ul>
+<p>The <code>execute-api</code> VPC interface endpoint is always provisioned (or reused if you provide one via <code>EXISTING_API_GW_VPC_ENDPOINT_ID</code>) so that internal Lambdas can always reach the private API, regardless of <code>publicEndpointType</code>.</p>
+<h3 id="vpc-configuration">VPC configuration<a class="headerlink" href="#vpc-configuration" title="Permanent link">&para;</a></h3>
+<p>By default, the pre-reqs stack creates a new VPC with CIDR <code>10.0.0.0/16</code>, public subnets (for NAT gateways), private subnets with egress (for ECS tasks and Lambda functions), VPC flow logs, and the VPC endpoints listed below.</p>
+<p>The pre-reqs stack also attaches a <strong>secondary CIDR block</strong> (<code>10.1.0.0/16</code>) to the same VPC and carves one <strong>isolated subnet per AZ</strong> out of it. These subnets share a route table with no default route — neither IGW nor NAT — and are used by evaluators that must be sealed off from the public internet (currently: the Agent-as-Judge evaluator). The other built-in evaluators continue to run in the existing private (NAT-egress) subnets, untouched. The secondary CIDR and isolated subnets are <strong>fully additive at the CFN level</strong>, meaning upgrading an existing deployment does not replace any existing subnet, route table, or NAT gateway.</p>
+<p>You can also deploy into a VPC you already own (sometimes called "bring your own VPC") by setting the <code>EXISTING_VPC_ID</code> environment variable before <code>mise run deploy</code>. In that mode you must also set <code>EXISTING_API_GW_VPC_ENDPOINT_ID</code> to the ID of an <code>execute-api</code> interface VPC endpoint in that VPC (the private API Gateway binds to it, and the deployment creates no endpoints in a VPC it does not own), and you can optionally set <code>EXISTING_ISOLATED_SUBNET_IDS</code> (comma-separated, at least two subnet IDs across distinct AZs) to place the Agent-as-Judge evaluator into your isolated subnets — mirroring Terraform's <code>existing_api_gw_vpc_endpoint_id</code> and <code>existing_isolated_subnet_ids</code> variables. The pre-reqs stack imports the VPC with <code>Vpc.fromLookup</code> and does <strong>not</strong> create any VPC, subnets, flow logs, security groups, or VPC endpoints — you are responsible for ensuring all of the following are already in place:</p>
+<ul>
+<li>At least one subnet tagged so CDK classifies it as <code>PRIVATE_WITH_EGRESS</code>. CDK treats a subnet as private-with-egress when it has the <code>aws-cdk:subnet-type = Private</code> tag, or when it has no default route to an internet gateway but does have egress (NAT or equivalent). Lambda functions and ECS tasks launch into these subnets.</li>
+<li>Outbound connectivity from those subnets to Amazon Bedrock, Amazon S3, Amazon EventBridge, Amazon ECR, and Amazon CloudWatch — either via NAT egress or via the VPC endpoints listed below (recommended if you want to keep traffic on the AWS network).</li>
+<li>DNS resolution enabled on the VPC (<code>enableDnsHostnames</code> and <code>enableDnsSupport</code>) so interface endpoints' private DNS names resolve correctly.</li>
+<li>Enough free IP space across AZs for the Lambda ENIs and ECS tasks that the plugins allocate at runtime.</li>
+<li><em>Required if you want to run the Agent-as-Judge evaluator in existing VPC mode:</em> pre-built isolated subnets (one per AZ, no default route) and the matching VPC endpoints (Bedrock-Runtime, EventBridge, ECR, ECR Docker, CloudWatch, CloudWatch Logs, S3 gateway, and <code>execute-api</code> for the private API Gateway). Without these, the evaluator will be deployed into the default NAT-egress subnets, and its unconditional runtime airgap assertion will detect internet reachability on the first invocation and refuse to run (raising <code>InternetEgressDetectedError</code>). This is <strong>fail-closed by design</strong>: a existing VPC deployment has two real choices for this evaluator — (a) provision the full isolation stack listed above, or (b) accept that the evaluator will not run.</li>
+</ul>
+<h4 id="creating-the-execute-api-endpoint">Creating the execute-api endpoint<a class="headerlink" href="#creating-the-execute-api-endpoint" title="Permanent link">&para;</a></h4>
+<p>An <code>execute-api</code> interface VPC endpoint is <strong>required</strong> when deploying into an existing VPC (<code>EXISTING_API_GW_VPC_ENDPOINT_ID</code> on CDK, <code>existing_api_gw_vpc_endpoint_id</code> on Terraform) — the private REST API binds to it, and ETK creates no endpoints in a VPC it does not own. If your VPC does not already have one:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>create-vpc-endpoint<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--vpc-id<span class="w"> </span>vpc-0abc123<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--vpc-endpoint-type<span class="w"> </span>Interface<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--service-name<span class="w"> </span>com.amazonaws.&lt;region&gt;.execute-api<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--subnet-ids<span class="w"> </span>subnet-0aaa<span class="w"> </span>subnet-0bbb<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--security-group-ids<span class="w"> </span>sg-0abc123<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--private-dns-enabled
+</code></pre></div>
+<p>Requirements:</p>
+<ul>
+<li><strong>Private DNS enabled</strong>, so <code>*.execute-api.&lt;region&gt;.amazonaws.com</code> resolves to the endpoint from inside the VPC.</li>
+<li><strong>Security group</strong> on the endpoint must allow inbound TCP 443 from the security groups (or CIDR ranges) of the Lambda functions and ECS tasks that call the private API — including the isolated subnets if you run the Agent-as-Judge evaluator.</li>
+<li>Place the endpoint in subnets reachable from every subnet that hosts ETK compute (typically the private subnets; the isolated subnets reach it via VPC-local routing).</li>
+</ul>
+<h3 id="vpc-endpoints">VPC endpoints<a class="headerlink" href="#vpc-endpoints" title="Permanent link">&para;</a></h3>
+<p>When ETK creates its own VPC, the solution also provisions the following VPC endpoints to enable private connectivity to AWS services. When deploying into an existing VPC, these endpoints are <strong>not</strong> created — provision equivalents yourself if you need private connectivity, or rely on NAT egress.</p>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Type</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CloudWatch Monitoring</td>
+<td>Interface</td>
+<td>Metrics publishing</td>
+</tr>
+<tr>
+<td>CloudWatch Logs</td>
+<td>Interface</td>
+<td>Log delivery</td>
+</tr>
+<tr>
+<td>Amazon ECR</td>
+<td>Interface</td>
+<td>Container image pulls</td>
+</tr>
+<tr>
+<td>Amazon ECR Docker</td>
+<td>Interface</td>
+<td>Docker layer pulls</td>
+</tr>
+<tr>
+<td>Amazon S3</td>
+<td>Gateway</td>
+<td>Object storage access</td>
+</tr>
+<tr>
+<td>Amazon Bedrock Runtime</td>
+<td>Interface</td>
+<td><code>InvokeModel</code> calls — required for the Agent-as-Judge evaluator in isolated subnets; transparent for all other evaluators via private DNS</td>
+</tr>
+<tr>
+<td>Amazon EventBridge</td>
+<td>Interface</td>
+<td>Event routing — required for the Agent-as-Judge evaluator in isolated subnets</td>
+</tr>
+<tr>
+<td>Amazon API Gateway</td>
+<td>Interface</td>
+<td><code>execute-api</code> endpoint — always created so internal Lambdas can reach the private API. Required for the Agent-as-Judge evaluator in isolated subnets.</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>execute-api</code> VPC endpoint is always created regardless of <code>publicEndpointType</code>. If you bring your own VPC, you must create this endpoint yourself (or pass its ID via <code>EXISTING_API_GW_VPC_ENDPOINT_ID</code>) so internal Lambdas can reach the private API.</p>
+<h3 id="outbound-internet-access">Outbound internet access<a class="headerlink" href="#outbound-internet-access" title="Permanent link">&para;</a></h3>
+<p>The built-in plugins running on ECS Fargate require outbound network access to call the Amazon Bedrock API. Ensure your VPC has a NAT gateway or other internet egress path available to the private subnets where plugin tasks run. Custom plugins running on other compute must also have network access to S3 and EventBridge.</p>
+<p>Alternatively, you can use <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/usingVPC.html">Amazon Bedrock VPC endpoints (PrivateLink)</a> to keep Bedrock traffic within your VPC without requiring internet access.</p>
+<h3 id="network-isolation-for-the-agent-as-judge-evaluator">Network isolation for the Agent-as-Judge evaluator<a class="headerlink" href="#network-isolation-for-the-agent-as-judge-evaluator" title="Permanent link">&para;</a></h3>
+<p>The Agent-as-Judge evaluator (<code>agent-as-judge</code>) is the only built-in evaluator that runs without any public-internet egress. Its enforcement is layered:</p>
+<ol>
+<li><strong>Routing.</strong> The Lambda is pinned to the isolated subnets created by the pre-reqs stack. The route table for those subnets has only the implicit local route — there is no path to NAT or IGW, so internet egress is impossible regardless of any security-group rule. This is the primary control.</li>
+<li><strong>Runtime airgap assertion.</strong> At every cold start, before any test-case processing, the evaluator runs three TCP probes: it asserts that public internet destinations are <strong>unreachable</strong> (raises <code>InternetEgressDetectedError</code> if any connect) and that <code>bedrock-runtime.&lt;region&gt;.amazonaws.com:443</code> is <strong>reachable</strong> (raises <code>AwsEndpointUnreachableError</code> if not). This catches future drift — e.g. someone reverting the isolated-subnet pinning — instead of relying on the network controls alone. The assertion is unconditional; there is no env-var toggle to disable it.</li>
+</ol>
+<p>The endpoint security group's ingress allows port 443 from both the primary VPC CIDR (<code>10.0.0.0/16</code>) and the secondary CIDR (<code>10.1.0.0/16</code>) so callers in either subnet group can reach the interface endpoints.</p>
+<p>For the full configuration details (env vars, supported models, artifact handling, etc.), see <code>packages/evaluator-agent-as-judge/README.md</code>.</p>
+<h3 id="security-groups">Security groups<a class="headerlink" href="#security-groups" title="Permanent link">&para;</a></h3>
+<p>Security groups on ECS tasks and Lambda functions deny all inbound traffic, as these components initiate outbound connections only.</p>
+<p>For additional protection, consider:</p>
+<ul>
+<li>Attaching <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html">network ACLs</a> to your VPC subnets.</li>
+<li>Using <a href="https://aws.amazon.com/waf/">AWS WAF</a> to protect API Gateway endpoints, particularly if they are internet-facing. See <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-control-access-aws-waf.html">Use AWS WAF to protect your REST APIs in API Gateway</a> for configuration guidance.</li>
+</ul>
+<h2 id="monitoring-and-logging">Monitoring and logging<a class="headerlink" href="#monitoring-and-logging" title="Permanent link">&para;</a></h2>
+<p>The solution includes built-in monitoring through CloudWatch:</p>
+<ul>
+<li><strong>API Gateway</strong>: Request volume, latency, and error rate metrics.</li>
+<li><strong>Lambda functions</strong>: Execution logs, duration, and error metrics.</li>
+<li><strong>Step Functions</strong>: Workflow execution status, duration, and failure metrics.</li>
+<li><strong>ECS tasks</strong>: Container logs and resource utilization.</li>
+<li><strong>VPC Flow Logs</strong>: Network traffic logging (retained for one year).</li>
+</ul>
+<h3 id="audit-logging">Audit logging<a class="headerlink" href="#audit-logging" title="Permanent link">&para;</a></h3>
+<p>We recommend enabling <a href="https://aws.amazon.com/cloudtrail/">AWS CloudTrail</a> to provide comprehensive auditing of actions taken within the AWS account hosting the solution. CloudTrail is not enabled by default as it incurs additional costs. See <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-trail-manage-costs.html">Managing CloudTrail trail costs</a> for details.</p>
+<p>Depending on your compliance needs and the data sources you use with the solution, you may also wish to consider <a href="https://aws.amazon.com/macie/">Amazon Macie</a> for identifying accidental use of sensitive data in your S3 buckets, and <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/protect-sensitive-log-data.html">CloudWatch Logs data protection</a> for detecting sensitive information in log output.</p>
+<h2 id="data-handling">Data handling<a class="headerlink" href="#data-handling" title="Permanent link">&para;</a></h2>
+<h3 id="data-collection">Data collection<a class="headerlink" href="#data-collection" title="Permanent link">&para;</a></h3>
+<p>The solution does not send any usage data, telemetry, or metrics to AWS. The only identification mechanism is a user-agent suffix: the toolkit's Python components tag their boto3/botocore clients with <code>user_agent_extra</code> set to <code>gen-ai-evaluation-toolkit-on-aws/&lt;version&gt;</code>, so AWS API calls made by the solution (to services in your own account) carry that string in the standard <code>User-Agent</code> header. No additional data is transmitted. (The DeepEval scorer's own third-party telemetry is disabled by default — see <a href="#deepeval-lambda-configuration">DeepEval Lambda configuration</a>.)</p>
+<h3 id="iam-identity-tracking">IAM identity tracking<a class="headerlink" href="#iam-identity-tracking" title="Permanent link">&para;</a></h3>
+<p>The solution records the IAM caller identity in the <code>createdBy</code> and <code>updatedBy</code> fields of DynamoDB records. This identity is extracted from the API Gateway request context and stored alongside the resource metadata. The solution prefers the full IAM ARN (<code>event.requestContext.identity.userArn</code>, for example <code>arn:aws:sts::123456789012:assumed-role/Admin/session-name</code>) when present, and falls back to the role unique ID + session name format (<code>event.requestContext.identity.user</code>, for example <code>AROAEXAMPLE:session-name</code>) otherwise. Storing the full ARN improves auditability by enabling CloudTrail lookup by ARN and preserving ownership continuity across role recreation.</p>
+<h3 id="denial-of-service">Denial of service<a class="headerlink" href="#denial-of-service" title="Permanent link">&para;</a></h3>
+<p>Gen AI ETK does not include denial of service (DoS) prevention built in. You should evaluate whether to run firewall solutions in front of the API Gateway and/or run it as a private endpoint in your VPC. We recommend <a href="https://aws.amazon.com/waf/">AWS WAF</a> for protecting API Gateway endpoints. See <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-control-access-aws-waf.html">Use AWS WAF to protect your REST APIs in API Gateway</a> for configuration guidance.</p>
+<h2 id="terraform-security-features">Terraform security features<a class="headerlink" href="#terraform-security-features" title="Permanent link">&para;</a></h2>
+<p>The Terraform deployment path includes the following security hardening features (enabled by default):</p>
+<ul>
+<li><strong>S3 access logging</strong> — A shared access-logs bucket captures object-level access records for all data buckets (datastore, evaluation, generation, experiment).</li>
+<li><strong>API Gateway access logs</strong> — Structured CLF-format access logs written to a dedicated CloudWatch log group for caller IP, path, and latency visibility.</li>
+<li><strong>API Gateway VPC restriction</strong> — Optional deny-unless-sourceVpc resource policy, enabled via <code>enable_vpc_restriction</code> and <code>vpc_endpoint_ids</code> variables.</li>
+<li><strong>X-Ray tracing</strong> — Configurable via <code>enable_xray</code> (default <code>true</code>). When enabled, all Lambdas, Step Functions, and API Gateway stages emit traces.</li>
+<li><strong>OTEL collector sidecar</strong> — AWS Distro for OpenTelemetry injected into ECS plugin tasks for distributed tracing (configurable via <code>enable_otel_sidecar</code>).</li>
+<li><strong>S3 SSL-only</strong> — <code>DenyInsecureTransport</code> bucket policy enforced on all S3 buckets.</li>
+<li><strong>Per-function IAM roles</strong> — Each Lambda function has its own least-privilege execution role.</li>
+<li><strong>Customer-managed KMS (BYOK)</strong> — Set <code>encryption_key_arn</code> to thread a CMK through every encrypted resource: S3 (<code>kms_master_key_id</code>), DynamoDB, SQS DLQs, all CloudWatch log groups, Step Functions logs, and the EventBridge DLQ. Lambda environment variables currently encrypt with AWS-managed keys; the CMK is not threaded onto <code>aws_lambda_function</code> resources. When <code>encryption_key_arn</code> is unset (default), AWS-managed keys are used everywhere.</li>
+</ul>
+<p>For full configuration details, see <code>packages/terraform/README.md</code>.</p>
+<h1 id="deploy-the-solution">Deploy the solution<a class="headerlink" href="#deploy-the-solution" title="Permanent link">&para;</a></h1>
+<h2 id="deployment-options">Deployment options<a class="headerlink" href="#deployment-options" title="Permanent link">&para;</a></h2>
+<p>The toolkit supports two IaC paths; both provision the same infrastructure against your AWS account. Pick whichever matches your organisation's standards.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Location</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AWS CDK</td>
+<td><code>packages/cdk/</code></td>
+<td>Default path. Familiar to teams already using CDK; synthesises CloudFormation.</td>
+</tr>
+<tr>
+<td>Terraform</td>
+<td><code>packages/terraform/</code></td>
+<td>For teams standardised on Terraform. Same AWS infrastructure, HCL instead of TypeScript, S3 remote state, no CloudFormation involved.</td>
+</tr>
+</tbody>
+</table>
+<p>Integration tests run against <strong>both</strong> deployments on every merge to <code>dev</code> to guard parity.</p>
+<p>The rest of this section documents the CDK path. For Terraform, see <a href="#step-by-step-deployment-terraform">Step-by-step deployment (Terraform)</a> below.</p>
+<p>This solution uses <a href="https://docs.aws.amazon.com/cdk/v2/developer-guide/home.html">AWS CDK</a> to define and deploy infrastructure. The CDK synthesises CloudFormation templates that provision all required resources.</p>
+<blockquote>
+<p><strong>Note:</strong> AWS CloudFormation resources are created from AWS Cloud Development Kit (AWS CDK) constructs.</p>
+</blockquote>
+<h2 id="deployment-overview">Deployment overview<a class="headerlink" href="#deployment-overview" title="Permanent link">&para;</a></h2>
+<p>The deployment creates the following CloudFormation stacks:</p>
+<pre class="mermaid"><code>graph TB
+    prereqs["GenAiEtk-pre-reqs\nVPC, KMS, Container Images"]
+
+    prereqs --&gt; base["GenAiEtk-Base\nAPI GW, EventBridge, S3, DynamoDB, ECR"]
+
+    base --&gt; datastore["GenAiEtk-DataStore\nData Store API Handlers"]
+    base --&gt; evaluation["GenAiEtk-Evaluation\nEval Workflow, Scheduler"]
+    base --&gt; experiment["GenAiEtk-Experiment\nMLflow, Experiment API"]
+    base --&gt; generation["GenAiEtk-Generation\nGeneration Workflow"]
+
+    evaluation -.-&gt;|depends on| experiment
+
+    datastore &amp; evaluation &amp; experiment &amp; generation --&gt; apideploy["GenAiEtk-ApiDeploy\nAPI Gateway Deployment"]
+
+    base --&gt; plugins["GenAiEtk-Plugins\nBuilt-in Plugin Setup"]
+    base --&gt; extplugins["GenAiEtk-external-plugins\nLambda and ECS Plugin Deployments"]
+
+    base --&gt; tlm["GenAiEtk-TLM\nMonitoring"]
+
+    prereqs --&gt; datastack["DataStack\nTest Data Bucket"]
+    apideploy -.-&gt; datastack</code></pre>
+<table>
+<thead>
+<tr>
+<th>Stack</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GenAiEtk-pre-reqs</code></td>
+<td>VPC, optional KMS key, S3 bucket for container images</td>
+</tr>
+<tr>
+<td><code>GenAiEtk-Base</code></td>
+<td>API Gateway, EventBridge event bus, S3 buckets, DynamoDB table, ECR repository</td>
+</tr>
+<tr>
+<td><code>GenAiEtk-DataStore</code></td>
+<td>Data store API Lambda handlers</td>
+</tr>
+<tr>
+<td><code>GenAiEtk-Evaluation</code></td>
+<td>Evaluation workflow (Step Functions), API handlers, job scheduler</td>
+</tr>
+<tr>
+<td><code>GenAiEtk-Experiment</code></td>
+<td>MLflow tracking server, experiment API handlers</td>
+</tr>
+<tr>
+<td><code>GenAiEtk-Generation</code></td>
+<td>Generation workflow (Step Functions), API handlers</td>
+</tr>
+<tr>
+<td><code>GenAiEtk-ApiDeploy</code></td>
+<td>API Gateway deployment (depends on all API stacks)</td>
+</tr>
+<tr>
+<td><code>GenAiEtk-Plugins</code></td>
+<td>Built-in plugin registration and shared infrastructure setup</td>
+</tr>
+<tr>
+<td><code>GenAiEtk-external-plugins</code></td>
+<td>Lambda functions and ECS task definitions for evaluation and generation plugins. Consolidates all plugin deployments (both Lambda and ECS-based).</td>
+</tr>
+<tr>
+<td><code>GenAiEtk-TLM</code></td>
+<td>CloudWatch monitoring dashboard and alarms</td>
+</tr>
+<tr>
+<td><code>DataStack</code></td>
+<td>Test data bucket with sample data (for development/testing)</td>
+</tr>
+</tbody>
+</table>
+<p>Stack dependencies are managed automatically: all GenAiEtk stacks depend on the pre-requisites stack, and the DataStack depends on the GenAiEtk stacks.</p>
+<h2 id="step-by-step-deployment">Step-by-step deployment<a class="headerlink" href="#step-by-step-deployment" title="Permanent link">&para;</a></h2>
+<p><strong>Time to deploy:</strong> Approximately 30–45 minutes.</p>
+<h3 id="step-1-install-tooling-and-dependencies">Step 1: Install tooling and dependencies<a class="headerlink" href="#step-1-install-tooling-and-dependencies" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mise<span class="w"> </span>install
+mise<span class="w"> </span>run<span class="w"> </span>install
+</code></pre></div>
+<h3 id="step-2-generate-types">Step 2: Generate types<a class="headerlink" href="#step-2-generate-types" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mise<span class="w"> </span>run<span class="w"> </span>codegen
+</code></pre></div>
+<h3 id="step-3-bootstrap-cdk-first-time-only">Step 3: Bootstrap CDK (first time only)<a class="headerlink" href="#step-3-bootstrap-cdk-first-time-only" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mise<span class="w"> </span>run<span class="w"> </span>bootstrap
+</code></pre></div>
+<blockquote>
+<p><strong>Security note:</strong> The default <code>cdk bootstrap</code> command creates an IAM role with broad permissions. For production deployments, we recommend scoping down the bootstrap role to only the permissions required for deployment. See <a href="https://docs.aws.amazon.com/cdk/v2/developer-guide/bootstrapping-customizing.html">Customizing bootstrapping</a> in the AWS CDK documentation for guidance on creating a least-privilege bootstrap role.</p>
+</blockquote>
+<h3 id="step-4-build-all-packages">Step 4: Build all packages<a class="headerlink" href="#step-4-build-all-packages" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mise<span class="w"> </span>run<span class="w"> </span>build
+</code></pre></div>
+<h3 id="step-5-deploy">Step 5: Deploy<a class="headerlink" href="#step-5-deploy" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mise<span class="w"> </span>run<span class="w"> </span>deploy
+</code></pre></div>
+<p>To deploy into an existing VPC instead of letting the pre-reqs stack create one, set <code>EXISTING_VPC_ID</code> and <code>EXISTING_API_GW_VPC_ENDPOINT_ID</code> (the ID of an <code>execute-api</code> interface endpoint in your VPC — required, since the deployment creates no endpoints in a VPC it does not own) before running deploy:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">EXISTING_VPC_ID</span><span class="o">=</span>vpc-0123456789abcdef0<span class="w"> </span><span class="se">\</span>
+<span class="nv">EXISTING_API_GW_VPC_ENDPOINT_ID</span><span class="o">=</span>vpce-0123456789abcdef0<span class="w"> </span><span class="se">\</span>
+mise<span class="w"> </span>run<span class="w"> </span>deploy
+</code></pre></div>
+<p>To also run the Agent-as-Judge evaluator in existing VPC mode, additionally pass your isolated (no-internet) subnets — comma-separated, at least two, across distinct AZs:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">EXISTING_VPC_ID</span><span class="o">=</span>vpc-0123456789abcdef0<span class="w"> </span><span class="se">\</span>
+<span class="nv">EXISTING_API_GW_VPC_ENDPOINT_ID</span><span class="o">=</span>vpce-0123456789abcdef0<span class="w"> </span><span class="se">\</span>
+<span class="nv">EXISTING_ISOLATED_SUBNET_IDS</span><span class="o">=</span>subnet-0aaa1111111111111,subnet-0bbb2222222222222<span class="w"> </span><span class="se">\</span>
+mise<span class="w"> </span>run<span class="w"> </span>deploy
+</code></pre></div>
+<p>See <a href="#vpc-configuration">VPC configuration</a> for the requirements your VPC must meet.</p>
+<h3 id="step-6-verify-deployment">Step 6: Verify deployment<a class="headerlink" href="#step-6-verify-deployment" title="Permanent link">&para;</a></h3>
+<p>After deployment completes, note the API Gateway URL from the CDK output. You can also find it in the AWS API Gateway console under Stages → Invoke URL.</p>
+<p>Set the environment variable for CLI access:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">GEN_AI_ETK_API_URL</span><span class="o">=</span><span class="s2">&quot;https://&lt;your-api-id&gt;.execute-api.&lt;region&gt;.amazonaws.com/prod&quot;</span>
+</code></pre></div>
+<p>Install the CLI locally (from the repo root):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>packages/cli
+npm<span class="w"> </span>run<span class="w"> </span>dev:link
+</code></pre></div>
+<p>Verify the deployment by running:</p>
+<div class="highlight"><pre><span></span><code>genai-etk<span class="w"> </span>dataset<span class="w"> </span>list
+</code></pre></div>
+<blockquote>
+<p>To uninstall the CLI later, run <code>npm run dev:unlink</code> from the <code>packages/cli</code> directory.</p>
+</blockquote>
+<h2 id="step-by-step-deployment-terraform">Step-by-step deployment (Terraform)<a class="headerlink" href="#step-by-step-deployment-terraform" title="Permanent link">&para;</a></h2>
+<p>Use this path if your team standardises on Terraform or your deployment policy forbids CloudFormation. Provisions the same AWS resources as the CDK path.</p>
+<p><strong>CDK ↔ Terraform mapping</strong> — the two implementations deploy the same architecture; only the IaC tool differs:</p>
+<table>
+<thead>
+<tr>
+<th>CDK construct</th>
+<th>Terraform module</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Root app (<code>packages/cdk/src/main.ts</code>)</td>
+<td><code>packages/terraform/</code> (root module)</td>
+</tr>
+<tr>
+<td><code>BaseStack</code> (<code>src/common/constructs/baseStack.ts</code>) — VPC + endpoints + shared IAM</td>
+<td><code>modules/common/</code> (<code>networking.tf</code>, <code>iam.tf</code>)</td>
+</tr>
+<tr>
+<td><code>ApiDeployStack</code> + <code>ApiGateway</code> (<code>src/common/constructs/{apiDeployStack,apiGateway}.ts</code>)</td>
+<td><code>modules/common/</code> (<code>api-gateway.tf</code>)</td>
+</tr>
+<tr>
+<td>Datastore (<code>src/datastore/constructs/</code>, <code>src/datastore/api/</code>)</td>
+<td><code>modules/datastore/</code></td>
+</tr>
+<tr>
+<td>Experiment management (<code>src/experiment/constructs/</code>, <code>src/experiment/api/</code>)</td>
+<td><code>modules/experiment/</code></td>
+</tr>
+<tr>
+<td>Evaluation workflow + ECS plugins (<code>src/evaluation/constructs/</code>, <code>src/evaluation/api/</code>)</td>
+<td><code>modules/evaluation/</code> (uses <code>modules/plugins/*</code>)</td>
+</tr>
+<tr>
+<td>Generation workflow + ECS plugins (<code>src/generation/constructs/</code>, <code>src/generation/api/</code>)</td>
+<td><code>modules/generation/</code> (uses <code>modules/plugins/*</code>)</td>
+</tr>
+<tr>
+<td>Plugin scaffolding (<code>src/plugins/</code>, <code>src/common/constructs/secured/</code>)</td>
+<td><code>modules/plugins/{lambda,ecs,iam}/</code></td>
+</tr>
+<tr>
+<td>Monitoring dashboard + alarms (<code>src/common/constructs/telemetry/</code>)</td>
+<td><code>modules/telemetry/</code></td>
+</tr>
+<tr>
+<td><code>external-plugins.ts</code> (plugin registry)</td>
+<td><code>var.evaluation_plugins</code> / <code>var.generation_plugins</code></td>
+</tr>
+<tr>
+<td><code>s3ToEcr.ts</code> + bootstrap pre-reqs (content-hashed image push)</td>
+<td><code>scripts/build-and-push-images.sh</code> + SSM manifest</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prerequisites (additional to Step 1 above):</strong></p>
+<ul>
+<li>Terraform &gt;= 1.6, AWS provider &gt;= 5.x. <code>mise install</code> in the repo root pins both.</li>
+<li>AWS CLI v2 + credentials for the target account (<code>aws sts get-caller-identity</code> should resolve).</li>
+<li>Docker (or finch / podman / colima with a <code>docker</code> shim) on PATH for <code>build-and-push-images</code>.</li>
+<li>An AWS account in your target region. Set <code>AWS_PROFILE</code> for that account in <code>mise.local.toml</code> (gitignored) — that's typically all you need; region comes from your AWS profile and <code>TF_ENV</code> defaults to <code>dev</code>.</li>
+<li>First-time setup of the account: run the <strong>Bootstrap</strong> runbook documented in <code>packages/terraform-deployment/README.md</code> (creates the remote-state S3 bucket, DynamoDB lock table, plugin ECR repositories, and the SSM image-tag parameter). Skip if the account was already bootstrapped.</li>
+</ul>
+<p><strong>Deploy:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Install tooling (same as CDK Step 1)</span>
+mise<span class="w"> </span>install
+mise<span class="w"> </span>run<span class="w"> </span>install
+
+<span class="c1"># 2. Generate types (same as CDK Step 2)</span>
+mise<span class="w"> </span>run<span class="w"> </span>codegen
+
+<span class="c1"># 3. Build Lambda deploy package (Terraform consumes CDK&#39;s nodejs-handlers zip)</span>
+nx<span class="w"> </span>run<span class="w"> </span>cdk:build
+
+<span class="c1"># 4. Populate the plugin ECR repositories. Pick one:</span>
+<span class="c1">#    (a) Real plugin images — required if you intend to invoke plugins</span>
+<span class="c1">#        (long-eval workflows, integration tests). Builds each plugin</span>
+<span class="c1">#        with a content-hash tag (`etk-&lt;12-char-hash&gt;`) and writes a</span>
+<span class="c1">#        JSON manifest to SSM. ~15-30 min on a cold cache; re-runs of</span>
+<span class="c1">#        unchanged source are no-ops:</span>
+nx<span class="w"> </span>run<span class="w"> </span>terraform-deployment:build-and-push-images
+<span class="c1">#    (b) Placeholder images — fast smoke test of the infra only;</span>
+<span class="c1">#        plugin ECS/Lambda resources deploy but don&#39;t run real code.</span>
+<span class="c1">#        Pushes busybox to every plugin repo and writes a placeholder</span>
+<span class="c1">#        manifest. ~30s; cheap enough to re-run on every plan-only check:</span>
+<span class="c1"># nx run terraform-deployment:seed-placeholder-images</span>
+<span class="c1">#    (c) BYO image build — supply your own URIs via the customer module&#39;s</span>
+<span class="c1">#        `deployed_image_uris` map; both helpers above are skippable. See</span>
+<span class="c1">#        `packages/terraform/variables.tf` (`deployed_image_uris`) for the</span>
+<span class="c1">#        expected map shape.</span>
+
+<span class="c1"># 5. Stage Lambda assets + plan</span>
+nx<span class="w"> </span>run<span class="w"> </span>terraform-deployment:plan
+
+<span class="c1"># 6. Review the plan in packages/terraform-deployment/tfplan, then apply</span>
+nx<span class="w"> </span>run<span class="w"> </span>terraform-deployment:apply
+</code></pre></div>
+<p><strong>Configuration:</strong></p>
+<p>The TF code is split across two packages: <code>packages/terraform/</code> is the customer constructs library (variables, modules, outputs); <code>packages/terraform-deployment/</code> is the deploy-time wrapper used by the monorepo's CI (bootstrap, plugin ECR registry, scripts).</p>
+<p>Root inputs live in <code>packages/terraform/variables.tf</code>. Common customisations:</p>
+<ul>
+<li><code>use_existing_vpc</code> + <code>existing_vpc_id</code> + <code>existing_private_subnet_ids</code> for existing VPC.</li>
+<li><code>encryption_key_arn</code> for customer-managed KMS across all resources.</li>
+<li><code>evaluation_plugins</code> / <code>generation_plugins</code> maps to enable built-in plugins.</li>
+<li><code>enable_observability</code> (default <code>true</code>) — in-account CloudWatch dashboard + comprehensive alarm set.</li>
+</ul>
+<p><strong>Example <code>terraform.tfvars</code></strong> for a existing VPC + BYOK + integrator-supplied plugin URIs deploy. Every block below is <strong>optional</strong> — a minimal deployment only requires <code>deployed_image_uris</code>; <code>project_name</code> and <code>environment</code> default to <code>etk</code> / <code>dev</code> and the AWS region comes from your provider config. See <code>packages/terraform/README.md</code> for a minimal example and the full variable reference.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># `environment` is the resource-naming suffix (e.g. etk-prod-* tags + names).</span>
+<span class="c1"># It is distinct from `TF_ENV` (env-var consumed by the monorepo&#39;s deploy</span>
+<span class="c1"># harness to scope the SSM image-tag manifest path /genai-etk/&lt;TF_ENV&gt;/...).</span>
+<span class="c1"># Most consumers only set `environment` — TF_ENV is internal CI plumbing.</span>
+<span class="na">project_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;etk&quot;</span>
+<span class="na">environment</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;prod&quot;</span>
+
+<span class="c1"># existing VPC (optional) — drop this block to let ETK create its own VPC</span>
+<span class="na">use_existing_vpc</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="na">existing_vpc_id</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;vpc-0abc123&quot;</span>
+<span class="na">existing_private_subnet_ids</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;subnet-0aaa&quot;, &quot;subnet-0bbb&quot;</span><span class="p">]</span>
+<span class="na">existing_public_subnet_ids</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;subnet-0ccc&quot;, &quot;subnet-0ddd&quot;</span><span class="p">]</span>
+<span class="c1"># Required with use_existing_vpc: execute-api interface endpoint in your VPC —</span>
+<span class="c1"># the private REST API binds to it (ETK creates no endpoints in your VPC)</span>
+<span class="na">existing_api_gw_vpc_endpoint_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;vpce-0abc123&quot;</span>
+<span class="c1"># Optional: isolated (no-internet) subnets for the agent-as-judge evaluator</span>
+<span class="na">existing_isolated_subnet_ids</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;subnet-0eee&quot;, &quot;subnet-0fff&quot;</span><span class="p">]</span>
+
+<span class="c1"># BYOK (optional) — drop this line to use AWS-managed encryption everywhere</span>
+<span class="na">encryption_key_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;arn:aws:kms:eu-west-2:123456789012:key/abcd-ef01-...&quot;</span>
+
+<span class="c1"># Evaluators + plugin images — map of deploy_key → &lt;repo&gt;:&lt;tag&gt;.</span>
+<span class="c1"># The consolidated `evaluator-builtin` Lambda hosts all built-in scorers</span>
+<span class="c1"># (LLM-as-Judge, RAGAS, AgentCore, DeepEval); `evaluator-agent-as-judge`</span>
+<span class="c1"># is the isolated agentic judge. Both are enabled by providing their keys</span>
+<span class="c1"># (omit a key and that evaluator is not created). Generation plugins use</span>
+<span class="c1"># their own keys (e.g. plugin-gen-rag, plugin-gen-llm-as-judge).</span>
+<span class="nb">deployed_image_uris</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="s2">&quot;evaluator-builtin&quot;</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;123456789012.dkr.ecr.eu-west-2.amazonaws.com/genai-etk-evaluator-builtin:v2.0.0&quot;</span>
+<span class="w">  </span><span class="s2">&quot;evaluator-agent-as-judge&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;123456789012.dkr.ecr.eu-west-2.amazonaws.com/genai-etk-evaluator-agent-as-judge:v2.0.0&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Observability</span>
+<span class="na">enable_observability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+
+<span class="c1"># Other common toggles (defaults shown — uncomment to override):</span>
+<span class="c1"># enable_xray              = false   # disable X-Ray tracing on Lambda + API GW + Step Functions</span>
+<span class="c1"># enable_cloudwatch_alarms = false   # skip the alarm set (dashboard still created via enable_observability)</span>
+<span class="c1"># enable_vpc_restriction   = true    # API GW deny-unless-sourceVpc; requires vpc_endpoint_ids</span>
+<span class="c1"># log_retention_days       = 30      # default 545 (18 months, CDK pentest sign-off)</span>
+</code></pre></div>
+<p>See <code>packages/terraform/README.md</code> for the full variable reference and <code>packages/terraform-deployment/README.md</code> for NX targets, bootstrap runbook, and local-apply workflow.</p>
+<p><strong>Verify deployment</strong> the same way as CDK Step 6 — the API Gateway URL is in <code>tf-outputs.json</code> (produced by <code>nx run terraform-deployment:apply</code>).</p>
+<h3 id="uninstall-terraform">Uninstall (Terraform)<a class="headerlink" href="#uninstall-terraform" title="Permanent link">&para;</a></h3>
+<p>The Terraform path needs a reverse-order teardown because the bootstrap-owned ECR repos and versioned state bucket block a naive <code>terraform destroy</code>. The full procedure lives in <code>packages/terraform-deployment/README.md</code> (section "Tearing down (disaster recovery only)") — that file is labelled "Internal" because customers consuming the constructs library don't need it, but its teardown runbook is the source of truth.</p>
+<p>Summary of the steps:</p>
+<ol>
+<li><strong>App stack first</strong> — <code>cd packages/terraform-deployment &amp;&amp; terraform destroy</code>. Removes the customer module's API Gateway, Lambda, ECS, SQS, Step Functions, and DynamoDB resources. The bootstrap-owned ECR repos, state bucket, and SSM manifest remain intact.</li>
+<li><strong>Empty the ECR repos</strong> — bootstrap created the repos with <code>force_delete = false</code> (CKV_AWS_51 immutable tags), so they must be emptied before the bootstrap stack will destroy them. Loop with <code>aws ecr batch-delete-image</code> per repo.</li>
+<li><strong>Empty the versioned state bucket</strong> — every object version + delete marker must be removed before <code>terraform destroy</code> will drop the bucket. Use <code>aws s3api delete-objects</code> with the version listing.</li>
+<li><strong>Bootstrap stack last</strong> — <code>cd packages/terraform-deployment/bootstrap &amp;&amp; terraform destroy</code>. Removes ECR repos, DynamoDB lock table, state bucket, and SSM manifest. Once this completes, the next <code>bootstrap-apply</code> against the same account starts from scratch.</li>
+</ol>
+<p>Run this only when intentionally retiring the deployment from an account — there is no partial / soft uninstall.</p>
+<h2 id="deploying-custom-plugins">Deploying custom plugins<a class="headerlink" href="#deploying-custom-plugins" title="Permanent link">&para;</a></h2>
+<p>Gen AI ETK provides simplified interfaces for deploying custom plugins on either AWS Lambda or Amazon ECS. Both deployment types maintain full control while handling infrastructure complexity.</p>
+<h3 id="choosing-a-deployment-type">Choosing a deployment type<a class="headerlink" href="#choosing-a-deployment-type" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Lambda</th>
+<th>ECS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Execution time</strong></td>
+<td>&lt;15 minutes</td>
+<td>Unlimited</td>
+</tr>
+<tr>
+<td><strong>Memory</strong></td>
+<td>≤10 GB</td>
+<td>Up to 120 GB</td>
+</tr>
+<tr>
+<td><strong>Cold start</strong></td>
+<td>~1-2 seconds</td>
+<td>~60-120 seconds</td>
+</tr>
+<tr>
+<td><strong>Scaling</strong></td>
+<td>Automatic (function scaling)</td>
+<td>Automatic (Fargate task creation)</td>
+</tr>
+<tr>
+<td><strong>Deployment</strong></td>
+<td>Simpler (Lambda native)</td>
+<td>More complex (containers, ECS) but simplified by ETK</td>
+</tr>
+<tr>
+<td><strong>Best for</strong></td>
+<td>Lightweight evaluations, smaller datasets</td>
+<td>Compute-intensive evaluations, large datasets</td>
+</tr>
+</tbody>
+</table>
+<p>The same plugin logic can be packaged for either deployment type. Choose based on your plugin's technical requirements.</p>
+<h3 id="lambda-based-plugins">Lambda-based plugins<a class="headerlink" href="#lambda-based-plugins" title="Permanent link">&para;</a></h3>
+<p>Lambda plugins offer fast cold starts and automatic scaling. ETK supports both code-based (zip) and container-based (Docker image) deployments.</p>
+<h4 id="code-based-lambda-plugin">Code-based Lambda plugin<a class="headerlink" href="#code-based-lambda-plugin" title="Permanent link">&para;</a></h4>
+<p><strong>Example</strong>: Deploying a Python evaluation plugin</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">Function</span><span class="p">,</span><span class="w"> </span><span class="nx">Runtime</span><span class="p">,</span><span class="w"> </span><span class="nx">Code</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;aws-cdk-lib/aws-lambda&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Duration</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;aws-cdk-lib&#39;</span><span class="p">;</span>
+
+<span class="c1">// Define your Lambda function</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">myPlugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Function</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;MyEvalPlugin&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">runtime</span><span class="o">:</span><span class="w"> </span><span class="kt">Runtime.PYTHON_3_12</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">handler</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;index.handler&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">code</span><span class="o">:</span><span class="w"> </span><span class="kt">Code.fromAsset</span><span class="p">(</span><span class="s1">&#39;path/to/plugin/code&#39;</span><span class="p">),</span>
+<span class="w">  </span><span class="nx">timeout</span><span class="o">:</span><span class="w"> </span><span class="kt">Duration.minutes</span><span class="p">(</span><span class="mf">15</span><span class="p">),</span>
+<span class="w">  </span><span class="nx">memorySize</span><span class="o">:</span><span class="w"> </span><span class="kt">2048</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">vpc</span><span class="o">:</span><span class="w"> </span><span class="kt">vpc</span><span class="p">,</span><span class="w"> </span><span class="c1">// Assuming vpc is available from your stack props or infrastructure setup</span>
+<span class="p">});</span>
+
+<span class="c1">// Register the plugin using ETK&#39;s setup function</span>
+<span class="nx">genAiEtk</span><span class="p">.</span><span class="nx">setupEvalLambdaPlugin</span><span class="p">(</span><span class="s1">&#39;myCustomPlugin&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">myPlugin</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">allowBedrockAccess</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span><span class="w"> </span><span class="c1">// Optional: grants Bedrock API permissions</span>
+<span class="p">});</span>
+</code></pre></div>
+<h4 id="container-based-lambda-plugin">Container-based Lambda plugin<a class="headerlink" href="#container-based-lambda-plugin" title="Permanent link">&para;</a></h4>
+<p><strong>Example</strong>: Deploying a Docker-based evaluation plugin</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">DockerImageFunction</span><span class="p">,</span><span class="w"> </span><span class="nx">DockerImageCode</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;aws-cdk-lib/aws-lambda&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Duration</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;aws-cdk-lib&#39;</span><span class="p">;</span>
+
+<span class="c1">// Define your Docker-based Lambda function</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">myPlugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">DockerImageFunction</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;MyDockerPlugin&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">code</span><span class="o">:</span><span class="w"> </span><span class="kt">DockerImageCode.fromImageAsset</span><span class="p">(</span><span class="s1">&#39;path/to/dockerfile&#39;</span><span class="p">),</span>
+<span class="w">  </span><span class="nx">memorySize</span><span class="o">:</span><span class="w"> </span><span class="kt">4096</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">timeout</span><span class="o">:</span><span class="w"> </span><span class="kt">Duration.minutes</span><span class="p">(</span><span class="mf">15</span><span class="p">),</span>
+<span class="w">  </span><span class="nx">vpc</span><span class="o">:</span><span class="w"> </span><span class="kt">vpc</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="c1">// Register the plugin using ETK&#39;s setup function</span>
+<span class="nx">genAiEtk</span><span class="p">.</span><span class="nx">setupEvalLambdaPlugin</span><span class="p">(</span><span class="s1">&#39;myDockerPlugin&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">myPlugin</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">allowBedrockAccess</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="ecs-based-plugins">ECS-based plugins<a class="headerlink" href="#ecs-based-plugins" title="Permanent link">&para;</a></h3>
+<p>ECS plugins support unlimited execution time and high memory requirements. ETK simplifies deployment to just providing an image and Fargate configuration.</p>
+<p><strong>Example</strong>: Deploying an ECS evaluation plugin</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ContainerImage</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;aws-cdk-lib/aws-ecs&#39;</span><span class="p">;</span>
+
+<span class="c1">// Create ECS plugin using ETK&#39;s factory function</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">myPlugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">genAiEtk</span><span class="p">.</span><span class="nx">createEvalEcsPlugin</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;MyEcsPlugin&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;myCustomPlugin&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="kt">ContainerImage.fromAsset</span><span class="p">(</span><span class="s1">&#39;path/to/dockerfile&#39;</span><span class="p">),</span>
+<span class="w">  </span><span class="nx">fargateConfig</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">cpu</span><span class="o">:</span><span class="w"> </span><span class="kt">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1024</span><span class="p">,</span><span class="w"> </span><span class="c1">// 4 vCPUs</span>
+<span class="w">    </span><span class="nx">memoryLimitMiB</span><span class="o">:</span><span class="w"> </span><span class="kt">16</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1024</span><span class="p">,</span><span class="w"> </span><span class="c1">// 16 GB</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">});</span>
+
+<span class="c1">// Grant additional permissions if needed</span>
+<span class="nx">myPlugin</span><span class="p">.</span><span class="nx">taskRole</span><span class="p">.</span><span class="nx">addManagedPolicy</span><span class="p">(</span><span class="cm">/* ... */</span><span class="p">);</span>
+</code></pre></div>
+<p>ETK handles:</p>
+<ul>
+<li>ECS task definition creation</li>
+<li>EventBridge rule configuration</li>
+<li>IAM role and permission setup</li>
+<li>VPC networking configuration</li>
+<li>Automatic scaling via Fargate</li>
+</ul>
+<h3 id="plugin-implementation">Plugin implementation<a class="headerlink" href="#plugin-implementation" title="Permanent link">&para;</a></h3>
+<p>Regardless of deployment type, your plugin must:</p>
+<ol>
+<li><strong>Consume trigger events</strong>: Listen for EventBridge events with your plugin's name</li>
+<li><strong>Process test data</strong>: Read test cases from S3 locations provided in the event</li>
+<li><strong>Emit progress events</strong>: Send heartbeat events at least every 10 minutes</li>
+<li><strong>Write results</strong>: Save evaluation results to S3</li>
+<li><strong>Emit completion event</strong>: Signal success or failure with task token</li>
+</ol>
+<p>See the <a href="../../user_guide/Gen-AI-ETK-UserGuide/#extending-the-toolkit">User Guide</a> for detailed plugin contract specifications and the evaluation plugin SDK documentation.</p>
+<h1 id="update-the-solution">Update the solution<a class="headerlink" href="#update-the-solution" title="Permanent link">&para;</a></h1>
+<p>To update an existing deployment to a newer version:</p>
+<ol>
+<li>Pull the latest code from the repository.</li>
+<li>Run <code>mise run install</code> and <code>mise run codegen</code> to update dependencies and regenerate types.</li>
+<li>Run <code>mise run build</code> to build all packages.</li>
+<li>Run <code>mise run deploy</code> to deploy the updated stacks.</li>
+</ol>
+<p>CDK performs a diff against the existing CloudFormation stacks and applies only the changes. Review the CDK diff output before confirming the deployment.</p>
+<h1 id="monitoring">Monitoring<a class="headerlink" href="#monitoring" title="Permanent link">&para;</a></h1>
+<pre class="mermaid"><code>graph TB
+    subgraph Sources["Monitored Components"]
+        apigw[API Gateway]
+        lambda[Lambda Functions]
+        sf[Step Functions]
+        ecs[ECS Plugin Tasks]
+        vpc[VPC Flow Logs]
+    end
+
+    subgraph CW["Amazon CloudWatch"]
+        metrics[Metrics]
+        logs[Logs]
+        alarms[Alarms]
+        dash[Dashboards]
+    end
+
+    apigw &amp; lambda &amp; sf &amp; ecs &amp; vpc --&gt; metrics &amp; logs
+    metrics --&gt; alarms
+    metrics --&gt; dash</code></pre>
+<p>The <code>GenAiEtk-TLM</code> stack deploys monitoring infrastructure including:</p>
+<ul>
+<li>CloudWatch dashboards for API Gateway, Lambda, and Step Functions metrics.</li>
+<li>Alarms for error rates and latency thresholds.</li>
+<li>Centralized log groups for all components.</li>
+</ul>
+<p>You can access monitoring data through the <a href="https://console.aws.amazon.com/cloudwatch/">CloudWatch console</a> in the deployment region.</p>
+<h1 id="backup-and-disaster-recovery">Backup and disaster recovery<a class="headerlink" href="#backup-and-disaster-recovery" title="Permanent link">&para;</a></h1>
+<p>The solution enables the following data protection features by default:</p>
+<ul>
+<li><strong>Amazon S3</strong>: All buckets created by the solution have <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html">versioning</a> enabled, allowing recovery of overwritten or deleted objects.</li>
+<li><strong>Amazon DynamoDB</strong>: <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/PointInTimeRecovery.html">Point-in-time recovery (PITR)</a> is enabled on the DynamoDB table, providing continuous backups with per-second granularity for the preceding 35 days.</li>
+</ul>
+<p>Since you run the solution in your own AWS account, you are responsible for implementing backup and disaster recovery procedures that meet your business continuity requirements. Consider:</p>
+<ul>
+<li>Configuring <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html">S3 lifecycle policies</a> for long-term retention or archival.</li>
+<li>Setting up <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/BackupRestore.html">DynamoDB on-demand backups</a> for additional protection.</li>
+<li>Documenting your recovery procedures as part of your operational runbook.</li>
+</ul>
+<h1 id="uninstall-the-solution">Uninstall the solution<a class="headerlink" href="#uninstall-the-solution" title="Permanent link">&para;</a></h1>
+<h2 id="prerequisites_1">Prerequisites<a class="headerlink" href="#prerequisites_1" title="Permanent link">&para;</a></h2>
+<p>Before uninstalling, ensure you have:</p>
+<ul>
+<li>AWS credentials with permissions to delete CloudFormation stacks and associated resources.</li>
+<li>Access to the CDK project used for deployment.</li>
+<li>Backed up any data you want to retain from S3 buckets and DynamoDB tables.</li>
+</ul>
+<h2 id="cdk-uninstallation">CDK uninstallation<a class="headerlink" href="#cdk-uninstallation" title="Permanent link">&para;</a></h2>
+<h3 id="step-1-access-the-cdk-project">Step 1: Access the CDK project<a class="headerlink" href="#step-1-access-the-cdk-project" title="Permanent link">&para;</a></h3>
+<p>Navigate to the deployment package:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>packages/deployment
+</code></pre></div>
+<h3 id="step-2-destroy-the-cdk-stacks">Step 2: Destroy the CDK stacks<a class="headerlink" href="#step-2-destroy-the-cdk-stacks" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mise<span class="w"> </span>run<span class="w"> </span>destroy
+</code></pre></div>
+<p>This removes all CloudFormation stacks and their resources. Some resources with removal protection may require manual cleanup.</p>
+<h3 id="step-3-verify-resource-removal">Step 3: Verify resource removal<a class="headerlink" href="#step-3-verify-resource-removal" title="Permanent link">&para;</a></h3>
+<p>Check for remaining resources in the AWS console or using the CLI:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check for remaining CloudFormation stacks</span>
+aws<span class="w"> </span>cloudformation<span class="w"> </span>list-stacks<span class="w"> </span>--stack-status-filter<span class="w"> </span>CREATE_COMPLETE<span class="w"> </span>UPDATE_COMPLETE<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--query<span class="w"> </span><span class="s2">&quot;StackSummaries[?contains(StackName, &#39;GenAiEtk&#39;)]&quot;</span>
+</code></pre></div>
+<h2 id="handling-protected-resources">Handling protected resources<a class="headerlink" href="#handling-protected-resources" title="Permanent link">&para;</a></h2>
+<p>The following resources may require manual deletion:</p>
+<ul>
+<li><strong>Amazon S3 buckets</strong>: Buckets with data must be emptied before deletion. Use <code>aws s3 rb s3://&lt;bucket-name&gt; --force</code>.</li>
+<li><strong>Amazon DynamoDB tables</strong>: Tables with deletion protection must have protection disabled first.</li>
+<li><strong>CloudWatch Log Groups</strong>: May persist after stack deletion. Delete through the CloudWatch console.</li>
+<li><strong>IAM roles</strong>: Roles with inline policies may require manual cleanup.</li>
+<li><strong>ECR repositories</strong>: Repositories holding container images must be emptied before stack deletion succeeds. Either delete the images first or remove each repository with <code>aws ecr delete-repository --repository-name &lt;name&gt; --force</code>.</li>
+</ul>
+<h2 id="cost-implications">Cost implications<a class="headerlink" href="#cost-implications" title="Permanent link">&para;</a></h2>
+<p>After uninstallation, verify that all resources have been removed to avoid ongoing charges. The MLflow tracking server (~$500/month) is the most significant fixed cost and should be confirmed as deleted.</p>
+<h1 id="contributors">Contributors<a class="headerlink" href="#contributors" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Amr Saber</li>
+<li>Anand Surada</li>
+<li>Anton Kukushkin</li>
+<li>Bhushan Khandelwal</li>
+<li>Chris Paton</li>
+<li>Dominic Platt</li>
+<li>Ethan Bunce</li>
+<li>Manisha Sharma</li>
+<li>Martin Wilke</li>
+<li>Peter Lyons</li>
+<li>Rameshwari Kumari</li>
+<li>Vibhath Ileperuma</li>
+</ul>
+<h1 id="notices">Notices<a class="headerlink" href="#notices" title="Permanent link">&para;</a></h1>
+<p>Customers are responsible for making their own independent assessment of the information in this document. This document: (a) is for informational purposes only, (b) represents AWS current product offerings and practices, which are subject to change without notice, and (c) does not create any commitments or assurances from AWS and its affiliates, suppliers or licensors. AWS products or services are provided "as is" without warranties, representations, or conditions of any kind, whether express or implied. AWS responsibilities and liabilities to its customers are controlled by AWS agreements, and this document is not part of, nor does it modify, any agreement between AWS and its customers.</p>
+<p>Gen AI Evaluation Toolkit on AWS is licensed under Apache License 2.0. See the <code>LICENSE</code> file at the repository root for full terms.</p>
+<h1 id="revisions">Revisions<a class="headerlink" href="#revisions" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>March 2026</td>
+<td>Complete rewrite to improve structure and clarity.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "search.suggest", "search.highlight", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": "2.0.0"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

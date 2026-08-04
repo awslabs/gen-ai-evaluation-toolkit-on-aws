@@ -1,0 +1,2727 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../user_guide/Gen-AI-ETK-UserGuide/">
+      
+      
+        <link rel="next" href="../evaluator-pyrit/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Evaluator SDK - Gen AI Evaluation Toolkit on AWS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/print.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#evaluator-sdk-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Gen AI Evaluation Toolkit on AWS" class="md-header__button md-logo" aria-label="Gen AI Evaluation Toolkit on AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Gen AI Evaluation Toolkit on AWS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Evaluator SDK
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Gen AI Evaluation Toolkit on AWS" class="md-nav__button md-logo" aria-label="Gen AI Evaluation Toolkit on AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Gen AI Evaluation Toolkit on AWS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Core guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../solution_guide/Gen-AI-ETK-SolutionGuide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solution Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/Gen-AI-ETK-UserGuide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDK references
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SDK references
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluator SDK
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluator SDK
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#evaluator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evaluator
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evaluator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.evaluator.Evaluator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evaluator
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evaluator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.evaluator.Evaluator.evaluate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        evaluate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.evaluator.Evaluator.score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        score
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.evaluator.Evaluator.invoke" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invoke
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.evaluator.Evaluator.evaluator_handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        evaluator_handler
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.AppInvokeFn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AppInvokeFn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.ExpectedType" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ExpectedType
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.InputType" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        InputType
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.MetadataType" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MetadataType
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.OutputType" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OutputType
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.ScorerFn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScorerFn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.TestCase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TestCase
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.EvaluationResponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EvaluationResponse
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EvaluationResponse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.EvaluationResponse.job_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        job_id
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.EvaluationResponse.report_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        report_id
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.EvaluationResponse.results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.EvaluationResponse.score_summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        score_summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.EvaluationResponse.total_errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        total_errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.EvaluationResponse.total_results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        total_results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.EvaluationResponse.total_with_output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        total_with_output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.EvaluationResponse.print_results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        print_results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.EvaluationResponse.print_summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        print_summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.EvaluationResult" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EvaluationResult
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EvaluationResult">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.EvaluationResult.context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.EvaluationResult.error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.EvaluationResult.expected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        expected
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.EvaluationResult.input_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        input_data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.EvaluationResult.metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.EvaluationResult.output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.EvaluationResult.scores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scores
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.EvaluatorError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EvaluatorError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.ScoreResult" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScoreResult
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScoreResult">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.ScoreResult.context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.ScoreResult.error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.ScoreResult.reason" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        reason
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.ScoreResult.value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        value
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.TestResult" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TestResult
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TestResult">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.TestResult.app_metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        app_metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.TestResult.context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.TestResult.error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.TestResult.expected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        expected
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.TestResult.input" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        input
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.TestResult.metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.models.TestResult.output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        output
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scorer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scorer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.scorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scorer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.scorer.Scorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scorer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scorer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.scorer.Scorer.score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        score
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator_sdk.scorer.scorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scorer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluator-pyrit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluator PyRIT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../typescript-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TypeScript client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+<div class="print-cover" data-print-title="Evaluator SDK">
+  <p style="margin-top: 20pt; color: #444;">Gen AI Evaluation Toolkit on AWS</p>
+  <p style="margin-top: 10pt; color: #7a7a7a; font-size: 14pt;">v2.0.0</p>
+  <img src="../../stylesheets/aws_logo.png" alt="AWS" />
+</div>
+
+<div class="print-copyright">
+  <p>Copyright &copy; 2026 Amazon Web Services, Inc. and/or its affiliates. All rights reserved. Amazon&rsquo;s trademarks and trade dress may not be used in connection with any product or service that is not Amazon&rsquo;s, in any manner that is likely to cause confusion among customers, or in any manner that disparages or discredits Amazon. All other trademarks not owned by Amazon are the property of their respective owners, who may or may not be affiliated with, connected to, or sponsored by Amazon.</p>
+  
+</div>
+
+
+<div class="print-toc">
+  <h2>Table of contents</h2>
+  <ul>
+    
+    <li class="print-toc__l1"><a href="#evaluator-sdk-reference">Evaluator SDK reference</a>
+      
+      <ul>
+        
+        <li class="print-toc__l2"><a href="#evaluator">Evaluator</a></li>
+        
+        <li class="print-toc__l2"><a href="#models">Models</a></li>
+        
+        <li class="print-toc__l2"><a href="#scorer">Scorer</a></li>
+        
+      </ul>
+      
+    </li>
+    
+  </ul>
+</div>
+
+
+
+                  
+
+
+
+<!-- Auto-generated API reference using mkdocstrings: https://mkdocstrings.github.io/python/ -->
+
+<h1 id="evaluator-sdk-reference">Evaluator SDK reference<a class="headerlink" href="#evaluator-sdk-reference" title="Permanent link">&para;</a></h1>
+<p>The Evaluator SDK provides the framework for building custom evaluators that integrate with the Gen AI Evaluation Toolkit on AWS.</p>
+<h2 id="evaluator">Evaluator<a class="headerlink" href="#evaluator" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="evaluator_sdk.evaluator.Evaluator" class="doc doc-heading">
+            <code>evaluator_sdk.evaluator.Evaluator</code>
+
+
+<a href="#evaluator_sdk.evaluator.Evaluator" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents first">
+
+
+
+        <p>Simple evaluator that processes evaluation jobs.</p>
+<p>Uses the generated DefaultApi client for API calls.</p>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="evaluator_sdk.evaluator.Evaluator.evaluate" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">evaluate</span><span class="p">(</span><span class="n">testcases</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">InlineTestCase</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dataset_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">scorers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">app</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">experiment_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">return_results</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">app_invoke_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">annotation_filter</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EvaluationResponse</span></code>
+
+<a href="#evaluator_sdk.evaluator.Evaluator.evaluate" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Run a full evaluation: app_invoke + scoring.</p>
+<p>Local execution (default). <code>app_invoke</code> must be set and at least one
+scorer registered. Use <code>app</code> to select which app_invoke function to
+call and pass runtime parameters::</p>
+<div class="highlight"><pre><span></span><code>evaluator.evaluate(
+    testcases=...,
+    app={&quot;name&quot;: &quot;my_fn&quot;, &quot;params&quot;: {&quot;agent_arn&quot;: &quot;arn:...&quot;}},
+    scorers={&quot;ragas&quot;: {&quot;scores&quot;: {&quot;faithfulness&quot;: None}}},
+)
+</code></pre></div>
+<p>Remote execution. Add an <code>evaluatorName</code> to a task's config to run it
+on a deployed evaluator worker instead of in-process — for the <code>app</code>
+(app invocation) and/or individual scorers. A task with <code>evaluatorName</code>
+runs remotely (its name need not be registered locally); without one it
+runs locally and must be registered. For a fully-remote evaluation, route
+BOTH the app and every scorer::</p>
+<div class="highlight"><pre><span></span><code>evaluator.evaluate(
+    testcases=...,
+    app={&quot;evaluatorName&quot;: &quot;my-worker&quot;, &quot;name&quot;: &quot;my_fn&quot;, &quot;params&quot;: {...}},
+    scorers={&quot;ragas&quot;: {&quot;evaluatorName&quot;: &quot;builtin&quot;,
+                       &quot;scores&quot;: {&quot;faithfulness&quot;: None}}},
+)
+</code></pre></div>
+<p>The call blocks until the remote job finishes and returns the results the
+workers wrote. Mixing local and remote tasks in one call is not yet
+supported (raises <code>EvaluatorError</code>); route everything one way or the
+other. See :meth:<code>score</code> for scoring pre-existing outputs remotely.</p>
+<p>Use <code>annotation_filter</code> with <code>dataset_id</code> to evaluate only test
+cases matching the annotation condition::</p>
+<div class="highlight"><pre><span></span><code>evaluator.evaluate(
+    dataset_id=&quot;ds-123&quot;,
+    annotation_filter={
+        &quot;condition&quot;: {&quot;stringEnumCondition&quot;: {
+            &quot;name&quot;: &quot;SENTIMENT&quot;, &quot;value&quot;: &quot;NEGATIVE&quot;, &quot;comparator&quot;: &quot;=&quot;,
+        }}
+    },
+    scorers={&quot;llm_as_judge&quot;: None},
+)
+</code></pre></div>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="evaluator_sdk.evaluator.Evaluator.score" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">score</span><span class="p">(</span><span class="n">testcases</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">source_report_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">scorers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">experiment_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">return_results</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EvaluationResponse</span></code>
+
+<a href="#evaluator_sdk.evaluator.Evaluator.score" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Score pre-existing outputs — no app_invoke.</p>
+<p>Provide either <em>testcases</em> (dicts with <code>input</code> and <code>output</code> keys)
+or <em>source_report_id</em> (an existing report whose results will be copied
+and scored).</p>
+<p>Local scoring (default) runs registered scorers in-process::</p>
+<div class="highlight"><pre><span></span><code>evaluator.score(testcases=[...], scorers={&quot;exact_match&quot;: None})
+</code></pre></div>
+<p>Remote scoring. Add an <code>evaluatorName</code> to a scorer's config to run it
+on a deployed evaluator worker. This is how remote-only evaluators such
+as <code>agent-as-judge</code> are driven through the SDK — the scorer need not be
+registered locally::</p>
+<div class="highlight"><pre><span></span><code>evaluator.score(
+    testcases=[{&quot;input&quot;: {...}, &quot;output&quot;: {...}}],
+    scorers={&quot;agent_as_judge&quot;: {&quot;evaluatorName&quot;: &quot;agent-as-judge&quot;,
+                                &quot;scores&quot;: {&quot;correctness&quot;: None}}},
+)
+
+# or score results already in a report:
+evaluator.score(
+    source_report_id=&quot;report-123&quot;,
+    scorers={&quot;agent_as_judge&quot;: {&quot;evaluatorName&quot;: &quot;agent-as-judge&quot;,
+                                &quot;scores&quot;: {&quot;correctness&quot;: None}}},
+)
+</code></pre></div>
+<p>The call blocks until the remote job completes and returns the scored
+results. Scorers may route to multiple different evaluators (they fan out
+in parallel). At least one scorer must be registered locally or carry an
+<code>evaluatorName</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="evaluator_sdk.evaluator.Evaluator.invoke" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">invoke</span><span class="p">(</span><span class="n">testcases</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">InlineTestCase</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dataset_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">app</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">experiment_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">return_results</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">app_invoke_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">annotation_filter</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EvaluationResponse</span></code>
+
+<a href="#evaluator_sdk.evaluator.Evaluator.invoke" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Run app_invoke only — no scoring.</p>
+<p>Local execution (default) requires <code>app_invoke</code> to be set; use <code>app</code>
+to select which function to call and pass runtime parameters::</p>
+<div class="highlight"><pre><span></span><code>evaluator.invoke(
+    testcases=...,
+    app={&quot;name&quot;: &quot;my_fn&quot;, &quot;params&quot;: {&quot;agent_arn&quot;: &quot;arn:...&quot;}},
+)
+</code></pre></div>
+<p>Remote execution. Add an <code>evaluatorName</code> to the <code>app</code> config to run
+app invocation on a deployed evaluator worker instead of in-process
+(<code>name</code> then selects the worker's app-invoke function)::</p>
+<div class="highlight"><pre><span></span><code>evaluator.invoke(
+    testcases=...,
+    app={&quot;evaluatorName&quot;: &quot;my-worker&quot;, &quot;name&quot;: &quot;my_fn&quot;,
+         &quot;params&quot;: {...}},
+)
+</code></pre></div>
+<p>The call blocks until the remote job completes and returns the results.</p>
+<p>Use <code>annotation_filter</code> with <code>dataset_id</code> to invoke only on
+test cases matching the annotation condition::</p>
+<div class="highlight"><pre><span></span><code>evaluator.invoke(
+    dataset_id=&quot;ds-123&quot;,
+    annotation_filter={&quot;condition&quot;: {
+        &quot;stringEnumCondition&quot;: {
+            &quot;name&quot;: &quot;TIER&quot;, &quot;value&quot;: &quot;HIGH&quot;, &quot;comparator&quot;: &quot;=&quot;,
+        }
+    }},
+)
+</code></pre></div>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="evaluator_sdk.evaluator.Evaluator.evaluator_handler" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">evaluator_handler</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HandlerResult</span></code>
+
+<a href="#evaluator_sdk.evaluator.Evaluator.evaluator_handler" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Lambda handler for remotely-triggered evaluation jobs.</p>
+<p>Receives an EventBridge event with job details in <code>event["detail"]</code>.
+The job and report must already exist (created by the submission API).</p>
+<p>Supports three job types:
+- <code>FULL</code>: app_invoke + scoring (requires app_invoke and scorers)
+- <code>APP_INVOKE</code>: app_invoke only (requires app_invoke)
+- <code>SCORE</code>: scoring only (requires scorers)</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="models">Models<a class="headerlink" href="#models" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="evaluator_sdk.models"></a>
+    <div class="doc doc-contents first">
+
+        <p>Public types, dataclasses, and type aliases for the Evaluator SDK.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="evaluator_sdk.models.AppInvokeFn" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">AppInvokeFn</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.AppInvokeFn" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="evaluator_sdk.models.ExpectedType" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ExpectedType</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;ExpectedType&#39;</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.ExpectedType" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="evaluator_sdk.models.InputType" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">InputType</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;InputType&#39;</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.InputType" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="evaluator_sdk.models.MetadataType" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">MetadataType</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;MetadataType&#39;</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.MetadataType" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="evaluator_sdk.models.OutputType" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">OutputType</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;OutputType&#39;</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.OutputType" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="evaluator_sdk.models.ScorerFn" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ScorerFn</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.ScorerFn" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="evaluator_sdk.models.TestCase" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">TestCase</span> <span class="o">=</span> <span class="n">InlineTestCase</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.TestCase" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="evaluator_sdk.models.EvaluationResponse" class="doc doc-heading">
+            <code>EvaluationResponse</code>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.EvaluationResponse" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Response from evaluate() — contains results + identifiers.</p>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.EvaluationResponse.job_id" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">job_id</span><span class="p">:</span> <span class="nb">str</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.EvaluationResponse.job_id" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.EvaluationResponse.report_id" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">report_id</span><span class="p">:</span> <span class="nb">str</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.EvaluationResponse.report_id" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.EvaluationResponse.results" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">results</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">EvaluationResult</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.EvaluationResponse.results" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.EvaluationResponse.score_summary" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">score_summary</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.EvaluationResponse.score_summary" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Per-scorer summary: count, errors, and mean value (excluding errors).</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.EvaluationResponse.total_errors" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">total_errors</span><span class="p">:</span> <span class="nb">int</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.EvaluationResponse.total_errors" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.EvaluationResponse.total_results" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">total_results</span><span class="p">:</span> <span class="nb">int</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.EvaluationResponse.total_results" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.EvaluationResponse.total_with_output" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">total_with_output</span><span class="p">:</span> <span class="nb">int</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.EvaluationResponse.total_with_output" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="evaluator_sdk.models.EvaluationResponse.print_results" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">print_results</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
+
+<a href="#evaluator_sdk.models.EvaluationResponse.print_results" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Print each result to stdout.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="evaluator_sdk.models.EvaluationResponse.print_summary" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">print_summary</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
+
+<a href="#evaluator_sdk.models.EvaluationResponse.print_summary" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Print a summary of the evaluation.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="evaluator_sdk.models.EvaluationResult" class="doc doc-heading">
+            <code>EvaluationResult</code>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.EvaluationResult" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Result of evaluating a single test case.</p>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.EvaluationResult.context" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">context</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.EvaluationResult.context" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.EvaluationResult.error" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">error</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.EvaluationResult.error" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.EvaluationResult.expected" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">expected</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.EvaluationResult.expected" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.EvaluationResult.input_data" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">input_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.EvaluationResult.input_data" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.EvaluationResult.metadata" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.EvaluationResult.metadata" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.EvaluationResult.output" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">output</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.EvaluationResult.output" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.EvaluationResult.scores" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">scores</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ScoreResult</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.EvaluationResult.scores" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="evaluator_sdk.models.EvaluatorError" class="doc doc-heading">
+            <code>EvaluatorError</code>
+
+
+<a href="#evaluator_sdk.models.EvaluatorError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Base exception for evaluator errors.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="evaluator_sdk.models.ScoreResult" class="doc doc-heading">
+            <code>ScoreResult</code>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.ScoreResult" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Result of a single score.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="value: float | None = None
+
+  
+      class-attribute
+      instance-attribute
+   (evaluator_sdk.models.ScoreResult.value)" href="#evaluator_sdk.models.ScoreResult.value">value</a></code></td>
+            <td>
+                  <code><span title="float">float</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The numeric score (typically 0-1).</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="error: str | None = None
+
+  
+      class-attribute
+      instance-attribute
+   (evaluator_sdk.models.ScoreResult.error)" href="#evaluator_sdk.models.ScoreResult.error">error</a></code></td>
+            <td>
+                  <code><span title="str">str</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Error message if scoring failed.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="reason: str | None = None
+
+  
+      class-attribute
+      instance-attribute
+   (evaluator_sdk.models.ScoreResult.reason)" href="#evaluator_sdk.models.ScoreResult.reason">reason</a></code></td>
+            <td>
+                  <code><span title="str">str</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Human-readable explanation of the score.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="context: dict[str, Any] | None = None
+
+  
+      class-attribute
+      instance-attribute
+   (evaluator_sdk.models.ScoreResult.context)" href="#evaluator_sdk.models.ScoreResult.context">context</a></code></td>
+            <td>
+                  <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>] | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional free-form structured detail (e.g. a per-requirement
+breakdown). Use it to attach machine-readable metadata that consumers
+can parse alongside <code>value</code>/<code>reason</code>. It is persisted and returned
+by the API (surfaced as <code>ScoreOutput.context</code>). Leave it <code>None</code> if
+the scorer produces no structured detail.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.ScoreResult.context" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">context</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.ScoreResult.context" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.ScoreResult.error" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">error</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.ScoreResult.error" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.ScoreResult.reason" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">reason</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.ScoreResult.reason" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.ScoreResult.value" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.ScoreResult.value" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="evaluator_sdk.models.TestResult" class="doc doc-heading">
+            <code>TestResult</code>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.TestResult" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>The single object handed to scorers — a test case that has been run.</p>
+<p>Carries the full test-case core (<code>input</code>, <code>expected</code>, <code>context</code>,
+<code>metadata</code>) plus the execution artifacts (<code>output</code>, <code>app_metrics</code>,
+<code>error</code>). Scorers receive this as the sole <code>test_result</code> data argument;
+scoring configuration (<code>params</code>, <code>score_name</code>, <code>score_params</code>) is
+passed separately.</p>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.TestResult.app_metrics" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">app_metrics</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.TestResult.app_metrics" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.TestResult.context" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">context</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.TestResult.context" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.TestResult.error" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">error</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.TestResult.error" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.TestResult.expected" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">expected</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.TestResult.expected" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.TestResult.input" class="doc doc-heading">
+            <code class="highlight language-python"><span class="nb">input</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.TestResult.input" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.TestResult.metadata" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.TestResult.metadata" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="evaluator_sdk.models.TestResult.output" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">output</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#evaluator_sdk.models.TestResult.output" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="scorer">Scorer<a class="headerlink" href="#scorer" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="evaluator_sdk.scorer"></a>
+    <div class="doc doc-contents first">
+
+        <p>Scorer ABC, score decorator, and scorer helpers.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="evaluator_sdk.scorer.Scorer" class="doc doc-heading">
+            <code>Scorer</code>
+
+
+<a href="#evaluator_sdk.scorer.Scorer" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Base class for plugin scorers that produce multiple scores.</p>
+<p>Use <code>@scorer</code> to declare individual scoring methods::</p>
+<div class="highlight"><pre><span></span><code>class MyScorer(Scorer):
+    name = &quot;quality&quot;  # optional, defaults to class name
+
+    @scorer
+    def length(self, test_result):
+        return 1.0 if len(test_result.output.get(&quot;text&quot;, &quot;&quot;)) &gt; 0 else 0.0
+
+    @scorer
+    def prefix(self, test_result):
+        return 1.0 if test_result.output.get(&quot;text&quot;, &quot;&quot;).startswith(&quot;Response:&quot;) else 0.0
+</code></pre></div>
+<p>Each method can return:
+- <code>float</code> or <code>ScoreResult</code> — single score, named after the method
+- <code>dict[str, float | ScoreResult]</code> — multiple dynamic scores</p>
+<p>Alternatively, override <code>score()</code> directly for full control.</p>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="evaluator_sdk.scorer.Scorer.score" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">score</span><span class="p">(</span><span class="n">test_result</span><span class="p">:</span> <span class="n">TestResult</span><span class="p">,</span> <span class="n">scores</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">ScoreResult</span><span class="p">]</span></code>
+
+<a href="#evaluator_sdk.scorer.Scorer.score" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Dispatch to @scorer methods. Override for full control.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="evaluator_sdk.scorer.scorer" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">scorer</span><span class="p">(</span><span class="n">fn</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">dynamic</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span></code>
+
+<a href="#evaluator_sdk.scorer.scorer" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Mark a method as a score on a Scorer subclass.</p>
+<p>::</p>
+<div class="highlight"><pre><span></span><code>@scorer
+def length(self, test_result):
+    return 1.0 if len(test_result.output.get(&quot;text&quot;, &quot;&quot;)) &gt; 0 else 0.0
+</code></pre></div>
+<p>Use <code>dynamic=True</code> to mark a fallback handler for score names that
+don't have a dedicated <code>@scorer</code> method.  Dynamic handlers receive
+<code>score_name</code> and <code>score_params</code> in addition to the usual kwargs::</p>
+<div class="highlight"><pre><span></span><code>@scorer(dynamic=True)
+def handle(self, score_name, score_params, test_result, params):
+    ...
+</code></pre></div>
+<p>Methods receive kwargs filtered by signature (test_result, params,
+score_name, score_params).  Return a float, ScoreResult, or dict for
+dynamic multi-score results.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "search.suggest", "search.highlight", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": "2.0.0"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

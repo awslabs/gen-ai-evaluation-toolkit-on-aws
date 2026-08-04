@@ -1,0 +1,2500 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../solution_guide/Gen-AI-ETK-SolutionGuide/">
+      
+      
+        <link rel="next" href="../../sdk/evaluator-sdk/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>User Guide - Gen AI Evaluation Toolkit on AWS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/print.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#what-is-gen-ai-evaluation-toolkit" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Gen AI Evaluation Toolkit on AWS" class="md-header__button md-logo" aria-label="Gen AI Evaluation Toolkit on AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Gen AI Evaluation Toolkit on AWS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              User Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Gen AI Evaluation Toolkit on AWS" class="md-nav__button md-logo" aria-label="Gen AI Evaluation Toolkit on AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Gen AI Evaluation Toolkit on AWS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Core guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../solution_guide/Gen-AI-ETK-SolutionGuide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solution Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDK references
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SDK references
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sdk/evaluator-sdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluator SDK
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sdk/evaluator-pyrit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluator PyRIT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sdk/python-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sdk/typescript-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TypeScript client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+<div class="print-cover" data-print-title="User Guide">
+  <p style="margin-top: 20pt; color: #444;">Gen AI Evaluation Toolkit on AWS</p>
+  <p style="margin-top: 10pt; color: #7a7a7a; font-size: 14pt;">v2.0.0</p>
+  <img src="../../stylesheets/aws_logo.png" alt="AWS" />
+</div>
+
+<div class="print-copyright">
+  <p>Copyright &copy; 2026 Amazon Web Services, Inc. and/or its affiliates. All rights reserved. Amazon&rsquo;s trademarks and trade dress may not be used in connection with any product or service that is not Amazon&rsquo;s, in any manner that is likely to cause confusion among customers, or in any manner that disparages or discredits Amazon. All other trademarks not owned by Amazon are the property of their respective owners, who may or may not be affiliated with, connected to, or sponsored by Amazon.</p>
+  
+</div>
+
+
+<div class="print-toc">
+  <h2>Table of contents</h2>
+  <ul>
+    
+    <li class="print-toc__l1"><a href="#what-is-gen-ai-evaluation-toolkit">What is Gen AI Evaluation Toolkit?</a>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#getting-started">Getting started</a>
+      
+      <ul>
+        
+        <li class="print-toc__l2"><a href="#prerequisites">Prerequisites</a></li>
+        
+        <li class="print-toc__l2"><a href="#install-the-cli">Install the CLI</a></li>
+        
+        <li class="print-toc__l2"><a href="#configuration">Configuration</a></li>
+        
+        <li class="print-toc__l2"><a href="#security-and-encryption-kms">Security and encryption (KMS)</a></li>
+        
+      </ul>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#core-concepts">Core concepts</a>
+      
+      <ul>
+        
+        <li class="print-toc__l2"><a href="#datasets-and-test-cases">Datasets and test cases</a></li>
+        
+        <li class="print-toc__l2"><a href="#evaluations-and-metrics">Evaluations and metrics</a></li>
+        
+        <li class="print-toc__l2"><a href="#experiments">Experiments</a></li>
+        
+        <li class="print-toc__l2"><a href="#generation">Generation</a></li>
+        
+        <li class="print-toc__l2"><a href="#plugins">Plugins</a></li>
+        
+      </ul>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#evaluation-workflows">Evaluation workflows</a>
+      
+      <ul>
+        
+        <li class="print-toc__l2"><a href="#managing-datasets">Managing datasets</a></li>
+        
+        <li class="print-toc__l2"><a href="#configuring-evaluations">Configuring evaluations</a></li>
+        
+        <li class="print-toc__l2"><a href="#running-evaluations">Running evaluations</a></li>
+        
+        <li class="print-toc__l2"><a href="#viewing-results">Viewing results</a></li>
+        
+      </ul>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#experimentation">Experimentation</a>
+      
+      <ul>
+        
+        <li class="print-toc__l2"><a href="#creating-experiments">Creating experiments</a></li>
+        
+        <li class="print-toc__l2"><a href="#tracking-and-comparing-results">Tracking and comparing results</a></li>
+        
+        <li class="print-toc__l2"><a href="#mlflow-integration">MLflow integration</a></li>
+        
+      </ul>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#generation-workflows">Generation workflows</a>
+      
+      <ul>
+        
+        <li class="print-toc__l2"><a href="#configuring-generation">Configuring generation</a></li>
+        
+        <li class="print-toc__l2"><a href="#running-generation-jobs">Running generation jobs</a></li>
+        
+        <li class="print-toc__l2"><a href="#generation-plugins">Generation plugins</a></li>
+        
+      </ul>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#extending-the-toolkit">Extending the toolkit</a>
+      
+      <ul>
+        
+        <li class="print-toc__l2"><a href="#cicd-integration">CI/CD integration</a></li>
+        
+        <li class="print-toc__l2"><a href="#eventbridge-integration">EventBridge integration</a></li>
+        
+        <li class="print-toc__l2"><a href="#multi-evaluator-jobs">Multi-evaluator jobs</a></li>
+        
+        <li class="print-toc__l2"><a href="#migrating-from-eval-plugins-to-evaluator-sdk-v2">Migrating from eval plugins to evaluator SDK v2</a></li>
+        
+        <li class="print-toc__l2"><a href="#custom-evaluators">Custom evaluators</a></li>
+        
+      </ul>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#tutorials">Tutorials</a>
+      
+      <ul>
+        
+        <li class="print-toc__l2"><a href="#rag-evaluation-tutorial">RAG evaluation tutorial</a></li>
+        
+        <li class="print-toc__l2"><a href="#test-case-generation-tutorial">Test case generation tutorial</a></li>
+        
+      </ul>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#troubleshooting">Troubleshooting</a>
+      
+      <ul>
+        
+        <li class="print-toc__l2"><a href="#installation-and-configuration">Installation and configuration</a></li>
+        
+        <li class="print-toc__l2"><a href="#evaluation-issues">Evaluation issues</a></li>
+        
+        <li class="print-toc__l2"><a href="#experiment-issues">Experiment issues</a></li>
+        
+        <li class="print-toc__l2"><a href="#generation-issues">Generation issues</a></li>
+        
+        <li class="print-toc__l2"><a href="#kms-encryption-errors">KMS encryption errors</a></li>
+        
+        <li class="print-toc__l2"><a href="#diagnosing-issues">Diagnosing issues</a></li>
+        
+        <li class="print-toc__l2"><a href="#agent-as-judge-issues">Agent-as-Judge issues</a></li>
+        
+      </ul>
+      
+    </li>
+    
+    <li class="print-toc__l1"><a href="#revisions">Revisions</a>
+      
+    </li>
+    
+  </ul>
+</div>
+
+
+
+                  
+
+
+
+<h1 id="what-is-gen-ai-evaluation-toolkit">What is Gen AI Evaluation Toolkit?<a class="headerlink" href="#what-is-gen-ai-evaluation-toolkit" title="Permanent link">&para;</a></h1>
+<p>Gen AI Evaluation Toolkit on AWS (Gen AI ETK) is an enterprise-grade, cloud-native accelerator for comprehensive evaluation of generative AI applications, deployed and operated in your own AWS account. It provides end-to-end capabilities including test case generation, metrics-based and LLM-based quality assessments, and visualization of experiment results.</p>
+<p>You interact with Gen AI ETK through a command-line interface (CLI) or programmatically through generated <a href="../../sdk/typescript-client/">TypeScript</a> and <a href="../../sdk/python-client/">Python</a> clients. All three interfaces communicate with the same REST API.</p>
+<p>If you need to deploy Gen AI ETK, see the <a href="../../solution_guide/Gen-AI-ETK-SolutionGuide/">Solution Guide</a>. This User Guide assumes the toolkit is already deployed in your AWS account.</p>
+<h1 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h1>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>Before using Gen AI ETK, ensure you have:</p>
+<ul>
+<li>Gen AI ETK deployed in your AWS account (see the <a href="../../solution_guide/Gen-AI-ETK-SolutionGuide/">Solution Guide</a>).</li>
+<li>Node.js v20 or later: verify with <code>node --version</code>.</li>
+<li>AWS credentials with the following permissions:</li>
+<li><code>execute-api:Invoke</code> on the deployed API Gateway.</li>
+<li><code>sagemaker:CreatePresignedMlflowTrackingServerUrl</code> for experiment UI access.</li>
+<li>See <a href="https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/setting-credentials-node.html">Setup AWS credentials in Node.js</a> and <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html">API Gateway IAM authentication</a>.</li>
+<li>Amazon Bedrock model access in your deployment region. The scorers and generation plugins use the following models by default (all configurable):</li>
+<li><code>amazon.nova-micro-v1:0</code> and <code>amazon.titan-embed-text-v2:0</code> (RAGAS scorer)</li>
+<li><code>global.amazon.nova-2-lite-v1:0</code> (LLM-as-Judge scorer)</li>
+<li><code>global.anthropic.claude-haiku-4-5-20251001-v1:0</code> (RAG generation plugin)</li>
+<li><code>anthropic.claude-sonnet-4-5-20250929-v1:0</code> (Agentic generation plugin)</li>
+<li>Check available models with <code>aws bedrock list-foundation-models</code>. To request access, see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html">Manage access to Amazon Bedrock foundation models</a>.</li>
+<li>Amazon Bedrock AgentCore access: Required for the AgentCore scorer. Regional availability is subject to change; consult the <a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agentcore-regions.html">official AWS documentation</a> for supported regions.</li>
+</ul>
+<h2 id="install-the-cli">Install the CLI<a class="headerlink" href="#install-the-cli" title="Permanent link">&para;</a></h2>
+<p>The CLI is distributed as part of the Gen AI ETK source code and is not published to a public npm registry. To install it, you need access to the built CLI package. Your administrator may provide this as an npm tarball, or you can build it from source:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># From the repo root, after running mise run codegen and nx build cli:</span>
+<span class="nb">cd</span><span class="w"> </span>packages/cli
+npm<span class="w"> </span>run<span class="w"> </span>dev:link
+</code></pre></div>
+<p>Verify the installation:</p>
+<div class="highlight"><pre><span></span><code>genai-etk<span class="w"> </span>--help
+</code></pre></div>
+<blockquote>
+<p>To uninstall the CLI later, run <code>npm run dev:unlink</code> from the <code>packages/cli</code> directory.</p>
+</blockquote>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<p>Set the API Gateway URL as an environment variable:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">GEN_AI_ETK_API_URL</span><span class="o">=</span><span class="s2">&quot;https://&lt;your-api-id&gt;.execute-api.&lt;region&gt;.amazonaws.com/prod&quot;</span>
+</code></pre></div>
+<p>You can find this URL in the AWS API Gateway console under Stages → Invoke URL, or in the CDK deployment output.</p>
+<p>The CLI uses the standard AWS SDK credential chain. Configure credentials through any supported method: credentials file, environment variables, IAM roles, or AWS SSO profiles.</p>
+<h2 id="security-and-encryption-kms">Security and encryption (KMS)<a class="headerlink" href="#security-and-encryption-kms" title="Permanent link">&para;</a></h2>
+<p>If your deployment uses a customer-managed KMS key, no additional CLI configuration is required. The server-side encryption is handled transparently by the AWS services. See the Solution Guide for details on configuring customer-managed KMS keys during deployment.</p>
+<h1 id="core-concepts">Core concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h1>
+<h2 id="datasets-and-test-cases">Datasets and test cases<a class="headerlink" href="#datasets-and-test-cases" title="Permanent link">&para;</a></h2>
+<p>A <strong>dataset</strong> is a named collection of test cases. Datasets support versioning: creating a version takes a snapshot of the current test cases, allowing you to track changes over time and run evaluations against specific versions.</p>
+<p>A <strong>test case</strong> represents a single evaluation input. It contains:</p>
+<ul>
+<li><strong>input</strong> (required): The prompt or question to evaluate. Supports structured data including prompts, context, and parameters.</li>
+<li><strong>expected</strong> (optional): The expected output for comparison. Supports structured data including simple text responses, expected tool calls, expected topics, or any combination of expected behaviors for agentic applications.</li>
+<li><strong>context</strong> (optional): Additional context for the test case. Can contain reference documents for RAG evaluation, metadata such as flags indicating human review needed, artifacts providing evidence for agent-as-judge evaluation, or any other structured data needed for evaluation.</li>
+<li><strong>conversationHistory</strong> (optional): Prior conversation turns for multi-turn evaluation.</li>
+<li><strong>metadata</strong> (optional): Arbitrary key-value pairs for categorization and filtering.</li>
+</ul>
+<p><strong>Annotations</strong> are structured labels applied to test cases or dataset versions using annotation schemas. They support collaborative curation and ground truth management.</p>
+<h2 id="evaluations-and-metrics">Evaluations and metrics<a class="headerlink" href="#evaluations-and-metrics" title="Permanent link">&para;</a></h2>
+<p>An <strong>evaluation job</strong> runs one or more scorers against test data on a named evaluator. A job specifies:</p>
+<ul>
+<li>The <strong>evaluator name</strong> — the evaluator worker (Lambda) that executes the job, for example <code>builtin</code>, which hosts all built-in scorers.</li>
+<li>The <strong>test data</strong> (<code>testCases</code>) — either a reference to a dataset in the datastore (<code>datasetId</code>, optional <code>datasetVersion</code>, optional annotation <code>filter</code>) or inline test cases embedded in the request.</li>
+<li>The <strong>scorers</strong> — a map of scorer name to configuration. Each scorer config has optional <code>params</code> (scorer-wide settings such as the judge model) and <code>scores</code> (the individual metrics/sub-scores to compute).</li>
+<li>An optional <strong>app</strong> configuration — selects and parameterizes the <code>app_invoke</code> function that calls your application under test.</li>
+</ul>
+<p>Jobs come in three types: <strong>FULL</strong> (invoke the app on each test case, then score the outputs), <strong>SCORE</strong> (score outputs that already exist), and <strong>APP_INVOKE</strong> (invoke the app and record outputs without scoring). Each job produces per-test-case results with metric scores, stored in a report. Scorer configurations can also be saved once as a named, versioned <strong>evaluation configuration</strong> and referenced on submission with <code>--config</code> (see <a href="#stored-configurations-and-the---config-flag">Stored configurations</a>).</p>
+<p>Built-in scorers (all run inside the <code>evaluator-builtin</code> Lambda):</p>
+<ul>
+<li><strong>RAGAS</strong> (<code>ragas</code>): RAG-specific metrics including faithfulness, answer relevancy, and context recall. Default models: <code>amazon.nova-micro-v1:0</code> (LLM) and <code>amazon.titan-embed-text-v2:0</code> (embeddings). Configurable through <code>model_id</code> and <code>embeddings_id</code> scorer params.</li>
+<li><strong>LLM-as-Judge</strong> (<code>llm_as_judge</code>): LLM-based assessment using Amazon Bedrock. Built-in sub-scores for toxicity, tool use, and sample. Custom sub-scores defined by description. Default model: <code>global.amazon.nova-2-lite-v1:0</code>. Configurable through <code>model_id</code> scorer param.</li>
+<li><strong>AgentCore</strong> (<code>agentcore</code>): Evaluates agentic systems using Amazon Bedrock AgentCore Evaluations. Processes OpenTelemetry trace data using built-in evaluators (Builtin.GoalSuccessRate, Builtin.Correctness, Builtin.ToolSelectionAccuracy, Builtin.Helpfulness, etc.) and custom evaluators. Regional availability is subject to change; see <a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agentcore-regions.html">AWS documentation</a>.</li>
+<li><strong>DeepEval</strong> (<code>deepeval</code>): Comprehensive evaluation metrics for LLMs. Provides 37 metrics in total — for example answer relevancy, faithfulness, bias, toxicity, and hallucination (single-turn), plus conversation completeness, turn relevancy, and knowledge retention (multi-turn). See the <a href="#single-turn-metrics">full metric reference</a> below for all supported metrics. Supports both single-turn and multi-turn evaluation. Default model: <code>us.amazon.nova-lite-v1:0</code>. Configurable through <code>model_id</code> and <code>region</code> scorer params.</li>
+</ul>
+<p><strong>FMEval</strong> scorer (<code>evaluator-fmeval</code>; not deployed by default):</p>
+<ul>
+<li><strong>FMEval</strong> (<code>fmeval</code>): Foundation model evaluation metrics using the <a href="https://github.com/aws/fmeval">Foundation Model Evaluations Library</a>. See <code>packages/evaluator-fmeval/README.md</code> for details.</li>
+</ul>
+<p><strong>PyRIT</strong> scorer (<code>evaluator-pyrit</code>; not deployed by default):</p>
+<ul>
+<li><strong>PyRIT</strong> (<code>pyrit</code>): Automated adversarial red-teaming for LLM applications using <a href="https://github.com/microsoft/PyRIT">The Python Risk Identification Tool for generative AI</a> library. See the <a href="../../sdk/evaluator-pyrit/">PyRIT evaluator reference</a>.</li>
+</ul>
+<p><strong>Agent-as-Judge</strong> scorer (runs in its own dedicated <code>evaluator-agent-as-judge</code> Lambda):</p>
+<ul>
+<li><strong>Agent-as-Judge</strong> (<code>agent-as-judge</code>): Agentic evaluation using an OpenCode agent. Launches a judge agent per evaluator that actively explores test case artifacts and optional S3-hosted requirement documents before producing a structured verdict. Ships with a <code>requirements_compliance</code> built-in evaluator that derives an explicit per-requirement checklist with evidence citations. Default model: <code>global.anthropic.claude-sonnet-4-6</code>. Configurable through <code>agentModel</code> and <code>agentTemperature</code> params. Unlike the other built-in scorers, the Agent-as-Judge Lambda runs in network-isolated subnets with no public-internet egress and enforces an unconditional runtime airgap assertion at every cold start. <code>app_invoke</code> is not supported. See <code>packages/evaluator-agent-as-judge/README.md</code> for the full configuration schema, network-isolation details, supported models, and environment variables (<code>LOG_LEVEL</code>, <code>SUBPROCESS_TIMEOUT_MINUTES</code>).</li>
+</ul>
+<h2 id="experiments">Experiments<a class="headerlink" href="#experiments" title="Permanent link">&para;</a></h2>
+<p>An <strong>experiment</strong> groups related evaluation runs for comparison. Each evaluation run is logged as an MLflow run under the experiment, capturing:</p>
+<ul>
+<li><strong>Metrics</strong>: Aggregated evaluation scores from all scorers.</li>
+<li><strong>Parameters</strong>: The evaluation configuration used.</li>
+<li><strong>Artifacts</strong>: Per-test-case results for detailed analysis.</li>
+</ul>
+<p>Use the MLflow UI to visualize and compare runs across experiments.</p>
+<h2 id="generation">Generation<a class="headerlink" href="#generation" title="Permanent link">&para;</a></h2>
+<p><strong>Generation</strong> creates synthetic test cases from source documents. A generation configuration specifies source documents in S3 and a pipeline of generation plugins to execute sequentially.</p>
+<p>The default pipeline is: RAG Generator (creates QA pairs from documents, default model: <code>global.anthropic.claude-haiku-4-5-20251001-v1:0</code>) → LLM-as-Judge (filters for quality, default model: <code>global.anthropic.claude-haiku-4-5-20251001-v1:0</code>) → DataStore Export (writes results to a dataset). All models are configurable through the plugin configuration.</p>
+<h2 id="plugins">Plugins<a class="headerlink" href="#plugins" title="Permanent link">&para;</a></h2>
+<p>Evaluator plugins (formerly "plugins") are Lambda functions that perform evaluation or generation work. ETK orchestrates them via Step Functions and EventBridge:</p>
+<ol>
+<li>The workflow publishes a task event to EventBridge containing the evaluator configuration and dataset reference.</li>
+<li>The evaluator Lambda receives the event, processes the test cases, and writes results to DynamoDB via the ETK API.</li>
+<li>Step Functions enforces a heartbeat timeout (default: 300s, configurable per-job via <code>heartbeatSeconds</code>). The evaluator must send heartbeat signals within this interval or the workflow marks the task as failed.</li>
+<li>For large datasets, evaluators use CONTINUE checkpointing to persist progress and resume across invocations, avoiding Lambda timeout limits.</li>
+</ol>
+<p>You reference evaluators by name in your configuration; ETK routes to the correct Lambda. See the "Custom evaluators" section for details on building your own.</p>
+<h1 id="evaluation-workflows">Evaluation workflows<a class="headerlink" href="#evaluation-workflows" title="Permanent link">&para;</a></h1>
+<h2 id="managing-datasets">Managing datasets<a class="headerlink" href="#managing-datasets" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create a dataset (returns the generated dataset ID — use it in all subsequent commands)</span>
+genai-etk<span class="w"> </span>dataset<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;my-dataset&quot;</span><span class="w"> </span>--description<span class="w"> </span><span class="s2">&quot;RAG evaluation test cases&quot;</span>
+
+<span class="c1"># List datasets</span>
+genai-etk<span class="w"> </span>dataset<span class="w"> </span>list
+
+<span class="c1"># Get dataset details</span>
+genai-etk<span class="w"> </span>dataset<span class="w"> </span>get<span class="w"> </span>--dataset-id<span class="w"> </span><span class="s2">&quot;&lt;dataset-id&gt;&quot;</span>
+
+<span class="c1"># Create a test case (simple text values)</span>
+genai-etk<span class="w"> </span>dataset<span class="w"> </span>create-test-case<span class="w"> </span>--dataset-id<span class="w"> </span><span class="s2">&quot;&lt;dataset-id&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--input<span class="w"> </span><span class="s2">&quot;What is Amazon S3?&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--expected<span class="w"> </span><span class="s2">&quot;Amazon S3 is an object storage service.&quot;</span>
+
+<span class="c1"># Create a test case with structured data (use the --input-json/--expected-json/--context-json</span>
+<span class="c1"># variants to pass JSON documents; --input-file etc. read the JSON from a local file)</span>
+genai-etk<span class="w"> </span>dataset<span class="w"> </span>create-test-case<span class="w"> </span>--dataset-id<span class="w"> </span><span class="s2">&quot;&lt;dataset-id&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--input-json<span class="w"> </span><span class="s1">&#39;{&quot;prompt&quot;: &quot;Book a flight to Seattle for next Monday&quot;}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--expected-json<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;toolCalls&quot;: [{&quot;name&quot;: &quot;search_flights&quot;, &quot;arguments&quot;: {&quot;destination&quot;: &quot;Seattle&quot;}}],</span>
+<span class="s1">    &quot;expectedTopics&quot;: [&quot;flight booking&quot;, &quot;travel&quot;]</span>
+<span class="s1">  }&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--context-json<span class="w"> </span><span class="s1">&#39;{&quot;requiresHumanReview&quot;: false, &quot;evaluationHints&quot;: {&quot;checkToolSequence&quot;: true}}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--metadata-json<span class="w"> </span><span class="s1">&#39;{&quot;source&quot;: &quot;manual&quot;, &quot;split&quot;: &quot;smoke&quot;}&#39;</span>
+
+<span class="c1"># Get a test case (--version defaults to &#39;head&#39;; a number or &#39;latest&#39; also works)</span>
+genai-etk<span class="w"> </span>dataset<span class="w"> </span>get-test-case<span class="w"> </span>--dataset-id<span class="w"> </span><span class="s2">&quot;&lt;dataset-id&gt;&quot;</span><span class="w"> </span>--test-case-id<span class="w"> </span><span class="s2">&quot;&lt;test-case-id&gt;&quot;</span>
+
+<span class="c1"># List test cases</span>
+genai-etk<span class="w"> </span>dataset<span class="w"> </span>list-test-cases<span class="w"> </span>--dataset-id<span class="w"> </span><span class="s2">&quot;&lt;dataset-id&gt;&quot;</span>
+
+<span class="c1"># Create a dataset version (snapshot of the current test cases; the version number is assigned automatically)</span>
+genai-etk<span class="w"> </span>dataset<span class="w"> </span>create-version<span class="w"> </span>--dataset-id<span class="w"> </span><span class="s2">&quot;&lt;dataset-id&gt;&quot;</span>
+
+<span class="c1"># List versions</span>
+genai-etk<span class="w"> </span>dataset<span class="w"> </span>list-versions<span class="w"> </span>--dataset-id<span class="w"> </span><span class="s2">&quot;&lt;dataset-id&gt;&quot;</span>
+
+<span class="c1"># Get a specific version (&#39;latest&#39; and a version number are both accepted)</span>
+genai-etk<span class="w"> </span>dataset<span class="w"> </span>get-version<span class="w"> </span>--dataset-id<span class="w"> </span><span class="s2">&quot;&lt;dataset-id&gt;&quot;</span><span class="w"> </span>--version<span class="w"> </span>latest
+</code></pre></div>
+<h3 id="annotations">Annotations<a class="headerlink" href="#annotations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create a string-enum annotation schema (repeat --enum-value for each allowed value)</span>
+genai-etk<span class="w"> </span>dataset<span class="w"> </span>create-annotation-schema<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;quality-labels&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--description<span class="w"> </span><span class="s2">&quot;Manual quality review labels&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--enum-value<span class="w"> </span><span class="s2">&quot;HIGH&quot;</span><span class="w"> </span>--enum-value<span class="w"> </span><span class="s2">&quot;MEDIUM&quot;</span><span class="w"> </span>--enum-value<span class="w"> </span><span class="s2">&quot;LOW&quot;</span>
+
+<span class="c1"># Create a numeric annotation schema</span>
+genai-etk<span class="w"> </span>dataset<span class="w"> </span>create-annotation-schema<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;review-score&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--description<span class="w"> </span><span class="s2">&quot;Reviewer score&quot;</span><span class="w"> </span>--number-value
+
+<span class="c1"># Apply an annotation to a test case (--string-value for enum schemas, --numeric-value for numeric ones)</span>
+genai-etk<span class="w"> </span>dataset<span class="w"> </span>put-testcase-annotation<span class="w"> </span>--dataset-id<span class="w"> </span><span class="s2">&quot;&lt;dataset-id&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--test-case-id<span class="w"> </span><span class="s2">&quot;&lt;test-case-id&gt;&quot;</span><span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;quality-labels&quot;</span><span class="w"> </span>--string-value<span class="w"> </span><span class="s2">&quot;HIGH&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--comment<span class="w"> </span><span class="s2">&quot;Verified by SME&quot;</span>
+
+<span class="c1"># Apply an annotation to a dataset version</span>
+genai-etk<span class="w"> </span>dataset<span class="w"> </span>put-version-annotation<span class="w"> </span>--dataset-id<span class="w"> </span><span class="s2">&quot;&lt;dataset-id&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--version<span class="w"> </span><span class="m">1</span><span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;quality-labels&quot;</span><span class="w"> </span>--string-value<span class="w"> </span><span class="s2">&quot;HIGH&quot;</span>
+</code></pre></div>
+<h3 id="filtering-test-cases-by-annotation-in-evaluations">Filtering test cases by annotation in evaluations<a class="headerlink" href="#filtering-test-cases-by-annotation-in-evaluations" title="Permanent link">&para;</a></h3>
+<p>Annotations can be used to filter which test cases are included in an evaluation job. Pass a <code>filter</code> inside the dataset reference:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Evaluate only HIGH-quality test cases</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>submit<span class="w"> </span>--evaluator-name<span class="w"> </span><span class="s2">&quot;builtin&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--test-cases-json<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;dataset&quot;: {</span>
+<span class="s1">      &quot;datasetId&quot;: &quot;my-dataset&quot;,</span>
+<span class="s1">      &quot;datasetVersion&quot;: &quot;1&quot;,</span>
+<span class="s1">      &quot;filter&quot;: {</span>
+<span class="s1">        &quot;condition&quot;: {</span>
+<span class="s1">          &quot;stringEnumCondition&quot;: {&quot;name&quot;: &quot;quality-labels&quot;, &quot;value&quot;: &quot;HIGH&quot;, &quot;comparator&quot;: &quot;=&quot;}</span>
+<span class="s1">        }</span>
+<span class="s1">      }</span>
+<span class="s1">    }</span>
+<span class="s1">  }&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scorers-json<span class="w"> </span><span class="s1">&#39;{&quot;llm_as_judge&quot;: null}&#39;</span>
+
+<span class="c1"># Compound filter: HIGH OR MEDIUM</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>submit<span class="w"> </span>--evaluator-name<span class="w"> </span><span class="s2">&quot;builtin&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--test-cases-file<span class="w"> </span>./filtered-eval.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scorers-file<span class="w"> </span>./scorers.json
+</code></pre></div>
+<p>Where <code>filtered-eval.json</code>:
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;dataset&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;datasetId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my-dataset&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;filter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;or&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="nt">&quot;condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;stringEnumCondition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quality-labels&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HIGH&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;comparator&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;=&quot;</span><span class="p">}}},</span>
+<span class="w">        </span><span class="p">{</span><span class="nt">&quot;condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;stringEnumCondition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quality-labels&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MEDIUM&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;comparator&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;=&quot;</span><span class="p">}}}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>Supported filter operators: <code>=</code>, <code>!=</code> for string enums; <code>=</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code> for numeric annotations. Logical operators: <code>and</code>, <code>or</code>, <code>not</code>.</p>
+<h2 id="configuring-evaluations">Configuring evaluations<a class="headerlink" href="#configuring-evaluations" title="Permanent link">&para;</a></h2>
+<p>An evaluation is configured directly on the job submission. Every submission names an <strong>evaluator</strong> (<code>--evaluator-name</code>, typically <code>builtin</code>), provides <strong>test data</strong> (<code>--test-cases-json</code> / <code>--test-cases-file</code>), and — for jobs that score — a <strong>scorers</strong> map (<code>--scorers-json</code> / <code>--scorers-file</code>). There are three job types, each with its own submit command (see <a href="#running-evaluations">Running evaluations</a>): <code>eval job submit</code> (FULL: invoke app, then score), <code>eval job submit-scoring</code> (SCORE: score existing outputs), and <code>eval job submit-invoke</code> (APP_INVOKE: invoke app only, no scoring).</p>
+<h3 id="test-data-dataset-reference-or-inline">Test data: dataset reference or inline<a class="headerlink" href="#test-data-dataset-reference-or-inline" title="Permanent link">&para;</a></h3>
+<p>The <code>testCases</code> value is either a reference to a dataset in the datastore or inline test cases:</p>
+<div class="highlight"><pre><span></span><code>// Reference a dataset (datasetVersion defaults to &#39;head&#39;; filter is an optional annotation filter)
+{
+  &quot;dataset&quot;: {
+    &quot;datasetId&quot;: &quot;&lt;dataset-id&gt;&quot;,
+    &quot;datasetVersion&quot;: &quot;1&quot;,
+    &quot;filter&quot;: {
+      &quot;condition&quot;: {&quot;stringEnumCondition&quot;: {&quot;name&quot;: &quot;quality-labels&quot;, &quot;value&quot;: &quot;HIGH&quot;, &quot;comparator&quot;: &quot;=&quot;}}
+    }
+  }
+}
+
+// Inline test cases directly in the request
+{
+  &quot;inline&quot;: [
+    {&quot;input&quot;: {&quot;question&quot;: &quot;What is 2+2?&quot;}, &quot;expected&quot;: {&quot;answer&quot;: &quot;4&quot;}}
+  ]
+}
+</code></pre></div>
+<h3 id="scorers">Scorers<a class="headerlink" href="#scorers" title="Permanent link">&para;</a></h3>
+<p>The <code>scorers</code> value maps scorer name → configuration. Each scorer config has optional <code>params</code> (scorer-wide settings, such as the judge model) and <code>scores</code> (the individual metrics to compute; a <code>null</code> value means "use defaults"). A <code>null</code> value for the whole scorer runs it with all defaults.</p>
+<p>Here is a full submission using the RAGAS scorer:</p>
+<div class="highlight"><pre><span></span><code>genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>submit<span class="w"> </span>--evaluator-name<span class="w"> </span><span class="s2">&quot;builtin&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--test-cases-json<span class="w"> </span><span class="s1">&#39;{&quot;dataset&quot;: {&quot;datasetId&quot;: &quot;&lt;dataset-id&gt;&quot;, &quot;datasetVersion&quot;: &quot;1&quot;}}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scorers-json<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;ragas&quot;: {</span>
+<span class="s1">      &quot;params&quot;: {</span>
+<span class="s1">        &quot;model_id&quot;: &quot;amazon.nova-micro-v1:0&quot;,</span>
+<span class="s1">        &quot;embeddings_id&quot;: &quot;amazon.titan-embed-text-v2:0&quot;</span>
+<span class="s1">      },</span>
+<span class="s1">      &quot;scores&quot;: {</span>
+<span class="s1">        &quot;faithfulness&quot;: null,</span>
+<span class="s1">        &quot;answer_relevancy&quot;: null,</span>
+<span class="s1">        &quot;context_recall&quot;: null</span>
+<span class="s1">      }</span>
+<span class="s1">    }</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
+<p>RAGAS single-turn metrics: <code>answer_relevancy</code>, <code>answer_accuracy</code> (context optional), <code>response_groundedness</code>, <code>faithfulness</code>, <code>context_relevancy</code>, <code>context_precision</code>, <code>context_recall</code> (require context). Multi-turn agentic metrics: <code>topic_adherence</code>, <code>tool_call_accuracy</code>, <code>agent_goal_accuracy</code>, <code>agent_goal_accuracy_with_reference</code> (multi-turn is inferred automatically when <code>input</code> or <code>output</code> contains a <code>messages</code> key).</p>
+<p>Here is the LLM-as-Judge scorer with a mix of built-in scores (<code>toxicity</code>, <code>tool_use</code>, <code>sample</code> — pass <code>null</code>) and custom scores (defined by a <code>description</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;llm_as_judge&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;model_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;global.amazon.nova-2-lite-v1:0&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;model_args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;temperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max_tokens&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;scores&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;toxicity&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;helpfulness&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Evaluates whether the response is helpful and addresses the user&#39;s question. Score of 1 means very helpful, score of 0 means not helpful.&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>model_args</code> accepts only an allowlisted set of inference-tuning parameters — <code>temperature</code>, <code>top_p</code>, <code>top_k</code>, <code>max_tokens</code>, <code>stop_sequences</code>, <code>additional_model_request_fields</code>, <code>additional_model_response_field_paths</code>, <code>performance_config</code>, <code>request_metadata</code>, <code>guardrail_config</code>, and <code>disable_streaming</code>. Any other key is rejected with a validation error.</p>
+<p>Here is the AgentCore scorer. Each score key is an AgentCore evaluator ID — built-in evaluators (<code>Builtin.GoalSuccessRate</code>, <code>Builtin.Correctness</code>, <code>Builtin.ToolSelectionAccuracy</code>, etc.) take <code>null</code>; custom evaluators must specify their evaluation <code>level</code> (<code>session</code>, <code>trace</code>, or <code>tool</code>). Test results must contain OpenTelemetry trace data in <code>output.session_spans</code> and <code>output.trace_id</code> (or <code>output.trace_ids</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;agentcore&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;region&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;us-east-1&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;scores&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Builtin.GoalSuccessRate&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Builtin.Correctness&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Builtin.ToolSelectionAccuracy&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;MyCustomEvaluator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;trace&quot;</span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Multiple scorers can be combined in one submission — for example <code>{"llm_as_judge": {...}, "ragas": {...}}</code> — and the same <code>scorers</code> map can be stored once as a named, versioned configuration and referenced with <code>--config</code> (and pinned with <code>--config-version</code>) instead of being passed inline on every submit. See <a href="#stored-configurations-and-the---config-flag">Stored configurations and the <code>--config</code> flag</a>.</p>
+<h3 id="deepeval">DeepEval<a class="headerlink" href="#deepeval" title="Permanent link">&para;</a></h3>
+<p>DeepEval is a built-in scorer in the <code>evaluator-builtin</code> evaluator. The examples below show the <code>scorers</code> configuration only — it plugs into a job submission exactly like the RAGAS and LLM-as-Judge examples above.</p>
+<p>Here is an example using the DeepEval scorer for single-turn quality evaluation:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;deepeval&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;model_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;us.amazon.nova-lite-v1:0&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;region&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;us-east-1&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;scores&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;answer_relevancy&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;faithfulness&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;toxicity&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;bias&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;hallucination&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>DeepEval also supports multi-turn conversational metrics. When test cases include an <code>output.messages</code> field with the conversation transcript, conversational metrics can be used:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;deepeval&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;model_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;us.amazon.nova-lite-v1:0&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;region&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;us-east-1&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;scores&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;conversation_completeness&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;turn_relevancy&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;knowledge_retention&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="common-parameters">Common parameters<a class="headerlink" href="#common-parameters" title="Permanent link">&para;</a></h4>
+<p>All DeepEval metrics accept these <code>params</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>model_id</code></td>
+<td><code>us.amazon.nova-lite-v1:0</code></td>
+<td>Bedrock model ID used as the evaluation LLM. Ignored by <code>exact_match</code> and <code>pattern_match</code>, which do not call an LLM.</td>
+</tr>
+<tr>
+<td><code>region</code></td>
+<td>(boto3 default)</td>
+<td>AWS region for the Bedrock model.</td>
+</tr>
+</tbody>
+</table>
+<p>Each metric returns a raw score in <code>[0.0, 1.0]</code> along with a reason. The scorer does not expose a pass/fail threshold — apply your own threshold downstream if you need a pass/fail decision.</p>
+<h4 id="single-turn-metrics">Single-turn metrics<a class="headerlink" href="#single-turn-metrics" title="Permanent link">&para;</a></h4>
+<p>Single-turn metrics read the following test-case fields (each concept has exactly one field name — there are no aliases):</p>
+<table>
+<thead>
+<tr>
+<th>Test-case field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>input.text</code></td>
+<td>str</td>
+<td><strong>Yes</strong></td>
+<td>The prompt. Missing/empty raises an error.</td>
+</tr>
+<tr>
+<td><code>output.response</code></td>
+<td>str</td>
+<td><strong>Yes</strong></td>
+<td>The response being scored. Missing/empty raises an error.</td>
+</tr>
+<tr>
+<td><code>input.retrieved_contexts</code></td>
+<td>list[str]</td>
+<td>Only for context-based metrics</td>
+<td>Retrieval/ground-truth documents (used by <code>faithfulness</code>, <code>hallucination</code>, <code>contextual_*</code>, <code>summarization</code>).</td>
+</tr>
+<tr>
+<td><code>expected.reference</code></td>
+<td>str</td>
+<td>Only for reference-based metrics</td>
+<td>Ground-truth answer (e.g. <code>contextual_recall</code>, <code>exact_match</code>).</td>
+</tr>
+<tr>
+<td><code>output.tool_calls</code></td>
+<td>list[obj]</td>
+<td>Only for tool metrics</td>
+<td>Tools the model called, as <code>{"name", "args", "output"}</code> (used by <code>tool_correctness</code>, <code>mcp_use</code>, <code>argument_correctness</code>).</td>
+</tr>
+<tr>
+<td><code>expected.tools</code></td>
+<td>list[obj]</td>
+<td>Only for <code>tool_correctness</code></td>
+<td>Expected tool calls, same shape as <code>output.tool_calls</code>.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><code>score_name</code></th>
+<th>Description</th>
+<th>Required params</th>
+<th>Optional params</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>answer_relevancy</code></td>
+<td>How relevant the response is to the prompt.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>faithfulness</code></td>
+<td>Whether the response is grounded in the retrieval context.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>contextual_precision</code></td>
+<td>Ranking quality of relevant nodes in the retrieval context.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>contextual_recall</code></td>
+<td>Coverage of the expected answer by the retrieval context.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>contextual_relevancy</code></td>
+<td>Overall relevance of the retrieval context to the prompt.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>hallucination</code></td>
+<td>Degree to which the response contradicts the provided context.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>bias</code></td>
+<td>Presence of biased content in the response.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>toxicity</code></td>
+<td>Presence of toxic content in the response.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>summarization</code></td>
+<td>Quality of a summary against the source text.</td>
+<td>—</td>
+<td><code>n</code>, <code>assessment_questions</code>, <code>truths_extraction_limit</code></td>
+</tr>
+<tr>
+<td><code>json_correctness</code></td>
+<td>Whether the response conforms to an expected JSON schema.</td>
+<td><code>expected_schema</code> (dict)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>prompt_alignment</code></td>
+<td>Whether the response follows explicit prompt instructions.</td>
+<td><code>prompt_instructions</code> (list[str])</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>exact_match</code></td>
+<td>Exact string match of response vs. expected (no LLM).</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>pattern_match</code></td>
+<td>Regex match of the response (no LLM).</td>
+<td><code>pattern</code> (str)</td>
+<td><code>ignore_case</code> (bool)</td>
+</tr>
+<tr>
+<td><code>task_completion</code></td>
+<td>Whether the agent completed the requested task.</td>
+<td>—</td>
+<td><code>task</code></td>
+</tr>
+<tr>
+<td><code>tool_correctness</code></td>
+<td>Whether the correct tools were called.</td>
+<td>—</td>
+<td><code>available_tools</code>, <code>should_exact_match</code>, <code>should_consider_ordering</code></td>
+</tr>
+<tr>
+<td><code>mcp_use</code></td>
+<td>Correctness of MCP tool usage.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>argument_correctness</code></td>
+<td>Correctness of tool-call arguments.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>misuse</code></td>
+<td>Detection of out-of-domain / misuse responses.</td>
+<td><code>domain</code> (str)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>non_advice</code></td>
+<td>Detection of disallowed advice categories.</td>
+<td><code>advice_types</code> (list[str])</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>pii_leakage</code></td>
+<td>Detection of PII leakage in the response.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>plan_adherence</code></td>
+<td>Whether the agent adhered to its plan.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>plan_quality</code></td>
+<td>Quality of the agent's plan.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>role_violation</code></td>
+<td>Detection of responses that break an assigned role.</td>
+<td><code>role</code> (str)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>step_efficiency</code></td>
+<td>Efficiency of the agent's steps toward the goal.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h4 id="multi-turn-conversational-metrics">Multi-turn (conversational) metrics<a class="headerlink" href="#multi-turn-conversational-metrics" title="Permanent link">&para;</a></h4>
+<p>Conversational metrics read the following test-case fields:</p>
+<table>
+<thead>
+<tr>
+<th>Test-case field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>output.messages</code></td>
+<td>list[obj]</td>
+<td><strong>Yes</strong></td>
+<td>The conversation transcript: <code>{"type": "human"\|"ai"\|"tool", "content": str, "tool_calls": [...]}</code>. A <code>tool</code> message's content is merged into the preceding assistant turn's matching tool call. Empty raises an error.</td>
+</tr>
+<tr>
+<td><code>input.scenario</code></td>
+<td>str</td>
+<td>No</td>
+<td>Scenario description (e.g. <code>conversation_completeness</code>).</td>
+</tr>
+<tr>
+<td><code>input.chatbot_role</code></td>
+<td>str</td>
+<td>No</td>
+<td>The assistant's assigned role (e.g. <code>role_adherence</code>).</td>
+</tr>
+<tr>
+<td><code>input.retrieved_contexts</code></td>
+<td>list[str]</td>
+<td>No</td>
+<td>Context documents for the conversation.</td>
+</tr>
+<tr>
+<td><code>expected.expected_outcome</code></td>
+<td>str</td>
+<td>No</td>
+<td>The expected conversation outcome.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><code>score_name</code></th>
+<th>Description</th>
+<th>Required params</th>
+<th>Optional params</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>conversation_completeness</code></td>
+<td>Whether the conversation fulfilled the user's intentions.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>turn_relevancy</code></td>
+<td>Relevance of each turn within the conversation.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>goal_accuracy</code></td>
+<td>Whether the conversation achieved its goal.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>knowledge_retention</code></td>
+<td>Whether the assistant retained information across turns.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>role_adherence</code></td>
+<td>Whether the assistant stayed in its assigned role.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>tool_use</code></td>
+<td>Quality of tool usage across the conversation.</td>
+<td><code>available_tools</code> (list[str])</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>topic_adherence</code></td>
+<td>Whether the conversation stayed on the relevant topics.</td>
+<td><code>relevant_topics</code> (list[str])</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>mcp_task_completion</code></td>
+<td>Task completion for MCP-based conversations.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>multi_turn_mcp_use</code></td>
+<td>Correctness of MCP tool usage across turns.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>turn_contextual_precision</code></td>
+<td>Per-turn contextual precision.</td>
+<td>—</td>
+<td><code>window_size</code></td>
+</tr>
+<tr>
+<td><code>turn_contextual_recall</code></td>
+<td>Per-turn contextual recall.</td>
+<td>—</td>
+<td><code>window_size</code></td>
+</tr>
+<tr>
+<td><code>turn_contextual_relevancy</code></td>
+<td>Per-turn contextual relevancy.</td>
+<td>—</td>
+<td><code>window_size</code></td>
+</tr>
+<tr>
+<td><code>turn_faithfulness</code></td>
+<td>Per-turn faithfulness to context.</td>
+<td>—</td>
+<td><code>window_size</code>, <code>truths_extraction_limit</code>, <code>penalize_ambiguous_claims</code></td>
+</tr>
+</tbody>
+</table>
+<p>Required params are supplied per scorer via the <code>params</code> block (or per score via <code>score_params</code>); a metric that is missing a required param returns an error result rather than failing the whole job.</p>
+<h3 id="agent-as-judge">Agent-as-Judge<a class="headerlink" href="#agent-as-judge" title="Permanent link">&para;</a></h3>
+<p>Agent-as-Judge is a dedicated evaluator (<code>evaluator-agent-as-judge</code>) that runs independently of the builtin evaluator. Unlike the builtin scorers, it is <strong>scoring-only</strong> — it does not support <code>app_invoke</code>. Submit scoring jobs directly using <code>eval job submit-scoring</code> (or <code>eval job submit-scoring</code> with a <code>sourceReportId</code> to re-score results from a previous job).</p>
+<p>Each entry under <code>scores</code> is keyed by the evaluator/score name and is either a custom evaluator (with a <code>description</code>) or a built-in evaluator (with <code>builtIn</code>). Agent-level settings (<code>agentModel</code>, <code>agentTemperature</code>) go in <code>params</code>. Field names accept both camelCase (<code>requirementDocs</code>) and snake_case (<code>requirement_docs</code>).</p>
+<div class="highlight"><pre><span></span><code>genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>submit-scoring<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--evaluator-name<span class="w"> </span><span class="s2">&quot;agent-as-judge&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--test-results-json<span class="w"> </span><span class="s1">&#39;[{&quot;input&quot;: {&quot;submission&quot;: &quot;...&quot;}, &quot;output&quot;: {}}]&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scorers-json<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;agent_as_judge&quot;: {</span>
+<span class="s1">      &quot;scores&quot;: {</span>
+<span class="s1">        &quot;code_quality&quot;: {</span>
+<span class="s1">          &quot;description&quot;: &quot;Evaluate the code quality of the submitted Python module. Score 1.0 if the code is clean, well-documented, and follows PEP 8. Score 0.0 if the code is unreadable or broken.&quot;,</span>
+<span class="s1">          &quot;requirementDocs&quot;: [</span>
+<span class="s1">            { &quot;bucketName&quot;: &quot;&lt;your-etk-data-bucket&gt;&quot;, &quot;prefix&quot;: &quot;evaluation/agent-as-judge/coding-standards/&quot; }</span>
+<span class="s1">          ]</span>
+<span class="s1">        },</span>
+<span class="s1">        &quot;requirements_compliance&quot;: {</span>
+<span class="s1">          &quot;builtIn&quot;: &quot;requirements_compliance&quot;,</span>
+<span class="s1">          &quot;requirementDocs&quot;: [</span>
+<span class="s1">            { &quot;bucketName&quot;: &quot;&lt;your-etk-data-bucket&gt;&quot;, &quot;prefix&quot;: &quot;evaluation/agent-as-judge/requirements/&quot; }</span>
+<span class="s1">          ]</span>
+<span class="s1">        }</span>
+<span class="s1">      },</span>
+<span class="s1">      &quot;params&quot;: {</span>
+<span class="s1">        &quot;agentModel&quot;: &quot;global.anthropic.claude-sonnet-4-6&quot;,</span>
+<span class="s1">        &quot;agentTemperature&quot;: 0.1</span>
+<span class="s1">      }</span>
+<span class="s1">    }</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Where to put requirement docs and artifacts.</strong> The Agent-as-Judge evaluator reads <code>requirementDocs</code> (and <code>context.artifacts</code>) from S3, and the permissions that govern which locations it can read are fully flexible — you can scope the evaluator's role to whatever buckets and prefixes your requirements and use cases call for. The <code>deployment</code> package is simply how we deploy the toolkit ourselves and a reference example for setting it up. If you deploy that reference stack as-is, the evaluator's role is granted read access only to the <code>evaluation/agent-as-judge/</code> prefix of the ETK data bucket — so requirement docs and artifacts must live under <code>s3://&lt;your-etk-data-bucket&gt;/evaluation/agent-as-judge/...</code> or the evaluator gets <code>AccessDenied</code>. To read from a different bucket or prefix, extend the evaluator's IAM policy accordingly.</p>
+</blockquote>
+<p>Score results are keyed as <code>agent_as_judge.&lt;evaluator-name&gt;</code> (e.g. <code>agent_as_judge.code_quality</code>, <code>agent_as_judge.requirements_compliance</code>).</p>
+<p>To combine Agent-as-Judge with other scorers in a single multi-evaluator job, set <code>evaluatorName</code> on the scorer config to route it to the dedicated Lambda:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;evaluatorName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;builtin&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;scorers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;llm_as_judge&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;scores&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;toxicity&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;agent_as_judge&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;evaluatorName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;agent-as-judge&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scores&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;requirements_compliance&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;builtIn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;requirements_compliance&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;requirementDocs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;bucketName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your-etk-data-bucket&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;prefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;evaluation/agent-as-judge/requirements/&quot;</span><span class="w"> </span><span class="p">}]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>See <code>packages/evaluator-agent-as-judge/README.md</code> for the full configuration schema, built-in evaluators, and network isolation details.</p>
+<h3 id="stored-configurations-and-the-config-flag">Stored configurations and the <code>--config</code> flag<a class="headerlink" href="#stored-configurations-and-the-config-flag" title="Permanent link">&para;</a></h3>
+<p>Instead of passing <code>--scorers-json</code> (and optionally <code>--app</code>) on every submit, you can save an evaluation configuration to the configuration store (an S3-backed, versioned repository — separate from the datastore that holds datasets, reports, and results) once and reference it by name on subsequent jobs:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Author a config file (the body of an evaluationConfiguration: scorers + optional app)</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>rag-baseline.json<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
+<span class="s">{</span>
+<span class="s">  &quot;scorers&quot;: {</span>
+<span class="s">    &quot;llm_as_judge&quot;: {</span>
+<span class="s">      &quot;scores&quot;: {</span>
+<span class="s">        &quot;correctness&quot;: {&quot;description&quot;: &quot;Evaluate whether the answer is factually correct&quot;},</span>
+<span class="s">        &quot;relevance&quot;:   {&quot;description&quot;: &quot;Is the answer relevant to the question?&quot;}</span>
+<span class="s">      }</span>
+<span class="s">    },</span>
+<span class="s">    &quot;ragas&quot;: {&quot;scores&quot;: {&quot;faithfulness&quot;: null}}</span>
+<span class="s">  },</span>
+<span class="s">  &quot;app&quot;: {&quot;name&quot;: &quot;agentcore_app_invoke&quot;, &quot;params&quot;: {&quot;agent_arn&quot;: &quot;arn:aws:bedrock-agentcore:us-east-1:123456789012:agent/my-agent&quot;}}</span>
+<span class="s">}</span>
+<span class="s">EOF</span>
+
+<span class="c1"># 2. Store it under a stable name</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>config<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;rag-baseline&quot;</span><span class="w"> </span>--config-file<span class="w"> </span>./rag-baseline.json
+
+<span class="c1"># 3. Reference it from any submit command</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>submit<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--evaluator-name<span class="w"> </span><span class="s2">&quot;builtin&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--config<span class="w"> </span><span class="s2">&quot;rag-baseline&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--test-cases-json<span class="w"> </span><span class="s1">&#39;{&quot;dataset&quot;: {&quot;datasetId&quot;: &quot;my-dataset&quot;}}&#39;</span>
+
+<span class="c1"># Update the stored config in place</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>config<span class="w"> </span>update<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;rag-baseline&quot;</span><span class="w"> </span>--config-file<span class="w"> </span>./rag-baseline.json
+
+<span class="c1"># List or retrieve stored configs</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>config<span class="w"> </span>list
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>config<span class="w"> </span>get<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;rag-baseline&quot;</span>
+</code></pre></div>
+<p>The <code>--config &lt;name&gt;</code> flag is supported on <code>eval job submit</code>, <code>eval job submit-scoring</code>, and <code>eval job submit-invoke</code>. It populates <code>--scorers-json</code> (and <code>--app</code>, if not already supplied inline) from the stored config. Inline flags always win — anything you pass on the command line overrides the stored value.</p>
+<h4 id="pinning-to-a-specific-config-version">Pinning to a specific config version<a class="headerlink" href="#pinning-to-a-specific-config-version" title="Permanent link">&para;</a></h4>
+<p>By default <code>--config &lt;name&gt;</code> resolves to the <strong>latest</strong> version. To pin a submission to an older version (e.g. you've since iterated the config but want to reproduce an earlier run), pass <code>--config-version &lt;N&gt;</code> alongside <code>--config</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Reproduce an earlier evaluation by pinning to version 3 of the stored config</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>submit<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--evaluator-name<span class="w"> </span><span class="s2">&quot;builtin&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--config<span class="w"> </span><span class="s2">&quot;rag-baseline&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--config-version<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--test-cases-json<span class="w"> </span><span class="s1">&#39;{&quot;dataset&quot;: {&quot;datasetId&quot;: &quot;my-dataset&quot;}}&#39;</span>
+</code></pre></div>
+<p>This mirrors <code>eval schedule create --config-version</code>, where scheduled jobs already pin to a specific version. <code>--config-version</code> requires <code>--config</code>; passing it alone is rejected.</p>
+<h2 id="running-evaluations">Running evaluations<a class="headerlink" href="#running-evaluations" title="Permanent link">&para;</a></h2>
+<p>There are three job submission commands, each for a different workflow:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eval job submit</code></td>
+<td>Full evaluation: invoke app on test cases, then score results</td>
+</tr>
+<tr>
+<td><code>eval job submit-scoring</code></td>
+<td>Score-only: score test results that already have outputs</td>
+</tr>
+<tr>
+<td><code>eval job submit-invoke</code></td>
+<td>App invoke only: call your app and record outputs (no scoring)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="quick-examples">Quick examples<a class="headerlink" href="#quick-examples" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Full evaluation against a dataset</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>submit<span class="w"> </span>--evaluator-name<span class="w"> </span><span class="s2">&quot;builtin&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--test-cases-json<span class="w"> </span><span class="s1">&#39;{&quot;dataset&quot;: {&quot;datasetId&quot;: &quot;my-dataset&quot;}}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scorers-json<span class="w"> </span><span class="s1">&#39;{&quot;llm_as_judge&quot;: {&quot;scores&quot;: {&quot;correctness&quot;: {&quot;description&quot;: &quot;Evaluate whether the answer is factually correct&quot;}}}}&#39;</span>
+
+<span class="c1"># Score-only (score results that already have outputs)</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>submit-scoring<span class="w"> </span>--evaluator-name<span class="w"> </span><span class="s2">&quot;builtin&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--source-report-id<span class="w"> </span><span class="s2">&quot;report-123&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scorers-json<span class="w"> </span><span class="s1">&#39;{&quot;llm_as_judge&quot;: {&quot;scores&quot;: {&quot;correctness&quot;: {&quot;description&quot;: &quot;Evaluate whether the answer is factually correct&quot;}}}}&#39;</span>
+
+<span class="c1"># App invoke only (no scoring)</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>submit-invoke<span class="w"> </span>--evaluator-name<span class="w"> </span><span class="s2">&quot;builtin&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--test-cases-json<span class="w"> </span><span class="s1">&#39;{&quot;inline&quot;: [{&quot;input&quot;: {&quot;question&quot;: &quot;Hello&quot;}}]}&#39;</span>
+</code></pre></div>
+<h3 id="end-to-end-workflow-full-evaluation-with-inline-test-cases">End-to-end workflow: full evaluation with inline test cases<a class="headerlink" href="#end-to-end-workflow-full-evaluation-with-inline-test-cases" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Submit a full evaluation with inline test cases and multiple scorers</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>submit<span class="w"> </span>--evaluator-name<span class="w"> </span><span class="s2">&quot;builtin&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--test-cases-json<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;inline&quot;: [</span>
+<span class="s1">      {&quot;input&quot;: {&quot;question&quot;: &quot;What is 2+2?&quot;}, &quot;expected&quot;: {&quot;answer&quot;: &quot;4&quot;}},</span>
+<span class="s1">      {&quot;input&quot;: {&quot;question&quot;: &quot;Capital of France?&quot;}, &quot;expected&quot;: {&quot;answer&quot;: &quot;Paris&quot;}}</span>
+<span class="s1">    ]</span>
+<span class="s1">  }&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scorers-json<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;llm_as_judge&quot;: {</span>
+<span class="s1">      &quot;scores&quot;: {</span>
+<span class="s1">        &quot;correctness&quot;: {&quot;description&quot;: &quot;Evaluate whether the answer is factually correct&quot;},</span>
+<span class="s1">        &quot;helpfulness&quot;: {&quot;description&quot;: &quot;Is the answer helpful?&quot;}</span>
+<span class="s1">      }</span>
+<span class="s1">    }</span>
+<span class="s1">  }&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--experiment-name<span class="w"> </span><span class="s2">&quot;v2-baseline&quot;</span>
+
+<span class="c1"># 2. Monitor the job</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>list
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>get<span class="w"> </span>--job-id<span class="w"> </span><span class="s2">&quot;eval-job-123&quot;</span>
+</code></pre></div>
+<h3 id="end-to-end-workflow-report-driven-evaluation-with-a-stored-config">End-to-end workflow: report-driven evaluation with a stored config<a class="headerlink" href="#end-to-end-workflow-report-driven-evaluation-with-a-stored-config" title="Permanent link">&para;</a></h3>
+<p>When you want to re-use the same scorer setup across many runs and inspect individual results afterwards, combine <code>eval config</code>, <code>eval report</code>, and <code>eval result</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Author and store a reusable config (scorers + optional app)</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>rag-baseline.json<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
+<span class="s">{</span>
+<span class="s">  &quot;scorers&quot;: {</span>
+<span class="s">    &quot;llm_as_judge&quot;: {</span>
+<span class="s">      &quot;scores&quot;: {</span>
+<span class="s">        &quot;correctness&quot;: {&quot;description&quot;: &quot;Evaluate whether the answer is factually correct&quot;}</span>
+<span class="s">      }</span>
+<span class="s">    }</span>
+<span class="s">  }</span>
+<span class="s">}</span>
+<span class="s">EOF</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>config<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;rag-baseline&quot;</span><span class="w"> </span>--config-file<span class="w"> </span>./rag-baseline.json
+
+<span class="c1"># 2. Submit a full evaluation against a dataset, referencing the stored config.</span>
+<span class="c1">#    The job auto-creates a report and writes one TestResult per test case.</span>
+<span class="nv">JOB_OUT</span><span class="o">=</span><span class="k">$(</span>genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>submit<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--evaluator-name<span class="w"> </span><span class="s2">&quot;builtin&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--config<span class="w"> </span><span class="s2">&quot;rag-baseline&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--test-cases-json<span class="w"> </span><span class="s1">&#39;{&quot;dataset&quot;: {&quot;datasetId&quot;: &quot;my-dataset&quot;}}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--experiment-name<span class="w"> </span><span class="s2">&quot;rag-baseline-2026-06&quot;</span><span class="k">)</span>
+<span class="nv">JOB_ID</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$JOB_OUT</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;s/.*Job ID: \([a-z0-9-]*\).*/\1/p&#39;</span><span class="k">)</span>
+
+<span class="c1"># 3. Watch the pipeline progress through stages: PENDING → INVOKING → SCORING → COMPLETE</span>
+<span class="c1">#    (status tracks success/failure independently — see Job status values + Job stages below)</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>get<span class="w"> </span>--job-id<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$JOB_ID</span><span class="s2">&quot;</span>
+
+<span class="c1"># 4. Once the job is COMPLETE, find the report it wrote to and list its results</span>
+<span class="nv">REPORT_ID</span><span class="o">=</span><span class="k">$(</span>genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>get<span class="w"> </span>--job-id<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$JOB_ID</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;s/.*reportId: \([a-z0-9-]*\).*/\1/p&#39;</span><span class="k">)</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>result<span class="w"> </span>list<span class="w"> </span>--report-id<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$REPORT_ID</span><span class="s2">&quot;</span>
+
+<span class="c1"># 5. Drill into a single result to see the input/output/expected/scores for one test case</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>result<span class="w"> </span>get<span class="w"> </span>--report-id<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$REPORT_ID</span><span class="s2">&quot;</span><span class="w"> </span>--result-id<span class="w"> </span><span class="s2">&quot;&lt;resultId from list&gt;&quot;</span>
+
+<span class="c1"># 6. Re-score the same outputs later with a different scorer set, without re-running app_invoke,</span>
+<span class="c1">#    by submitting a scoring-only job that copies results from the original report:</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>config<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;rag-strict&quot;</span><span class="w"> </span>--config-file<span class="w"> </span>./rag-strict.json
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>submit-scoring<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--evaluator-name<span class="w"> </span><span class="s2">&quot;builtin&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--config<span class="w"> </span><span class="s2">&quot;rag-strict&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--source-report-id<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$REPORT_ID</span><span class="s2">&quot;</span>
+
+<span class="c1"># 7. When you are done with a report, delete it (this also deletes its results)</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>report<span class="w"> </span>delete<span class="w"> </span>--report-id<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$REPORT_ID</span><span class="s2">&quot;</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Note on <code>eval report delete</code>.</strong> Deleting a report cascades to its test results (the per-test-case scores attached to that report) but does <strong>not</strong> delete the underlying evaluation jobs. The job records remain queryable via <code>eval job get --job-id &lt;id&gt;</code> and <code>eval job list</code> for run history and debugging; only the report+results pair is removed.</p>
+</blockquote>
+<p>You can substitute <code>eval result batch-create</code> in step 4 if you scored test cases outside ETK and want to upload them into a freshly created report (<code>eval report create</code>) for inspection alongside ETK-orchestrated runs.</p>
+<h3 id="json-parameter-structures">JSON parameter structures<a class="headerlink" href="#json-parameter-structures" title="Permanent link">&para;</a></h3>
+<p><strong><code>--test-cases-json</code></strong> — either a dataset reference or inline test cases:</p>
+<div class="highlight"><pre><span></span><code>// Reference a dataset in the datastore
+{&quot;dataset&quot;: {&quot;datasetId&quot;: &quot;my-dataset&quot;, &quot;datasetVersion&quot;: &quot;1&quot;}}
+
+// Inline test cases directly
+{&quot;inline&quot;: [{&quot;input&quot;: {...}, &quot;expected&quot;: {...}}]}
+</code></pre></div>
+<p><strong><code>--scorers-json</code></strong> — map of scorer name to config (null value = run with defaults):</p>
+<div class="highlight"><pre><span></span><code>{
+  &quot;llm_as_judge&quot;: {
+    &quot;scores&quot;: {
+      &quot;correctness&quot;: { &quot;description&quot;: &quot;Evaluate whether the answer is factually correct&quot; },
+      &quot;relevance&quot;: { &quot;description&quot;: &quot;...&quot; },
+    },
+  },
+  &quot;ragas&quot;: { &quot;scores&quot;: { &quot;faithfulness&quot;: null } },
+}
+</code></pre></div>
+<p><strong><code>--app</code></strong> — app invocation configuration (optional, for evaluators with multiple app_invoke functions):</p>
+<div class="highlight"><pre><span></span><code>{
+  &quot;name&quot;: &quot;agentcore_app_invoke&quot;,
+  &quot;params&quot;: { &quot;agent_arn&quot;: &quot;arn:aws:bedrock-agentcore:us-east-1:123456789:agent/my-agent&quot; },
+}
+</code></pre></div>
+<p>Note: params are app-specific and passed directly to the app_invoke function. Not all functions accept params.</p>
+<h3 id="managing-jobs">Managing jobs<a class="headerlink" href="#managing-jobs" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># List evaluation jobs</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>list
+
+<span class="c1"># Get job details</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>get<span class="w"> </span>--job-id<span class="w"> </span><span class="s2">&quot;eval-job-123&quot;</span>
+</code></pre></div>
+<h3 id="scheduled-evaluations">Scheduled evaluations<a class="headerlink" href="#scheduled-evaluations" title="Permanent link">&para;</a></h3>
+<p>Schedule evaluations to run automatically using cron expressions:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create a schedule (runs a FULL evaluation daily at 9 AM)</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>schedule<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cron<span class="w"> </span><span class="s2">&quot;0 9 * * ? *&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--job-type<span class="w"> </span><span class="s2">&quot;FULL&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--evaluator-name<span class="w"> </span><span class="s2">&quot;builtin&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--test-cases-json<span class="w"> </span><span class="s1">&#39;{&quot;dataset&quot;: {&quot;datasetId&quot;: &quot;my-dataset&quot;}}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scorers-json<span class="w"> </span><span class="s1">&#39;{&quot;llm_as_judge&quot;: {&quot;scores&quot;: {&quot;correctness&quot;: {&quot;description&quot;: &quot;Evaluate whether the answer is factually correct&quot;}}}}&#39;</span>
+
+<span class="c1"># List schedules</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>schedule<span class="w"> </span>list
+
+<span class="c1"># Get schedule details</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>schedule<span class="w"> </span>get<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;daily-eval&quot;</span>
+
+<span class="c1"># Update a schedule&#39;s cron expression</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>schedule<span class="w"> </span>update<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;daily-eval&quot;</span><span class="w"> </span>--cron<span class="w"> </span><span class="s2">&quot;0 10 * * ? *&quot;</span>
+
+<span class="c1"># Delete a schedule</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>schedule<span class="w"> </span>delete<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;daily-eval&quot;</span>
+</code></pre></div>
+<h3 id="managing-reports">Managing reports<a class="headerlink" href="#managing-reports" title="Permanent link">&para;</a></h3>
+<p>A <strong>report</strong> is a container for the test results produced by an evaluation. Every job creates a report automatically; the <code>eval report</code> commands let you inspect, list, or delete those containers (and create empty ones if you want to record results from an external workflow):</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create a standalone report (most users won&#39;t need this — submit creates one for you)</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>report<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span><span class="s2">&quot;manual-2026-06-rerun&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--description<span class="w"> </span><span class="s2">&quot;Hand-curated results from offline run&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--experiment-name<span class="w"> </span><span class="s2">&quot;v2-baseline&quot;</span>
+
+<span class="c1"># List reports (paginated)</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>report<span class="w"> </span>list
+
+<span class="c1"># Get a single report (includes status: ACTIVE | DELETING)</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>report<span class="w"> </span>get<span class="w"> </span>--report-id<span class="w"> </span><span class="s2">&quot;report-abc123&quot;</span>
+
+<span class="c1"># Delete a report and all results inside it</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>report<span class="w"> </span>delete<span class="w"> </span>--report-id<span class="w"> </span><span class="s2">&quot;report-abc123&quot;</span>
+</code></pre></div>
+<p>Reports group results under an <code>experimentName</code>, which is the same key used by the experimentation/MLflow workflow (see <a href="#experimentation">Experimentation</a>).</p>
+<h3 id="managing-results">Managing results<a class="headerlink" href="#managing-results" title="Permanent link">&para;</a></h3>
+<p>A <strong>test result</strong> is one row inside a report — typically the input/output/expected for a single test case plus its scores. The <code>eval result</code> commands let you read individual results, list all results in a report, and bulk-write or delete results when integrating an external scoring workflow:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get a single result</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>result<span class="w"> </span>get<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--report-id<span class="w"> </span><span class="s2">&quot;report-abc123&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--result-id<span class="w"> </span><span class="s2">&quot;result-xyz789&quot;</span>
+
+<span class="c1"># List all results in a report (paginated)</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>result<span class="w"> </span>list<span class="w"> </span>--report-id<span class="w"> </span><span class="s2">&quot;report-abc123&quot;</span>
+
+<span class="c1"># Batch-create results (up to 25 per call). Useful when scoring outside ETK</span>
+<span class="c1"># and uploading the results back into a report:</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>result<span class="w"> </span>batch-create<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--report-id<span class="w"> </span><span class="s2">&quot;report-abc123&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--results-json<span class="w"> </span><span class="s1">&#39;[</span>
+<span class="s1">    {&quot;input&quot;: {&quot;question&quot;: &quot;...&quot;}, &quot;output&quot;: {&quot;answer&quot;: &quot;...&quot;}, &quot;expected&quot;: {&quot;answer&quot;: &quot;...&quot;}},</span>
+<span class="s1">    {&quot;input&quot;: {&quot;question&quot;: &quot;...&quot;}, &quot;output&quot;: {&quot;answer&quot;: &quot;...&quot;}, &quot;expected&quot;: {&quot;answer&quot;: &quot;...&quot;}}</span>
+<span class="s1">  ]&#39;</span>
+
+<span class="c1"># Batch-update scores on existing results (re-scoring without re-running app_invoke).</span>
+<span class="c1"># Each score is {value, reason?, error?}; null/empty values are allowed.</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>result<span class="w"> </span>batch-update-scores<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--report-id<span class="w"> </span><span class="s2">&quot;report-abc123&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--items-json<span class="w"> </span><span class="s1">&#39;[</span>
+<span class="s1">    {&quot;resultId&quot;: &quot;result-xyz789&quot;, &quot;scores&quot;: {&quot;correctness&quot;: {&quot;value&quot;: 0.9, &quot;reason&quot;: &quot;matches expected&quot;}, &quot;helpfulness&quot;: {&quot;value&quot;: 0.8}}}</span>
+<span class="s1">  ]&#39;</span>
+
+<span class="c1"># Batch-delete results by ID (up to 25 per call)</span>
+genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>result<span class="w"> </span>batch-delete<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--report-id<span class="w"> </span><span class="s2">&quot;report-abc123&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--result-ids-json<span class="w"> </span><span class="s1">&#39;[&quot;result-xyz789&quot;, &quot;result-uvw456&quot;]&#39;</span>
+</code></pre></div>
+<p>Batch operations return per-item errors instead of failing the whole call — inspect the <code>errors</code> array in the response to find any items that didn't apply. To re-score results from an existing report without copying them by hand, prefer <code>eval job submit-scoring --source-report-id &lt;id&gt;</code> (see <a href="#score-only-jobs-with-inline-results">Score-only jobs with inline results</a>).</p>
+<h2 id="viewing-results">Viewing results<a class="headerlink" href="#viewing-results" title="Permanent link">&para;</a></h2>
+<p>Every evaluation job writes its results into a <strong>report</strong>; each <strong>test result</strong> in the report carries the test case data (<code>input</code>, <code>expected</code>, <code>context</code>, <code>metadata</code>), the app <code>output</code>, and a <code>scores</code> map keyed by scorer name — each score has a <code>value</code> (typically 0–1), an optional <code>reason</code> explaining the score, and an <code>error</code> if scoring failed.</p>
+<p>To inspect results, use <code>genai-etk eval job get --job-id &lt;id&gt;</code> to find the job's <code>reportId</code>, then <code>eval report get</code>, <code>eval result list</code>, and <code>eval result get</code> (see <a href="#managing-reports">Managing reports</a> and <a href="#managing-results">Managing results</a>). If the job was submitted with <code>--experiment-name</code>, aggregate metrics and per-test-case artifacts are also logged to MLflow for comparison across runs (see <a href="#experimentation">Experimentation</a>).</p>
+<h1 id="experimentation">Experimentation<a class="headerlink" href="#experimentation" title="Permanent link">&para;</a></h1>
+<h2 id="creating-experiments">Creating experiments<a class="headerlink" href="#creating-experiments" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create an experiment</span>
+genai-etk<span class="w"> </span>experiment<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;rag-model-comparison&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--description<span class="w"> </span><span class="s2">&quot;Comparing Claude vs Nova for RAG evaluation&quot;</span>
+
+<span class="c1"># List experiments</span>
+genai-etk<span class="w"> </span>experiment<span class="w"> </span>list
+
+<span class="c1"># Get experiment details</span>
+genai-etk<span class="w"> </span>experiment<span class="w"> </span>get<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;rag-model-comparison&quot;</span>
+</code></pre></div>
+<p>When you start an evaluation job with the <code>--experiment-name</code> argument, the run is associated with that experiment and logged as an MLflow run. If you omit the argument, the evaluation runs without experiment tracking.</p>
+<h2 id="tracking-and-comparing-results">Tracking and comparing results<a class="headerlink" href="#tracking-and-comparing-results" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get the output of the latest run in an experiment for a specific version</span>
+genai-etk<span class="w"> </span>experiment<span class="w"> </span>get-output<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;rag-model-comparison&quot;</span><span class="w"> </span>--version<span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<h2 id="mlflow-integration">MLflow integration<a class="headerlink" href="#mlflow-integration" title="Permanent link">&para;</a></h2>
+<p>Gen AI ETK uses Amazon SageMaker MLflow for experiment tracking. Each evaluation run logs:</p>
+<ul>
+<li><strong>Metrics</strong>: Aggregated scores from all scorers.</li>
+<li><strong>Parameters</strong>: The evaluation configuration (evaluator, scorers, test data, config version).</li>
+<li><strong>Artifacts</strong>: Per-test-case results uploaded to the MLflow artifact store.</li>
+</ul>
+<p>To open the MLflow UI:</p>
+<div class="highlight"><pre><span></span><code>genai-etk<span class="w"> </span>experiment<span class="w"> </span>launch-ui
+</code></pre></div>
+<p>This generates a presigned URL and opens the MLflow tracking server in your browser. From the UI, you can:</p>
+<ul>
+<li>Compare metrics across runs in table or chart form.</li>
+<li>Drill into individual runs to see per-test-case results in the <strong>Artifacts</strong> tab.</li>
+<li>Filter and sort runs by metrics or parameters.</li>
+</ul>
+<h1 id="generation-workflows">Generation workflows<a class="headerlink" href="#generation-workflows" title="Permanent link">&para;</a></h1>
+<h2 id="configuring-generation">Configuring generation<a class="headerlink" href="#configuring-generation" title="Permanent link">&para;</a></h2>
+<p>Generation jobs execute an ordered list of steps. Create a JSON file containing an <strong>array</strong> of steps (pass it with <code>--steps-file</code>, or pass the array inline with <code>--steps</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;plugin&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;generateTestCases&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;documentSource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;bucket&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my-data-bucket&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;prefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;generation/source-docs/&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;chunk&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;overlap&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">128</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;question&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;global.anthropic.claude-haiku-4-5-20251001-v1:0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;questionsPerChunk&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;plugin&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;llmAsAJudge&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;criteria&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;The question must be answerable from the provided context&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;The answer must be factually correct&quot;</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;global.anthropic.claude-haiku-4-5-20251001-v1:0&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;plugin&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DatastoreExport&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;datasetConfiguration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;datasetId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;dataset-id&gt;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;mintVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<h2 id="running-generation-jobs">Running generation jobs<a class="headerlink" href="#running-generation-jobs" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Start a generation job</span>
+genai-etk<span class="w"> </span>generation<span class="w"> </span>job<span class="w"> </span>start<span class="w"> </span>--steps-file<span class="w"> </span><span class="s2">&quot;gen_config.json&quot;</span>
+
+<span class="c1"># List generation jobs</span>
+genai-etk<span class="w"> </span>generation<span class="w"> </span>job<span class="w"> </span>list
+
+<span class="c1"># Get job details</span>
+genai-etk<span class="w"> </span>generation<span class="w"> </span>job<span class="w"> </span>get<span class="w"> </span>--id<span class="w"> </span><span class="s2">&quot;gen-job-123&quot;</span>
+
+<span class="c1"># Stop a running job</span>
+genai-etk<span class="w"> </span>generation<span class="w"> </span>job<span class="w"> </span>stop<span class="w"> </span>--id<span class="w"> </span><span class="s2">&quot;gen-job-123&quot;</span>
+</code></pre></div>
+<h2 id="generation-plugins">Generation plugins<a class="headerlink" href="#generation-plugins" title="Permanent link">&para;</a></h2>
+<h3 id="rag-test-case-generator-generatetestcases">RAG test case generator (<code>generateTestCases</code>)<a class="headerlink" href="#rag-test-case-generator-generatetestcases" title="Permanent link">&para;</a></h3>
+<p>Generates question-answer pairs from source documents stored in S3. Documents are chunked using a configurable chunk size and overlap, then processed through Amazon Bedrock to create contextually relevant QA pairs. Deployed on ECS for document processing workloads.</p>
+<p>Configuration options:</p>
+<ul>
+<li><code>documentSource</code>: S3 location of source documents (<code>bucket</code>, <code>prefix</code>).</li>
+<li><code>chunk.size</code>: Size of document chunks in characters (default: 1024).</li>
+<li><code>chunk.overlap</code>: Overlap between chunks in characters (default: 128).</li>
+<li><code>question.model</code>: Bedrock model ID (default: <code>global.anthropic.claude-haiku-4-5-20251001-v1:0</code>).</li>
+<li><code>question.questionsPerChunk</code>: Number of QA pairs to generate per chunk (default: 3).</li>
+<li><code>question.prompt</code>: Custom generation prompt (optional).</li>
+</ul>
+<h3 id="agentic-test-case-generation-agentictestcases">Agentic test case generation (<code>agenticTestCases</code>)<a class="headerlink" href="#agentic-test-case-generation-agentictestcases" title="Permanent link">&para;</a></h3>
+<p>Generates test cases for agentic applications (tool-calling agents) using a multi-stage LLM pipeline: <strong>extract</strong> (optionally pull real conversations from OTEL traces in S3) → <strong>plan</strong> (build a coverage taxonomy and sample diverse scenarios across it) → <strong>generate</strong> (expand scenarios into test cases with expected tool calls) → <strong>augment</strong> (optionally produce per-strategy variations of the base cases). Every input is optional except <code>totalTestCases</code> — the more context you provide, the more grounded the output.</p>
+<p>Configuration options:</p>
+<ul>
+<li><code>totalTestCases</code> (required): Target number of base test cases; augmentation cases are produced on top.</li>
+<li><code>agent.systemPrompt</code>: The agent's system prompt.</li>
+<li><code>agent.tools</code>: Tool definitions with JSON Schema parameters. Generated tool calls are validated against these schemas.</li>
+<li><code>traces</code>: OTEL traces from S3 (<code>source: "s3"</code>, <code>location: "s3://bucket/prefix/"</code>) for trace-grounded generation from production data, with per-outcome sample rates (<code>errorSampleRate</code>, <code>successSampleRate</code>, <code>abandonmentSampleRate</code>) and <code>maxConversations</code>.</li>
+<li><code>seedExamples</code>: Few-shot examples to guide generation style.</li>
+<li><code>focusAreas</code>: Specific patterns or edge cases to prioritize.</li>
+<li><code>augmentationStrategies</code>: Variations applied to each base case — <code>rephrase</code> (same intent, different wording), <code>parameter_variation</code> (same tools, different valid arguments; requires <code>agent.tools</code>), <code>multi_turn_extension</code> (adds follow-up turns), <code>edge_case</code> (boundary and ambiguous inputs), <code>negative_case</code> (out-of-scope and refusal scenarios; requires <code>agent.systemPrompt</code>). Default: none.</li>
+<li><code>reviewSampleRate</code>: Fraction of output tagged <code>requiresReview: true</code> for human curation, stratified by provenance (default: 0.2).</li>
+<li><code>modelId</code>: Bedrock model ID (default: Claude Sonnet).</li>
+</ul>
+<p>Example steps file, exporting the generated test cases to a dataset:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;plugin&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;agenticTestCases&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;totalTestCases&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;agent&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;systemPrompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;You are a helpful assistant that can look up product information.&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;tools&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;get_product&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Get product information by ID&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                  </span><span class="nt">&quot;product_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The product ID&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;product_id&quot;</span><span class="p">]</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;focusAreas&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;multi-tool queries&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edge cases with missing parameters&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;traces&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s3&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s3://my-data-bucket/traces/&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;maxConversations&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;augmentationStrategies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;rephrase&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;parameter_variation&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;negative_case&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;reviewSampleRate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;plugin&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DatastoreExport&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;datasetName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;agentic-test-cases&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Each generated test case contains an <code>input</code> (a string, or an array of strings for multi-turn conversations), an <code>expected</code> block with the reference <code>response</code>, <code>topics</code>, and expected <code>toolCalls</code> (an array-of-arrays for multi-turn cases, one per turn), plus provenance metadata recording how the case was produced (<code>gap_fill</code>, <code>focus_area</code>, <code>failure_pattern</code>, or <code>augmentation</code>).</p>
+<h3 id="llm-as-judge-llmasajudge">LLM-as-Judge (<code>llmAsAJudge</code>)<a class="headerlink" href="#llm-as-judge-llmasajudge" title="Permanent link">&para;</a></h3>
+<p>Validates generated test cases against quality criteria. Only test cases that meet the threshold score are passed to the next plugin. Deployed on ECS for sequential processing pipelines.</p>
+<p>Configuration options:</p>
+<ul>
+<li><code>criteria</code>: Array of criteria strings describing what constitutes a good test case.</li>
+<li><code>threshold</code>: Minimum score (0.0–1.0) for a test case to pass (default: 0.8).</li>
+<li><code>model</code>: Bedrock model ID (default: <code>global.anthropic.claude-haiku-4-5-20251001-v1:0</code>).</li>
+</ul>
+<h3 id="datastore-export-datastoreexport">DataStore Export (<code>DatastoreExport</code>)<a class="headerlink" href="#datastore-export-datastoreexport" title="Permanent link">&para;</a></h3>
+<p>Exports the filtered test cases to a Gen AI ETK dataset. Deployed as a Step Functions workflow with Lambda functions</p>
+<p>Configuration options:</p>
+<ul>
+<li><code>datasetConfiguration.datasetId</code>: ID of the target dataset (create it first with <code>genai-etk dataset create</code>).</li>
+<li><code>datasetConfiguration.mintVersion</code>: When <code>true</code>, mints a new dataset version after the export completes.</li>
+</ul>
+<h1 id="extending-the-toolkit">Extending the toolkit<a class="headerlink" href="#extending-the-toolkit" title="Permanent link">&para;</a></h1>
+<h2 id="cicd-integration">CI/CD integration<a class="headerlink" href="#cicd-integration" title="Permanent link">&para;</a></h2>
+<p>You can integrate Gen AI ETK into your CI/CD pipeline to automatically evaluate your generative AI application on each change. Here is an example using the CLI in a shell script:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nb">set</span><span class="w"> </span>-e
+
+<span class="c1"># Submit evaluation job</span>
+<span class="nv">JOB_ID</span><span class="o">=</span><span class="k">$(</span>genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>submit<span class="w"> </span>--evaluator-name<span class="w"> </span><span class="s2">&quot;builtin&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--test-cases-json<span class="w"> </span><span class="s1">&#39;{&quot;dataset&quot;: {&quot;datasetId&quot;: &quot;regression-tests&quot;}}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scorers-json<span class="w"> </span><span class="s1">&#39;{&quot;llm_as_judge&quot;: {&quot;scores&quot;: {&quot;sample&quot;: {}}}}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.jobId&#39;</span><span class="k">)</span>
+
+<span class="c1"># Poll for completion</span>
+<span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="nv">STATUS</span><span class="o">=</span><span class="k">$(</span>genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>get<span class="w"> </span>--job-id<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$JOB_ID</span><span class="s2">&quot;</span><span class="w"> </span>--output<span class="w"> </span>json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.status&#39;</span><span class="k">)</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$STATUS</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">    </span><span class="s2">&quot;SUCCESS&quot;</span><span class="o">)</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Evaluation passed&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="w"> </span><span class="p">;;</span>
+<span class="w">    </span><span class="s2">&quot;FAILURE&quot;</span><span class="p">|</span><span class="s2">&quot;PARTIAL_FAILURE&quot;</span><span class="o">)</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Evaluation failed: </span><span class="nv">$STATUS</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">;;</span>
+<span class="w">    </span>*<span class="o">)</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Status: </span><span class="nv">$STATUS</span><span class="s2">. Waiting...&quot;</span><span class="p">;</span><span class="w"> </span>sleep<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="p">;;</span>
+<span class="w">  </span><span class="k">esac</span>
+<span class="k">done</span>
+</code></pre></div>
+<p>The CLI supports <code>--output json</code> for machine-readable output, making it straightforward to parse results in automation scripts.</p>
+<p>The generated <a href="../../sdk/typescript-client/">TypeScript</a> and <a href="../../sdk/python-client/">Python</a> clients provide the same capabilities programmatically. For building custom evaluators, see the <a href="../../sdk/evaluator-sdk/">Evaluator SDK reference</a>.</p>
+<h2 id="eventbridge-integration">EventBridge integration<a class="headerlink" href="#eventbridge-integration" title="Permanent link">&para;</a></h2>
+<p>Gen AI ETK emits events to EventBridge at key points in evaluation and generation workflows. You can subscribe to these events to trigger downstream actions.</p>
+<p>Event types:</p>
+<table>
+<thead>
+<tr>
+<th>Detail type</th>
+<th>Emitted when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>genAiEtkEvaluationDoneEvent</code></td>
+<td>An evaluation workflow completes</td>
+</tr>
+<tr>
+<td><code>genAiEtkGenerationDoneEvent</code></td>
+<td>A generation workflow completes</td>
+</tr>
+<tr>
+<td><code>genAiEtkEvaluationMetricDoneEvent</code></td>
+<td>An evaluation plugin completes</td>
+</tr>
+<tr>
+<td><code>genAiEtkGenerationPluginDoneEvent</code></td>
+<td>A generation plugin completes</td>
+</tr>
+</tbody>
+</table>
+<p>Example EventBridge rule pattern to match evaluation completion:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;GenAiEvaluationToolkit&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;detail-type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;genAiEtkEvaluationDoneEvent&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="multi-evaluator-jobs">Multi-evaluator jobs<a class="headerlink" href="#multi-evaluator-jobs" title="Permanent link">&para;</a></h2>
+<p>Evaluation jobs support <strong>multi-evaluator topology</strong> — scorers can be dispatched as separate Lambda invocations via EventBridge, enabling parallel scoring by independent evaluator services.</p>
+<h3 id="routing-scorers-with-evaluatorname">Routing scorers with <code>evaluatorName</code><a class="headerlink" href="#routing-scorers-with-evaluatorname" title="Permanent link">&para;</a></h3>
+<p>Set <code>evaluatorName</code> on a scorer config to force the job into separate tasks:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;evaluatorName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;builtin&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;testCases&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;dataset&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;datasetId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;app&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bedrock_app&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;model_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;amazon.nova-lite-v1:0&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;evaluatorName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my-app-evaluator&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;scorers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;llm_as_judge&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;evaluatorName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;builtin&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scores&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;toxicity&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;correctness&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The <code>app</code> field is optional. When provided, <code>name</code> selects the app_invoke function, <code>params</code> passes runtime configuration, and <code>evaluatorName</code> routes app invocation to a specific evaluator Lambda.</p>
+<p>This creates discrete tasks dispatched via EventBridge:</p>
+<div class="highlight"><pre><span></span><code>app_invoke → score:llm_as_judge → post_process
+</code></pre></div>
+<p>Each task is a separate Lambda invocation. Without explicit <code>evaluatorName</code>, the job runs as a single task.</p>
+<h3 id="job-status-values">Job status values<a class="headerlink" href="#job-status-values" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PENDING</code></td>
+<td>Job submitted, no tasks started</td>
+</tr>
+<tr>
+<td><code>RUNNING</code></td>
+<td>At least one task in progress</td>
+</tr>
+<tr>
+<td><code>SUCCESS</code></td>
+<td>All tasks completed successfully</td>
+</tr>
+<tr>
+<td><code>PARTIAL_FAILURE</code></td>
+<td>Primary task succeeded but some scorers failed</td>
+</tr>
+<tr>
+<td><code>FAILURE</code></td>
+<td>Primary task failed</td>
+</tr>
+</tbody>
+</table>
+<h3 id="job-stages-v2">Job stages (v2)<a class="headerlink" href="#job-stages-v2" title="Permanent link">&para;</a></h3>
+<p>Jobs also expose a <code>stage</code> field that tells you <em>where</em> in the pipeline a job is, independent of its eventual success/failure outcome. Status answers "did it work?"; stage answers "which phase is it in right now?"</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PENDING</code></td>
+<td>Job created, no orchestrated work has started yet</td>
+</tr>
+<tr>
+<td><code>INVOKING</code></td>
+<td>App invocation in progress (the primary task is <code>RUNNING</code>)</td>
+</tr>
+<tr>
+<td><code>SCORING</code></td>
+<td>App invocation finished; one or more scorer tasks are running or already complete</td>
+</tr>
+<tr>
+<td><code>COMPLETE</code></td>
+<td>All tasks (primary + every scorer + post-process) reached a terminal state (<code>COMPLETED</code> or <code>FAILED</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>For orchestrated jobs (<code>submit</code>, <code>submit-scoring</code>, <code>submit-invoke</code>), stage is derived from the per-task statuses on the job — you do not have to set it. A <code>COMPLETE</code> stage with status <code>PARTIAL_FAILURE</code> is normal when the app succeeded but a scorer failed; the per-task map shows which one. For local-SDK jobs, the SDK writes the stage directly.</p>
+<h3 id="score-only-jobs-with-inline-results">Score-only jobs with inline results<a class="headerlink" href="#score-only-jobs-with-inline-results" title="Permanent link">&para;</a></h3>
+<p>Submit pre-existing outputs for scoring without running app_invoke:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;evaluatorName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;builtin&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;testResults&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w"> </span><span class="nt">&quot;output&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w"> </span><span class="nt">&quot;expected&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;scorers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;llm_as_judge&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;scores&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;toxicity&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Or re-score results from a previous job using <code>sourceReportId</code> (copies the results into a new report and applies the specified scorers):</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;evaluatorName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;builtin&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sourceReportId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;existing-report-id&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;scorers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;llm_as_judge&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;scores&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;correctness&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="migrating-from-eval-plugins-to-evaluator-sdk-v2">Migrating from eval plugins to evaluator SDK v2<a class="headerlink" href="#migrating-from-eval-plugins-to-evaluator-sdk-v2" title="Permanent link">&para;</a></h2>
+<p>The legacy eval plugin packages have been replaced by the evaluator SDK v2 scorer system:</p>
+<table>
+<thead>
+<tr>
+<th>Removed package</th>
+<th>Replacement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>plugin-eval-llm-as-judge</code></td>
+<td>Built-in <code>llm_as_judge</code> scorer in <code>evaluator-builtin</code></td>
+</tr>
+<tr>
+<td><code>plugin-eval-ragas</code></td>
+<td>Built-in <code>ragas</code> scorer in <code>evaluator-builtin</code></td>
+</tr>
+<tr>
+<td><code>plugin-eval-agentcore</code></td>
+<td>Built-in <code>agentcore</code> scorer in <code>evaluator-builtin</code></td>
+</tr>
+<tr>
+<td><code>plugin-eval-fmeval</code></td>
+<td><code>evaluator-fmeval</code> package (standalone)</td>
+</tr>
+<tr>
+<td><code>plugin-eval-sdk</code></td>
+<td><code>evaluator-sdk</code> (Python SDK for building custom evaluators)</td>
+</tr>
+<tr>
+<td><code>experiment-logger</code></td>
+<td>Built into the post-processing pipeline (automatic)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>What changed:</strong></p>
+<ul>
+<li>Scorers no longer run as separate ECS tasks or Lambda plugins with S3-based data exchange</li>
+<li>Instead, scorers are Python classes registered on an <code>Evaluator</code> and dispatched via EventBridge</li>
+<li>All built-in scorers (LLM-as-Judge, RAGAS, AgentCore) now run inside a single <code>evaluator-builtin</code> Lambda</li>
+<li>Custom scorers use the <code>evaluator-sdk</code> Python package (see <a href="#custom-evaluators">Custom evaluators</a> below)</li>
+</ul>
+<h2 id="custom-evaluators">Custom evaluators<a class="headerlink" href="#custom-evaluators" title="Permanent link">&para;</a></h2>
+<p>Build custom evaluators using the Python evaluator SDK (<code>packages/evaluator-sdk</code>). An evaluator registers scorers and optionally one or more <code>app_invoke</code> functions:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">evaluator_sdk</span><span class="w"> </span><span class="kn">import</span> <span class="n">Evaluator</span><span class="p">,</span> <span class="n">ScoreResult</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">my_scorer</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">test_result</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">1.0</span> <span class="k">if</span> <span class="n">test_result</span><span class="o">.</span><span class="n">output</span> <span class="o">==</span> <span class="n">test_result</span><span class="o">.</span><span class="n">expected</span> <span class="k">else</span> <span class="mf">0.0</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">my_app</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># Call your LLM/application — params are optional runtime config</span>
+    <span class="n">model_id</span> <span class="o">=</span> <span class="p">(</span><span class="n">params</span> <span class="ow">or</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;model_id&quot;</span><span class="p">,</span> <span class="s2">&quot;amazon.nova-lite-v1:0&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;response&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">}</span>
+
+<span class="n">evaluator</span> <span class="o">=</span> <span class="n">Evaluator</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my-evaluator&quot;</span><span class="p">,</span>
+    <span class="n">app_invoke</span><span class="o">=</span><span class="n">my_app</span><span class="p">,</span>
+    <span class="n">scorers</span><span class="o">=</span><span class="p">[</span><span class="n">my_scorer</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c1"># Run locally</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+    <span class="n">testcases</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">},</span> <span class="s2">&quot;expected&quot;</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">}}],</span>
+    <span class="n">app</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;model_id&quot;</span><span class="p">:</span> <span class="s2">&quot;amazon.nova-pro-v1:0&quot;</span><span class="p">}},</span>
+    <span class="n">scorers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;my_scorer&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="app-configuration">App configuration<a class="headerlink" href="#app-configuration" title="Permanent link">&para;</a></h3>
+<p>The <code>app</code> parameter controls which <code>app_invoke</code> function runs and passes runtime parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+    <span class="n">testcases</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">],</span>
+    <span class="n">app</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;bedrock_app&quot;</span><span class="p">,</span>          <span class="c1"># select which app_invoke to use (optional if only one)</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;agent_arn&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">},</span>  <span class="c1"># runtime params passed to the function</span>
+        <span class="s2">&quot;evaluatorName&quot;</span><span class="p">:</span> <span class="s2">&quot;my-agent-eval&quot;</span><span class="p">,</span>  <span class="c1"># optional: route to a different evaluator Lambda</span>
+    <span class="p">},</span>
+    <span class="n">scorers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;my_scorer&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>The <code>app_invoke</code> function can optionally declare a <code>params</code> argument to receive the runtime parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">my_app</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">agent_arn</span> <span class="o">=</span> <span class="p">(</span><span class="n">params</span> <span class="ow">or</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;agent_arn&quot;</span><span class="p">)</span>
+    <span class="c1"># Use agent_arn to call the right agent...</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;response&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">}</span>
+</code></pre></div>
+<p>Functions that don't declare <code>params</code> continue to work unchanged (backward compatible).</p>
+<h3 id="multiple-app_invoke-functions">Multiple app_invoke functions<a class="headerlink" href="#multiple-app_invoke-functions" title="Permanent link">&para;</a></h3>
+<p>A single evaluator can register multiple named <code>app_invoke</code> functions for different use cases (e.g. different models, prompt strategies, or endpoints):</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">bedrock_app</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># Call Bedrock</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;response&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">custom_api_app</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># Call your custom endpoint</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;response&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">}</span>
+
+<span class="n">evaluator</span> <span class="o">=</span> <span class="n">Evaluator</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my-evaluator&quot;</span><span class="p">,</span>
+    <span class="n">app_invoke</span><span class="o">=</span><span class="p">[</span><span class="n">bedrock_app</span><span class="p">,</span> <span class="n">custom_api_app</span><span class="p">],</span>
+    <span class="n">scorers</span><span class="o">=</span><span class="p">[</span><span class="n">my_scorer</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c1"># Select a specific app_invoke by name and pass params</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+    <span class="n">testcases</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">],</span>
+    <span class="n">app</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;custom_api_app&quot;</span><span class="p">,</span> <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;api_key&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">}},</span>
+    <span class="n">scorers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;my_scorer&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Functions are registered by their <code>__name__</code> attribute.</p>
+<p>Deploy as a Lambda using the <code>LambdaEvaluator</code> CDK construct to register it for remote dispatch via EventBridge.</p>
+<h3 id="remote-execution-running-work-on-deployed-evaluators">Remote execution (running work on deployed evaluators)<a class="headerlink" href="#remote-execution-running-work-on-deployed-evaluators" title="Permanent link">&para;</a></h3>
+<p>By default <code>evaluate()</code>, <code>score()</code>, and <code>invoke()</code> run in-process. To run a task
+on a <strong>deployed evaluator worker</strong> instead, add an <code>evaluatorName</code> to its config.
+This is how remote-only evaluators such as <strong>agent-as-judge</strong> (which runs in an
+isolated Lambda) are driven through the SDK — the scorer/app need not be
+registered locally. The SDK submits the job, waits for it to finish, and returns
+the results the worker wrote.</p>
+<p><strong><code>score()</code> with a remote scorer</strong> (the agent-as-judge path):</p>
+<div class="highlight"><pre><span></span><code><span class="n">evaluator</span> <span class="o">=</span> <span class="n">Evaluator</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my-driver&quot;</span><span class="p">)</span>  <span class="c1"># no local scorer needed</span>
+
+<span class="c1"># Score inline testcases:</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">score</span><span class="p">(</span>
+    <span class="n">testcases</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">},</span> <span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">}}],</span>
+    <span class="n">scorers</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;agent_as_judge&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;evaluatorName&quot;</span><span class="p">:</span> <span class="s2">&quot;agent-as-judge&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;scores&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;correctness&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Is the answer correct?&quot;</span><span class="p">}},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+
+<span class="c1"># Or re-score results already in a report:</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">score</span><span class="p">(</span>
+    <span class="n">source_report_id</span><span class="o">=</span><span class="s2">&quot;report-123&quot;</span><span class="p">,</span>
+    <span class="n">scorers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;my_scorer&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;evaluatorName&quot;</span><span class="p">:</span> <span class="s2">&quot;builtin&quot;</span><span class="p">,</span> <span class="s2">&quot;scores&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;toxicity&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}}},</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong><code>invoke()</code> with a remote app</strong> (app invocation only):</p>
+<div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span>
+    <span class="n">testcases</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">],</span>
+    <span class="n">app</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;evaluatorName&quot;</span><span class="p">:</span> <span class="s2">&quot;my-worker&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my_fn&quot;</span><span class="p">,</span> <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">}},</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong><code>evaluate()</code> fully remote</strong> (route both app and scorers):</p>
+<div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+    <span class="n">testcases</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">],</span>
+    <span class="n">app</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;evaluatorName&quot;</span><span class="p">:</span> <span class="s2">&quot;my-worker&quot;</span><span class="p">,</span> <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">}},</span>
+    <span class="n">scorers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;my_scorer&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;evaluatorName&quot;</span><span class="p">:</span> <span class="s2">&quot;builtin&quot;</span><span class="p">,</span> <span class="s2">&quot;scores&quot;</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">}}},</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>A task with an <code>evaluatorName</code> runs remotely; without one it runs locally and its
+name must be registered on the <code>Evaluator</code>.</p>
+<h4 id="troubleshooting-remote-execution">Troubleshooting remote execution<a class="headerlink" href="#troubleshooting-remote-execution" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Cause &amp; fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Scorer 'X' is not registered and has no evaluatorName</code></td>
+<td>The scorer name isn't registered locally and has no route. Either register it on the <code>Evaluator</code>, or add <code>evaluatorName</code> to run it on a remote worker.</td>
+</tr>
+<tr>
+<td><code>Cannot mix local and remote tasks in a single call</code></td>
+<td>One call mixed in-process tasks with <code>evaluatorName</code>-routed ones. Hybrid execution is not yet supported — split into separate <code>evaluate()</code>/<code>score()</code>/<code>invoke()</code> calls (all-local or all-remote).</td>
+</tr>
+<tr>
+<td><code>local_only mode cannot run remote tasks</code></td>
+<td>The <code>Evaluator</code> was created with <code>local_only=True</code>, which has no API client. Construct it with an <code>api_endpoint</code> (or a <code>client</code>) to use remote workers.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="tutorials">Tutorials<a class="headerlink" href="#tutorials" title="Permanent link">&para;</a></h1>
+<h2 id="rag-evaluation-tutorial">RAG evaluation tutorial<a class="headerlink" href="#rag-evaluation-tutorial" title="Permanent link">&para;</a></h2>
+<p>This tutorial walks through evaluating a RAG application end-to-end using the evaluator SDK.</p>
+<h3 id="1-define-your-app_invoke-function">1. Define your app_invoke function<a class="headerlink" href="#1-define-your-app_invoke-function" title="Permanent link">&para;</a></h3>
+<p>The <code>app_invoke</code> function wraps your RAG application. It receives the test case input and returns the application's output:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
+
+<span class="n">bedrock</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s2">&quot;bedrock-runtime&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">my_rag_app</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Call your RAG pipeline and return the response.&quot;&quot;&quot;</span>
+    <span class="n">question</span> <span class="o">=</span> <span class="n">input_data</span><span class="p">[</span><span class="s2">&quot;user_input&quot;</span><span class="p">]</span>
+    <span class="n">contexts</span> <span class="o">=</span> <span class="n">input_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;retrieved_contexts&quot;</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="n">context_block</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">contexts</span><span class="p">)</span>
+
+    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Answer the question using only the provided context.</span><span class="se">\n\n</span><span class="s2">Context:</span><span class="se">\n</span><span class="si">{</span><span class="n">context_block</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">Question: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">bedrock</span><span class="o">.</span><span class="n">converse</span><span class="p">(</span>
+        <span class="n">modelId</span><span class="o">=</span><span class="s2">&quot;amazon.nova-lite-v1:0&quot;</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]}],</span>
+        <span class="n">inferenceConfig</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;maxTokens&quot;</span><span class="p">:</span> <span class="mi">256</span><span class="p">},</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;response&quot;</span><span class="p">:</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;output&quot;</span><span class="p">][</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;content&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">]}</span>
+</code></pre></div>
+<h3 id="2-define-test-cases">2. Define test cases<a class="headerlink" href="#2-define-test-cases" title="Permanent link">&para;</a></h3>
+<p>Provide test cases inline as dictionaries:</p>
+<div class="highlight"><pre><span></span><code><span class="n">test_cases</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;user_input&quot;</span><span class="p">:</span> <span class="s2">&quot;What is Amazon S3?&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;retrieved_contexts&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;Amazon Simple Storage Service (Amazon S3) is an object storage service offering industry-leading scalability, data availability, security, and performance.&quot;</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;expected&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;reference&quot;</span><span class="p">:</span> <span class="s2">&quot;Amazon S3 is an object storage service.&quot;</span><span class="p">},</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;user_input&quot;</span><span class="p">:</span> <span class="s2">&quot;What is AWS Lambda?&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;retrieved_contexts&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;AWS Lambda is a serverless, event-driven compute service that lets you run code for virtually any type of application or backend service without provisioning or managing servers.&quot;</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;expected&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;reference&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS Lambda is a serverless compute service.&quot;</span><span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">]</span>
+</code></pre></div>
+<h3 id="3-run-the-evaluation">3. Run the evaluation<a class="headerlink" href="#3-run-the-evaluation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">evaluator_sdk</span><span class="w"> </span><span class="kn">import</span> <span class="n">Evaluator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">evaluator_builtin.scorers.ragas</span><span class="w"> </span><span class="kn">import</span> <span class="n">RagasScorer</span>
+
+<span class="n">evaluator</span> <span class="o">=</span> <span class="n">Evaluator</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">,</span>
+    <span class="n">api_endpoint</span><span class="o">=</span><span class="s2">&quot;https://&lt;your-api-endpoint&gt;&quot;</span><span class="p">,</span>
+    <span class="n">app_invoke</span><span class="o">=</span><span class="n">my_rag_app</span><span class="p">,</span>
+    <span class="n">scorers</span><span class="o">=</span><span class="p">[</span><span class="n">RagasScorer</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+    <span class="n">testcases</span><span class="o">=</span><span class="n">test_cases</span><span class="p">,</span>
+    <span class="n">scorers</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;ragas&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;model_id&quot;</span><span class="p">:</span> <span class="s2">&quot;amazon.nova-lite-v1:0&quot;</span><span class="p">},</span>
+            <span class="s2">&quot;scores&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;faithfulness&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;answer_relevancy&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;context_recall&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="n">experiment_name</span><span class="o">=</span><span class="s2">&quot;rag-tutorial-experiment&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="4-view-results-in-mlflow">4. View results in MLflow<a class="headerlink" href="#4-view-results-in-mlflow" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>genai-etk<span class="w"> </span>experiment<span class="w"> </span>launch-ui
+</code></pre></div>
+<p>Navigate to the <code>rag-tutorial-experiment</code> experiment to see metrics, compare runs, and drill into per-test-case results.</p>
+<h2 id="test-case-generation-tutorial">Test case generation tutorial<a class="headerlink" href="#test-case-generation-tutorial" title="Permanent link">&para;</a></h2>
+<p>This tutorial walks through generating test cases from source documents.</p>
+<h3 id="1-upload-source-documents-to-s3">1. Upload source documents to S3<a class="headerlink" href="#1-upload-source-documents-to-s3" title="Permanent link">&para;</a></h3>
+<p>Upload your documents (PDF, text, markdown, and so on) to S3:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3<span class="w"> </span>cp<span class="w"> </span>my-documents/<span class="w"> </span>s3://my-data-bucket/generation/source-docs/<span class="w"> </span>--recursive
+</code></pre></div>
+<h3 id="2-create-the-target-dataset-and-a-generation-configuration">2. Create the target dataset and a generation configuration<a class="headerlink" href="#2-create-the-target-dataset-and-a-generation-configuration" title="Permanent link">&para;</a></h3>
+<p>Create the dataset that will receive the generated test cases, and note its ID:</p>
+<div class="highlight"><pre><span></span><code>genai-etk<span class="w"> </span>dataset<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;generated-from-docs&quot;</span><span class="w"> </span>--description<span class="w"> </span><span class="s2">&quot;Synthetic test cases from source docs&quot;</span>
+</code></pre></div>
+<p>Create <code>gen-config.json</code> (a JSON array of steps):</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;plugin&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;generateTestCases&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;documentSource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;bucket&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my-data-bucket&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;prefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;generation/source-docs/&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;chunk&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;overlap&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">128</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;plugin&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;llmAsAJudge&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;criteria&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;The question must be clearly answerable from the provided context&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;The answer must be factually correct and complete&quot;</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;plugin&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DatastoreExport&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;datasetConfiguration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;datasetId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;dataset-id&gt;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;mintVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<h3 id="3-start-generation">3. Start generation<a class="headerlink" href="#3-start-generation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>genai-etk<span class="w"> </span>generation<span class="w"> </span>job<span class="w"> </span>start<span class="w"> </span>--steps-file<span class="w"> </span><span class="s2">&quot;gen-config.json&quot;</span>
+</code></pre></div>
+<h3 id="4-monitor-progress">4. Monitor progress<a class="headerlink" href="#4-monitor-progress" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>genai-etk<span class="w"> </span>generation<span class="w"> </span>job<span class="w"> </span>list
+genai-etk<span class="w"> </span>generation<span class="w"> </span>job<span class="w"> </span>get<span class="w"> </span>--id<span class="w"> </span><span class="s2">&quot;&lt;job-id&gt;&quot;</span>
+</code></pre></div>
+<p>When the job completes, the generated test cases are available in the target dataset:</p>
+<div class="highlight"><pre><span></span><code>genai-etk<span class="w"> </span>dataset<span class="w"> </span>list-test-cases<span class="w"> </span>--dataset-id<span class="w"> </span><span class="s2">&quot;&lt;dataset-id&gt;&quot;</span>
+</code></pre></div>
+<h1 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h1>
+<h2 id="installation-and-configuration">Installation and configuration<a class="headerlink" href="#installation-and-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="cli-installation-failures">CLI installation failures<a class="headerlink" href="#cli-installation-failures" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Verify Node.js v20+: <code>node --version</code>.</li>
+<li>Clear npm cache: <code>npm cache clean --force</code>.</li>
+<li>Try relinking: run <code>npm run dev:unlink</code> and then <code>npm run dev:link</code> from the <code>packages/cli</code> directory (see <a href="#install-the-cli">Install the CLI</a>).</li>
+</ul>
+<h3 id="authentication-errors">Authentication errors<a class="headerlink" href="#authentication-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Verify AWS credentials are configured: <code>aws sts get-caller-identity</code>.</li>
+<li>Ensure your role has <code>execute-api:Invoke</code> permission on the API Gateway.</li>
+<li>Check that the API Gateway URL is correct: <code>echo $GEN_AI_ETK_API_URL</code>.</li>
+</ul>
+<h3 id="missing-api-gateway-url">Missing API Gateway URL<a class="headerlink" href="#missing-api-gateway-url" title="Permanent link">&para;</a></h3>
+<p>If you see <code>GEN_AI_ETK_API_URL environment variable is required</code>:</p>
+<ul>
+<li>Set the variable: <code>export GEN_AI_ETK_API_URL="https://&lt;api-id&gt;.execute-api.&lt;region&gt;.amazonaws.com/prod"</code>.</li>
+<li>Find the URL in the API Gateway console under Stages → Invoke URL.</li>
+</ul>
+<h2 id="evaluation-issues">Evaluation issues<a class="headerlink" href="#evaluation-issues" title="Permanent link">&para;</a></h2>
+<h3 id="configuration-errors">Configuration errors<a class="headerlink" href="#configuration-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Validate the JSON you pass to <code>--scorers-json</code> / <code>--test-cases-json</code> (or the files behind <code>--scorers-file</code> / <code>--test-cases-file</code>).</li>
+<li>Ensure the evaluator name (<code>--evaluator-name</code>) and scorer names match a deployed evaluator and its registered scorers exactly.</li>
+<li>Verify the referenced dataset (and version) exists in the datastore.</li>
+</ul>
+<h3 id="job-execution-failures">Job execution failures<a class="headerlink" href="#job-execution-failures" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Check CloudWatch Logs for the evaluation Step Functions execution.</li>
+<li>Use <code>genai-etk eval job get --job-id &lt;id&gt;</code> to inspect the per-task statuses and errors on the job.</li>
+<li>For scorer- or app-invoke-specific errors, check the evaluator Lambda's CloudWatch logs (for example the <code>evaluator-builtin</code> Lambda; ECS tasks are used only by generation plugins).</li>
+</ul>
+<h3 id="scheduled-evaluation-issues">Scheduled evaluation issues<a class="headerlink" href="#scheduled-evaluation-issues" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Verify the cron expression syntax. Gen AI ETK uses EventBridge cron format.</li>
+<li>Check that the EventBridge scheduler role has permission to start Step Functions executions.</li>
+</ul>
+<h2 id="experiment-issues">Experiment issues<a class="headerlink" href="#experiment-issues" title="Permanent link">&para;</a></h2>
+<h3 id="mlflow-ui-access">MLflow UI access<a class="headerlink" href="#mlflow-ui-access" title="Permanent link">&para;</a></h3>
+<p>If <code>genai-etk experiment launch-ui</code> fails:</p>
+<ul>
+<li>Verify your credentials have <code>sagemaker:CreatePresignedMlflowTrackingServerUrl</code> permission.</li>
+<li>Check that the MLflow tracking server is running in the SageMaker console.</li>
+</ul>
+<h3 id="run-creation-failures">Run creation failures<a class="headerlink" href="#run-creation-failures" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Ensure the experiment exists before starting an evaluation that references it.</li>
+<li>Check CloudWatch Logs for the experiment Lambda handlers.</li>
+</ul>
+<h2 id="generation-issues">Generation issues<a class="headerlink" href="#generation-issues" title="Permanent link">&para;</a></h2>
+<h3 id="job-failures">Job failures<a class="headerlink" href="#job-failures" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Verify source documents exist at the configured S3 location.</li>
+<li>Check that the generation workflow role has read access to the source document bucket.</li>
+<li>For Bedrock-related errors, verify model access is enabled in your region.</li>
+</ul>
+<h3 id="quality-filtering-issues">Quality filtering issues<a class="headerlink" href="#quality-filtering-issues" title="Permanent link">&para;</a></h3>
+<ul>
+<li>If too many test cases are filtered out, lower the <code>threshold</code> value in the LLM-as-Judge configuration.</li>
+<li>If quality is too low, refine the <code>criteria</code> description or increase the threshold.</li>
+</ul>
+<h2 id="kms-encryption-errors">KMS encryption errors<a class="headerlink" href="#kms-encryption-errors" title="Permanent link">&para;</a></h2>
+<h3 id="the-specified-kms-key-does-not-exist-or-is-not-allowed-to-be-used">"The specified KMS key does not exist or is not allowed to be used"<a class="headerlink" href="#the-specified-kms-key-does-not-exist-or-is-not-allowed-to-be-used" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Verify the KMS key exists in the deployment region.</li>
+<li>Ensure the key policy grants the necessary service permissions.</li>
+</ul>
+<h3 id="access-denied-kms-related">"Access Denied" (KMS-related)<a class="headerlink" href="#access-denied-kms-related" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Check that the IAM role has <code>kms:Decrypt</code> and <code>kms:GenerateDataKey</code> permissions on the key.</li>
+<li>For CloudWatch Logs, ensure the key policy includes the CloudWatch Logs service principal.</li>
+</ul>
+<h2 id="diagnosing-issues">Diagnosing issues<a class="headerlink" href="#diagnosing-issues" title="Permanent link">&para;</a></h2>
+<h3 id="check-logs">Check logs<a class="headerlink" href="#check-logs" title="Permanent link">&para;</a></h3>
+<p>All components log to CloudWatch. Key log groups:</p>
+<ul>
+<li><code>/aws/lambda/GenAiEtk-*</code>: Lambda function logs.</li>
+<li>Step Functions execution history: visible in the Step Functions console.</li>
+<li>ECS task logs: visible in the ECS console or CloudWatch.</li>
+</ul>
+<h3 id="capture-error-messages">Capture error messages<a class="headerlink" href="#capture-error-messages" title="Permanent link">&para;</a></h3>
+<p>Use <code>--output json</code> with CLI commands to get structured error responses for debugging:</p>
+<div class="highlight"><pre><span></span><code>genai-etk<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>job<span class="w"> </span>get<span class="w"> </span>--job-id<span class="w"> </span><span class="s2">&quot;failing-job&quot;</span><span class="w"> </span>--output<span class="w"> </span>json
+</code></pre></div>
+<h2 id="agent-as-judge-issues">Agent-as-Judge issues<a class="headerlink" href="#agent-as-judge-issues" title="Permanent link">&para;</a></h2>
+<h3 id="agent-as-judge-lambda-fails-with-internetegressdetectederror-or-awsendpointunreachableerror">Agent-as-Judge Lambda fails with <code>InternetEgressDetectedError</code> or <code>AwsEndpointUnreachableError</code><a class="headerlink" href="#agent-as-judge-lambda-fails-with-internetegressdetectederror-or-awsendpointunreachableerror" title="Permanent link">&para;</a></h3>
+<p>The Agent-as-Judge Lambda deploys into network-isolated subnets and runs an unconditional runtime airgap assertion at every cold start. The two error messages distinguish the failure modes:</p>
+<ul>
+<li><code>InternetEgressDetectedError</code>: the runtime can reach the public internet when it should not. Most likely cause: a recent change to the deployment (or existing-VPC config) re-routed the Lambda onto NAT-egress subnets. Confirm that the <code>AgentAsJudgeEvaluatorLambda</code> VPC config still references the isolated subnets from the pre-reqs stack.</li>
+<li><code>AwsEndpointUnreachableError</code>: the AWS service endpoint is not reachable. Most likely cause: a missing VPC endpoint (Bedrock-Runtime, EventBridge), or the endpoint security group's ingress does not include the secondary CIDR (<code>10.1.0.0/16</code>) where the isolated subnets live. See the Solution Guide's <a href="../../solution_guide/Gen-AI-ETK-SolutionGuide/#network-isolation-for-the-agent-as-judge-evaluator">Network isolation for the Agent-as-Judge evaluator</a> section.</li>
+</ul>
+<h1 id="revisions">Revisions<a class="headerlink" href="#revisions" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>March 2026</td>
+<td>Complete rewrite of User Guide to improve structure and clarity.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "search.suggest", "search.highlight", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": "2.0.0"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

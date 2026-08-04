@@ -1,0 +1,3917 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../evaluator-pyrit/">
+      
+      
+        <link rel="next" href="../typescript-client/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Python client - Gen AI Evaluation Toolkit on AWS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/print.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python-client-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Gen AI Evaluation Toolkit on AWS" class="md-header__button md-logo" aria-label="Gen AI Evaluation Toolkit on AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Gen AI Evaluation Toolkit on AWS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Python client
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Gen AI Evaluation Toolkit on AWS" class="md-nav__button md-logo" aria-label="Gen AI Evaluation Toolkit on AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Gen AI Evaluation Toolkit on AWS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Core guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../solution_guide/Gen-AI-ETK-SolutionGuide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solution Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/Gen-AI-ETK-UserGuide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDK references
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SDK references
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluator-sdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluator SDK
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluator-pyrit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluator PyRIT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python client
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-test-cases-with-structured-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating test cases with structured data
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API client
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API client">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DefaultApi
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DefaultApi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.archive_annotation_schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        archive_annotation_schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.batch_create_results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        batch_create_results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.batch_delete_results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        batch_delete_results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.batch_update_scores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        batch_update_scores
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_annotation_schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_annotation_schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_dataset_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_dataset_version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_experiment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_job_scheduler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_job_scheduler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_report
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_test_case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_test_case
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_dataset_version_annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_dataset_version_annotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_experiment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_job_scheduler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_job_scheduler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_report
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_test_case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_test_case
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_test_case_annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_test_case_annotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_annotation_schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_annotation_schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_dataset_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_dataset_version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_evaluator_job" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_evaluator_job
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_experiment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_job_scheduler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_job_scheduler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_report
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_test_case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_test_case
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_test_result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_test_result
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_annotation_schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list_annotation_schemas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list_configurations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_dataset_versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list_dataset_versions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list_datasets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_experiment_outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list_experiment_outputs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_experiments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list_experiments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_generations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list_generations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_job_schedulers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list_job_schedulers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list_jobs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list_reports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_test_cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list_test_cases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_test_results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list_test_results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.put_dataset_version_annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        put_dataset_version_annotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.put_test_case_annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        put_test_case_annotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.restore_dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        restore_dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.start_generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        start_generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.stop_generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        stop_generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.submit_app_invocation_job" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        submit_app_invocation_job
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.submit_evaluation_job" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        submit_evaluation_job
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.submit_scoring_job" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        submit_scoring_job
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.update_configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.update_evaluator_job_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_evaluator_job_status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.update_experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_experiment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.update_job_scheduler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_job_scheduler
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        models
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../typescript-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TypeScript client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+<div class="print-cover" data-print-title="Python client">
+  <p style="margin-top: 20pt; color: #444;">Gen AI Evaluation Toolkit on AWS</p>
+  <p style="margin-top: 10pt; color: #7a7a7a; font-size: 14pt;">v2.0.0</p>
+  <img src="../../stylesheets/aws_logo.png" alt="AWS" />
+</div>
+
+<div class="print-copyright">
+  <p>Copyright &copy; 2026 Amazon Web Services, Inc. and/or its affiliates. All rights reserved. Amazon&rsquo;s trademarks and trade dress may not be used in connection with any product or service that is not Amazon&rsquo;s, in any manner that is likely to cause confusion among customers, or in any manner that disparages or discredits Amazon. All other trademarks not owned by Amazon are the property of their respective owners, who may or may not be affiliated with, connected to, or sponsored by Amazon.</p>
+  
+</div>
+
+
+<div class="print-toc">
+  <h2>Table of contents</h2>
+  <ul>
+    
+    <li class="print-toc__l1"><a href="#python-client-reference">Python client reference</a>
+      
+      <ul>
+        
+        <li class="print-toc__l2"><a href="#usage-examples">Usage examples</a></li>
+        
+        <li class="print-toc__l2"><a href="#api-client">API client</a></li>
+        
+        <li class="print-toc__l2"><a href="#models">Models</a></li>
+        
+      </ul>
+      
+    </li>
+    
+  </ul>
+</div>
+
+
+
+                  
+
+
+
+<!-- Auto-generated API reference using mkdocstrings: https://mkdocstrings.github.io/python/ -->
+
+<h1 id="python-client-reference">Python client reference<a class="headerlink" href="#python-client-reference" title="Permanent link">&para;</a></h1>
+<h2 id="usage-examples">Usage examples<a class="headerlink" href="#usage-examples" title="Permanent link">&para;</a></h2>
+<h3 id="creating-test-cases-with-structured-data">Creating test cases with structured data<a class="headerlink" href="#creating-test-cases-with-structured-data" title="Permanent link">&para;</a></h3>
+<p>The <code>expected</code> and <code>context</code> fields support both simple strings (for backward compatibility) and structured data (for agentic applications).</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">awssolutions_gen_ai_evaluation_toolkit_python_client</span><span class="w"> </span><span class="kn">import</span> <span class="n">ApiClient</span><span class="p">,</span> <span class="n">Configuration</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">awssolutions_gen_ai_evaluation_toolkit_python_client.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">DefaultApi</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">Configuration</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;https://your-api-endpoint&quot;</span><span class="p">)</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">DefaultApi</span><span class="p">(</span><span class="n">ApiClient</span><span class="p">(</span><span class="n">config</span><span class="p">))</span>
+
+<span class="c1"># Simple string format (backward compatible)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">create_test_case</span><span class="p">(</span>
+    <span class="n">dataset_name</span><span class="o">=</span><span class="s2">&quot;my-dataset&quot;</span><span class="p">,</span>
+    <span class="n">test_case_data</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="s2">&quot;What is Amazon S3?&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;expected&quot;</span><span class="p">:</span> <span class="s2">&quot;Amazon S3 is an object storage service.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Amazon S3 is an object storage service that offers...&quot;</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># Structured data for agentic applications</span>
+<span class="n">client</span><span class="o">.</span><span class="n">create_test_case</span><span class="p">(</span>
+    <span class="n">dataset_name</span><span class="o">=</span><span class="s2">&quot;my-dataset&quot;</span><span class="p">,</span>
+    <span class="n">test_case_data</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;prompt&quot;</span><span class="p">:</span> <span class="s2">&quot;Book a flight to Seattle for next Monday&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;expected&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;toolCalls&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;search_flights&quot;</span><span class="p">,</span> <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;destination&quot;</span><span class="p">:</span> <span class="s2">&quot;Seattle&quot;</span><span class="p">}}</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;expectedTopics&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;flight booking&quot;</span><span class="p">,</span> <span class="s2">&quot;travel&quot;</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;requiresHumanReview&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;evaluationHints&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;checkToolSequence&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div>
+<h2 id="api-client">API client<a class="headerlink" href="#api-client" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents first">
+
+
+
+        <p>NOTE: This class is auto generated by OpenAPI Generator
+Ref: https://openapi-generator.tech</p>
+<p>Do not edit the class manually.</p>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.archive_annotation_schema" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">archive_annotation_schema</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.archive_annotation_schema" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">archive_annotation_schema</span><span class="p">(</span><span class="n">annotation_name</span><span class="p">,</span> <span class="n">archive_annotation_schema_request_content</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>archive_annotation_schema</p>
+<p>Mark or unmark an annotation schema as archived to prevent or allow further use</p>
+<p>:param annotation_name: Name of the annotation schema (required)
+:type annotation_name: str
+:param archive_annotation_schema_request_content:
+:type archive_annotation_schema_request_content: ArchiveAnnotationSchemaRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.batch_create_results" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">batch_create_results</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.batch_create_results" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">batch_create_results</span><span class="p">(</span><span class="n">report_id</span><span class="p">,</span> <span class="n">batch_create_results_request_content</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>batch_create_results</p>
+<p>Create multiple test results in a batch. Returns 200 with separate success and error lists even if some items fail.</p>
+<p>:param report_id: ID of the report to add results to (required)
+:type report_id: str
+:param batch_create_results_request_content: (required)
+:type batch_create_results_request_content: BatchCreateResultsRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.batch_delete_results" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">batch_delete_results</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.batch_delete_results" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">batch_delete_results</span><span class="p">(</span><span class="n">report_id</span><span class="p">,</span> <span class="n">batch_delete_results_request_content</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>batch_delete_results</p>
+<p>Delete multiple test results by ID. Returns 200 with separate success count and error lists even if some items fail.</p>
+<p>:param report_id: ID of the report containing the results (required)
+:type report_id: str
+:param batch_delete_results_request_content: (required)
+:type batch_delete_results_request_content: BatchDeleteResultsRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.batch_update_scores" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">batch_update_scores</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.batch_update_scores" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">batch_update_scores</span><span class="p">(</span><span class="n">report_id</span><span class="p">,</span> <span class="n">batch_update_scores_request_content</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>batch_update_scores</p>
+<p>Add scores to multiple results in a batch. Returns 200 with separate success and error lists even if some items fail.</p>
+<p>:param report_id: ID of the report containing the results (required)
+:type report_id: str
+:param batch_update_scores_request_content: (required)
+:type batch_update_scores_request_content: BatchUpdateScoresRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_annotation_schema" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">create_annotation_schema</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_annotation_schema" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">create_annotation_schema</span><span class="p">(</span><span class="n">create_annotation_schema_request_content</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>create_annotation_schema</p>
+<p>Creates a new annotation schema</p>
+<p>:param create_annotation_schema_request_content: (required)
+:type create_annotation_schema_request_content: CreateAnnotationSchemaRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_configuration" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">create_configuration</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_configuration" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">create_configuration</span><span class="p">(</span><span class="n">create_configuration_request_content</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>create_configuration</p>
+<p>Creates a new workflow configuration using the supplied workflow details.</p>
+<p>:param create_configuration_request_content: (required)
+:type create_configuration_request_content: CreateConfigurationRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_dataset" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">create_dataset</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_dataset" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">create_dataset</span><span class="p">(</span><span class="n">create_dataset_request_content</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>create_dataset</p>
+<p>Creates a new, empty dataset, after which test cases can be added.</p>
+<p>:param create_dataset_request_content: (required)
+:type create_dataset_request_content: CreateDatasetRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_dataset_version" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">create_dataset_version</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_dataset_version" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">create_dataset_version</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>create_dataset_version</p>
+<p>Creates a new dataset version using all current test cases</p>
+<p>:param dataset_id: Unique identifier of the dataset (required)
+:type dataset_id: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_experiment" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">create_experiment</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_experiment" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">create_experiment</span><span class="p">(</span><span class="n">create_experiment_request_content</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>create_experiment</p>
+<p>Creates a new experiment</p>
+<p>:param create_experiment_request_content: (required)
+:type create_experiment_request_content: CreateExperimentRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_job_scheduler" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">create_job_scheduler</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_job_scheduler" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">create_job_scheduler</span><span class="p">(</span><span class="n">create_job_scheduler_request_content</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>create_job_scheduler</p>
+<p>Creates an evaluation job schedule using the supplied job template. The schedule will immediately become active and create new jobs on the supplied cron expression.</p>
+<p>:param create_job_scheduler_request_content: (required)
+:type create_job_scheduler_request_content: CreateJobSchedulerRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_report" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">create_report</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_report" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">create_report</span><span class="p">(</span><span class="n">create_report_request_content</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>create_report</p>
+<p>Create a new report to store test results</p>
+<p>:param create_report_request_content: (required)
+:type create_report_request_content: CreateReportRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_test_case" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">create_test_case</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.create_test_case" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">create_test_case</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">create_test_case_request_content</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>create_test_case</p>
+<p>Creates a new test case</p>
+<p>:param dataset_id: Unique identifier of the dataset (required)
+:type dataset_id: str
+:param create_test_case_request_content:
+:type create_test_case_request_content: CreateTestCaseRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_dataset" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">delete_dataset</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_dataset" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">delete_dataset</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>delete_dataset</p>
+<p>Deletes the dataset</p>
+<p>:param dataset_id: Unique identifier of the dataset (required)
+:type dataset_id: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_dataset_version_annotation" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">delete_dataset_version_annotation</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_dataset_version_annotation" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">delete_dataset_version_annotation</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">annotation_name</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>delete_dataset_version_annotation</p>
+<p>Removes the requested annotation from the given dataset version.</p>
+<p>:param dataset_id: Unique identifier of the dataset (required)
+:type dataset_id: str
+:param version: Version number (required)
+:type version: float
+:param annotation_name: Name of the annotation schema (required)
+:type annotation_name: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_experiment" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">delete_experiment</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_experiment" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">delete_experiment</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>delete_experiment</p>
+<p>Deletes an experiment</p>
+<p>:param name: The unique identifier of the experiment (required)
+:type name: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_job_scheduler" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">delete_job_scheduler</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_job_scheduler" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">delete_job_scheduler</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>delete_job_scheduler</p>
+<p>Deletes evaluation job scheduler (existing jobs unaffected)</p>
+<p>:param name: Unique name of the job scheduler (required)
+:type name: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_report" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">delete_report</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_report" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">delete_report</span><span class="p">(</span><span class="n">report_id</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>delete_report</p>
+<p>Delete a report and all its results</p>
+<p>:param report_id: ID of the report to delete (required)
+:type report_id: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_test_case" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">delete_test_case</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_test_case" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">delete_test_case</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">test_case_id</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>delete_test_case</p>
+<p>Deletes test case from dataset</p>
+<p>:param dataset_id: Unique identifier of the dataset (required)
+:type dataset_id: str
+:param test_case_id: Unique identifier of the testcase (required)
+:type test_case_id: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_test_case_annotation" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">delete_test_case_annotation</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.delete_test_case_annotation" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">delete_test_case_annotation</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">test_case_id</span><span class="p">,</span> <span class="n">annotation_name</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>delete_test_case_annotation</p>
+<p>Removes the requested annotation from the given testcase.</p>
+<p>:param dataset_id: Unique identifier of the dataset (required)
+:type dataset_id: str
+:param test_case_id: Unique identifier of the testcase (required)
+:type test_case_id: str
+:param annotation_name: Name of the annotation schema (required)
+:type annotation_name: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_annotation_schema" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_annotation_schema</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_annotation_schema" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">get_annotation_schema</span><span class="p">(</span><span class="n">annotation_name</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>get_annotation_schema</p>
+<p>Gets annotation schema details</p>
+<p>:param annotation_name: Name of the annotation schema (required)
+:type annotation_name: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_configuration" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_configuration</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_configuration" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">get_configuration</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>get_configuration</p>
+<p>Gets the details of the requested workflow configuration.</p>
+<p>:param name: Name of the configuration (required)
+:type name: str
+:param version: Version of the configuration
+:type version: float
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_dataset" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_dataset</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_dataset" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">get_dataset</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>get_dataset</p>
+<p>Gets dataset details</p>
+<p>:param dataset_id: Unique identifier of the dataset (required)
+:type dataset_id: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_dataset_version" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_dataset_version</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_dataset_version" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">get_dataset_version</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>get_dataset_version</p>
+<p>Gets version details</p>
+<p>:param dataset_id: Unique identifier of the dataset (required)
+:type dataset_id: str
+:param version: Version number or tag (required)
+:type version: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_evaluator_job" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_evaluator_job</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_evaluator_job" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">get_evaluator_job</span><span class="p">(</span><span class="n">job_id</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>get_evaluator_job</p>
+<p>Get details of an evaluation job (v2)</p>
+<p>:param job_id: ID of the job (required)
+:type job_id: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_experiment" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_experiment</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_experiment" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">get_experiment</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>get_experiment</p>
+<p>Gets experiment details</p>
+<p>:param name: The unique identifier of the experiment (required)
+:type name: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_generation" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_generation</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_generation" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">get_generation</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>get_generation</p>
+<p>Gets generation job details</p>
+<p>:param id: Unique identifier of the job (required)
+:type id: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_job_scheduler" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_job_scheduler</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_job_scheduler" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">get_job_scheduler</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>get_job_scheduler</p>
+<p>Gets evaluation job scheduler details</p>
+<p>:param name: Unique name of the job scheduler (required)
+:type name: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_report" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_report</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_report" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">get_report</span><span class="p">(</span><span class="n">report_id</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>get_report</p>
+<p>Get a report by ID</p>
+<p>:param report_id: ID of the report to retrieve (required)
+:type report_id: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_test_case" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_test_case</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_test_case" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">get_test_case</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">test_case_id</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>get_test_case</p>
+<p>Gets test case for dataset version</p>
+<p>:param dataset_id: Unique identifier of the dataset (required)
+:type dataset_id: str
+:param version: Version number or tag (required)
+:type version: str
+:param test_case_id: Unique identifier of the testcase (required)
+:type test_case_id: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_test_result" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">get_test_result</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.get_test_result" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">get_test_result</span><span class="p">(</span><span class="n">report_id</span><span class="p">,</span> <span class="n">result_id</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>get_test_result</p>
+<p>Get a single test result by ID</p>
+<p>:param report_id: ID of the report containing the result (required)
+:type report_id: str
+:param result_id: ID of the result to retrieve (required)
+:type result_id: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_annotation_schemas" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">list_annotation_schemas</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_annotation_schemas" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">list_annotation_schemas</span><span class="p">(</span><span class="n">max_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">next_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">include_archived</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>list_annotation_schemas</p>
+<p>Lists available annotation schemas</p>
+<p>:param max_results: Maximum number of results to return
+:type max_results: float
+:param next_token: Pagination token for next page of results
+:type next_token: str
+:param include_archived: Whether to include archived annotation schemas in the results
+:type include_archived: bool
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_configurations" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">list_configurations</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_configurations" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">list_configurations</span><span class="p">(</span><span class="n">max_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">next_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">list_configurations_request_content</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>list_configurations</p>
+<p>Lists workflow configurations</p>
+<p>:param max_results: Maximum number of results to return
+:type max_results: float
+:param next_token: Pagination token for next page of results
+:type next_token: str
+:param list_configurations_request_content:
+:type list_configurations_request_content: ListConfigurationsRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_dataset_versions" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">list_dataset_versions</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_dataset_versions" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">list_dataset_versions</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">next_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">list_dataset_versions_request_content</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>list_dataset_versions</p>
+<p>Lists available dataset versions for the requested dataset.</p>
+<p>:param dataset_id: Unique identifier of the dataset (required)
+:type dataset_id: str
+:param max_results: Maximum number of results to return
+:type max_results: float
+:param next_token: Pagination token for next page of results
+:type next_token: str
+:param list_dataset_versions_request_content:
+:type list_dataset_versions_request_content: ListDatasetVersionsRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_datasets" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">list_datasets</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_datasets" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">list_datasets</span><span class="p">(</span><span class="n">max_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">next_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>list_datasets</p>
+<p>Lists available datasets</p>
+<p>:param max_results: Maximum number of results to return
+:type max_results: float
+:param next_token: Pagination token for next page of results
+:type next_token: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_experiment_outputs" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">list_experiment_outputs</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_experiment_outputs" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">list_experiment_outputs</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">list_experiment_outputs_request_content</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">next_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>list_experiment_outputs</p>
+<p>Lists available dataset versions for the requested experiment.</p>
+<p>:param name: The unique identifier of the experiment (required)
+:type name: str
+:param list_experiment_outputs_request_content: (required)
+:type list_experiment_outputs_request_content: ListExperimentOutputsRequestContent
+:param max_results: Maximum number of results to return
+:type max_results: float
+:param next_token: Pagination token for next page of results
+:type next_token: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_experiments" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">list_experiments</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_experiments" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">list_experiments</span><span class="p">(</span><span class="n">max_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">next_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">list_experiments_request_content</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>list_experiments</p>
+<p>Lists experiments</p>
+<p>:param max_results: Maximum number of results to return
+:type max_results: float
+:param next_token: Pagination token for next page of results
+:type next_token: str
+:param list_experiments_request_content:
+:type list_experiments_request_content: ListExperimentsRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_generations" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">list_generations</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_generations" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">list_generations</span><span class="p">(</span><span class="n">max_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">next_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">status_filter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>list_generations</p>
+<p>Lists generation jobs with optional filtering</p>
+<p>:param max_results: Maximum number of results to return
+:type max_results: float
+:param next_token: Pagination token for next page of results
+:type next_token: str
+:param status_filter: Filter by matching job status
+:type status_filter: StepFunctionJobStatus
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_job_schedulers" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">list_job_schedulers</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_job_schedulers" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">list_job_schedulers</span><span class="p">(</span><span class="n">max_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">next_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>list_job_schedulers</p>
+<p>Lists all evaluation job schedules.</p>
+<p>:param max_results: Maximum number of results to return
+:type max_results: float
+:param next_token: Pagination token for next page of results
+:type next_token: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_jobs" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">list_jobs</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_jobs" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">list_jobs</span><span class="p">(</span><span class="n">max_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">next_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>list_jobs</p>
+<p>List all evaluation jobs</p>
+<p>:param max_results: Maximum number of results to return
+:type max_results: float
+:param next_token: Pagination token for next page of results
+:type next_token: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_reports" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">list_reports</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_reports" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">list_reports</span><span class="p">(</span><span class="n">max_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">next_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>list_reports</p>
+<p>List all reports. Default maxResults is 50 if not specified.</p>
+<p>:param max_results: Maximum number of results to return
+:type max_results: float
+:param next_token: Pagination token for next page of results
+:type next_token: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_test_cases" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">list_test_cases</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_test_cases" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">list_test_cases</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">next_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">list_test_cases_request_content</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>list_test_cases</p>
+<p>Lists test cases within the requested dataset version.</p>
+<p>:param dataset_id: Unique identifier of the dataset (required)
+:type dataset_id: str
+:param version: Version number or tag (required)
+:type version: str
+:param max_results: Maximum number of results to return
+:type max_results: float
+:param next_token: Pagination token for next page of results
+:type next_token: str
+:param list_test_cases_request_content:
+:type list_test_cases_request_content: ListTestCasesRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_test_results" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">list_test_results</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.list_test_results" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">list_test_results</span><span class="p">(</span><span class="n">report_id</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">next_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>list_test_results</p>
+<p>List test results within a report. Default maxResults is 50 if not specified.</p>
+<p>:param report_id: ID of the report to list results from (required)
+:type report_id: str
+:param max_results: Maximum number of results to return
+:type max_results: float
+:param next_token: Pagination token for next page of results
+:type next_token: str
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.put_dataset_version_annotation" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">put_dataset_version_annotation</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.put_dataset_version_annotation" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">put_dataset_version_annotation</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">put_dataset_version_annotation_request_content</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>put_dataset_version_annotation</p>
+<p>Creates or updates an annotation on the given dataset version.</p>
+<p>:param dataset_id: Unique identifier of the dataset (required)
+:type dataset_id: str
+:param version: Version number (required)
+:type version: float
+:param put_dataset_version_annotation_request_content: (required)
+:type put_dataset_version_annotation_request_content: PutDatasetVersionAnnotationRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.put_test_case_annotation" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">put_test_case_annotation</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.put_test_case_annotation" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">put_test_case_annotation</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">test_case_id</span><span class="p">,</span> <span class="n">put_test_case_annotation_request_content</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>put_test_case_annotation</p>
+<p>Creates or updates an annotation on the given test case.</p>
+<p>:param dataset_id: Unique identifier of the dataset (required)
+:type dataset_id: str
+:param test_case_id: Unique identifier of the testcase (required)
+:type test_case_id: str
+:param put_test_case_annotation_request_content: (required)
+:type put_test_case_annotation_request_content: PutTestCaseAnnotationRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.restore_dataset" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">restore_dataset</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.restore_dataset" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">restore_dataset</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">restore_dataset_request_content</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>restore_dataset</p>
+<p>Restores a dataset to specified version</p>
+<p>:param dataset_id: Unique identifier of the dataset (required)
+:type dataset_id: str
+:param restore_dataset_request_content: (required)
+:type restore_dataset_request_content: RestoreDatasetRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.start_generation" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">start_generation</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.start_generation" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">start_generation</span><span class="p">(</span><span class="n">start_generation_request_content</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>start_generation</p>
+<p>Starts generation job with specified steps</p>
+<p>:param start_generation_request_content: (required)
+:type start_generation_request_content: StartGenerationRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.stop_generation" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">stop_generation</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.stop_generation" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">stop_generation</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">stop_generation_request_content</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>stop_generation</p>
+<p>Stops the generation job</p>
+<p>:param id: Unique identifier of the job (required)
+:type id: str
+:param stop_generation_request_content:
+:type stop_generation_request_content: StopGenerationRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.submit_app_invocation_job" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">submit_app_invocation_job</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.submit_app_invocation_job" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">submit_app_invocation_job</span><span class="p">(</span><span class="n">evaluator_name</span><span class="p">,</span> <span class="n">submit_app_invocation_job_request_content</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>submit_app_invocation_job</p>
+<p>Submit an app invocation job: fetch test data, invoke app, record results (no scoring)</p>
+<p>:param evaluator_name: Name of the evaluator (required)
+:type evaluator_name: str
+:param submit_app_invocation_job_request_content: (required)
+:type submit_app_invocation_job_request_content: SubmitAppInvocationJobRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.submit_evaluation_job" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">submit_evaluation_job</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.submit_evaluation_job" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">submit_evaluation_job</span><span class="p">(</span><span class="n">evaluator_name</span><span class="p">,</span> <span class="n">submit_evaluation_job_request_content</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>submit_evaluation_job</p>
+<p>Submit a full evaluation job: fetch test data, invoke app, and score results</p>
+<p>:param evaluator_name: Name of the evaluator (required)
+:type evaluator_name: str
+:param submit_evaluation_job_request_content: (required)
+:type submit_evaluation_job_request_content: SubmitEvaluationJobRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.submit_scoring_job" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">submit_scoring_job</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.submit_scoring_job" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">submit_scoring_job</span><span class="p">(</span><span class="n">evaluator_name</span><span class="p">,</span> <span class="n">submit_scoring_job_request_content</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>submit_scoring_job</p>
+<p>Submit a scoring-only job: score existing results in a report</p>
+<p>:param evaluator_name: Name of the evaluator (required)
+:type evaluator_name: str
+:param submit_scoring_job_request_content:
+:type submit_scoring_job_request_content: SubmitScoringJobRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.update_configuration" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">update_configuration</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.update_configuration" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">update_configuration</span><span class="p">(</span><span class="n">update_configuration_request_content</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>update_configuration</p>
+<p>Updates the supplied workflow configuration.</p>
+<p>:param update_configuration_request_content: (required)
+:type update_configuration_request_content: UpdateConfigurationRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.update_evaluator_job_status" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">update_evaluator_job_status</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.update_evaluator_job_status" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">update_evaluator_job_status</span><span class="p">(</span><span class="n">job_id</span><span class="p">,</span> <span class="n">update_evaluator_job_status_request_content</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>update_evaluator_job_status</p>
+<p>Update the status of an evaluation job (v2)</p>
+<p>:param job_id: ID of the job (required)
+:type job_id: str
+:param update_evaluator_job_status_request_content: (required)
+:type update_evaluator_job_status_request_content: UpdateEvaluatorJobStatusRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.update_experiment" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">update_experiment</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.update_experiment" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">update_experiment</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">update_experiment_request_content</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>update_experiment</p>
+<p>Updates an existing experiment</p>
+<p>:param name: Unique identifier for the experiment (required)
+:type name: str
+:param update_experiment_request_content:
+:type update_experiment_request_content: UpdateExperimentRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.update_job_scheduler" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">update_job_scheduler</span>
+
+
+<a href="#awssolutions_gen_ai_evaluation_toolkit_python_client.api.default_api.DefaultApi.update_job_scheduler" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">update_job_scheduler</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">update_job_scheduler_request_content</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_request_auth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_host_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>update_job_scheduler</p>
+<p>Updates evaluation job scheduler (changes take immediate effect)</p>
+<p>:param name: Unique name of the job scheduler (required)
+:type name: str
+:param update_job_scheduler_request_content:
+:type update_job_scheduler_request_content: UpdateJobSchedulerRequestContent
+:param _request_timeout: timeout setting for this request. If one
+                         number provided, it will be total request
+                         timeout. It can also be a pair (tuple) of
+                         (connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+                      request; this effectively ignores the
+                      authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+                 request; this effectively ignores the headers
+                 in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+                    request; this effectively ignores the host_index
+                    in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="models">Models<a class="headerlink" href="#models" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="awssolutions_gen_ai_evaluation_toolkit_python_client.models"></a>
+    <div class="doc doc-contents first">
+
+        <p>Gen AI Evaluation Toolkit Service</p>
+<p>No description provided (generated by Openapi Generator https://github.com/openapitools/openapi-generator)</p>
+<p>The version of the OpenAPI document: 2.0.0
+Generated by OpenAPI Generator (https://openapi-generator.tech)</p>
+<p>Do not edit the class manually.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "search.suggest", "search.highlight", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": "2.0.0"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

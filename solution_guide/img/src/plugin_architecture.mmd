@@ -1,0 +1,33 @@
+graph LR
+    subgraph Orchestration
+        SFN["Step Functions<br/>universal pipeline<br/>(app_invoke → scoring → post-process)"]
+        EB["EventBridge<br/>GenAI ETK EventBus<br/>EvaluatorTaskDispatched /<br/>EvaluatorTaskTimedOut"]
+    end
+
+    subgraph Evaluators["Evaluator Lambdas"]
+        BI["evaluator-builtin<br/>(llm_as_judge, ragas,<br/>deepeval, agentcore)"]
+        AAJ["evaluator-agent-as-judge<br/>(isolated subnets, airgapped)"]
+        CUSTOM["Custom evaluators<br/>(LambdaEvaluator construct)"]
+    end
+
+    subgraph APILayer["Private API"]
+        APIGW["API Gateway (PRIVATE)<br/>via execute-api VPC endpoint"]
+        API["Evaluator API Lambda"]
+    end
+
+    subgraph Storage
+        DDB["DynamoDB<br/>jobs / reports / results"]
+        MLF["SageMaker MLflow<br/>metrics + artifacts"]
+    end
+
+    SFN -- "dispatch task<br/>(task token)" --> EB
+    EB -- "route by evaluatorName" --> BI
+    EB --> AAJ
+    EB --> CUSTOM
+    BI -- "results, scores,<br/>heartbeats, completion" --> APIGW
+    AAJ --> APIGW
+    CUSTOM --> APIGW
+    APIGW --> API
+    API --> DDB
+    API -- "bridge callback" --> SFN
+    SFN -- "post-process" --> MLF
