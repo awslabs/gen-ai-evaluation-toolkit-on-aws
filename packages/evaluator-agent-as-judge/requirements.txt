@@ -51,7 +51,7 @@ click==8.4.1 ; sys_platform != 'emscripten'
     # via uvicorn
 colorama==0.4.6 ; sys_platform == 'win32'
     # via click
-cryptography==49.0.0
+cryptography==50.0.0
     # via pyjwt
 dill==0.4.1
     # via strands-agents-tools
