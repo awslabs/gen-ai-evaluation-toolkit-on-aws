@@ -83,6 +83,7 @@ With AWS CDK:
 
 ```bash
 mise run codegen
+mise run bootstrap   # first-time only, once per account/region
 mise run deploy
 ```
 

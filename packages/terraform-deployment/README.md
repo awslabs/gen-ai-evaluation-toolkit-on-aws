@@ -60,8 +60,8 @@ repositories, and an SSM parameter. Minimum policy actions:
 `AdministratorAccess` is sufficient. For locked-down accounts, attach the
 above as a custom inline policy.
 
-After bootstrap, register the GitLab IAM role ARN (created separately) in GitLab CI:
-**Settings → CI/CD → Variables** → `AWS_CREDS_TARGET_ROLE_<ENV>` = `arn:aws:iam::<account>:role/GitLab` (Protected: yes; Masked: no).
+> **Internal contributors:** After bootstrap, register the GitLab IAM role ARN in GitLab CI:
+> **Settings → CI/CD → Variables** → `AWS_CREDS_TARGET_ROLE_<ENV>` = `arn:aws:iam::<account>:role/GitLab`.
 
 ### Troubleshooting bootstrap
 
@@ -155,11 +155,10 @@ If `apply` is killed mid-run (Ctrl-C, lost credentials, CI timeout), recover in 
 
 1. Drop `packages/<plugin>/Dockerfile` (or multiple `*.Dockerfile` variants).
 2. Append to `plugins.yaml`.
-3. `mise run gen-pipeline` — commits both files together.
-4. Add new `deploy_key` to `packages/terraform/modules/generation/plugins.tf` `_resolve_image`.
-5. `nx run terraform-deployment:bootstrap-apply` to create the new ECR repo.
+3. Add new `deploy_key` to `packages/terraform/modules/generation/plugins.tf` `_resolve_image`.
+4. `nx run terraform-deployment:bootstrap-apply` to create the new ECR repo.
 
-CI's `ci:verify-generated` job fails the build if `plugins.yaml` and the generated matrix drift.
+> **Internal contributors:** Run `mise run gen-pipeline` after editing `plugins.yaml` to regenerate the GitLab CI matrix. The `ci:verify-generated` job fails the build if the matrix drifts.
 
 ## NX targets reference
 
@@ -184,8 +183,6 @@ CI's `ci:verify-generated` job fails the build if `plugins.yaml` and the generat
 
 `packages/terraform/`'s `project.json` adds module-only targets (`stage-assets`, `validate`, `test`, `fmt`, `lint`, `checkov`, `clean`) — see [`packages/terraform/README.md`](../terraform/README.md#testing) for those.
 
-> `mise run gen-pipeline` is **not** an NX target — it's a mise task that regenerates `.gitlab/generated/docker-plugin-matrix.yml` from `plugins.yaml`. Run it after editing `plugins.yaml` (see [Adding a new plugin](#adding-a-new-plugin)). CI's `ci:verify-generated` job fails the build if the regenerated output drifts from what's committed.
-
 ## State backend + image manifest
 
 State: S3 bucket `genai-etk-terraform-state-<account-id>` under key `etk/<env>/terraform.tfstate`, locked by DDB `genai-etk-terraform-locks`. `backend.hcl` is regenerated per AWS profile — don't edit by hand.
@@ -196,12 +193,6 @@ Plugin image URIs pin via SSM `/genai-etk/<TF_ENV>/deployed-image-manifest` — 
 - **`build-and-push-images.sh` (local)**: maps every plugin to `<repo>:etk-<12-char-content-hash>`. Same content → same tag (idempotent), so retries skip the ECR push entirely. Mirrors CDK's content-hash convention from `pre-reqs.ts`.
 
 `terraform apply` reads whatever manifest is currently pinned via `data "aws_ssm_parameter"` + `jsondecode()` and supplies it to the customer module via `deployed_image_uris`.
-
-> The CI `docker:plugin` job (kaniko, fanned out from `plugins.yaml`) is dual-purpose: it writes the tar artifact CDK's `deploy:beta` flow consumes **and** pushes to the per-plugin ECR repo so `tf:apply` can resolve `<repo>:$CI_COMMIT_SHORT_SHA` via SSM. One build, two consumers — that's why the kaniko matrix runs even on TF-only changes.
-
-## Beta-account specifics
-
-CI deploys to the beta AWS account (`<YOUR_ACCOUNT_ID>`) in `eu-west-2` with `TF_ENV=tf-beta` (historical SSM-path continuity). The beta account ID and jump-role ARN are supplied via CI/CD variables referenced in `.gitlab/pipeline.yml` (`AWS_CREDS_TARGET_ROLE_TF_BETA`).
 
 ## Tearing down (disaster recovery only)
 

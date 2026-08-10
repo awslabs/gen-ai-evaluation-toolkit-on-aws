@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "awssolutions-gen-ai-evaluation-toolkit-evaluator-fmeval"
-version = "2.0.0"
+version = "2.0.1"
 license = "Apache-2.0"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
@@ -16,13 +16,7 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = [
-  "hatchling",
-  "mypy",
-  "ruff",
-  "pytest",
-  "pytest-cov",
-]
+dev = ["hatchling", "mypy", "ruff", "pytest", "pytest-cov"]
 
 # fmeval@1.2.3 hard-pins ray==2.44.0 which is affected by CVE-2025-62593 (DNS
 # rebinding, fixed in 2.52.0), CVE-2025-34351 (auth off by default), and

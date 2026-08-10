@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "awssolutions-gen-ai-evaluation-toolkit-python-api"
-version = "2.0.0"
+version = "2.0.1"
 license = "Apache-2.0"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
@@ -137,4 +137,3 @@ files = ["src/**/*.py"]
 [[tool.mypy.overrides]]
 module = "awssolutions_gen_ai_evaluation_toolkit_python_client.*"
 implicit_reexport = true
-

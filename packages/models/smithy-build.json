@@ -4,13 +4,13 @@
   "plugins": {
     "typescript-client-codegen": {
       "package": "@awssolutions/gen-ai-evaluation-toolkit-ts-client",
-      "packageVersion": "2.0.0",
+      "packageVersion": "2.0.1",
       "requiredMemberMode": "strict",
       "packageManager": "npm"
     },
     "typescript-ssdk-codegen": {
       "package": "@awssolutions/gen-ai-evaluation-toolkit-ts-ssdk",
-      "packageVersion": "2.0.0",
+      "packageVersion": "2.0.1",
       "requiredMemberMode": "strict",
       "packageManager": "npm"
     },

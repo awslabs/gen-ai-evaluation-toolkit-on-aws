@@ -13,7 +13,7 @@
 # - mlflow-skinny==2.13.2
 # - sagemaker-mlflow-skinny==0.1.1
 # - pydantic>=2.0
-# - lxml==5.4.0
+# - lxml==6.1.0
 # - setuptools<81
 # - numpy==1.26.4
 # - pandas==2.2.3
@@ -71,7 +71,7 @@ jmespath==1.0.1
     # via
     #   boto3
     #   botocore
-lxml==5.4.0
+lxml==6.1.0
     # via hatch.envs.test
 mlflow-skinny==2.13.2
     # via

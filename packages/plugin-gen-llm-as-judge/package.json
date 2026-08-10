@@ -1,6 +1,6 @@
 {
   "name": "awssolutions-gen-ai-evaluation-toolkit-plugin-llm-as-judge",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "Apache-2.0",
   "description": "GenAI-ETK LLM As A Judge plugin for Validating test cases",
   "main": "dist/index.js",

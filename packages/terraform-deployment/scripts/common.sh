@@ -43,9 +43,9 @@ etk::require_region() {
 etk::resolve_env() {
   ENV_NAME="${TF_ENV:-dev}"
   case "${ENV_NAME}" in
-    tf-beta|tf-release|dev|staging|prod) ;;
+    tf-beta|tf-release|tf-prod|dev|staging|prod) ;;
     *)
-      echo "ERROR: TF_ENV='${ENV_NAME}' is not one of: tf-beta, tf-release, dev, staging, prod." >&2
+      echo "ERROR: TF_ENV='${ENV_NAME}' is not one of: tf-beta, tf-release, tf-prod, dev, staging, prod." >&2
       echo "  To add a new env, update the whitelist in common.sh::etk::resolve_env" >&2
       echo "  AND bootstrap the target account so /<project-prefix>/<env>/deployed-image-manifest exists." >&2
       exit 1

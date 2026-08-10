@@ -278,7 +278,7 @@ wheels = [
 
 [[package]]
 name = "awssolutions-gen-ai-evaluation-toolkit-evaluator-builtin"
-version = "2.0.0"
+version = "2.0.1"
 source = { editable = "." }
 dependencies = [
     { name = "aiobotocore" },
@@ -307,8 +307,8 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "aiobotocore" },
-    { name = "awssolutions-gen-ai-evaluation-toolkit-evaluator-sdk", directory = "/Volumes/workplace/bianco/genai-etk/packages/evaluator-sdk" },
-    { name = "awssolutions-gen-ai-evaluation-toolkit-python-client", directory = "/Volumes/workplace/bianco/genai-etk/packages/generated/python-client" },
+    { name = "awssolutions-gen-ai-evaluation-toolkit-evaluator-sdk", directory = "/workplace/amrsaber/etk/packages/evaluator-sdk" },
+    { name = "awssolutions-gen-ai-evaluation-toolkit-python-client", directory = "/workplace/amrsaber/etk/packages/generated/python-client" },
     { name = "deepeval", specifier = ">=3.7" },
     { name = "langchain-aws", specifier = ">=0.2.0" },
     { name = "langchain-core" },
@@ -331,8 +331,8 @@ dev = [
 
 [[package]]
 name = "awssolutions-gen-ai-evaluation-toolkit-evaluator-sdk"
-version = "2.0.0"
-source = { directory = "/Volumes/workplace/bianco/genai-etk/packages/evaluator-sdk" }
+version = "2.0.1"
+source = { directory = "/workplace/amrsaber/etk/packages/evaluator-sdk" }
 dependencies = [
     { name = "awssolutions-gen-ai-evaluation-toolkit-python-client" },
     { name = "boto3" },
@@ -342,7 +342,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "awssolutions-gen-ai-evaluation-toolkit-python-client", directory = "/Volumes/workplace/bianco/genai-etk/packages/generated/python-client" },
+    { name = "awssolutions-gen-ai-evaluation-toolkit-python-client", directory = "/workplace/amrsaber/etk/packages/generated/python-client" },
     { name = "boto3" },
     { name = "pydantic", specifier = ">=2.0" },
     { name = "requests" },
@@ -369,7 +369,7 @@ dev = [
 
 [[package]]
 name = "awssolutions-gen-ai-evaluation-toolkit-python-api"
-version = "2.0.0"
+version = "2.0.1"
 source = { editable = "../python-api" }
 dependencies = [
     { name = "aws-lambda-powertools" },
@@ -385,7 +385,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "aws-lambda-powertools", specifier = ">=2.11.0" },
-    { name = "awssolutions-gen-ai-evaluation-toolkit-python-client", directory = "/Volumes/workplace/bianco/genai-etk/packages/generated/python-client" },
+    { name = "awssolutions-gen-ai-evaluation-toolkit-python-client", directory = "/workplace/amrsaber/etk/packages/generated/python-client" },
     { name = "boto3", specifier = ">=1.34" },
     { name = "mlflow-skinny", specifier = "==2.13.2" },
     { name = "mypy-boto3-dynamodb" },
@@ -408,8 +408,8 @@ dev = [
 
 [[package]]
 name = "awssolutions-gen-ai-evaluation-toolkit-python-client"
-version = "2.0.0b0"
-source = { directory = "/Volumes/workplace/bianco/genai-etk/packages/generated/python-client" }
+version = "2.0.1"
+source = { directory = "/workplace/amrsaber/etk/packages/generated/python-client" }
 dependencies = [
     { name = "boto3" },
     { name = "botocore" },

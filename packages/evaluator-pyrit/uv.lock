@@ -190,7 +190,7 @@ wheels = [
 
 [[package]]
 name = "awssolutions-gen-ai-evaluation-toolkit-evaluator-pyrit"
-version = "2.0.0"
+version = "2.0.1"
 source = { editable = "." }
 dependencies = [
     { name = "awssolutions-gen-ai-evaluation-toolkit-evaluator-sdk" },
@@ -211,7 +211,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "awssolutions-gen-ai-evaluation-toolkit-evaluator-sdk", editable = "../evaluator-sdk" },
-    { name = "awssolutions-gen-ai-evaluation-toolkit-python-client", directory = "/Volumes/workplace/bianco/genai-etk/packages/generated/python-client" },
+    { name = "awssolutions-gen-ai-evaluation-toolkit-python-client", directory = "/workplace/amrsaber/etk/packages/generated/python-client" },
     { name = "pyrit", specifier = ">=0.13.0,<1.0" },
 ]
 
@@ -227,7 +227,7 @@ dev = [
 
 [[package]]
 name = "awssolutions-gen-ai-evaluation-toolkit-evaluator-sdk"
-version = "2.0.0"
+version = "2.0.1"
 source = { editable = "../evaluator-sdk" }
 dependencies = [
     { name = "awssolutions-gen-ai-evaluation-toolkit-python-client" },
@@ -238,7 +238,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "awssolutions-gen-ai-evaluation-toolkit-python-client", directory = "/Volumes/workplace/bianco/genai-etk/packages/generated/python-client" },
+    { name = "awssolutions-gen-ai-evaluation-toolkit-python-client", directory = "/workplace/amrsaber/etk/packages/generated/python-client" },
     { name = "boto3" },
     { name = "pydantic", specifier = ">=2.0" },
     { name = "requests" },
@@ -265,8 +265,8 @@ dev = [
 
 [[package]]
 name = "awssolutions-gen-ai-evaluation-toolkit-python-client"
-version = "2.0.0b0"
-source = { directory = "/Volumes/workplace/bianco/genai-etk/packages/generated/python-client" }
+version = "2.0.1"
+source = { directory = "/workplace/amrsaber/etk/packages/generated/python-client" }
 dependencies = [
     { name = "boto3" },
     { name = "botocore" },

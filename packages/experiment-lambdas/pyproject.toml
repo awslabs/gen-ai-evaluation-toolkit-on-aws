@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "awssolutions-gen-ai-evaluation-toolkit-experiment-lambda"
-version = "2.0.0"
+version = "2.0.1"
 license = "Apache-2.0"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
@@ -67,9 +67,7 @@ parallel = true
 source_pkgs = ["experiment_lambda"]
 
 [tool.coverage.paths]
-"experiment_lambda" = [
-  "src/experiment_lambda",
-]
+"experiment_lambda" = ["src/experiment_lambda"]
 
 [tool.coverage.report]
 exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]

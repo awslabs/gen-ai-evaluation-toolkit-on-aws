@@ -60,6 +60,9 @@ Two infrastructure-as-code paths are supported — use whichever fits your envir
 # Install tooling and dependencies
 mise run install-all
 
+# Bootstrap CDK (first-time only, once per account/region)
+mise run bootstrap
+
 # Deploy into your AWS account
 mise run deploy
 ```

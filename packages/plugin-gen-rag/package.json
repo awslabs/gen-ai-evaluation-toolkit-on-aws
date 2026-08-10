@@ -1,6 +1,6 @@
 {
   "name": "awssolutions-gen-ai-evaluation-toolkit-plugin-generate-test-cases",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "Apache-2.0",
   "description": "GenAI-ETK ground truth generation plugin for generating test cases",
   "main": "dist/index.js",

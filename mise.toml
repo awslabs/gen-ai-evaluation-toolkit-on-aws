@@ -146,19 +146,10 @@ mise run test
 description = "Sync packages version number to that of the root package.json"
 run = "./scripts/sync-version.sh"
 
+# Internal only: regenerates GitLab CI matrix (requires .gitlab/ which is stripped in OSS)
 [tasks.gen-pipeline]
-description = "Regenerate .gitlab/generated/docker-plugin-matrix.yml from packages/terraform-deployment/plugins.yaml"
+description = "[Internal] Regenerate .gitlab/generated/docker-plugin-matrix.yml from plugins.yaml"
 run = "npx --yes tsx packages/terraform-deployment/scripts/gen-pipeline.ts"
-
-[tasks.publish]
-description = "Publish packages to Gitlab registry"
-run = '''
-# Publish node and python packages
-nx run-many --target=publish --parallel 1
-
-# Publish docker images
-IMAGES_TAG=$(jq -r '.version' ./package.json) ./scripts/publish/docker.sh ./output/images
-'''
 
 [tasks.audit-fix]
 description = "Run npm audit fix across all node packages"

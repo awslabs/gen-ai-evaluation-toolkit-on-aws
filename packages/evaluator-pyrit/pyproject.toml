@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "awssolutions-gen-ai-evaluation-toolkit-evaluator-pyrit"
-version = "2.0.0"
+version = "2.0.1"
 license = "Apache-2.0"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
@@ -15,14 +15,7 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = [
-  "hatchling",
-  "mypy",
-  "ruff",
-  "pytest",
-  "pytest-cov",
-  "pytest-asyncio",
-]
+dev = ["hatchling", "mypy", "ruff", "pytest", "pytest-cov", "pytest-asyncio"]
 
 [tool.uv.sources]
 awssolutions-gen-ai-evaluation-toolkit-evaluator-sdk = { path = "../evaluator-sdk", editable = true }

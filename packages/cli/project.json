@@ -36,14 +36,6 @@
         "parallel": false
       }
     },
-    "publish": {
-      "executor": "nx:run-commands",
-      "dependsOn": ["build"],
-      "options": {
-        "command": "$NX_WORKSPACE_ROOT/scripts/publish/node.sh .",
-        "cwd": "{projectRoot}"
-      }
-    },
     "test": {
       "executor": "nx:run-commands",
       "options": {

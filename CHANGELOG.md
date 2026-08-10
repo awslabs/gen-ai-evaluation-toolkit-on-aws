@@ -5,7 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.0.1] - 2026-08-05
+
+Documentation and tooling fixes for the public OSS release. No functional
+or API changes.
+
+### Fixed
+
+- **First-time CDK deploy on a clean account.** Added the missing
+  `mise run bootstrap` step to the README and DEVELOPMENT quickstarts, so a
+  fresh checkout deploys without a manual bootstrap.
+
+### Removed
+
+- Internal-only GitLab publish scripts (`scripts/publish/{node,python,docker}.sh`)
+  and the `publish` task, plus the `gen-pipeline` task and `gen-pipeline.ts`
+  (both wrote to `.gitlab/`, which is stripped from the OSS distribution).
+- Internal-CI residue from docs: "Beta-account specifics" section and GitLab
+  CI registration note removed from the Terraform deployment README.
 
 ## [2.0.0] - 2026-07-27
 
