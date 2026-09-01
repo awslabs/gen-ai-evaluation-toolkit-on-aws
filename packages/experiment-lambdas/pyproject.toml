@@ -32,7 +32,7 @@ dependencies = [
 
   # Pin pip to compatible version for hatch-pip-compile
   # See: https://github.com/jazzband/pip-tools/issues/2252
-  "pip == 26.0.1",
+  "pip == 26.2",
 ]
 
 [project.optional-dependencies]
@@ -132,7 +132,7 @@ extra-dependencies = [
   "pytest-cov",
   "pytest-xdist",
   "coverage[toml]",
-  "pip == 26.0.1",
+  "pip == 26.2",
 ]
 
 [tool.hatch.envs.default.scripts]
@@ -192,7 +192,7 @@ dependencies = [
   "hatch-pip-compile >= 1.11.0",
   "wheel==0.45.1",
   "pip-tools >= 7.4.0",
-  "pip == 26.0.1",
+  "pip == 26.2",
 ]
 
 # Type checking configuration
