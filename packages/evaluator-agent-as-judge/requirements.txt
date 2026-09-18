@@ -188,7 +188,7 @@ slack-bolt==1.28.0
     # via strands-agents-tools
 slack-sdk==3.42.0
     # via slack-bolt
-soupsieve==2.8.4
+soupsieve==2.9
     # via beautifulsoup4
 sse-starlette==3.4.4
     # via mcp
