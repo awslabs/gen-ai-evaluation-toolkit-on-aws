@@ -16,5 +16,5 @@ platformdirs==4.5.0
     # via virtualenv
 pyproject-hooks==1.2.0
     # via build
-virtualenv==20.35.3
+virtualenv==21.7.13
     # via build
