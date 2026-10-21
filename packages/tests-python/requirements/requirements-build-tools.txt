@@ -119,7 +119,7 @@ typing-extensions==4.15.0
     # via anyio
 userpath==1.9.2
     # via hatch
-uv==0.9.5
+uv==0.13.4
     # via hatch
 virtualenv==20.35.3
     # via hatch
