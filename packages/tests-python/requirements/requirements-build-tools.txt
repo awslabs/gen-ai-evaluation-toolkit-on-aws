@@ -121,7 +121,7 @@ userpath==1.9.2
     # via hatch
 uv==0.9.5
     # via hatch
-virtualenv==20.35.3
+virtualenv==21.14.9
     # via hatch
 wheel==0.45.1
     # via pip-tools
