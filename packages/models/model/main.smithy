@@ -67,7 +67,7 @@ use com.amzn.aws.pse.genaietk.generation.operation#StopGeneration
 // Required for API GW IAM auth
 @restJson1
 service GenAiEtk {
-    version: "2.0.1"
+    version: "2.0.2"
     operations: [
         // Datastore
         ListDatasets

@@ -1,7 +1,7 @@
 {
   "name": "@awssolutions/gen-ai-evaluation-toolkit-deployment-cdk",
   "description": "AWS PSE GenAI-ETK deployment CDK",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "private": true,
   "license": "Apache-2.0",
   "main": "lib/app.ts",

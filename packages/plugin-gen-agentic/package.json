@@ -1,6 +1,6 @@
 {
   "name": "awssolutions-gen-ai-evaluation-toolkit-plugin-gen-agentic",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "license": "Apache-2.0",
   "description": "GenAI-ETK ground truth generation plugin for generating test cases for agentic applications",
   "main": "dist/index.js",

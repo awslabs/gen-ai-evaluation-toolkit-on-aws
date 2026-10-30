@@ -8,8 +8,9 @@
 # - setuptools<81
 # - mypy
 # - ruff
+# - certifi>=2026.10.19
 # - aws-lambda-powertools==2.11.0
-# - boto3==1.34
+# - boto3>=1.43.117
 # - mlflow-skinny==2.13.2
 # - sagemaker-mlflow-skinny==0.1.1
 # - pydantic>=2.0
@@ -18,66 +19,70 @@
 # - numpy==1.26.4
 # - pandas==2.2.3
 # - virtualenv<20.35.0
-# - pip==26.0.1
+# - pip==26.2.2
 #
 
-annotated-types==0.7.0
+annotated-types==0.8.0
     # via pydantic
+ast-serialize==0.13.1
+    # via mypy
 aws-lambda-powertools==2.11.0
     # via hatch.envs.test
-boto3==1.34.0
+boto3==1.43.119
     # via
     #   hatch.envs.test
     #   sagemaker-mlflow-skinny
-botocore==1.34.162
+botocore==1.43.119
     # via
     #   boto3
     #   s3transfer
 cachetools==5.5.2
     # via mlflow-skinny
-certifi==2025.11.12
+certifi==2026.10.23
+    # via
+    #   hatch.envs.test
+    #   requests
+charset-normalizer==3.5.2
     # via requests
-charset-normalizer==3.4.7
-    # via requests
-click==8.3.0
+click==8.5.0
     # via mlflow-skinny
 cloudpickle==3.1.2
     # via mlflow-skinny
-coverage==7.11.3
+coverage==7.17.0
     # via
     #   hatch.envs.test
     #   pytest-cov
-distlib==0.4.3
+distlib==0.4.4
     # via virtualenv
-entrypoints==0.4
+entrypoints==0.4.2
     # via mlflow-skinny
 execnet==2.1.2
     # via pytest-xdist
-filelock==3.20.0
+filelock==3.32.7
     # via virtualenv
 gitdb==4.0.12
     # via gitpython
-gitpython==3.1.45
+gitpython==3.2.1
     # via mlflow-skinny
-idna==3.11
+idna==3.20
     # via requests
 importlib-metadata==7.2.1
-    # via
-    #   mlflow-skinny
-    #   opentelemetry-api
-iniconfig==2.3.0
+    # via mlflow-skinny
+iniconfig==2.3.1
     # via pytest
-jmespath==1.0.1
+jmespath==1.1.0
     # via
     #   boto3
     #   botocore
+librt==0.16.0
+    # via mypy
 lxml==6.1.0
     # via hatch.envs.test
 mlflow-skinny==2.13.2
     # via
     #   hatch.envs.test
     #   sagemaker-mlflow-skinny
-mypy==1.18.2
+mypy==2.4.0
     # via hatch.envs.test
 mypy-extensions==1.1.0
     # via mypy
@@ -85,14 +90,14 @@ numpy==1.26.4
     # via
     #   hatch.envs.test
     #   pandas
-opentelemetry-api==1.38.0
+opentelemetry-api==1.45.1
     # via
     #   mlflow-skinny
     #   opentelemetry-sdk
     #   opentelemetry-semantic-conventions
-opentelemetry-sdk==1.38.0
+opentelemetry-sdk==1.45.1
     # via mlflow-skinny
-opentelemetry-semantic-conventions==0.59b0
+opentelemetry-semantic-conventions==0.66b1
     # via opentelemetry-sdk
 packaging==24.2
     # via
@@ -102,28 +107,28 @@ pandas==2.2.3
     # via
     #   hatch.envs.test
     #   sagemaker-mlflow-skinny
-pathspec==0.12.1
+pathspec==1.1.1
     # via mypy
-platformdirs==4.5.0
+platformdirs==4.13.6
     # via virtualenv
-pluggy==1.6.0
+pluggy==1.7.0
     # via
     #   pytest
     #   pytest-cov
-protobuf==4.25.8
+protobuf==4.25.9
     # via mlflow-skinny
-pydantic==2.12.4
+pydantic==2.14.1
     # via hatch.envs.test
-pydantic-core==2.41.5
+pydantic-core==2.50.1
     # via pydantic
-pygments==2.19.2
+pygments==2.21.0
     # via pytest
-pytest==9.0.1
+pytest==9.1.1
     # via
     #   hatch.envs.test
     #   pytest-cov
     #   pytest-xdist
-pytest-cov==7.0.0
+pytest-cov==7.1.0
     # via hatch.envs.test
 pytest-xdist==3.8.0
     # via hatch.envs.test
@@ -137,21 +142,21 @@ pytz==2024.2
     #   pandas
 pyyaml==6.0.3
     # via mlflow-skinny
-requests==2.32.5
+requests==2.34.2
     # via mlflow-skinny
-ruff==0.14.4
+ruff==0.17.3
     # via hatch.envs.test
-s3transfer==0.9.0
+s3transfer==0.19.3
     # via boto3
 sagemaker-mlflow-skinny==0.1.1
     # via hatch.envs.test
 six==1.17.0
     # via python-dateutil
-smmap==5.0.2
+smmap==5.0.3
     # via gitdb
-sqlparse==0.5.3
+sqlparse==0.6.0
     # via mlflow-skinny
-typing-extensions==4.15.0
+typing-extensions==4.16.0
     # via
     #   aws-lambda-powertools
     #   mypy
@@ -161,17 +166,17 @@ typing-extensions==4.15.0
     #   pydantic
     #   pydantic-core
     #   typing-inspection
-typing-inspection==0.4.2
+typing-inspection==0.4.4
     # via pydantic
-tzdata==2025.2
+tzdata==2026.5
     # via pandas
-urllib3==2.5.0
+urllib3==2.8.0
     # via
     #   botocore
     #   requests
 virtualenv==20.34.0
     # via hatch.envs.test
-zipp==3.23.0
+zipp==4.1.2
     # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:

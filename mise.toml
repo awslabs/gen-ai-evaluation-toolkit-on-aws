@@ -1,5 +1,5 @@
 [tools]
-node = "22"
+node = "22.23.4"
 # Pin deliberately. mise's `latest` grabs whatever npm published most
 # recently, so an upstream nx/aws-cdk release can break CI on unchanged
 # code (nx@23.1.0 failed to resolve its linux-x64 native dep in CI on

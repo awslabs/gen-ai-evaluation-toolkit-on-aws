@@ -1,7 +1,7 @@
 {
   "name": "@awssolutions/gen-ai-evaluation-toolkit-cdk",
   "description": "Gen AI Evaluation Toolkit on AWS: CDK constructs",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "license": "Apache-2.0",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",

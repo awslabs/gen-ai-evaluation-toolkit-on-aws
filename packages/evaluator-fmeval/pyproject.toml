@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "awssolutions-gen-ai-evaluation-toolkit-evaluator-fmeval"
-version = "2.0.1"
+version = "2.0.2"
 license = "Apache-2.0"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
@@ -27,6 +27,14 @@ dev = ["hatchling", "mypy", "ruff", "pytest", "pytest-cov"]
 # disputes it and mitigates by not exposing the Ray dashboard to the internet.
 [tool.uv]
 override-dependencies = [
+  # certifi <2026.10.19 bundles the compromised emSign roots (GHSA-6q48-6c7w-9gw2).
+  "certifi>=2026.10.19",
+  # grpcio <1.84.1 vendors a roots.pem trusting the compromised emSign ECC Root
+  # CA - G3 (GHSA-6q48-6c7w-9gw2); floored so the sweep covers fmeval too.
+  "grpcio>=1.84.1",
+  # botocore <1.43.117 vendors a cacert.pem containing AAA Certificate Services
+  # (GHSA-6q48-6c7w-9gw2); dormant (only read when certifi is absent) but floored.
+  "botocore>=1.43.117",
   "ray>=2.54.0",
   # sagemaker <2.257.2 is affected by insecure-TLS, exposed/cleartext HMAC
   # signing key, and JumpStart eval() findings; 2.257.2 is the patched tail

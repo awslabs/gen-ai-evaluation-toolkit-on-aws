@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "awssolutions-gen-ai-evaluation-toolkit-python-api"
-version = "2.0.1"
+version = "2.0.2"
 license = "Apache-2.0"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
@@ -33,6 +33,13 @@ dev = [
 
 [tool.uv]
 override-dependencies = [
+  # certifi <2026.10.19 bundles the compromised emSign roots (GHSA-6q48-6c7w-9gw2).
+  "certifi>=2026.10.19",
+  # botocore <1.43.117 vendors a cacert.pem containing AAA Certificate Services
+  # (GHSA-6q48-6c7w-9gw2); dormant (only read when certifi is absent) but floored.
+  # Floor only (no upper cap): no aiobotocore here, so nothing requires pinning
+  # botocore to an exact patch -- leave headroom for future CA fixes.
+  "botocore>=1.43.117",
   # Transitive via mlflow-skinny. <3.1.53 is vulnerable to command injection
   # (long-option prefix abbreviation, unsafe clone option gate bypass,
   # Repo.archive()/ls_remote()/iter_commits()) and env-var exfiltration.

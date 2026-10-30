@@ -4,13 +4,19 @@ build-backend = "hatchling.build"
 
 [project]
 name = "awssolutions-gen-ai-evaluation-toolkit-experiment-lambda"
-version = "2.0.1"
+version = "2.0.2"
 license = "Apache-2.0"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
+  # certifi <2026.10.19 bundles the compromised emSign roots (GHSA-6q48-6c7w-9gw2).
+  "certifi>=2026.10.19",
   "aws-lambda-powertools == 2.11.0",
-  "boto3 == 1.34",
+  # Was pinned `== 1.34`, which capped botocore at 1.34.162 whose vendored
+  # cacert.pem bundles AAA Certificate Services (GHSA-6q48-6c7w-9gw2). Floored to
+  # a release carrying the clean botocore (>=1.43.117). (Dormant here — certifi is
+  # bundled in the zip — but tidied so no shipped bundle carries the root.)
+  "boto3 >= 1.43.117",
   "mlflow-skinny == 2.13.2",
   "sagemaker-mlflow-skinny == 0.1.1",
   "pydantic >= 2.0",
@@ -32,7 +38,7 @@ dependencies = [
 
   # Pin pip to compatible version for hatch-pip-compile
   # See: https://github.com/jazzband/pip-tools/issues/2252
-  "pip == 26.0.1",
+  "pip == 26.2.2",
 ]
 
 [project.optional-dependencies]
@@ -119,7 +125,7 @@ require-runtime-dependencies = true
 # `scripts/install-hatch.sh` so the workspace .venv is created with this
 # version up front, pre-empting an in-place upgrade by Hatch that would
 # otherwise race across parallel NX Python builds.
-requires = ["hatch-pip-compile", "pip==26.0.1"]
+requires = ["hatch-pip-compile", "pip==26.2.2"]
 
 [tool.hatch.envs.default]
 type = "pip-compile"
@@ -132,7 +138,7 @@ extra-dependencies = [
   "pytest-cov",
   "pytest-xdist",
   "coverage[toml]",
-  "pip == 26.0.1",
+  "pip == 26.2.2",
 ]
 
 [tool.hatch.envs.default.scripts]
@@ -192,7 +198,7 @@ dependencies = [
   "hatch-pip-compile >= 1.11.0",
   "wheel==0.45.1",
   "pip-tools >= 7.4.0",
-  "pip == 26.0.1",
+  "pip == 26.2.2",
 ]
 
 # Type checking configuration

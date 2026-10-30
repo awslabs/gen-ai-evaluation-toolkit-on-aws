@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "awssolutions-gen-ai-evaluation-toolkit-evaluator-builtin"
-version = "2.0.1"
+version = "2.0.2"
 license = "Apache-2.0"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -39,6 +39,8 @@ awssolutions-gen-ai-evaluation-toolkit-python-api = { path = "../python-api", ed
 
 [tool.uv]
 override-dependencies = [
+  # certifi <2026.10.19 bundles the compromised emSign roots (GHSA-6q48-6c7w-9gw2).
+  "certifi>=2026.10.19",
   # Transitive via mlflow-skinny. <3.1.53 is vulnerable to command injection
   # (long-option prefix abbreviation, unsafe clone option gate bypass,
   # Repo.archive()/ls_remote()/iter_commits()) and env-var exfiltration.
@@ -49,6 +51,18 @@ override-dependencies = [
   # wire- and API-compatible for mlflow's usage.
   "protobuf>=5.29.6,<6",
   "boto3>=1.34",
+  # botocore <1.43.117 vendors a cacert.pem containing AAA Certificate Services
+  # (GHSA-6q48-6c7w-9gw2); dormant (only read when certifi is absent) but floored.
+  # Capped <1.43.118: aiobotocore 3.10.0 requires botocore <1.43.118, so 1.43.117
+  # is the highest clean botocore installable here.
+  "botocore>=1.43.117,<1.43.118",
+  # aiobotocore <3.10.0 caps botocore below the clean 1.43.117; 3.10.0 opens the
+  # window to it (GHSA-6q48-6c7w-9gw2).
+  "aiobotocore>=3.10.0",
+  # grpcio <1.84.1 vendors a roots.pem trusting the compromised emSign ECC Root
+  # CA - G3 (GHSA-6q48-6c7w-9gw2); unused here (imported only for error types,
+  # no channel opened) but floored.
+  "grpcio>=1.84.1",
   # ragas 0.4.x (latest) still imports langchain_community.chat_models.vertexai,
   # which was moved out of langchain-community in 0.4.0. Cap the transitive
   # to keep tests import-clean until ragas ships a fix.

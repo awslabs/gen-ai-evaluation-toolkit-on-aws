@@ -3,6 +3,7 @@
 
 # Data source to get available AZs in the region
 data "aws_availability_zones" "available" {
+  # checkov:skip=CKV_AWS_394: No cdk-nag AwsSolutions equivalent — this rule is Checkov-only, so suppressing it keeps parity with the CDK path, which also lets AWS choose AZs (packages/deployment/lib/constructs/vpc.ts `new Vpc(...)` with no maxAzs/availabilityZones). The result is consumed only as slice(names, 0, 3) with the module validated to <= 3 AZs (CDK maxAzs: 3 parity), so the returned AZ count cannot silently expand. A literal zone-name/zone-id allowlist would hardcode region-specific identity and break the module's multi-region + BYO-VPC portability.
   state = "available"
 }
 

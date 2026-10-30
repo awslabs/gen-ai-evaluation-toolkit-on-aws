@@ -5,6 +5,50 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.2] - 2026-10-26
+
+Security hotfix distrusting the compromised eMudhra/emSign certificate
+authorities across the trust stores ETK ships and builds with. No API changes.
+
+The Lambda container images now install from requirements regenerated from the
+committed lock files. The previous requirements had fallen behind those locks,
+so besides the security floors the images pick up versions the locks already
+held. Notable moves: `langchain` 1.3, `langchain-core` 1.4, `langgraph` 1.2,
+`openai` 2.44, `datasets` 5, `numpy` 2.5 and `pyarrow` 24 in the builtin
+evaluator image, and `strands-agents` 1.46 in the agent-as-judge image.
+
+### Fixed
+
+- **Removed the compromised eMudhra/emSign roots
+  ([GHSA-6q48-6c7w-9gw2](https://github.com/advisories/GHSA-6q48-6c7w-9gw2))
+  from everywhere ETK trusts certificates.** The private keys for
+  `emSign ECC Root CA - G3` and its TLS intermediates were compromised, so a
+  client still trusting that root could accept a forged certificate for any
+  host. ETK now floors `certifi>=2026.10.19` (the release that drops the root)
+  across its Python packages (so the fixed bundle resolves in ETK's own builds)
+  and the container images additionally upgrade
+  `pip` from a hash-pinned wheel and blocklist the root from the Amazon Linux
+  2023 OS trust store at build time, so neither the build nor the runtime
+  trusts it. The sweep also covers the stores certifi and the OS blocklist do
+  not reach: the `opencode` agent runtime (bumped to a build that drops the
+  root from its compiled-in store), the CA bundles vendored inside `grpcio` and
+  `botocore`, and the `pip`/`uv`/`certifi` on the build toolchain. Each floor is
+  source-of-truth, so a future re-resolve cannot drift back below it.
+
+  The OS-store blocklist removes only `emSign ECC Root CA - G3`, so `emSign`
+  C1/C3/G1 stay trusted by the OS store and Node. The `certifi` and `grpcio`
+  bundles ETK now resolves also drop C1 and C3, so Python clients trust only G1
+  from this family.
+
+  Node's own bundled root store (used by the CLI, CDK app and deploy tooling)
+  removes `emSign ECC Root CA - G3` only in Node 22.23.4 / 24.22.1 (both
+  2026-10-20) and ignores the OS store by default. Run Node >= 22.23.4 or
+  >= 24.22.1 when using the CLI or deploying; Node 20 is EOL and still trusts
+  the root.
+- **Bump pip to `26.2.2`
+  ([CVE-2026-8643](https://nvd.nist.gov/vuln/detail/CVE-2026-8643)).** Updated
+  the pinned pip used by the hatch-managed build path.
+
 ## [2.0.1] - 2026-08-05
 
 Documentation and tooling fixes for the public OSS release. No functional

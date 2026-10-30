@@ -32,7 +32,7 @@
     "clean": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "find . -mindepth 1 ! -name 'project.json' ! -path './templates' ! -path './templates/*' -delete",
+        "command": "find . -mindepth 1 ! -name 'project.json' ! -name 'openapitools.json' ! -path './templates' ! -path './templates/*' -delete",
         "cwd": "{projectRoot}"
       }
     }

@@ -3,6 +3,7 @@
 #
 # - pytest
 # - mypy
+# - certifi>=2026.10.19
 # - pytest
 # - pytest-xdist
 # - requests-aws4auth
@@ -13,45 +14,51 @@
 # - typing-extensions
 #
 
-boto3==1.40.57
+ast-serialize==0.13.1
+    # via mypy
+boto3==1.43.119
     # via hatch.envs.default
-botocore==1.40.57
+botocore==1.43.119
     # via
     #   boto3
     #   s3transfer
-certifi==2025.10.5
-    # via requests
-charset-normalizer==3.4.7
+certifi==2026.10.23
+    # via
+    #   hatch.envs.default
+    #   requests
+charset-normalizer==3.5.2
     # via requests
 deepdiff==8.6.2
     # via hatch.envs.default
-execnet==2.1.1
+execnet==2.1.2
     # via pytest-xdist
-idna==3.11
+idna==3.20
     # via requests
-iniconfig==2.3.0
+iniconfig==2.3.1
     # via pytest
-invoke==2.2.1
+invoke==3.0.3
     # via hatch.envs.default
-jmespath==1.0.1
+jmespath==1.1.0
     # via
     #   boto3
     #   botocore
-mypy==1.18.2
+librt==0.16.0
+    # via mypy
+mypy==2.4.0
     # via hatch.envs.default
 mypy-extensions==1.1.0
     # via mypy
 orderly-set==5.5.0
     # via deepdiff
-packaging==25.0
+packaging==26.3
     # via pytest
-pathspec==0.12.1
+pathspec==1.1.1
     # via mypy
-pluggy==1.6.0
+pluggy==1.7.0
     # via pytest
-pygments==2.19.2
+pygments==2.21.0
     # via pytest
-pytest==8.4.2
+pytest==9.1.1
     # via
     #   hatch.envs.default
     #   pytest-xdist
@@ -59,21 +66,21 @@ pytest-xdist==3.8.0
     # via hatch.envs.default
 python-dateutil==2.9.0.post0
     # via botocore
-requests==2.32.5
+requests==2.34.2
     # via requests-aws4auth
-requests-aws4auth==1.3.1
+requests-aws4auth==1.4.0
     # via hatch.envs.default
-s3transfer==0.14.0
+s3transfer==0.19.3
     # via boto3
 six==1.17.0
     # via python-dateutil
 tenacity==9.1.2
     # via hatch.envs.default
-typing-extensions==4.15.0
+typing-extensions==4.16.0
     # via
     #   hatch.envs.default
     #   mypy
-urllib3==2.7.0
+urllib3==2.8.0
     # via
     #   botocore
     #   requests

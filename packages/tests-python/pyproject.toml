@@ -14,6 +14,8 @@ readme = "README.md"
 # - run `mise run release` to update your requirements files
 # - commit all updated requirements files.
 dependencies = [
+  # certifi <2026.10.19 bundles the compromised emSign roots (GHSA-6q48-6c7w-9gw2).
+  "certifi>=2026.10.19",
   "pytest",
   "pytest-xdist",
   "requests-aws4auth",
